@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PUSHPA CAR GALLERY | Road-Worn to Mirror — Khammam</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          colors: {
+            obsidian: '#060709',
+            carbon: '#0d0f14',
+            amberGlow: '#f59e0b',
+            cyanLab: '#38bdf8'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #060709; color: #f8fafc; overflow-x: hidden; }
+    .glass-nav { background: rgba(6, 7, 9, 0.78); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .glass-card { background: rgba(15, 18, 25, 0.72); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.09); }
+    /* Dirty filter simulation for Before state */
+    .dirty-car-filter {
+      filter: sepia(0.55) brightness(0.68) contrast(1.15) saturate(0.55);
+    }
+    .mud-overlay {
+      background-image: radial-gradient(rgba(120, 88, 52, 0.45) 1px, transparent 0),
+                        radial-gradient(rgba(92, 68, 40, 0.55) 2px, transparent 0);
+      background-size: 24px 24px, 38px 38px;
+      background-position: 0 0, 12px 12px;
+      mix-blend-mode: screen;
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #060709; }
+    ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #f59e0b; }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-amber-500 selection:text-black">
+
+  <!-- TOP NAVIGATION BAR (Customer Facing Only - No Admin Lock) -->
+  <header class="fixed top-0 inset-x-0 z-40 glass-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center font-display font-extrabold text-black text-xl shadow-lg shadow-amber-500/20">
+          P
+        </div>
+        <div>
+          <span class="font-display font-extrabold tracking-wider text-sm sm:text-base block leading-none">PUSHPA CAR GALLERY</span>
+          <span class="font-mono text-[10px] text-zinc-400 tracking-widest uppercase">Khammam Bypass Rd • Est. Studio</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-widest text-zinc-400">
+        <a href="#wash-scrub" class="hover:text-white transition">01. Wash Lab</a>
+        <a href="#process-steps" class="hover:text-white transition">02. 8-Step Process</a>
+        <a href="#bead-lab" class="hover:text-white transition">03. Bead Lab</a>
+        <a href="#packages" class="hover:text-white transition">04. Packages</a>
+        <a href="#location" class="hover:text-white transition">05. Studio</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="tel:09848088319" class="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full border border-zinc-800 text-xs font-mono text-zinc-300 hover:border-zinc-600 transition">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          098480 88319
+        </a>
+        <button onclick="openBookingDrawer()" class="px-5 py-2.5 rounded-full bg-white text-black font-mono text-xs font-semibold uppercase tracking-wider hover:bg-amber-400 transition shadow-lg shadow-white/10">
+          Book Your Detail →
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECTION 1: STICKY SCROLL-SCRUBBING CAR WASH HERO (From Video 1 & Video 2) -->
+  <section id="wash-scrub" class="relative h-[320vh]">
+    <div class="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between pt-24 pb-10 px-4 sm:px-10">
+
+      <!-- Background Ambient Studio Glow -->
+      <div id="ambient-glow" class="pointer-events-none absolute inset-0 transition-opacity duration-500 opacity-30"
+           style="background: radial-gradient(circle at 50% 52%, rgba(245, 158, 11, 0.22), transparent 65%);"></div>
+
+      <!-- Top Status Telemetry Bar -->
+      <div class="relative z-20 max-w-7xl w-full mx-auto flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
+        <div class="flex items-center gap-3">
+          <span class="font-mono text-[11px] uppercase tracking-widest px-2.5 py-1 rounded bg-white/5 border border-white/10 text-amber-400" id="scrub-stage-badge">
+            STAGE 00 // ROAD-WORN ARRIVAL
+          </span>
+          <span class="font-mono text-xs text-zinc-400 hidden sm:inline">SCROLL OR DRAG LASER TO WASH</span>
+        </div>
+        <div class="flex items-center gap-6 font-mono text-xs">
+          <div><span class="text-zinc-500">GLOSS INDEX:</span> <span id="gloss-meter" class="text-white font-semibold">14%</span></div>
+          <div><span class="text-zinc-500">HYDROPHOBICITY:</span> <span id="hydro-meter" class="text-cyan-400 font-semibold">118.0°</span></div>
+        </div>
+      </div>
+
+      <!-- Central Interactive Split-Wipe Vehicle Stage -->
+      <div class="relative z-10 my-auto max-w-6xl w-full mx-auto">
+        <div id="car-comparison-stage" class="relative w-full aspect-[16/9] max-h-[58vh] rounded-2xl overflow-hidden border border-white/10 shadow-2xl select-none cursor-ew-resize bg-zinc-950">
+
+          <!-- LAYER 1: CLEAN MIRROR-FINISH CAR (Base Layer) -->
+          <div class="absolute inset-0 w-full h-full">
+            <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1800&q=85"
+                 alt="Mirror Finish Detailed Car"
+                 class="w-full h-full object-cover object-center scale-105 transition-transform duration-700"
+                 id="clean-car-img" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
+            <div class="absolute bottom-5 right-6 font-mono text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 backdrop-blur-md">
+              ✦ 9H Mirror Finish Applied
+            </div>
+          </div>
+
+          <!-- LAYER 2: DIRTY / ROAD-WORN CAR + SNOW FOAM WIPE (Clipped Layer) -->
+          <div id="dirty-car-clip" class="absolute inset-0 w-full h-full overflow-hidden" style="clip-path: inset(0 15% 0 0);">
+            <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1800&q=85"
+                 alt="Road Worn Dirty Car"
+                 class="w-full h-full object-cover object-center scale-105 dirty-car-filter" />
+            <div class="absolute inset-0 mud-overlay"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-amber-950/20 to-black/40"></div>
+            <div class="absolute top-5 left-6 font-mono text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 backdrop-blur-md">
+              Road-Worn / Oxidation & Mud
+            </div>
+          </div>
+
+          <!-- LASER FOAM SCANNER LINE -->
+          <div id="wash-laser-line" class="absolute top-0 bottom-0 w-1 bg-gradient-to-b from-cyan-300 via-white to-amber-400 shadow-[0_0_25px_6px_rgba(56,189,248,0.85)] z-30"
+               style="left: 85%;">
+            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-11 h-11 rounded-full bg-black/90 border-2 border-white flex items-center justify-center shadow-xl">
+              <span class="font-mono text-[10px] text-white tracking-tighter">⇄</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Dynamic Headline & Scroll Indicator (Matches Video 1 & Video 2) -->
+      <div class="relative z-20 max-w-7xl w-full mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <p class="font-mono text-xs uppercase tracking-[0.25em] text-amber-400 mb-2" id="hero-kicker">
+            CONCIERGE STUDIO & DOORSTEP DETAILING • KHAMMAM
+          </p>
+          <h1 id="hero-dynamic-title" class="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight uppercase leading-[0.95]">
+            BRING IT DIRTY.<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-amber-400">ROAD-WORN TO MIRROR.</span>
+          </h1>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <div class="glass-card px-5 py-3.5 rounded-xl max-w-xs">
+            <div class="font-mono text-[11px] text-amber-400 uppercase" id="step-live-number">01 // SNOW FOAM</div>
+            <p class="text-xs text-zinc-300 mt-1 leading-relaxed" id="step-live-desc">
+              Scroll down or drag the scanner to strip away Khammam highway dust, iron brake dust, and swirl marks.
+            </p>
+          </div>
+          <button onclick="openBookingDrawer()" class="px-6 py-4 rounded-xl bg-amber-400 text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-amber-300 transition shrink-0">
+            Book This Finish →
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 2: THE 8-STAGE MIRROR PROTOCOL (Direct Match to Video 1 Cards) -->
+  <section id="process-steps" class="py-24 px-4 sm:px-10 max-w-7xl mx-auto border-t border-white/10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+      <div>
+        <span class="font-mono text-xs uppercase tracking-widest text-amber-400">THE PUSHPA DETAILING PROTOCOL</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-2">SWIRLS OUT. GLASS ON.</h2>
+      </div>
+      <p class="text-sm text-zinc-400 max-w-md">
+        Every vehicle entering Pushpa Car Gallery on Khammam Bypass Road undergoes our multi-stage decontamination and optical clarity regimen.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Card 01 -->
+      <div class="glass-card rounded-2xl overflow-hidden group hover:border-amber-400/50 transition flex flex-col justify-between">
+        <div class="relative h-52 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=900&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Snow Foam" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+          <span class="absolute top-4 left-4 font-mono text-xs px-2.5 py-1 rounded bg-black/70 border border-white/15 text-amber-400">STAGE 01</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-xl uppercase">01. SNOW FOAM</h3>
+          <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
+            pH-neutral snow foam dwells on the clear coat to encapsulate and lift abrasive grit before a single microfiber mitt touches your paint.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 02 -->
+      <div class="glass-card rounded-2xl overflow-hidden group hover:border-amber-400/50 transition flex flex-col justify-between">
+        <div class="relative h-52 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=900&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Spot Free Rinse" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+          <span class="absolute top-4 left-4 font-mono text-xs px-2.5 py-1 rounded bg-black/70 border border-white/15 text-cyan-400">STAGE 02</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-xl uppercase">02. SPOT-FREE RINSE</h3>
+          <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
+            De-ionized water filtration flushes every panel and emblem crevice so hard-water mineral rings never etch into your finish.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 04 & 05 -->
+      <div class="glass-card rounded-2xl overflow-hidden group hover:border-amber-400/50 transition flex flex-col justify-between">
+        <div class="relative h-52 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1610647752706-3bb12232b3ab?auto=format&fit=crop&w=900&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Wheels & Iron Decontamination" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+          <span class="absolute top-4 left-4 font-mono text-xs px-2.5 py-1 rounded bg-black/70 border border-white/15 text-purple-400">STAGE 04 & 05</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-xl uppercase">04–05. WHEELS & IRON DECON</h3>
+          <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
+            Chemical iron fallout remover reacts with embedded sintered brake dust on alloys and calipers, dissolving purple and restoring factory barrel gloss.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 08 -->
+      <div class="glass-card rounded-2xl overflow-hidden group hover:border-amber-400/50 transition flex flex-col justify-between">
+        <div class="relative h-52 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=900&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Interior Extraction" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+          <span class="absolute top-4 left-4 font-mono text-xs px-2.5 py-1 rounded bg-black/70 border border-white/15 text-emerald-400">STAGE 08</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-xl uppercase">08. INTERIOR EXTRACTION</h3>
+          <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
+            Deep hot-water upholstery extraction, custom bucket seat conditioning, plastic trim UV restoration, and ozone cabin sanitization.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 10 -->
+      <div class="glass-card rounded-2xl overflow-hidden group hover:border-amber-400/50 transition flex flex-col justify-between md:col-span-2">
+        <div class="grid grid-cols-1 md:grid-cols-2 h-full">
+          <div class="relative min-h-[210px] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Showroom At Home" />
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent to-black/80 hidden md:block"></div>
+          </div>
+          <div class="p-8 flex flex-col justify-center">
+            <span class="font-mono text-xs text-amber-400 uppercase tracking-widest">STAGE 10 // FINAL DELIVERY</span>
+            <h3 class="font-display font-extrabold text-2xl sm:text-3xl uppercase mt-2">KEYS BACK. JAW DROPPED.</h3>
+            <p class="text-xs text-zinc-300 mt-3 leading-relaxed">
+              Finished with 9H Ceramic Armor or 3M Teflon sealant, genuine Maruti Suzuki / Tata accessories, and precision wheel alignment. Available at our Bypass Road studio or via Doorstep Pickup & Drop across Khammam.
+            </p>
+            <div class="mt-5">
+              <button onclick="openBookingDrawer('9H Ceramic Mirror Shield')" class="px-5 py-2.5 rounded-lg bg-white text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-amber-400 transition">
+                Reserve Ceramic Slot →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: INTERACTIVE BEAD LAB ("WATER CAN'T STICK" from Video 1) -->
+  <section id="bead-lab" class="py-24 px-4 sm:px-10 bg-carbon border-y border-white/10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <!-- Left Spec Column -->
+      <div class="lg:col-span-5 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 font-mono text-xs text-cyan-300">
+          THE BEAD LAB • TRY IT LIVE
+        </div>
+        <h2 class="font-display font-extrabold text-4xl sm:text-6xl uppercase tracking-tight leading-none">
+          WATER<br>CAN'T<br>STICK.
+        </h2>
+        <p class="text-sm text-zinc-400 leading-relaxed">
+          Run your finger or cursor across the coated panel to make it rain. A ceramic coating creates a cross-linked, glass-like layer bonded to your clear coat. Water beads up at a <strong class="text-white">118° contact angle</strong> and rolls right off, taking road grime and dust with it.
+        </p>
+
+        <!-- Coating Toggle Switch -->
+        <div class="flex items-center gap-3 pt-2">
+          <button id="btn-coated" onclick="setBeadMode(true)" class="px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-wider bg-cyan-400 text-black font-bold transition">
+            9H CoatedPaint (Active)
+          </button>
+          <button id="btn-uncoated" onclick="setBeadMode(false)" class="px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-wider bg-white/5 text-zinc-400 border border-white/10 hover:text-white transition">
+            Uncoated Clear Coat
+          </button>
+        </div>
+
+        <!-- Telemetry Specs (Matches Video 1: 118°, 5 yrs, 9H) -->
+        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10">
+          <div>
+            <span class="font-mono text-[10px] uppercase text-zinc-500 block">CONTACT ANGLE</span>
+            <span id="bead-angle-readout" class="font-display font-extrabold text-2xl sm:text-3xl text-white">118°</span>
+          </div>
+          <div>
+            <span class="font-mono text-[10px] uppercase text-zinc-500 block">DURABILITY</span>
+            <span class="font-display font-extrabold text-2xl sm:text-3xl text-white">5 yrs</span>
+          </div>
+          <div>
+            <span class="font-mono text-[10px] uppercase text-zinc-500 block">HARDNESS</span>
+            <span class="font-display font-extrabold text-2xl sm:text-3xl text-cyan-400">9H</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Interactive Hydrophobic Canvas -->
+      <div class="lg:col-span-7">
+        <div class="relative rounded-2xl overflow-hidden border border-white/15 bg-gradient-to-br from-zinc-900 via-black to-zinc-950 shadow-2xl">
+          <canvas id="hydro-canvas" class="w-full h-[380px] sm:h-[440px] cursor-crosshair block"></canvas>
+          <div class="pointer-events-none absolute bottom-4 left-4 right-4 flex items-center justify-between text-[11px] font-mono text-zinc-400 bg-black/60 backdrop-blur-md px-4 py-2 rounded-lg border border-white/10">
+            <span>MOVE CURSOR / TOUCH TO SPRAY WATER DROPLETS</span>
+            <span id="surface-mode-label" class="text-cyan-400 font-semibold">MODE: SUPER-HYDROPHOBIC 9H</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: LIVE PACKAGES & CUSTOMIZATION PRICING (Synced with Firebase) -->
+  <section id="packages" class="py-24 px-4 sm:px-10 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+      <div>
+        <span class="font-mono text-xs uppercase tracking-widest text-amber-400">TRANSPARENT STUDIO RATES</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-2">SELECT YOUR TREATMENT</h2>
+      </div>
+      <div class="flex items-center gap-2 bg-white/5 p-1.5 rounded-xl border border-white/10 self-start">
+        <button onclick="switchVehicleTier('basePrice', this)" class="tier-btn px-3.5 py-1.5 rounded-lg font-mono text-xs bg-amber-400 text-black font-bold">Hatchback</button>
+        <button onclick="switchVehicleTier('sedanPrice', this)" class="tier-btn px-3.5 py-1.5 rounded-lg font-mono text-xs text-zinc-300 hover:text-white">Sedan</button>
+        <button onclick="switchVehicleTier('suvPrice', this)" class="tier-btn px-3.5 py-1.5 rounded-lg font-mono text-xs text-zinc-300 hover:text-white">SUV / MUV</button>
+      </div>
+    </div>
+
+    <div id="packages-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Populated dynamically from Firebase / Seed Data -->
+    </div>
+  </section>
+
+  <!-- SECTION 5: PUSHPA CAR GALLERY STUDIO LOCATION & REVIEWS -->
+  <section id="location" class="py-20 px-4 sm:px-10 border-t border-white/10 bg-carbon">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-6 space-y-6">
+        <span class="font-mono text-xs uppercase tracking-widest text-amber-400">KHAMMAM STUDIO & DOORSTEP PICKUP</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase">SHOWROOM. AT HOME OR IN BAY.</h2>
+        <p class="text-sm text-zinc-300 leading-relaxed">
+          Visit <strong class="text-white">Pushpa Car Gallery</strong> on Khammam Bypass Road (Beside Vajra TVS Showroom, Near New Bus Stand) or book our complimentary <strong class="text-amber-400">Pickup & Drop Facility</strong> anywhere in Khammam.
+        </p>
+
+        <div class="space-y-4 pt-2 font-mono text-xs">
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+            <span class="text-zinc-400 block mb-1">STUDIO ADDRESS</span>
+            <p class="text-white">11-10-694/7, Bypass Road, Beside Vajra TVS Showroom, Near New Bus Stand, Raparthi Nagar, Khammam, Telangana 507002</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+              <span class="text-zinc-400 block mb-1">PROPRIETOR & DIRECT LINE</span>
+              <p class="text-white font-semibold">Vijay • 098480 88319 / 9035438867</p>
+            </div>
+            <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+              <span class="text-zinc-400 block mb-1">OPERATING HOURS</span>
+              <p class="text-emerald-400 font-semibold">Mon–Sun: 9:00 AM – 10:00 PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="text-amber-400 text-sm mb-2">★★★★★</div>
+            <p class="text-xs text-zinc-300 leading-relaxed">"Vijay the owner is very knowledgeable and is keen on giving his customers the best solution in their price range. Genuine parts and top-grade detailing products!"</p>
+          </div>
+          <span class="font-mono text-[11px] text-zinc-500 mt-4 block">— John Roger Mathew & Jashuva (Verified Review)</span>
+        </div>
+        <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="text-amber-400 text-sm mb-2">★★★★★</div>
+            <p class="text-xs text-zinc-300 leading-relaxed">"Pushpa Car Gallery is truly a gem for vehicle enthusiasts in Khammam! Reasonably priced teflon coating, plastic restoration, and punctual pickup service."</p>
+          </div>
+          <span class="font-mono text-[11px] text-zinc-500 mt-4 block">— Gani & Tharak (Verified Review)</span>
+        </div>
+        <div class="glass-card p-6 rounded-2xl sm:col-span-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-amber-400/30">
+          <div>
+            <span class="font-mono text-xs text-amber-400 uppercase">READY FOR MIRROR GLOSS?</span>
+            <h3 class="font-display font-bold text-xl uppercase mt-1">Lock Your Detailing Slot Under 60 Seconds</h3>
+          </div>
+          <button onclick="openBookingDrawer()" class="px-6 py-3.5 rounded-xl bg-amber-400 text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-amber-300 transition shrink-0">
+            Open Booking Drawer →
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE-OUT BOOKING DRAWER (Exact Match to Video 2 Right-Side Booking Drawer) -->
+  <div id="booking-backdrop" onclick="closeBookingDrawer()" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300"></div>
+
+  <aside id="booking-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-[#0b0d12] border-l border-white/15 z-50 translate-x-full transition-transform duration-300 flex flex-col justify-between overflow-y-auto">
+    <div class="p-6 sm:p-8">
+      <!-- Drawer Header -->
+      <div class="flex items-center justify-between border-b border-white/10 pb-5">
+        <div>
+          <span class="font-mono text-[10px] uppercase tracking-widest text-amber-400">PUSHPA CAR GALLERY • KHAMMAM</span>
+          <h3 class="font-display font-extrabold text-2xl uppercase">BOOK YOUR DETAIL</h3>
+        </div>
+        <button onclick="closeBookingDrawer()" class="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-zinc-400 hover:text-white">✕</button>
+      </div>
+
+      <!-- Booking Form -->
+      <form id="customer-booking-form" onsubmit="submitCustomerBooking(event)" class="space-y-5 mt-6">
+        <div>
+          <label class="block font-mono text-[11px] uppercase text-zinc-400 mb-2">1. Select Vehicle Size</label>
+          <div class="grid grid-cols-3 gap-2.5">
+            <button type="button" onclick="selectDrawerVehicle('Hatchback', 'basePrice', this)" class="veh-opt py-2.5 px-3 rounded-xl border border-amber-400 bg-amber-400/10 text-amber-300 font-mono text-xs font-semibold">Hatchback</button>
+            <button type="button" onclick="selectDrawerVehicle('Sedan', 'sedanPrice', this)" class="veh-opt py-2.5 px-3 rounded-xl border border-white/10 bg-white/5 text-zinc-300 font-mono text-xs">Sedan</button>
+            <button type="button" onclick="selectDrawerVehicle('SUV / MUV', 'suvPrice', this)" class="veh-opt py-2.5 px-3 rounded-xl border border-white/10 bg-white/5 text-zinc-300 font-mono text-xs">SUV / MUV</button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-mono text-[11px] uppercase text-zinc-400 mb-2">2. Detailing or Accessory Package</label>
+          <select id="book-package" onchange="updateCalculatedQuote()" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-400"></select>
+        </div>
+
+        <div>
+          <label class="block font-mono text-[11px] uppercase text-zinc-400 mb-2">3. Service Mode</label>
+          <select id="book-mode" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-400">
+            <option value="Studio Visit (Bypass Road)">Studio Visit (Bypass Road, Near New Bus Stand)</option>
+            <option value="Free Pickup & Drop (Khammam)">Free Pickup & Drop Facility (Khammam Local)</option>
+            <option value="Doorstep Car Wash / Detail">Doorstep Service at My Home</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-mono text-[11px] uppercase text-zinc-400 mb-1.5">Preferred Date</label>
+            <input type="date" id="book-date" required class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white focus:border-amber-400" />
+          </div>
+          <div>
+            <label class="block font-mono text-[11px] uppercase text-zinc-400 mb-1.5">Time Slot</label>
+            <select id="book-time" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white focus:border-amber-400">
+              <option>09:30 AM</option>
+              <option>11:30 AM</option>
+              <option>02:00 PM</option>
+              <option>04:30 PM</option>
+              <option>06:30 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-mono text-[11px] uppercase text-zinc-400 mb-1.5">Your Name</label>
+            <input type="text" id="book-name" required placeholder="e.g. Syed Zeeshaan" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white focus:border-amber-400" />
+          </div>
+          <div>
+            <label class="block font-mono text-[11px] uppercase text-zinc-400 mb-1.5">Phone / WhatsApp</label>
+            <input type="tel" id="book-phone" required placeholder="10-digit mobile" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white focus:border-amber-400" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-mono text-[11px] uppercase text-zinc-400 mb-1.5">Car Make & Model + Notes</label>
+          <input type="text" id="book-car-model" required placeholder="e.g. Honda City ZX / Black Creta (Swirl removal)" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white focus:border-amber-400" />
+        </div>
+
+        <div class="p-4 rounded-xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-between">
+          <div>
+            <span class="font-mono text-[10px] uppercase text-amber-300 block">ESTIMATED STUDIO QUOTE</span>
+            <span class="text-xs text-zinc-400">Pay after inspection at studio</span>
+          </div>
+          <span id="book-quote-display" class="font-display font-extrabold text-2xl text-amber-400">₹499</span>
+        </div>
+
+        <button type="submit" class="w-full py-4 rounded-xl bg-amber-400 text-black font-mono text-xs font-bold uppercase tracking-widest hover:bg-amber-300 transition shadow-lg shadow-amber-500/20">
+          Confirm Booking Slot →
+        </button>
+      </form>
+
+      <!-- BOOKING CONFIRMATION STATE ("YOU'RE BOOKED. SEE YOU SOON." from Video 2) -->
+      <div id="booking-success-state" class="hidden py-12 text-center space-y-5">
+        <div class="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-400 text-emerald-300 flex items-center justify-center mx-auto text-2xl">
+          ✓
+        </div>
+        <h4 class="font-display font-extrabold text-3xl uppercase tracking-tight">YOU'RE BOOKED.<br>SEE YOU SOON.</h4>
+        <p class="text-xs text-zinc-400 leading-relaxed max-w-xs mx-auto" id="booking-summary-text"></p>
+        <div class="pt-4 space-y-3">
+          <a id="whatsapp-direct-btn" href="#" target="_blank" class="block w-full py-3.5 rounded-xl bg-emerald-500 text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-emerald-400 transition">
+            Send Instant WhatsApp to Vijay →
+          </a>
+          <button onclick="resetBookingDrawer()" class="block w-full py-3 rounded-xl bg-white/5 text-zinc-300 font-mono text-xs uppercase hover:bg-white/10">
+            Book Another Vehicle
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-6 border-t border-white/10 font-mono text-[11px] text-zinc-500 flex items-center justify-between">
+      <span>PUSHPA CAR GALLERY • KHAMMAM</span>
+      <span>098480 88319</span>
+    </div>
+  </aside>
+
+  <script>
+    // ============================================================================
+    // 1. OPTIONAL FIREBASE REST / SDK SYNC + SHARED LOCALSTORAGE BRIDGE
+    // ============================================================================
+    // Paste your Firebase Realtime Database URL below (e.g. "https://your-project-default-rtdb.firebaseio.com")
+    const FIREBASE_DB_URL = ""; 
+
+    const DEFAULT_PACKAGES = [
+      { id: "PKG01", step: "01", name: "Snow Foam & Spot-Free Wash", category: "Exterior Wash", basePrice: 499, sedanPrice: 599, suvPrice: 699, duration: "45 Mins", warranty: "Spot-Free Guarantee", description: "pH-neutral thick snow foam blanket, wheel arch blast, 0 PPM spot-free rinse, and microfiber hand dry." },
+      { id: "PKG02", step: "02", name: "3M Teflon & Plastic Restoration", category: "Paint & Trim", basePrice: 2499, sedanPrice: 2999, suvPrice: 3499, duration: "3 Hours", warranty: "6 Months Shine", description: "Swirl mark removal, exterior plastic trim UV restoration, machine polish, and genuine Teflon sealant." },
+      { id: "PKG03", step: "03", name: "Deep Interior Extraction & Sanitization", category: "Interior Detailing", basePrice: 1799, sedanPrice: 2199, suvPrice: 2599, duration: "2.5 Hours", warranty: "Odor-Free Cabin", description: "Hot-water fabric extraction, roof liner foam clean, AC vent steam sanitization, and leather conditioning." },
+      { id: "PKG04", step: "04", name: "9H Ceramic Mirror Shield", category: "Ceramic Coating", basePrice: 11999, sedanPrice: 14499, suvPrice: 16999, duration: "1-2 Days", warranty: "5 Years / 118° Contact Angle", description: "Multi-stage paint correction, iron decontamination, clay bar prep, and dual-layer 9H super-hydrophobic armor." },
+      { id: "PKG05", step: "05", name: "Full Cabin Accessories & Seat Upgrade", category: "Customization", basePrice: 4999, sedanPrice: 5999, suvPrice: 7499, duration: "4 Hours", warranty: "Genuine Fitment Warranty", description: "Custom-stitched bucket seat covers, 7D floor mats, ambient footwell lighting, and genuine Maruti/Tata accessories." }
+    ];
+
+    let packagesData = JSON.parse(localStorage.getItem('pushpa_packages')) || DEFAULT_PACKAGES;
+    let currentTierKey = 'basePrice';
+    let drawerVehicleType = 'Hatchback';
+    let drawerTierKey = 'basePrice';
+
+    async function loadPackages() {
+      if (FIREBASE_DB_URL) {
+        try {
+          const res = await fetch(`${FIREBASE_DB_URL}/packages.json`);
+          const data = await res.json();
+          if (data) packagesData = Object.values(data);
+        } catch (e) { console.warn("Using local synced packages"); }
+      }
+      renderPackagesGrid();
+      populateDrawerSelect();
+    }
+
+    function renderPackagesGrid() {
+      const grid = document.getElementById('packages-grid');
+      grid.innerHTML = packagesData.map(pkg => `
+        <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-amber-400/50 transition">
+          <div>
+            <div class="flex items-center justify-between font-mono text-xs mb-3">
+              <span class="px-2.5 py-1 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20">PACKAGE ${pkg.step}</span>
+              <span class="text-zinc-400">${pkg.duration}</span>
+            </div>
+            <h3 class="font-display font-bold text-xl uppercase">${pkg.name}</h3>
+            <p class="text-xs text-zinc-400 mt-2 leading-relaxed">${pkg.description}</p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-white/10 flex items-end justify-between">
+            <div>
+              <span class="font-mono text-[10px] text-emerald-400 uppercase block">${pkg.warranty}</span>
+              <span class="font-display font-extrabold text-3xl text-white">₹${pkg[currentTierKey].toLocaleString('en-IN')}</span>
+            </div>
+            <button onclick="openBookingDrawer('${pkg.name}')" class="px-4 py-2.5 rounded-xl bg-white text-black font-mono text-xs font-bold uppercase hover:bg-amber-400 transition">
+              Select →
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function switchVehicleTier(tierKey, btn) {
+      currentTierKey = tierKey;
+      document.querySelectorAll('.tier-btn').forEach(b => {
+        b.className = "tier-btn px-3.5 py-1.5 rounded-lg font-mono text-xs text-zinc-300 hover:text-white";
+      });
+      btn.className = "tier-btn px-3.5 py-1.5 rounded-lg font-mono text-xs bg-amber-400 text-black font-bold";
+      renderPackagesGrid();
+    }
+
+    // ============================================================================
+    // 2. SCROLL-SCRUBBING & DRAGGABLE CAR WASH HERO (Video 1 & Video 2 Engine)
+    // ============================================================================
+    const washSection = document.getElementById('wash-scrub');
+    const dirtyClip = document.getElementById('dirty-car-clip');
+    const laserLine = document.getElementById('wash-laser-line');
+    const glossMeter = document.getElementById('gloss-meter');
+    const stageBadge = document.getElementById('scrub-stage-badge');
+    const stepLiveNum = document.getElementById('step-live-number');
+    const stepLiveDesc = document.getElementById('step-live-desc');
+    const heroTitle = document.getElementById('hero-dynamic-title');
+
+    function updateWashWipe(progress) {
+      const clamped = Math.max(0, Math.min(1, progress));
+      const dirtyPercent = Math.round((1 - clamped) * 100);
+      dirtyClip.style.clipPath = `inset(0 ${100 - dirtyPercent}% 0 0)`;
+      laserLine.style.left = `${dirtyPercent}%`;
+      glossMeter.textContent = `${Math.round(14 + clamped * 86)}%`;
+
+      if (clamped < 0.25) {
+        stageBadge.textContent = "STAGE 01 // SNOW FOAM DWELL";
+        stepLiveNum.textContent = "01 // SNOW FOAM BLANKET";
+        stepLiveDesc.textContent = "Thick pH-neutral snow foam encapsulates surface mud and road film before rinsing.";
+        heroTitle.innerHTML = `BRING IT DIRTY.<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-amber-400">SCROLL TO WASH IT.</span>`;
+      } else if (clamped < 0.55) {
+        stageBadge.textContent = "STAGE 04 // IRON & WHEEL DECON";
+        stepLiveNum.textContent = "04 // SWIRLS OUT. GLASS ON.";
+        stepLiveDesc.textContent = "De-ionized spot-free rinse and rotary paint correction remove 95% of oxidation and swirl marks.";
+        heroTitle.innerHTML = `LOOK CLOSER.<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-amber-400">SWIRLS OUT. GLASS ON.</span>`;
+      } else {
+        stageBadge.textContent = "STAGE 10 // 9H MIRROR SHIELD READY";
+        stepLiveNum.textContent = "10 // SHOWROOM. AT HOME.";
+        stepLiveDesc.textContent = "9H Ceramic Armor locked in with a 118° hydrophobic contact angle. Ready for Khammam roads.";
+        heroTitle.innerHTML = `KEYS BACK.<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-white to-amber-400">JAW DROPPED.</span>`;
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      const rect = washSection.getBoundingClientRect();
+      const scrollable = washSection.offsetHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+      const progress = -rect.top / scrollable;
+      updateWashWipe(progress);
+    }, { passive: true });
+
+    // Also allow direct pointer drag on the car stage
+    const carStage = document.getElementById('car-comparison-stage');
+    let isDraggingCar = false;
+    carStage.addEventListener('pointerdown', () => isDraggingCar = true);
+    window.addEventListener('pointerup', () => isDraggingCar = false);
+    carStage.addEventListener('pointermove', (e) => {
+      if (!isDraggingCar && e.buttons !== 1) return;
+      const rect = carStage.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      updateWashWipe(1 - x);
+    });
+
+    // ============================================================================
+    // 3. INTERACTIVE BEAD LAB PHYSICS CANVAS ("WATER CAN'T STICK" - Video 1)
+    // ============================================================================
+    const canvas = document.getElementById('hydro-canvas');
+    const ctx = canvas.getContext('2d');
+    let droplets = [];
+    let isCoatedMode = true;
+
+    function resizeCanvas() {
+      canvas.width = canvas.clientWidth;
+      canvas.height = canvas.clientHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function spawnDroplets(x, y, count = 4) {
+      for (let i = 0; i < count; i++) {
+        droplets.push({
+          x: x + (Math.random() - 0.5) * 36,
+          y: y + (Math.random() - 0.5) * 36,
+          r: isCoatedMode ? (3 + Math.random() * 5) : (10 + Math.random() * 14),
+          vx: (Math.random() - 0.5) * (isCoatedMode ? 4 : 0.4),
+          vy: isCoatedMode ? (2.5 + Math.random() * 4) : (0.15 + Math.random() * 0.3),
+          alpha: 0.9
+        });
+      }
+    }
+
+    // Seed initial droplets
+    for (let i = 0; i < 45; i++) {
+      spawnDroplets(Math.random() * 600, Math.random() * 350, 1);
+    }
+
+    canvas.addEventListener('pointermove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
+      spawnDroplets(mx, my, 2);
+      // Repel nearby droplets when coated
+      if (isCoatedMode) {
+        droplets.forEach(d => {
+          const dx = d.x - mx;
+          const dy = d.y - my;
+          const dist = Math.hypot(dx, dy);
+          if (dist < 75 && dist > 1) {
+            d.vx += (dx / dist) * 3.5;
+            d.vy += (dy / dist) * 3.5;
+          }
+        });
+      }
+    });
+
+    function setBeadMode(coated) {
+      isCoatedMode = coated;
+      document.getElementById('bead-angle-readout').textContent = coated ? '118°' : '42°';
+      document.getElementById('surface-mode-label').textContent = coated
+        ? 'MODE: SUPER-HYDROPHOBIC 9H'
+        : 'MODE: UNCOATED (WATER SHEETS & STICKS)';
+      document.getElementById('btn-coated').className = coated
+        ? 'px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-wider bg-cyan-400 text-black font-bold transition'
+        : 'px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-wider bg-white/5 text-zinc-400 border border-white/10';
+      document.getElementById('btn-uncoated').className = !coated
+        ? 'px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-wider bg-amber-400 text-black font-bold transition'
+        : 'px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-wider bg-white/5 text-zinc-400 border border-white/10';
+      droplets = [];
+      for (let i = 0; i < 35; i++) spawnDroplets(Math.random() * canvas.width, Math.random() * canvas.height, 1);
+    }
+
+    function animateBeadLab() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Subtle grid lines
+      ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < canvas.width; x += 40) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+      }
+
+      for (let i = droplets.length - 1; i >= 0; i--) {
+        const d = droplets[i];
+        d.x += d.vx;
+        d.y += d.vy;
+        if (isCoatedMode) {
+          d.vy += 0.12; // gravity rolls beads straight off
+          d.vx *= 0.98;
+        } else {
+          d.vx *= 0.9;
+          d.vy *= 0.92;
+        }
+
+        // Draw realistic specular water bead
+        const grad = ctx.createRadialGradient(d.x - d.r * 0.3, d.y - d.r * 0.3, d.r * 0.1, d.x, d.y, d.r);
+        if (isCoatedMode) {
+          grad.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
+          grad.addColorStop(0.35, 'rgba(125, 211, 252, 0.75)');
+          grad.addColorStop(1, 'rgba(14, 116, 144, 0.15)');
+        } else {
+          grad.addColorStop(0, 'rgba(200, 215, 225, 0.35)');
+          grad.addColorStop(1, 'rgba(100, 116, 139, 0.08)');
+        }
+
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        if (d.y > canvas.height + 20 || d.x < -20 || d.x > canvas.width + 20) {
+          droplets.splice(i, 1);
+          if (droplets.length < 35) spawnDroplets(Math.random() * canvas.width, 10, 1);
+        }
+      }
+      requestAnimationFrame(animateBeadLab);
+    }
+    animateBeadLab();
+
+    // ============================================================================
+    // 4. BOOKING DRAWER LOGIC + LIVE LEAD DISPATCH TO OWNER PORTAL
+    // ============================================================================
+    document.getElementById('book-date').valueAsDate = new Date();
+
+    function populateDrawerSelect(selectedPkgName) {
+      const sel = document.getElementById('book-package');
+      sel.innerHTML = packagesData.map(p =>
+        `<option value="${p.name}" ${p.name === selectedPkgName ? 'selected' : ''}>${p.name}</option>`
+      ).join('');
+      updateCalculatedQuote();
+    }
+
+    function selectDrawerVehicle(typeLabel, tierKey, btn) {
+      drawerVehicleType = typeLabel;
+      drawerTierKey = tierKey;
+      document.querySelectorAll('.veh-opt').forEach(b => {
+        b.className = "veh-opt py-2.5 px-3 rounded-xl border border-white/10 bg-white/5 text-zinc-300 font-mono text-xs";
+      });
+      btn.className = "veh-opt py-2.5 px-3 rounded-xl border border-amber-400 bg-amber-400/10 text-amber-300 font-mono text-xs font-semibold";
+      updateCalculatedQuote();
+    }
+
+    function updateCalculatedQuote() {
+      const pkgName = document.getElementById('book-package').value;
+      const pkg = packagesData.find(p => p.name === pkgName) || packagesData[0];
+      const price = pkg ? pkg[drawerTierKey] : 499;
+      document.getElementById('book-quote-display').textContent = `₹${price.toLocaleString('en-IN')}`;
+      return price;
+    }
+
+    function openBookingDrawer(preselectPackage) {
+      populateDrawerSelect(preselectPackage);
+      const backdrop = document.getElementById('booking-backdrop');
+      const drawer = document.getElementById('booking-drawer');
+      backdrop.classList.remove('hidden');
+      setTimeout(() => {
+        backdrop.classList.remove('opacity-0');
+        drawer.classList.remove('translate-x-full');
+      }, 10);
+    }
+
+    function closeBookingDrawer() {
+      const backdrop = document.getElementById('booking-backdrop');
+      const drawer = document.getElementById('booking-drawer');
+      backdrop.classList.add('opacity-0');
+      drawer.classList.add('translate-x-full');
+      setTimeout(() => backdrop.classList.add('hidden'), 300);
+    }
+
+    async function submitCustomerBooking(e) {
+      e.preventDefault();
+      const pkgName = document.getElementById('book-package').value;
+      const price = updateCalculatedQuote();
+      const newLead = {
+        id: 'LEAD_' + Date.now().toString().slice(-5),
+        clientName: document.getElementById('book-name').value.trim(),
+        phone: document.getElementById('book-phone').value.trim(),
+        vehicleModel: document.getElementById('book-car-model').value.trim(),
+        vehicleType: drawerVehicleType,
+        packageName: pkgName,
+        serviceMode: document.getElementById('book-mode').value,
+        price: price,
+        date: document.getElementById('book-date').value,
+        timeSlot: document.getElementById('book-time').value,
+        status: 'NEW',
+        notes: `Booked via Customer Web Portal (${drawerVehicleType})`,
+        createdAt: new Date().toISOString()
+      };
+
+      // Save to LocalStorage so Owner Portal on same machine sees it immediately
+      const existingLeads = JSON.parse(localStorage.getItem('pushpa_leads') || '[]');
+      existingLeads.unshift(newLead);
+      localStorage.setItem('pushpa_leads', JSON.stringify(existingLeads));
+
+      // Also push to Firebase Realtime Database if configured
+      if (FIREBASE_DB_URL) {
+        try {
+          await fetch(`${FIREBASE_DB_URL}/leads/${newLead.id}.json`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newLead)
+          });
+        } catch (err) { console.warn('Saved locally'); }
+      }
+
+      // Show "YOU'RE BOOKED. SEE YOU SOON." state
+      document.getElementById('customer-booking-form').classList.add('hidden');
+      const successBox = document.getElementById('booking-success-state');
+      successBox.classList.remove('hidden');
+      document.getElementById('booking-summary-text').textContent =
+        `${newLead.clientName}, your ${newLead.vehicleModel} is scheduled for ${newLead.packageName} on ${newLead.date} at ${newLead.timeSlot} (${newLead.serviceMode}). Quote: ₹${newLead.price.toLocaleString('en-IN')}.`;
+
+      const waMsg = encodeURIComponent(
+        `*NEW DETAILING BOOKING - PUSHPA CAR GALLERY*\n` +
+        `• *Client:* ${newLead.clientName} (${newLead.phone})\n` +
+        `• *Vehicle:* ${newLead.vehicleModel} (${newLead.vehicleType})\n` +
+        `• *Package:* ${newLead.packageName}\n` +
+        `• *Mode:* ${newLead.serviceMode}\n` +
+        `• *Slot:* ${newLead.date} at ${newLead.timeSlot}\n` +
+        `• *Est. Quote:* ₹${newLead.price.toLocaleString('en-IN')}`
+      );
+      document.getElementById('whatsapp-direct-btn').href = `https://wa.me/919848088319?text=${waMsg}`;
+    }
+
+    function resetBookingDrawer() {
+      document.getElementById('customer-booking-form').reset();
+      document.getElementById('customer-booking-form').classList.remove('hidden');
+      document.getElementById('booking-success-state').classList.add('hidden');
+      document.getElementById('book-date').valueAsDate = new Date();
+    }
+
+    loadPackages();
+  </script>
+</body>
+</html>
