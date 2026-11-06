@@ -1,498 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PUSHPA CAR GALLERY | Road-Worn to Mirror — Khammam</title>
+  <title>PUSHPA CAR GALLERY | White • Black • Gold Owner ERP & POS</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- QRCode.js for Instant Customer UPI QR Payment -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['Syne', 'sans-serif'],
-            sans: ['Inter', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace']
-          }
-        }
-      }
-    };
-  </script>
-  <style>
-    body { background-color: #050608; color: #f8fafc; overflow-x: hidden; }
-    .glass-nav { background: rgba(5, 6, 8, 0.86); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .glass-card { background: linear-gradient(145deg, rgba(18, 21, 30, 0.85), rgba(9, 11, 16, 0.94)); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.09); }
-    .dirty-car-filter { filter: sepia(0.62) brightness(0.6) contrast(1.22) saturate(0.48); }
-    .mud-overlay {
-      background-image: radial-gradient(rgba(130, 95, 55, 0.5) 1.5px, transparent 0),
-                        radial-gradient(rgba(95, 70, 40, 0.6) 2.5px, transparent 0);
-      background-size: 22px 22px, 36px 36px;
-      background-position: 0 0, 11px 11px;
-      mix-blend-mode: screen;
-    }
-    .foam-glow { box-shadow: 0 0 32px 6px rgba(56, 189, 248, 0.85); }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #050608; }
-    ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #f59e0b; }
-  </style>
-</head>
-<body class="font-sans antialiased selection:bg-amber-400 selection:text-black">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- TOP LUXURY NAVBAR (100% CUSTOMER FACING) -->
-  <header class="fixed top-0 inset-x-0 z-40 glass-nav">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between gap-3">
-      <a href="#" class="flex items-center gap-3 group">
-        <img src="pushpacarlogo.jpg" onerror="this.src='https://images.unsplash.com/photo-1617788138017-80ad40651399?w=120&q=80'" alt="Pushpa Car Gallery Logo" class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl object-cover border border-amber-400/40 shadow-lg" />
-        <div>
-          <span class="font-display font-extrabold tracking-wider text-xs sm:text-base block leading-none text-white group-hover:text-amber-400 transition">PUSHPA CAR GALLERY</span>
-          <span class="font-mono text-[9px] sm:text-[10px] text-zinc-400 tracking-widest uppercase">Khammam Bypass Rd • Near New Bus Stand</span>
-        </div>
-      </a>
-
-      <nav class="hidden xl:flex items-center gap-6 text-xs font-mono uppercase tracking-widest text-zinc-400">
-        <a href="#wash-scrub" class="hover:text-white transition">01. Wash Lab</a>
-        <a href="#live-tracker" class="hover:text-cyan-400 text-cyan-300 transition">02. Track My Car</a>
-        <a href="#process-steps" class="hover:text-white transition">03. 10-Step Protocol</a>
-        <a href="#bead-lab" class="hover:text-white transition">04. 118° Bead Lab</a>
-        <a href="#packages" class="hover:text-white transition">05. Packages</a>
-        <a href="#accessories-shop" class="hover:text-amber-400 text-amber-300 transition">06. Accessories Shop</a>
-      </nav>
-
-      <div class="flex items-center gap-2 sm:gap-3">
-        <button onclick="toggleCartDrawer(true)" class="relative px-3.5 py-2.5 rounded-full bg-white/5 border border-white/15 hover:border-amber-400/60 transition flex items-center gap-2 font-mono text-xs">
-          <span>🛒</span>
-          <span class="hidden sm:inline">Cart</span>
-          <span id="nav-cart-count" class="px-1.5 py-0.5 rounded-full bg-amber-400 text-black font-bold text-[10px]">0</span>
-        </button>
-        <button onclick="openBookingDrawer()" class="px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-black font-mono text-xs font-bold uppercase tracking-wider hover:brightness-110 transition shadow-lg">
-          Book Slot →
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- SECTION 1: SCROLL-SCRUBBING REALISTIC FOAM & LASER CAR WASH HERO -->
-  <section id="wash-scrub" class="relative h-[320vh]">
-    <div class="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between pt-24 pb-8 px-4 sm:px-10">
-      <div class="pointer-events-none absolute inset-0 opacity-35" style="background: radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.22), transparent 68%);"></div>
-
-      <!-- Top Studio Telemetry Bar -->
-      <div class="relative z-20 max-w-7xl w-full mx-auto flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-3">
-        <div class="flex items-center gap-3">
-          <span id="scrub-stage-badge" class="font-mono text-[11px] uppercase tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300">
-            01 // SNOW FOAM DWELL
-          </span>
-          <span class="font-mono text-xs text-zinc-400 hidden md:inline">SCROLL DOWN OR DRAG LASER TO WASH</span>
-        </div>
-        <div class="flex items-center gap-5 font-mono text-xs">
-          <div><span class="text-zinc-500">PAINT CLARITY:</span> <span id="gloss-meter" class="text-white font-bold">14%</span></div>
-          <div><span class="text-zinc-500">CONTACT ANGLE:</span> <span class="text-cyan-400 font-bold">118.0°</span></div>
-          <div><span class="text-zinc-500">ARMOR:</span> <span class="text-amber-400 font-bold">9H / 5 YRS</span></div>
-        </div>
-      </div>
-
-      <!-- Interactive Split-Wipe Car Stage -->
-      <div class="relative z-10 my-auto max-w-6xl w-full mx-auto">
-        <div id="car-comparison-stage" class="relative w-full aspect-[16/9] max-h-[55vh] rounded-2xl overflow-hidden border border-white/15 shadow-2xl select-none cursor-ew-resize bg-black">
-          <!-- AFTER: Mirror Finish -->
-          <div class="absolute inset-0 w-full h-full">
-            <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1800&q=85" alt="Mirror Finish Car" class="w-full h-full object-cover object-center scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30"></div>
-            <div class="absolute top-4 right-5 font-mono text-[11px] uppercase tracking-widest px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 backdrop-blur-md">
-              ✦ SHOWROOM MIRROR FINISH
-            </div>
-          </div>
-
-          <!-- BEFORE: Road-Worn Muddy Layer -->
-          <div id="dirty-car-clip" class="absolute inset-0 w-full h-full overflow-hidden" style="clip-path: inset(0 18% 0 0);">
-            <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1800&q=85" alt="Dirty Road Worn Car" class="w-full h-full object-cover object-center scale-105 dirty-car-filter" />
-            <div class="absolute inset-0 mud-overlay"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-amber-950/25 to-black/40"></div>
-            <div class="absolute top-4 left-5 font-mono text-[11px] uppercase tracking-widest px-3 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 backdrop-blur-md">
-              BRING IT DIRTY • HIGHWAY MUD & SWIRLS
-            </div>
-          </div>
-
-          <!-- Active Laser Scanner Line -->
-          <div id="wash-laser-line" class="absolute top-0 bottom-0 w-1.5 bg-gradient-to-b from-cyan-300 via-white to-amber-400 foam-glow z-30" style="left: 82%;">
-            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-black/90 border-2 border-white flex items-center justify-center shadow-2xl">
-              <span class="font-mono text-xs text-white font-bold">⇄</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bottom Dynamic Headline & Step Card -->
-      <div class="relative z-20 max-w-7xl w-full mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div>
-          <p class="font-mono text-xs uppercase tracking-[0.22em] text-amber-400 mb-1.5">CONCIERGE MOBILE & STUDIO DETAILING • KHAMMAM</p>
-          <h1 id="hero-dynamic-title" class="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight uppercase leading-[0.94]">
-            ROAD-WORN<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-amber-400">TO MIRROR.</span>
-          </h1>
-        </div>
-        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          <div class="glass-card px-5 py-3.5 rounded-xl max-w-xs border-l-4 border-l-amber-400">
-            <div class="font-mono text-xs font-bold text-amber-400 uppercase" id="step-live-number">01. SNOW FOAM</div>
-            <p class="text-xs text-zinc-300 mt-1 leading-relaxed" id="step-live-desc">
-              pH-neutral foam encapsulates dirt and lifts road grime before a mitt ever touches your paint.
-            </p>
-          </div>
-          <button onclick="openBookingDrawer()" class="px-6 py-4 rounded-xl bg-white text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-amber-400 transition shrink-0">
-            Book A Detail →
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 2: LIVE VEHICLE BAY & JOB CARD TRACKER (Customer Self-Check) -->
-  <section id="live-tracker" class="py-16 px-4 sm:px-10 bg-[#080a10] border-t border-white/10">
-    <div class="max-w-5xl mx-auto glass-card p-6 sm:p-8 rounded-2xl border border-cyan-400/30">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div>
-          <span class="font-mono text-[10px] uppercase tracking-widest text-cyan-400">LIVE BAY TELEMETRY • REAL-TIME FIREBASE SYNC</span>
-          <h2 class="font-display font-extrabold text-2xl sm:text-3xl uppercase mt-1">TRACK YOUR VEHICLE IN OUR BAY</h2>
-          <p class="text-xs text-zinc-400 mt-1">Enter your 10-digit mobile number or vehicle registration number to see live detailing progress and job card notes.</p>
-        </div>
-        <div class="flex items-center gap-2 w-full md:w-auto">
-          <input type="text" id="track-input" placeholder="Phone or Car No (e.g. 98480...)"
-                 class="w-full md:w-64 bg-black/70 border border-white/15 rounded-xl px-4 py-3 text-xs text-white font-mono focus:border-cyan-400 focus:outline-none" />
-          <button onclick="checkLiveVehicleStatus()" class="px-5 py-3 rounded-xl bg-cyan-400 text-black font-mono text-xs font-bold uppercase shrink-0 hover:bg-cyan-300 transition">
-            Track →
-          </button>
-        </div>
-      </div>
-      <div id="track-result-box" class="hidden mt-6 pt-5 border-t border-white/10"></div>
-    </div>
-  </section>
-
-  <!-- SECTION 3: THE 10-STAGE MIRROR PROTOCOL -->
-  <section id="process-steps" class="py-24 px-4 sm:px-10 max-w-7xl mx-auto border-t border-white/10">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
-      <div>
-        <span class="font-mono text-xs uppercase tracking-widest text-amber-400">EVERY SURFACE, WIPED</span>
-        <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-2">THE 10-STAGE MIRROR PROTOCOL</h2>
-      </div>
-      <p class="text-xs sm:text-sm text-zinc-400 max-w-md">
-        Precision paint correction, iron decontamination, and genuine OEM customization supervised personally by Vijay at Pushpa Car Gallery.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="glass-card rounded-2xl p-6 hover:border-amber-400/50 transition">
-        <span class="font-mono text-xs text-amber-400">STAGE 01</span>
-        <h3 class="font-display font-extrabold text-2xl uppercase mt-1">01. SNOW FOAM</h3>
-        <p class="text-xs text-zinc-400 mt-2 leading-relaxed">pH-neutral snow foam clings to vertical panels to dissolve traffic film and Khammam highway dust safely.</p>
-      </div>
-      <div class="glass-card rounded-2xl p-6 hover:border-cyan-400/50 transition">
-        <span class="font-mono text-xs text-cyan-400">STAGE 02</span>
-        <h3 class="font-display font-extrabold text-2xl uppercase mt-1">02. SPOT-FREE RINSE</h3>
-        <p class="text-xs text-zinc-400 mt-2 leading-relaxed">Triple-filtered de-ionized water leaves zero dissolved minerals—preventing hard water spots even in direct sun.</p>
-      </div>
-      <div class="glass-card rounded-2xl p-6 hover:border-purple-400/50 transition">
-        <span class="font-mono text-xs text-purple-400">STAGE 04 & 05</span>
-        <h3 class="font-display font-extrabold text-2xl uppercase mt-1">04–05. IRON DECONTAMINATION</h3>
-        <p class="text-xs text-zinc-400 mt-2 leading-relaxed">Wheel barrels, brake calipers, and clear coat are treated with reactive iron remover that bleeds purple on contact.</p>
-      </div>
-      <div class="glass-card rounded-2xl p-6 hover:border-emerald-400/50 transition">
-        <span class="font-mono text-xs text-emerald-400">STAGE 08</span>
-        <h3 class="font-display font-extrabold text-2xl uppercase mt-1">08. INTERIOR EXTRACTION</h3>
-        <p class="text-xs text-zinc-400 mt-2 leading-relaxed">Every vent, stitch, and carpet fiber is steam-extracted, followed by dashboard UV conditioning.</p>
-      </div>
-      <div class="glass-card rounded-2xl p-6 md:col-span-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-amber-400/30">
-        <div>
-          <span class="font-mono text-xs text-amber-400">STAGE 10 // FINAL FINISH</span>
-          <h3 class="font-display font-extrabold text-2xl sm:text-3xl uppercase mt-1">10. SHOWROOM. AT HOME.</h3>
-          <p class="text-xs text-zinc-300 mt-2 max-w-xl leading-relaxed">
-            Every surface wiped, tires dressed in satin graphene, and glass sealed. Enjoy complimentary Doorstep Pickup & Drop across Khammam.
-          </p>
-        </div>
-        <button onclick="openBookingDrawer('9H Ceramic Mirror Shield')" class="px-6 py-3.5 rounded-xl bg-amber-400 text-black font-mono text-xs font-bold uppercase tracking-wider shrink-0 hover:bg-amber-300 transition">
-          Lock Ceramic Slot →
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 4: THE BEAD LAB — "WATER CAN'T STICK." -->
-  <section id="bead-lab" class="py-24 px-4 sm:px-10 bg-[#080a0f] border-y border-white/10">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-      <div class="lg:col-span-5 space-y-6">
-        <div class="font-mono text-xs uppercase tracking-widest text-cyan-400">THE BEAD LAB — TRY IT</div>
-        <h2 class="font-display font-extrabold text-5xl sm:text-6xl uppercase tracking-tight leading-[0.95]">WATER<br>CAN'T<br>STICK.</h2>
-        <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-          Run your finger or cursor across the panel to make it rain. A ceramic coating is a liquid glass polymer that bonds to your clear coat. Water beads up and rolls off, taking dirt with it.
-        </p>
-        <div class="flex items-center gap-3">
-          <button id="btn-coated" onclick="setBeadMode(true)" class="px-4 py-2.5 rounded-lg font-mono text-xs uppercase bg-white text-black font-bold transition">Coated Paint</button>
-          <button id="btn-uncoated" onclick="setBeadMode(false)" class="px-4 py-2.5 rounded-lg font-mono text-xs uppercase bg-white/5 text-zinc-400 border border-white/10 hover:text-white transition">Uncoated Paint</button>
-        </div>
-        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10">
-          <div><span class="font-mono text-[10px] uppercase text-zinc-500 block">CONTACT ANGLE</span><span id="bead-angle-readout" class="font-display font-extrabold text-2xl sm:text-3xl text-white">118°</span></div>
-          <div><span class="font-mono text-[10px] uppercase text-zinc-500 block">DURABILITY</span><span class="font-display font-extrabold text-2xl sm:text-3xl text-white">5 yrs</span></div>
-          <div><span class="font-mono text-[10px] uppercase text-zinc-500 block">HARDNESS</span><span class="font-display font-extrabold text-2xl sm:text-3xl text-cyan-400">9H</span></div>
-        </div>
-      </div>
-      <div class="lg:col-span-7">
-        <div class="relative rounded-2xl overflow-hidden border border-white/15 bg-black shadow-2xl">
-          <canvas id="hydro-canvas" class="w-full h-[380px] sm:h-[430px] cursor-crosshair block"></canvas>
-          <div class="pointer-events-none absolute bottom-4 left-4 right-4 flex items-center justify-between text-[11px] font-mono text-zinc-400 bg-black/70 backdrop-blur-md px-4 py-2 rounded-lg border border-white/10">
-            <span>DRAG CURSOR / FINGER ACROSS PANEL</span>
-            <span id="surface-mode-label" class="text-cyan-400 font-bold">COATED: 118° HYDROPHOBIC</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 5: DETAILING PACKAGES -->
-  <section id="packages" class="py-24 px-4 sm:px-10 max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-      <div>
-        <span class="font-mono text-xs uppercase tracking-widest text-amber-400">TRANSPARENT STUDIO RATES</span>
-        <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-2">DETAILING PACKAGES</h2>
-      </div>
-      <div class="flex items-center gap-2 bg-white/5 p-1.5 rounded-xl border border-white/10 self-start">
-        <button onclick="switchVehicleTier('basePrice', this)" class="tier-btn px-3.5 py-1.5 rounded-lg font-mono text-xs bg-amber-400 text-black font-bold">Hatchback</button>
-        <button onclick="switchVehicleTier('sedanPrice', this)" class="tier-btn px-3.5 py-1.5 rounded-lg font-mono text-xs text-zinc-300">Sedan</button>
-        <button onclick="switchVehicleTier('suvPrice', this)" class="tier-btn px-3.5 py-1.5 rounded-lg font-mono text-xs text-zinc-300">SUV / MUV</button>
-      </div>
-    </div>
-    <div id="packages-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
-  </section>
-
-  <!-- SECTION 6: DIRECT CAR ACCESSORIES STORE -->
-  <section id="accessories-shop" class="py-24 px-4 sm:px-10 max-w-7xl mx-auto border-t border-white/10">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-      <div>
-        <span class="font-mono text-xs uppercase tracking-widest text-amber-400">GENUINE MARUTI • TATA • HYUNDAI ACCESSORIES</span>
-        <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-2">ORDER ACCESSORIES DIRECTLY</h2>
-      </div>
-      <button onclick="toggleCartDrawer(true)" class="px-5 py-3 rounded-xl bg-white/10 border border-white/15 font-mono text-xs uppercase hover:border-amber-400 transition self-start">
-        View Shopping Cart (<span id="shop-cart-count">0</span>) →
-      </button>
-    </div>
-    <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
-  </section>
-
-  <!-- SECTION 7: SINGLE-TAP INVISIBLE GOOGLE REVIEW GENERATOR & MAPS -->
-  <section class="py-20 px-4 sm:px-10 bg-[#080a0f] border-t border-white/10">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-      <div class="lg:col-span-7 space-y-4">
-        <span class="font-mono text-xs uppercase tracking-widest text-amber-400">KHAMMAM'S #1 RATED CAR GALLERY</span>
-        <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase">LOVE YOUR MIRROR FINISH?</h2>
-        <p class="text-xs sm:text-sm text-zinc-400 max-w-xl leading-relaxed">
-          Tap the button below to generate a unique, personalized 5-star review in the background (automatically copied to your clipboard) and open our official Google Review page in one tap!
-        </p>
-        <div class="flex flex-wrap items-center gap-4 pt-2">
-          <button onclick="triggerInvisibleGoogleReview()" class="px-6 py-4 rounded-xl bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-400 text-black font-mono text-xs font-extrabold uppercase tracking-wider shadow-xl hover:scale-[1.02] transition">
-            ★ 1-Tap Instant 5★ Google Review →
-          </button>
-          <a href="https://www.google.com/maps?cid=5094792611686717263" target="_blank" rel="noopener"
-             class="px-5 py-4 rounded-xl bg-white/5 border border-white/15 font-mono text-xs uppercase text-zinc-200 hover:border-white/40 transition">
-            📍 Open Google Maps Directions
-          </a>
-        </div>
-      </div>
-
-      <div class="lg:col-span-5 glass-card p-6 rounded-2xl space-y-3 font-mono text-xs">
-        <div class="flex items-center gap-3">
-          <img src="pushpacarlogo.jpg" onerror="this.style.display='none'" alt="Pushpa Logo" class="w-12 h-12 rounded-lg object-cover border border-white/15" />
-          <div>
-            <div class="text-white font-bold text-sm">PUSHPA CAR GALLERY</div>
-            <div class="text-amber-400 text-[11px]">Proprietor: Vijay • 098480 88319</div>
-          </div>
-        </div>
-        <p class="text-zinc-400 text-[11px] leading-relaxed">
-          11-10-694/7, Bypass Road, Beside TVS Vajra Showroom, Near New Bus Stand, Raparthi Nagar, Khammam, Telangana 507002
-        </p>
-        <div class="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] text-emerald-400">
-          <span>UPI PAYMENT: 9848088319@ybl</span>
-          <span>FREE PICKUP & DROP</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER WITH SINGLE-TAP DEVELOPER LOGO SIGNATURE -->
-  <footer class="py-12 px-4 sm:px-10 border-t border-white/10 bg-black">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
-      <div class="flex items-center gap-3">
-        <img src="pushpacarlogo.jpg" onerror="this.style.display='none'" alt="Pushpa Car Gallery" class="w-10 h-10 rounded-lg object-cover" />
-        <div class="text-xs font-mono text-zinc-400">
-          <strong class="text-white block">PUSHPA CAR GALLERY • KHAMMAM</strong>
-          © 2026 All Rights Reserved • Call: 098480 88319 / 9035438867
-        </div>
-      </div>
-
-      <a href="https://catb12345612-ai.github.io/Syed-Zeeshaan-Ali-High-Fledged-Engineering-And-Digital-Tech-Solutions-Site/"
-         target="_blank" rel="noopener"
-         class="group flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-zinc-900 via-black to-zinc-900 border border-amber-400/30 hover:border-amber-400 transition shadow-lg">
-        <img src="dev-logo.png.png" onerror="this.style.display='none'" alt="Syed Zeeshaan Ali Smart Scan" class="w-12 h-12 rounded-full object-contain group-hover:scale-105 transition" />
-        <div class="text-left">
-          <span class="font-mono text-[9px] uppercase tracking-widest text-amber-400 block">ENGINEERED & AUTOMATED BY</span>
-          <span class="font-display font-bold text-xs text-white group-hover:text-amber-300 transition block">Syed Zeeshaan Ali (@syedzeeshaanali07)</span>
-          <span class="font-mono text-[10px] text-zinc-500">High-Fledged Engineering & Digital Tech Solutions ↗</span>
-        </div>
-      </a>
-    </div>
-  </footer>
-
-  <!-- DRAWER 1: REAL-TIME TIME-SLOT BOOKING DRAWER + UPI QR PASS -->
-  <div id="booking-backdrop" onclick="closeBookingDrawer()" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden"></div>
-  <aside id="booking-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-lg bg-[#0a0c12] border-l border-white/15 z-50 translate-x-full transition-transform duration-300 flex flex-col justify-between overflow-y-auto p-6 sm:p-8">
-    <div>
-      <div class="flex items-center justify-between border-b border-white/10 pb-4">
-        <div>
-          <span class="font-mono text-[10px] text-amber-400 uppercase tracking-widest">LIVE SCHEDULE MATRIX</span>
-          <h3 class="font-display font-extrabold text-2xl uppercase">BOOK YOUR DETAIL SLOT</h3>
-        </div>
-        <button onclick="closeBookingDrawer()" class="w-9 h-9 rounded-full bg-white/5 text-zinc-400 hover:text-white">✕</button>
-      </div>
-
-      <form id="customer-booking-form" onsubmit="submitCustomerBooking(event)" class="space-y-4 mt-5">
-        <div>
-          <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1.5">1. Vehicle Segment</label>
-          <div class="grid grid-cols-3 gap-2">
-            <button type="button" onclick="selectDrawerVehicle('Hatchback', 'basePrice', this)" class="veh-opt py-2.5 rounded-xl border border-amber-400 bg-amber-400/15 text-amber-300 font-mono text-xs font-bold">Hatchback</button>
-            <button type="button" onclick="selectDrawerVehicle('Sedan', 'sedanPrice', this)" class="veh-opt py-2.5 rounded-xl border border-white/10 bg-white/5 text-zinc-300 font-mono text-xs">Sedan</button>
-            <button type="button" onclick="selectDrawerVehicle('SUV / MUV', 'suvPrice', this)" class="veh-opt py-2.5 rounded-xl border border-white/10 bg-white/5 text-zinc-300 font-mono text-xs">SUV / MUV</button>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1.5">2. Detailing Package</label>
-            <select id="book-package" onchange="updateCalculatedQuote()" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white"></select>
-          </div>
-          <div>
-            <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1.5">3. Pickup or Studio</label>
-            <select id="book-mode" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white">
-              <option value="Studio Visit (Bypass Road)">Studio Visit (Bypass Road)</option>
-              <option value="Free Pickup & Drop (Khammam)">Free Pickup & Drop (Khammam)</option>
-              <option value="Doorstep Car Wash">Doorstep Wash at Home</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <div class="flex items-center justify-between mb-1.5">
-            <label class="font-mono text-[10px] uppercase text-zinc-400">4. Select Date & Available Bay Hour</label>
-            <span class="font-mono text-[10px] text-emerald-400">● Green = Open | ● Red = Booked</span>
-          </div>
-          <input type="date" id="book-date" onchange="renderLiveSlotGrid()" required class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white mb-3" />
-          <div id="live-slot-grid" class="grid grid-cols-3 sm:grid-cols-4 gap-2"></div>
-          <input type="hidden" id="book-time" value="10:00 AM" required />
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1">Your Name</label>
-            <input type="text" id="book-name" required placeholder="Full Name" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
-          </div>
-          <div>
-            <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1">Phone / WhatsApp</label>
-            <input type="tel" id="book-phone" required placeholder="10-digit mobile" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
-          </div>
-        </div>
-
-        <div>
-          <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1">Car Model & Registration / Notes</label>
-          <input type="text" id="book-car-model" required placeholder="e.g. Black Hyundai Creta / TS04..." class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
-        </div>
-
-        <div class="p-4 rounded-xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-between">
-          <div>
-            <span class="font-mono text-[10px] uppercase text-amber-300 block">ESTIMATED STUDIO QUOTE</span>
-            <span class="text-[11px] text-zinc-400">UPI / GPay / PhonePe: <strong class="text-white">9848088319</strong></span>
-          </div>
-          <span id="book-quote-display" class="font-display font-extrabold text-2xl text-amber-400">₹499</span>
-        </div>
-
-        <button type="submit" class="w-full py-4 rounded-xl bg-amber-400 text-black font-mono text-xs font-bold uppercase tracking-widest hover:bg-amber-300 transition">
-          Lock Time Slot & Confirm →
-        </button>
-      </form>
-
-      <!-- BOOKING CONFIRMATION WITH LIVE SCANNABLE UPI QR CODE -->
-      <div id="booking-success-state" class="hidden py-8 text-center space-y-4">
-        <div class="w-14 h-14 rounded-full bg-emerald-500/20 border-2 border-emerald-400 text-emerald-300 flex items-center justify-center mx-auto text-xl">✓</div>
-        <h4 class="font-display font-extrabold text-2xl sm:text-3xl uppercase">YOU'RE BOOKED.<br>SEE YOU SOON.</h4>
-        <p id="booking-summary-text" class="text-xs text-zinc-400 max-w-sm mx-auto leading-relaxed"></p>
-
-        <div class="bg-white p-3 rounded-2xl w-fit mx-auto text-center shadow-lg">
-          <div id="booking-upi-qr" class="w-[110px] h-[110px] mx-auto flex items-center justify-center"></div>
-          <span class="font-mono text-[9px] text-black font-bold block mt-1">SCAN TO PAY VIA UPI (9848088319@ybl)</span>
-        </div>
-
-        <a id="whatsapp-direct-btn" href="#" target="_blank" class="block w-full py-3.5 rounded-xl bg-emerald-500 text-black font-mono text-xs font-bold uppercase">
-          💬 Send Slot Ticket on WhatsApp →
-        </a>
-        <button onclick="resetBookingDrawer()" class="block w-full py-2.5 rounded-xl bg-white/5 text-zinc-400 font-mono text-xs uppercase">Book Another Slot</button>
-      </div>
-    </div>
-  </aside>
-
-  <!-- DRAWER 2: ACCESSORIES SHOPPING CART, PROMO COUPONS & UPI QR CHECKOUT -->
-  <aside id="cart-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-[#0a0c12] border-l border-white/15 z-50 translate-x-full transition-transform duration-300 flex flex-col justify-between p-6 sm:p-8 overflow-y-auto">
-    <div>
-      <div class="flex items-center justify-between border-b border-white/10 pb-4">
-        <div>
-          <span class="font-mono text-[10px] text-amber-400 uppercase">GENUINE CAR ACCESSORIES</span>
-          <h3 class="font-display font-extrabold text-2xl uppercase">YOUR SHOPPING CART</h3>
-        </div>
-        <button onclick="toggleCartDrawer(false)" class="w-9 h-9 rounded-full bg-white/5 text-zinc-400 hover:text-white">✕</button>
-      </div>
-
-      <div id="cart-items-list" class="space-y-3 my-4"></div>
-
-      <!-- Promo Coupon Bar -->
-      <div class="flex items-center gap-2 mb-4">
-        <input type="text" id="cart-promo-input" placeholder="Promo Code (Try PUSHPA5 or WELCOME100)" class="flex-1 bg-zinc-900 border border-white/15 rounded-xl px-3 py-2 text-xs text-white font-mono uppercase" />
-        <button type="button" onclick="applyCustomerPromo()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-amber-400 hover:text-black font-mono text-xs font-bold uppercase transition">
-          Apply
-        </button>
-      </div>
-
-      <form id="cart-checkout-form" onsubmit="submitCartOrder(event)" class="space-y-3 pt-3 border-t border-white/10">
-        <input type="text" id="order-name" required placeholder="Your Full Name" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
-        <input type="tel" id="order-phone" required placeholder="Mobile / WhatsApp Number" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
-        <input type="text" id="order-car" required placeholder="Car Model (for fitment check)" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
-        <select id="order-delivery" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white">
-          <option value="Studio Fitment at Bypass Road">Free Installation at Studio (Bypass Road)</option>
-          <option value="Doorstep Delivery in Khammam">Doorstep Delivery in Khammam</option>
-        </select>
-
-        <div class="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-400/30 flex items-center justify-between gap-3">
-          <div class="space-y-1 font-mono text-xs">
-            <span class="text-[10px] text-emerald-300 block">UPI / GPAY: 9848088319@ybl</span>
-            <div id="cart-discount-Tag" class="hidden text-[10px] text-amber-300">Promo Discount Applied!</div>
-            <div class="flex items-baseline gap-2">
-              <span class="text-zinc-400 text-[11px]">Net Payable:</span>
-              <span id="cart-total-display" class="font-display font-extrabold text-2xl text-white">₹0</span>
-            </div>
-          </div>
-          <div class="bg-white p-1.5 rounded-lg shrink-0">
-            <div id="cart-upi-qr" class="w-[60px] h-[60px]"></div>
-          </div>
-        </div>
-
-        <button type="submit" class="w-full py-3.5 rounded-xl bg-amber-400 text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-amber-300 transition">
-          Place Order & Send to WhatsApp →
-        </button>
-      </form>
-    </div>
-  </aside>
-
+  <!-- YOUR EXACT FIREBASE 13.2.0 CONFIGURATION -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-analytics.js";
-    import { getDatabase, ref, onValue, set, update } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-database.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyDbaJtPbbT_D9TvlOWNYbtL5TfZWSOCMvg",
@@ -505,553 +26,1811 @@
       measurementId: "G-5SYNQ62CFX"
     };
 
-    const app = initializeApp(firebaseConfig);
-    try { getAnalytics(app); } catch (e) {}
-    const db = getDatabase(app);
+    try {
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      window.firebaseAppInstance = app;
+    } catch (err) {
+      console.warn("Firebase 13.2.0 init note:", err);
+    }
+  </script>
 
-    const ALL_TIME_SLOTS = [
-      "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
-      "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM",
-      "06:00 PM", "07:00 PM", "08:00 PM"
-    ];
-
-    const DEFAULT_PACKAGES = [
-      { id: "PKG01", step: "01", name: "Snow Foam & Spot-Free Wash", basePrice: 499, sedanPrice: 599, suvPrice: 699, duration: "45 Mins", warranty: "Spot-Free Guarantee", description: "pH-neutral thick snow foam blanket, high-pressure wheel arch blast, 0 PPM spot-free rinse, and microfiber hand dry." },
-      { id: "PKG02", step: "02", name: "3M Teflon & Plastic Restoration", basePrice: 2499, sedanPrice: 2999, suvPrice: 3499, duration: "3 Hours", warranty: "6 Months High Gloss", description: "Swirl mark removal, exterior plastic trim UV restoration, machine polish, and genuine 3M Teflon sealant." },
-      { id: "PKG03", step: "03", name: "Deep Interior Extraction & Ozone", basePrice: 1799, sedanPrice: 2199, suvPrice: 2599, duration: "2.5 Hours", warranty: "Odor-Free Cabin", description: "Hot-water fabric extraction, roof liner foam clean, AC vent steam sanitization, and leather conditioning." },
-      { id: "PKG04", step: "04", name: "9H Ceramic Mirror Shield", basePrice: 11999, sedanPrice: 14499, suvPrice: 16999, duration: "1-2 Days", warranty: "5 Years • 118° Angle", description: "Multi-stage paint correction, iron decontamination, clay bar prep, and dual-layer 9H super-hydrophobic armor." }
-    ];
-
-    const DEFAULT_PRODUCTS = [
-      { id: "PRD101", barcode: "PCG890101", name: "7D Luxury Diamond Floor Mats", category: "Interior", price: 3499, stock: 14, image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80" },
-      { id: "PRD102", barcode: "PCG890102", name: "Custom Bucket Fit Napa Seat Covers", category: "Seat Covers", price: 6499, stock: 8, image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" },
-      { id: "PRD103", barcode: "PCG890103", name: "9H Ceramic Hydrophobic Spray (500ml)", category: "Detailing Care", price: 899, stock: 25, image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=800&q=80" },
-      { id: "PRD104", barcode: "PCG890104", name: "Genuine Maruti/Tata LED Fog & DRL Kit", category: "Lighting", price: 2299, stock: 11, image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" }
-    ];
-
-    let packagesData = DEFAULT_PACKAGES;
-    let productsData = DEFAULT_PRODUCTS;
-    let bookedSlotsMap = {};
-    let liveLeadsList = [];
-    let liveJobCardsList = [];
-    let currentTierKey = 'basePrice';
-    let drawerVehicleType = 'Hatchback';
-    let drawerTierKey = 'basePrice';
-    let cart = [];
-    let activePromoDiscount = 0;
-
-    onValue(ref(db, 'packages'), snap => {
-      if (snap.val()) packagesData = Object.values(snap.val());
-      renderPackagesGrid();
-      populateDrawerSelect();
-    });
-
-    onValue(ref(db, 'products'), snap => {
-      if (snap.val()) productsData = Object.values(snap.val());
-      renderProductsGrid();
-    });
-
-    onValue(ref(db, 'bookedSlots'), snap => {
-      bookedSlotsMap = snap.val() || {};
-      renderLiveSlotGrid();
-    });
-
-    onValue(ref(db, 'leads'), snap => {
-      liveLeadsList = snap.val() ? Object.values(snap.val()) : [];
-    });
-
-    onValue(ref(db, 'jobCards'), snap => {
-      liveJobCardsList = snap.val() ? Object.values(snap.val()) : [];
-    });
-
-    // Live Bay & Job Card Status Tracker
-    window.checkLiveVehicleStatus = function() {
-      const q = (document.getElementById('track-input').value || '').trim().toLowerCase();
-      const box = document.getElementById('track-result-box');
-      box.classList.remove('hidden');
-      if (q.length < 4) {
-        box.innerHTML = `<p class="text-xs text-rose-400 font-mono">Please enter at least 4 digits of your phone or vehicle number.</p>`;
-        return;
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          colors: {
+            gold: {
+              300: '#F5D061',
+              400: '#D4AF37',
+              500: '#AA771C'
+            }
+          }
+        }
       }
-
-      const matchedLead = liveLeadsList.find(l => (l.phone || '').includes(q) || (l.vehicleModel || '').toLowerCase().includes(q));
-      const matchedJob = liveJobCardsList.find(j => (j.phone || '').includes(q) || (j.car || '').toLowerCase().includes(q));
-
-      if (!matchedLead && !matchedJob) {
-        box.innerHTML = `<p class="text-xs text-zinc-400 font-mono">No active bay record found for "${q}". Call Vijay directly at 098480 88319 for instant updates.</p>`;
-        return;
+    };
+  </script>
+  <style id="dynamic-print-style">@page { margin: 0; }</style>
+  <style>
+    body { background-color: #050507; color: #ffffff; overflow-x: hidden; }
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFFFFF 0%, #F5D061 50%, #D4AF37 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold-btn {
+      background: linear-gradient(135deg, #F5D061 0%, #D4AF37 55%, #AA771C 100%);
+      color: #050507;
+      box-shadow: 0 8px 25px -4px rgba(212, 175, 55, 0.4);
+    }
+    .gold-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .crm-card {
+      background: linear-gradient(145deg, rgba(16, 16, 20, 0.94), rgba(7, 7, 10, 0.98));
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+    }
+    @media print {
+      html, body { background: #fff !important; color: #000 !important; margin: 0 !important; padding: 0 !important; height: auto !important; }
+      body > *:not(#printable-area) { display: none !important; }
+      #printable-area {
+        display: block !important; position: static !important; width: 100% !important;
+        margin: 0 !important; padding: 0 !important; background: #fff !important; color: #000 !important;
+        page-break-after: avoid !important; page-break-before: avoid !important; page-break-inside: avoid !important;
       }
+    }
+  </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col relative">
 
-      const status = matchedLead?.status || 'IN_BAY';
-      const statusColors = {
-        NEW: 'bg-amber-400/20 text-amber-300 border-amber-400/40',
-        IN_BAY: 'bg-cyan-400/20 text-cyan-300 border-cyan-400/40',
-        COMPLETED: 'bg-emerald-400/20 text-emerald-300 border-emerald-400/40'
-      };
+  <!-- AMBIENT GOLD PARTICLE VFX CANVAS -->
+  <canvas id="gold-vfx-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
 
-      box.innerHTML = `
-        <div class="p-4 rounded-xl bg-white/5 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div class="space-y-1">
-            <div class="font-mono text-[10px] text-cyan-400">VEHICLE FOUND IN STUDIO SYSTEM</div>
-            <div class="font-display font-bold text-lg text-white">${matchedLead?.vehicleModel || matchedJob?.car} — ${matchedLead?.clientName || matchedJob?.client}</div>
-            <div class="text-xs text-zinc-300">Service: <strong class="text-amber-300">${matchedLead?.packageName || 'Bay Detailing & Inspection'}</strong> (${matchedLead?.date || matchedJob?.date} ${matchedLead?.timeSlot || ''})</div>
-            ${matchedJob ? `<div class="text-[11px] text-zinc-400 font-mono">Job Card Panels: ${matchedJob.zones} | Notes: ${matchedJob.notes}</div>` : ''}
+  <!-- LIVE SYNC ALERT TOAST -->
+  <div id="live-sync-toast" class="fixed top-5 right-5 z-50 hidden crm-card px-5 py-4 rounded-2xl border-2 border-[#D4AF37] shadow-2xl max-w-sm">
+    <div class="flex items-center gap-3">
+      <div class="w-3 h-3 rounded-full bg-[#F5D061] animate-ping"></div>
+      <div>
+        <div class="font-mono text-[10px] text-[#F5D061] uppercase font-bold">⚡ LIVE CUSTOMER SYNC RECEIVED</div>
+        <div id="live-sync-toast-text" class="text-xs text-white font-semibold mt-0.5">New booking arrived!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW 1: OWNER LOGIN SCREEN ("WELCOME BACK, DETAILER") -->
+  <div id="owner-login-screen" class="fixed inset-0 z-50 flex items-center justify-center px-4"
+       style="background: radial-gradient(circle at 50% 25%, rgba(212, 175, 55, 0.22), #050507 70%);">
+    <div class="crm-card w-full max-w-md rounded-2xl p-8 shadow-2xl border border-[#D4AF37]/40">
+      <div class="flex items-center gap-3.5 mb-6">
+        <img src="pushpacarlogo.jpg" onerror="this.style.display='none'" alt="Pushpa Car Gallery" class="w-14 h-14 rounded-xl object-cover border-2 border-[#D4AF37]" />
+        <div>
+          <span class="font-mono text-[10px] uppercase tracking-widest text-[#F5D061] block">WHITE • BLACK • GOLD EDITION</span>
+          <span class="font-display font-bold text-sm text-white">PUSHPA CAR GALLERY • ERP</span>
+        </div>
+      </div>
+      <h1 class="font-display font-extrabold text-2xl sm:text-3xl uppercase gold-gradient-text">WELCOME BACK, DETAILER.</h1>
+      <p class="text-xs text-zinc-400 mt-1 mb-6">Real-time Cloud + Local Sync active. Sign in to manage POS billing, time slots, barcodes, and daily Excel reports.</p>
+      <form onsubmit="handleOwnerLogin(event)" class="space-y-4">
+        <div>
+          <label class="block font-mono text-[10px] uppercase text-zinc-300 mb-1">Owner Email / ID</label>
+          <input type="text" id="login-email" value="admin@pushpacargallery.com" required class="w-full bg-black border border-white/20 rounded-xl px-4 py-3 text-xs text-white focus:border-[#D4AF37] focus:outline-none" />
+        </div>
+        <div>
+          <label class="block font-mono text-[10px] uppercase text-zinc-300 mb-1">Master Password</label>
+          <input type="password" id="login-pass" value="Pushpa@2026" required class="w-full bg-black border border-white/20 rounded-xl px-4 py-3 text-xs text-white focus:border-[#D4AF37] focus:outline-none" />
+        </div>
+        <p id="login-error" class="text-xs text-rose-400 font-mono hidden">Incorrect password. Use Pushpa@2026</p>
+        <button type="submit" class="w-full py-3.5 rounded-xl gold-btn font-mono text-xs font-extrabold uppercase tracking-widest transition">
+          Unlock Gold Command Center →
+        </button>
+      </form>
+      <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between font-mono text-[10px] text-zinc-400">
+        <span>VIJAY • 098480 88319</span>
+        <span>DEV: @syedzeeshaanali07</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW 2: MAIN ERP WORKSPACE -->
+  <div id="owner-crm-workspace" class="hidden flex-1 flex min-h-screen relative z-10">
+    <!-- Sidebar -->
+    <aside class="w-64 border-r border-[#D4AF37]/25 bg-[#07070a]/95 flex flex-col justify-between shrink-0 hidden lg:flex">
+      <div class="p-5 space-y-5">
+        <div class="flex items-center gap-3">
+          <img src="pushpacarlogo.jpg" onerror="this.style.display='none'" class="w-11 h-11 rounded-lg object-cover border border-[#D4AF37]" />
+          <div>
+            <span class="font-display font-bold text-sm block leading-none gold-gradient-text">PUSHPA ERP</span>
+            <span id="sync-status-badge" class="font-mono text-[9px] text-emerald-400">● CLOUD + LOCAL SYNCED</span>
           </div>
-          <div class="text-right">
-            <span class="font-mono text-xs px-3 py-1.5 rounded-full border ${statusColors[status] || statusColors.IN_BAY} font-bold uppercase">
-              ● ${status.replace('_', ' ')}
+        </div>
+
+        <nav class="space-y-1.5 font-mono text-xs">
+          <button onclick="playClickSfx(); switchTab('pos')" id="nav-pos" class="w-full text-left px-3.5 py-2.5 rounded-xl gold-btn font-bold flex items-center justify-between">
+            <span>⚡ POS & AUTO-HOLD</span>
+            <span id="badge-held" class="px-1.5 py-0.5 rounded bg-black/25 text-black text-[10px]">0</span>
+          </button>
+          <button onclick="playClickSfx(); switchTab('leads')" id="nav-leads" class="w-full text-left px-3.5 py-2.5 rounded-xl text-white hover:bg-white/5 border border-transparent hover:border-[#D4AF37]/30 flex items-center justify-between">
+            <span>▣ LEADS & TIME SLOTS</span>
+            <span id="badge-leads" class="px-2 py-0.5 rounded bg-[#D4AF37] text-black font-bold text-[10px]">0</span>
+          </button>
+          <button onclick="playClickSfx(); switchTab('orders')" id="nav-orders" class="w-full text-left px-3.5 py-2.5 rounded-xl text-white hover:bg-white/5 border border-transparent hover:border-[#D4AF37]/30 flex items-center justify-between">
+            <span>🛒 CUSTOMER ORDERS</span>
+            <span id="badge-orders" class="px-2 py-0.5 rounded bg-white text-black font-bold text-[10px]">0</span>
+          </button>
+          <button onclick="playClickSfx(); switchTab('jobcard')" id="nav-jobcard" class="w-full text-left px-3.5 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5 flex items-center justify-between">
+            <span>🛡️ VEHICLE JOB CARD</span>
+            <span id="badge-jobs" class="px-1.5 py-0.5 rounded bg-white/10 text-white text-[10px]">0</span>
+          </button>
+          <button onclick="playClickSfx(); switchTab('inventory')" id="nav-inventory" class="w-full text-left px-3.5 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5 flex items-center justify-between">
+            <span>🏷️ STOCK & BARCODES</span>
+          </button>
+          <button onclick="playClickSfx(); switchTab('packages')" id="nav-packages" class="w-full text-left px-3.5 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5">
+            <span>◈ DETAILING RATES</span>
+          </button>
+          <button onclick="playClickSfx(); switchTab('ai-copilot')" id="nav-ai-copilot" class="w-full text-left px-3.5 py-2.5 rounded-xl text-[#F5D061] hover:bg-white/5 flex items-center justify-between">
+            <span>🧠 AI STUDIO COPILOT</span>
+            <span class="px-1.5 py-0.5 rounded bg-[#D4AF37]/20 text-[#F5D061] text-[9px]">PRO</span>
+          </button>
+        </nav>
+
+        <div class="p-3.5 rounded-2xl bg-black/80 border border-[#D4AF37]/30 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-[10px] uppercase text-[#F5D061]">DAILY AUTO-EXCEL</span>
+            <input type="checkbox" id="auto-excel-toggle" checked onchange="toggleAutoExcelSetting(this.checked)" class="accent-[#D4AF37] cursor-pointer" />
+          </div>
+          <button onclick="playClickSfx(); exportDailyExcelReport()" class="w-full py-2 rounded-xl bg-white text-black font-mono text-[11px] font-bold uppercase hover:bg-[#F5D061] transition">
+            ⬇ Download Excel (.xlsx)
+          </button>
+          <button onclick="playClickSfx(); forceCloudPull()" class="w-full py-1.5 rounded-xl bg-[#D4AF37]/15 text-[#F5D061] border border-[#D4AF37]/40 font-mono text-[10px] uppercase hover:bg-[#D4AF37]/25 transition">
+            🔄 Force Sync Now
+          </button>
+          <button onclick="playClickSfx(); clearDailyCacheAndCompleted()" class="w-full py-1.5 rounded-xl bg-rose-500/15 text-rose-300 border border-rose-500/30 font-mono text-[10px] uppercase">
+            🧹 Clear Daily Cache
+          </button>
+          <div id="last-backup-label" class="font-mono text-[9px] text-zinc-400 text-center">Live Sync Active</div>
+        </div>
+      </div>
+
+      <div class="p-4 border-t border-white/10">
+        <a href="https://catb12345612-ai.github.io/Syed-Zeeshaan-Ali-High-Fledged-Engineering-And-Digital-Tech-Solutions-Site/"
+           target="_blank" class="flex items-center gap-2.5 p-2.5 rounded-xl bg-black border border-[#D4AF37]/40 hover:border-[#F5D061] transition">
+          <img src="dev-logo.png.png" onerror="this.style.display='none'" class="w-9 h-9 rounded-full object-contain" />
+          <div class="font-mono text-[10px] leading-tight">
+            <span class="text-[#F5D061] font-bold block">SYED ZEESHAAN ALI</span>
+            <span class="text-white block">@syedzeeshaanali07</span>
+            <span class="text-zinc-400 text-[9px]">High-Fledged Solutions ↗</span>
+          </div>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Workspace Column -->
+    <main class="flex-1 flex flex-col min-w-0">
+      <header class="h-16 border-b border-[#D4AF37]/25 px-4 sm:px-6 flex items-center justify-between bg-[#050507]/90 backdrop-blur-md">
+        <div class="flex items-center gap-3">
+          <h2 class="font-display font-extrabold text-sm sm:text-xl uppercase gold-gradient-text">PUSHPA CAR GALLERY • OWNER COMMAND CENTER</h2>
+          <span id="draft-save-indicator" class="hidden sm:inline-block font-mono text-[10px] px-2.5 py-0.5 rounded-full bg-white/10 text-[#F5D061] border border-[#D4AF37]/40">
+            ● Auto-Hold Ready
+          </span>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="toggleSoundSfx()" id="sfx-toggle-btn" class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/15 font-mono text-[11px] text-[#F5D061]">
+            🔊 SFX: ON
+          </button>
+          <button onclick="switchTab('pos')" class="lg:hidden px-2.5 py-1 rounded gold-btn font-mono text-[11px] font-bold">POS</button>
+          <button onclick="switchTab('leads')" class="lg:hidden px-2.5 py-1 rounded bg-white/10 font-mono text-[11px]">Leads</button>
+          <button onclick="switchTab('orders')" class="lg:hidden px-2.5 py-1 rounded bg-white/10 font-mono text-[11px]">Orders</button>
+          <button onclick="switchTab('inventory')" class="lg:hidden px-2.5 py-1 rounded bg-white/10 font-mono text-[11px]">Stock</button>
+          <button onclick="exportDailyExcelReport()" class="px-3 py-1.5 rounded-xl bg-white text-black font-mono text-[11px] font-bold uppercase">
+            ⬇ Excel
+          </button>
+        </div>
+      </header>
+
+      <!-- TAB 1: POS BILLING + AUTO-HOLD + DISCOUNTS + WHATSAPP + 80MM/A4 -->
+      <section id="tab-pos" class="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-5 flex-1 overflow-y-auto">
+        <div class="lg:col-span-7 space-y-4">
+          <!-- Held / Parked Bills Bar -->
+          <div class="crm-card p-3.5 rounded-2xl">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-[11px] font-bold text-[#F5D061] uppercase">⏸ PARKED / HELD BAY BILLS (1-TAP RESUME)</span>
+              <button onclick="parkCurrentBillToHold()" class="px-3 py-1 rounded-lg gold-btn font-mono text-[11px] font-bold uppercase">
+                + Park Active Bill
+              </button>
+            </div>
+            <div id="held-bills-strip" class="flex items-center gap-2 overflow-x-auto pb-1 text-xs"></div>
+          </div>
+
+          <!-- Barcode + Voice + Direct Stock Refill -->
+          <div class="crm-card p-4 rounded-2xl space-y-3 border-l-4 border-l-[#D4AF37]">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="font-mono text-xs font-bold text-[#F5D061] uppercase">⚡ BARCODE SCANNER, VOICE BILLING & DIRECT STOCK REFILL</span>
+              <span id="voice-status" class="font-mono text-[10px] text-white">🎙️ Tap Voice to Speak Item</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-2">
+              <input type="text" id="pos-barcode-input" oninput="handleBarcodeScan(this.value)" placeholder="Scan Barcode or Type Code (e.g. PCG890101)..."
+                     class="sm:col-span-7 bg-black border border-[#D4AF37]/40 rounded-xl px-3.5 py-2 text-xs text-white font-mono focus:outline-none" />
+              <button type="button" onclick="startAiVoiceBilling()" class="sm:col-span-2 py-2 px-3 rounded-xl bg-white/10 border border-white/20 text-white font-mono text-xs font-bold uppercase">
+                🎙️ Voice
+              </button>
+              <button type="button" onclick="openQuickNewProductModal()" class="sm:col-span-3 py-2 px-3 rounded-xl gold-btn font-mono text-xs font-bold uppercase">
+                + Custom Item
+              </button>
+            </div>
+            <div class="pt-2.5 border-t border-white/10 flex flex-wrap items-center gap-2">
+              <span class="font-mono text-[10px] text-zinc-300 uppercase">Direct Stock Add:</span>
+              <select id="quick-stock-product" class="bg-black border border-white/20 rounded-xl px-3 py-1.5 text-xs text-white flex-1 min-w-[150px]"></select>
+              <input type="number" id="quick-stock-qty" value="5" min="1" class="w-16 bg-black border border-white/20 rounded-xl px-2 py-1.5 text-xs text-white font-mono text-center" />
+              <button onclick="addStockDirectlyWhileBilling()" class="px-3.5 py-1.5 rounded-xl bg-white text-black font-mono text-xs font-bold uppercase hover:bg-[#F5D061]">
+                + Add Stock
+              </button>
+            </div>
+          </div>
+
+          <!-- AI Upsell Strip -->
+          <div class="crm-card px-4 py-2.5 rounded-xl flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+              <span>✨</span>
+              <p id="ai-upsell-text" class="text-xs text-zinc-200">AI Upsell: Add a 9H Hydrophobic Spray (₹899) or Snow Foam Wash (₹499).</p>
+            </div>
+            <button onclick="applyAiUpsell()" class="px-3 py-1.5 rounded-lg gold-btn font-mono text-[10px] font-bold uppercase shrink-0">+ Add</button>
+          </div>
+
+          <!-- Catalog Grid -->
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <h3 class="font-mono text-xs uppercase text-[#F5D061]">TAP ANY ACCESSORY OR SERVICE TO BILL</h3>
+              <input type="text" id="catalog-filter" oninput="renderPosCatalog()" placeholder="Filter catalog..." class="bg-black border border-white/15 rounded-lg px-3 py-1 text-xs text-white" />
+            </div>
+            <div id="pos-catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[410px] overflow-y-auto pr-1"></div>
+          </div>
+        </div>
+
+        <!-- Right 5 Cols: Active Invoice Terminal -->
+        <div class="lg:col-span-5">
+          <div class="crm-card p-5 rounded-2xl flex flex-col justify-between space-y-3 sticky top-4">
+            <div>
+              <div class="flex items-center justify-between border-b border-white/10 pb-2.5">
+                <div>
+                  <span class="font-mono text-[10px] text-[#F5D061] uppercase">WHITE • BLACK • GOLD TERMINAL</span>
+                  <h3 class="font-display font-extrabold text-lg uppercase">ACTIVE CUSTOMER BILL</h3>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span id="returning-badge" class="hidden font-mono text-[10px] px-2 py-0.5 rounded bg-[#D4AF37]/20 text-[#F5D061] border border-[#D4AF37]">★ Returning</span>
+                  <button onclick="parkCurrentBillToHold()" class="px-2.5 py-1 rounded bg-white/10 text-[#F5D061] border border-[#D4AF37]/40 font-mono text-[10px] uppercase">
+                    ⏸ Hold
+                  </button>
+                  <button onclick="clearPosBill()" class="font-mono text-xs text-rose-400 hover:underline">Clear</button>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2 my-2.5">
+                <input type="tel" id="bill-cust-phone" oninput="aiLookupCustomerByPhoneOrCar(this.value); saveActiveDraftToLocal();" placeholder="WhatsApp / Mobile No" class="bg-black border border-white/20 rounded-xl px-3 py-2 text-xs text-white font-mono" />
+                <input type="text" id="bill-cust-name" oninput="saveActiveDraftToLocal()" placeholder="Customer Name" class="bg-black border border-white/20 rounded-xl px-3 py-2 text-xs text-white" />
+                <input type="text" id="bill-car-no" oninput="aiLookupCustomerByPhoneOrCar(this.value); saveActiveDraftToLocal();" placeholder="Car No (e.g. TS04FM4599)" class="bg-black border border-white/20 rounded-xl px-3 py-2 text-xs text-white uppercase font-mono" />
+                <select id="bill-pay-mode" onchange="saveActiveDraftToLocal()" class="bg-black border border-white/20 rounded-xl px-3 py-2 text-xs text-white">
+                  <option value="UPI QR (9848088319)">UPI QR (9848088319)</option>
+                  <option value="Cash">Cash</option>
+                  <option value="Card / Split">Card / Split</option>
+                </select>
+              </div>
+
+              <!-- GST & Discount Engine -->
+              <div class="p-3 rounded-xl bg-black/80 border border-white/15 space-y-2.5 mb-2.5">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="flex items-center gap-1.5">
+                    <button type="button" id="gst-toggle-btn" onclick="toggleGstMode()" class="px-2.5 py-1 rounded-lg font-mono text-[11px] font-bold uppercase bg-white/10 text-zinc-300 border border-white/15 transition">
+                      GST: OFF
+                    </button>
+                    <select id="bill-gst-rate" onchange="renderPosBill()" class="hidden bg-black border border-[#D4AF37] rounded-lg px-2 py-1 font-mono text-[11px] text-[#F5D061]">
+                      <option value="18">18% (9+9%)</option>
+                      <option value="12">12% (6+6%)</option>
+                      <option value="28">28% (14+14%)</option>
+                      <option value="5">5% (2.5+2.5%)</option>
+                    </select>
+                  </div>
+                  <div class="flex items-center gap-1 bg-white/5 p-1 rounded-lg border border-white/10 font-mono text-[10px]">
+                    <button type="button" id="fmt-80mm" onclick="setPrintFormat('80mm')" class="px-2 py-1 rounded gold-btn font-bold uppercase">80mm Roll</button>
+                    <button type="button" id="fmt-a4" onclick="setPrintFormat('A4')" class="px-2 py-1 rounded text-zinc-400 hover:text-white uppercase">A4 Sheet</button>
+                  </div>
+                </div>
+
+                <div class="space-y-1.5 pt-1 border-t border-white/10">
+                  <div class="flex items-center gap-1.5">
+                    <div class="flex rounded-lg overflow-hidden border border-white/20 font-mono text-[10px] shrink-0">
+                      <button type="button" id="disc-mode-flat" onclick="setDiscountMode('FLAT')" class="px-2.5 py-1.5 bg-[#D4AF37] text-black font-bold">₹ Flat</button>
+                      <button type="button" id="disc-mode-pct" onclick="setDiscountMode('PCT')" class="px-2.5 py-1.5 bg-black text-zinc-400">%</button>
+                    </div>
+                    <input type="number" id="bill-discount" oninput="renderPosBill()" placeholder="Discount Value" min="0" class="w-full bg-black border border-white/20 rounded-lg px-2.5 py-1 text-xs text-white font-mono" />
+                    <input type="text" id="bill-gstin" oninput="saveActiveDraftToLocal()" placeholder="GSTIN (Opt)" class="w-28 bg-black border border-white/15 rounded-lg px-2 py-1 text-[10px] text-white font-mono uppercase" />
+                  </div>
+                  <div class="flex items-center gap-1.5 font-mono text-[10px]">
+                    <span class="text-zinc-400">Quick Disc:</span>
+                    <button type="button" onclick="applyQuickDiscount('PCT', 5)" class="px-2 py-0.5 rounded bg-white/10 hover:bg-[#D4AF37] hover:text-black text-white">5%</button>
+                    <button type="button" onclick="applyQuickDiscount('PCT', 10)" class="px-2 py-0.5 rounded bg-white/10 hover:bg-[#D4AF37] hover:text-black text-white">10%</button>
+                    <button type="button" onclick="applyQuickDiscount('FLAT', 100)" class="px-2 py-0.5 rounded bg-white/10 hover:bg-[#D4AF37] hover:text-black text-white">₹100</button>
+                    <button type="button" onclick="applyQuickDiscount('FLAT', 500)" class="px-2 py-0.5 rounded bg-white/10 hover:bg-[#D4AF37] hover:text-black text-white">₹500</button>
+                    <button type="button" onclick="applyQuickDiscount('FLAT', 0)" class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300">Clear</button>
+                  </div>
+                </div>
+              </div>
+
+              <div id="pos-bill-items" class="space-y-1.5 max-h-40 overflow-y-auto pr-1"></div>
+            </div>
+
+            <!-- Totals + QR + Direct WhatsApp & Print -->
+            <div class="pt-3 border-t border-white/10 space-y-2.5">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex-1 space-y-0.5 font-mono text-xs">
+                  <div class="flex justify-between text-zinc-400 text-[11px]"><span>Subtotal:</span><span id="pos-subtotal">₹0.00</span></div>
+                  <div id="pos-discount-row" class="hidden flex justify-between text-rose-400 text-[11px]">
+                    <span id="pos-discount-label">Discount:</span><span id="pos-discount-val">-₹0.00</span>
+                  </div>
+                  <div id="pos-gst-breakdown" class="hidden space-y-0.5 text-[#F5D061] text-[10px]">
+                    <div class="flex justify-between"><span id="pos-cgst-label">CGST (9%):</span><span id="pos-cgst-val">₹0.00</span></div>
+                    <div class="flex justify-between"><span id="pos-sgst-label">SGST (9%):</span><span id="pos-sgst-val">₹0.00</span></div>
+                  </div>
+                  <div class="pt-1 border-t border-white/10">
+                    <span class="text-[10px] text-zinc-400 uppercase block">NET PAYABLE (INR)</span>
+                    <span id="pos-grand-total" class="font-display font-extrabold text-2xl sm:text-3xl gold-gradient-text">₹0</span>
+                  </div>
+                </div>
+                <div class="bg-white p-2 rounded-xl text-center shrink-0 border-2 border-[#D4AF37]">
+                  <div id="live-screen-qr" class="w-[72px] h-[72px] mx-auto flex items-center justify-center"></div>
+                  <span class="font-mono text-[8px] text-black font-bold block mt-0.5">UPI: 9848088319</span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="completeAndPrintPosBill('80mm')" class="py-2.5 rounded-xl gold-btn font-mono text-[11px] font-extrabold uppercase transition">
+                  🖨️ 80mm Receipt + QR
+                </button>
+                <button onclick="completeAndPrintPosBill('A4')" class="py-2.5 rounded-xl bg-white text-black font-mono text-[11px] font-extrabold uppercase hover:bg-zinc-200 transition">
+                  📄 A4 Invoice + QR
+                </button>
+              </div>
+              <button onclick="completeAndPrintPosBill('WHATSAPP')" class="w-full py-3 rounded-xl bg-emerald-500 text-black font-mono text-xs font-extrabold uppercase hover:bg-emerald-400 transition">
+                💬 Save & Send Direct WhatsApp Bill + UPI Link →
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: LEADS & LIVE TIME-SLOT SCHEDULE CONTROL -->
+      <section id="tab-leads" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
+        <div class="crm-card rounded-2xl overflow-hidden">
+          <div class="p-5 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="font-display font-bold text-lg uppercase gold-gradient-text">LIVE CUSTOMER SLOT BOOKINGS & LEADS</h3>
+              <p class="text-xs text-zinc-400">Synchronized automatically from Customer Portal. Click "⚡ Bill Now" to load into POS.</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <input type="text" id="lead-search" oninput="renderLeadsTable()" placeholder="Search name, phone, car..." class="bg-black border border-white/20 rounded-xl px-4 py-2 text-xs text-white w-full sm:w-64" />
+              <button onclick="forceCloudPull()" class="px-3.5 py-2 rounded-xl gold-btn font-mono text-xs font-bold uppercase">↻ Sync</button>
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="border-b border-white/10 font-mono text-[10px] text-[#F5D061] uppercase">
+                  <th class="py-3.5 px-4">Client</th>
+                  <th class="py-3.5 px-4">Vehicle</th>
+                  <th class="py-3.5 px-4">Package & Mode</th>
+                  <th class="py-3.5 px-4">Locked Date & Hour</th>
+                  <th class="py-3.5 px-4">Quote</th>
+                  <th class="py-3.5 px-4">Status</th>
+                  <th class="py-3.5 px-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="leads-tbody" class="divide-y divide-white/10"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: ONLINE CUSTOMER CART ORDERS -->
+      <section id="tab-orders" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
+        <div class="crm-card p-6 rounded-2xl">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-display font-bold text-lg uppercase gold-gradient-text">DIRECT CUSTOMER ACCESSORY ORDERS</h3>
+            <button onclick="forceCloudPull()" class="px-3.5 py-1.5 rounded-xl gold-btn font-mono text-xs font-bold uppercase">↻ Refresh Orders</button>
+          </div>
+          <div id="orders-list" class="space-y-4"></div>
+        </div>
+      </section>
+
+      <!-- TAB 4: DIGITAL VEHICLE JOB CARD -->
+      <section id="tab-jobcard" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-6 crm-card p-6 rounded-2xl space-y-4">
+            <span class="font-mono text-xs text-[#F5D061] uppercase">BAY INTAKE CHECKLIST</span>
+            <h3 class="font-display font-bold text-xl uppercase">CREATE DIGITAL VEHICLE JOB CARD</h3>
+            <div class="grid grid-cols-3 gap-2.5 font-mono text-xs pt-2">
+              <button type="button" onclick="toggleDamageZone(this, 'Front Bumper')" class="dmg-zone p-3 rounded-xl border border-white/15 bg-white/5 text-center">🚗 Front Bumper</button>
+              <button type="button" onclick="toggleDamageZone(this, 'Bonnet / Hood')" class="dmg-zone p-3 rounded-xl border border-white/15 bg-white/5 text-center">🛡️ Bonnet / Hood</button>
+              <button type="button" onclick="toggleDamageZone(this, 'Windshield')" class="dmg-zone p-3 rounded-xl border border-white/15 bg-white/5 text-center">🪟 Windshield</button>
+              <button type="button" onclick="toggleDamageZone(this, 'Left Doors')" class="dmg-zone p-3 rounded-xl border border-white/15 bg-white/5 text-center">⬅️ Left Doors</button>
+              <button type="button" onclick="toggleDamageZone(this, 'Roof Panel')" class="dmg-zone p-3 rounded-xl border border-white/15 bg-white/5 text-center">⬆️ Roof Panel</button>
+              <button type="button" onclick="toggleDamageZone(this, 'Right Doors')" class="dmg-zone p-3 rounded-xl border border-white/15 bg-white/5 text-center">➡️ Right Doors</button>
+              <button type="button" onclick="toggleDamageZone(this, 'Rear Bumper')" class="dmg-zone p-3 rounded-xl border border-white/15 bg-white/5 text-center">🔙 Rear Bumper</button>
+              <button type="button" onclick="toggleDamageZone(this, 'Alloy Wheels')" class="dmg-zone p-3 rounded-xl border border-white/15 bg-white/5 text-center">⚙️ Alloy Rims</button>
+              <button type="button" onclick="toggleDamageZone(this, 'Interior Cabin')" class="dmg-zone p-3 rounded-xl border border-white/15 bg-white/5 text-center">💺 Interior Seats</button>
+            </div>
+            <form onsubmit="saveVehicleJobCard(event)" class="space-y-3 pt-3 border-t border-white/10">
+              <div class="grid grid-cols-2 gap-3">
+                <input type="text" id="jc-client" required placeholder="Customer Name" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+                <input type="tel" id="jc-phone" required placeholder="WhatsApp Mobile No" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
+                <input type="text" id="jc-car" required placeholder="Car No & Model (e.g. TS04 Creta)" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white uppercase" />
+                <input type="text" id="jc-odo" placeholder="Odometer KM & Fuel %" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
+              </div>
+              <textarea id="jc-notes" rows="2" placeholder="Valuables inside / Specific coating or wash notes..." class="w-full bg-black border border-white/20 rounded-xl p-3 text-xs text-white"></textarea>
+              <button type="submit" class="w-full py-3 rounded-xl gold-btn font-mono text-xs font-bold uppercase">
+                Save Job Card & Send WhatsApp Inspection Card →
+              </button>
+            </form>
+          </div>
+          <div class="lg:col-span-6 crm-card p-6 rounded-2xl space-y-4">
+            <h3 class="font-display font-bold text-xl uppercase">ACTIVE STUDIO JOB CARDS</h3>
+            <div id="jobcards-list" class="space-y-3 max-h-[500px] overflow-y-auto pr-1"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: INVENTORY & BARCODE LABEL PRINTER -->
+      <section id="tab-inventory" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
+        <div class="crm-card p-6 rounded-2xl">
+          <h3 class="font-display font-bold text-lg uppercase gold-gradient-text mb-4">ADD NEW ACCESSORY / PRODUCT WITH BARCODE & IMAGE</h3>
+          <form onsubmit="saveNewInventoryProduct(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
+            <input type="text" id="inv-name" required placeholder="Product Name (e.g. 7D Mats)" class="lg:col-span-2 bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+            <input type="text" id="inv-category" required placeholder="Category (Seat Covers / Care)" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+            <input type="number" id="inv-price" required placeholder="Price (₹)" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
+            <input type="number" id="inv-stock" required placeholder="Initial Stock Qty" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
+            <input type="text" id="inv-barcode" placeholder="Custom Barcode (Auto if blank)" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
+            <input type="url" id="inv-image" placeholder="Image URL (or upload below)" class="lg:col-span-3 bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+            <input type="file" id="inv-file" accept="image/*" class="lg:col-span-2 text-xs text-zinc-400 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:bg-white/10 file:text-white" />
+            <button type="submit" class="py-2.5 px-4 rounded-xl gold-btn font-mono text-xs font-bold uppercase">+ Save Product</button>
+          </form>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="inventory-cards-grid"></div>
+      </section>
+
+      <!-- TAB 6: DETAILING RATES EDITOR -->
+      <section id="tab-packages" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
+        <div id="packages-editor-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+      </section>
+
+      <!-- TAB 7: AI STUDIO COPILOT -->
+      <section id="tab-ai-copilot" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="crm-card p-5 rounded-2xl border-l-4 border-l-[#D4AF37]">
+            <span class="font-mono text-[10px] text-[#F5D061] uppercase">TOTAL REVENUE PIPELINE</span>
+            <h4 id="ai-kpi-revenue" class="font-display font-extrabold text-3xl mt-1">₹0</h4>
+          </div>
+          <div class="crm-card p-5 rounded-2xl border-l-4 border-l-white">
+            <span class="font-mono text-[10px] text-zinc-300 uppercase">LOW STOCK ALERTS (&lt; 5 UNITS)</span>
+            <h4 id="ai-kpi-lowstock" class="font-display font-extrabold text-3xl mt-1">0 Items</h4>
+          </div>
+          <div class="crm-card p-5 rounded-2xl border-l-4 border-l-emerald-400">
+            <span class="font-mono text-[10px] text-emerald-400 uppercase">PARKED / HELD BAY BILLS</span>
+            <h4 id="ai-kpi-held" class="font-display font-extrabold text-3xl mt-1">0</h4>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="crm-card p-6 rounded-2xl space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="font-display font-bold text-lg uppercase">LOW-STOCK REORDER PREDICTOR</h3>
+              <button onclick="sendSupplierReorderWhatsApp()" class="px-3.5 py-2 rounded-xl gold-btn font-mono text-xs font-bold uppercase">WhatsApp Reorder →</button>
+            </div>
+            <div id="ai-low-stock-list" class="space-y-2 text-xs"></div>
+          </div>
+          <div class="crm-card p-6 rounded-2xl space-y-4">
+            <h3 class="font-display font-bold text-lg uppercase">1-TAP RETENTION & GOOGLE REVIEW FOLLOW-UP</h3>
+            <div id="ai-retention-list" class="space-y-2 max-h-72 overflow-y-auto pr-1 text-xs"></div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="px-6 py-3 border-t border-[#D4AF37]/25 bg-[#050507] flex flex-col sm:flex-row items-center justify-between gap-2 font-mono text-[11px] text-zinc-400">
+        <span>PUSHPA CAR GALLERY • BYPASS ROAD, KHAMMAM (098480 88319)</span>
+        <a href="https://catb12345612-ai.github.io/Syed-Zeeshaan-Ali-High-Fledged-Engineering-And-Digital-Tech-Solutions-Site/" target="_blank" class="text-[#F5D061] hover:underline">
+          Engineered by Syed Zeeshaan Ali (@syedzeeshaanali07) • High-Fledged Solutions ↗
+        </a>
+      </footer>
+    </main>
+  </div>
+
+  <!-- ZERO-WASTE PRINTABLE CONTAINER -->
+  <div id="printable-area" class="hidden"></div>
+
+  <!-- HYBRID CLOUD REST + BROADCASTCHANNEL + LOCALSTORAGE ENGINE & SFX -->
+  <script>
+    const DB_URL = "https://pushpacargalary-default-rtdb.asia-southeast1.firebasedatabase.app";
+    const syncChannel = ('BroadcastChannel' in window) ? new BroadcastChannel('pushpa_live_sync_v2') : null;
+
+    // Web Audio API Sound Effects Synthesizer (Zero external files needed)
+    let sfxEnabled = true;
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx && AudioCtx) audioCtx = new AudioCtx();
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+    }
+
+    window.toggleSoundSfx = function() {
+      sfxEnabled = !sfxEnabled;
+      document.getElementById('sfx-toggle-btn').textContent = sfxEnabled ? '🔊 SFX: ON' : '🔇 SFX: OFF';
+    };
+
+    window.playClickSfx = function() {
+      if (!sfxEnabled) return;
+      try {
+        initAudio();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(920, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(340, audioCtx.currentTime + 0.045);
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.001, audioCtx.currentTime + 0.045);
+        osc.connect(gain); gain.connect(audioCtx.destination);
+        osc.start(); osc.stop(audioCtx.currentTime + 0.05);
+      } catch (e) {}
+    };
+
+    window.playBarcodeBeepSfx = function() {
+      if (!sfxEnabled) return;
+      try {
+        initAudio();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(1850, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.001, audioCtx.currentTime + 0.09);
+        osc.connect(gain); gain.connect(audioCtx.destination);
+        osc.start(); osc.stop(audioCtx.currentTime + 0.095);
+      } catch (e) {}
+    };
+
+    window.playGoldChimeSfx = function() {
+      if (!sfxEnabled) return;
+      try {
+        initAudio();
+        [587.33, 880, 1174.66].forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, audioCtx.currentTime + idx * 0.08);
+          gain.gain.setValueAtTime(0.14, audioCtx.currentTime + idx * 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + idx * 0.08 + 0.35);
+          osc.connect(gain); gain.connect(audioCtx.destination);
+          osc.start(audioCtx.currentTime + idx * 0.08);
+          osc.stop(audioCtx.currentTime + idx * 0.08 + 0.36);
+        });
+      } catch (e) {}
+    };
+
+    // Default Seed Data
+    const FALLBACK_PACKAGES = {
+      PKG01: { id: "PKG01", step: "01", name: "Snow Foam & Spot-Free Wash", basePrice: 499, sedanPrice: 599, suvPrice: 699, duration: "45 Mins", warranty: "0 PPM Spot-Free" },
+      PKG02: { id: "PKG02", step: "02", name: "3M Teflon & Plastic Restoration", basePrice: 2499, sedanPrice: 2999, suvPrice: 3499, duration: "3 Hours", warranty: "6 Months Gloss" },
+      PKG03: { id: "PKG03", step: "03", name: "Deep Interior Extraction & Ozone", basePrice: 1799, sedanPrice: 2199, suvPrice: 2599, duration: "2.5 Hours", warranty: "Sanitized Cabin" },
+      PKG04: { id: "PKG04", step: "04", name: "9H Ceramic Mirror Shield", basePrice: 11999, sedanPrice: 14499, suvPrice: 16999, duration: "1-2 Days", warranty: "5 Yrs • 118° Angle" }
+    };
+
+    const FALLBACK_PRODUCTS = {
+      PRD101: { id: "PRD101", barcode: "PCG890101", name: "7D Luxury Diamond Floor Mats", category: "Interior", price: 3499, stock: 14, image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80" },
+      PRD102: { id: "PRD102", barcode: "PCG890102", name: "Custom Bucket Fit Napa Seat Covers", category: "Seat Covers", price: 6499, stock: 8, image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80" },
+      PRD103: { id: "PRD103", barcode: "PCG890103", name: "9H Hydrophobic Ceramic Spray (500ml)", category: "Detailing Care", price: 899, stock: 25, image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=600&q=80" },
+      PRD104: { id: "PRD104", barcode: "PCG890104", name: "Genuine Maruti/Tata LED Fog & DRL Kit", category: "Lighting", price: 2299, stock: 11, image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80" }
+    };
+
+    function getLocalStore(node, defaultObj = {}) {
+      try {
+        const raw = localStorage.getItem(`pushpa_node_${node}`);
+        return raw ? JSON.parse(raw) : defaultObj;
+      } catch (e) { return defaultObj; }
+    }
+
+    function setLocalStore(node, obj) {
+      try {
+        localStorage.setItem(`pushpa_node_${node}`, JSON.stringify(obj));
+      } catch (e) {}
+    }
+
+    // Unified Write: Writes to LocalStorage + Broadcasts to other tabs + Pushes to Firebase REST API
+    async function syncWriteNodeItem(node, key, payload) {
+      const current = getLocalStore(node, {});
+      if (payload === null) delete current[key];
+      else current[key] = payload;
+      setLocalStore(node, current);
+      applyStateFromLocal();
+      if (syncChannel) syncChannel.postMessage({ node, key, payload, ts: Date.now() });
+
+      try {
+        await fetch(`${DB_URL}/${node}/${encodeURIComponent(key)}.json`, {
+          method: payload === null ? 'DELETE' : 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload === null ? null : JSON.stringify(payload)
+        });
+        document.getElementById('sync-status-badge').textContent = '● CLOUD + LOCAL SYNCED';
+      } catch (err) {
+        document.getElementById('sync-status-badge').textContent = '● LOCAL SYNC ACTIVE';
+      }
+    }
+
+    let packagesList = Object.values(getLocalStore('packages', FALLBACK_PACKAGES));
+    let productsList = Object.values(getLocalStore('products', FALLBACK_PRODUCTS));
+    let leadsList = Object.values(getLocalStore('leads', {}));
+    let ordersList = Object.values(getLocalStore('orders', {}));
+    let billsList = Object.values(getLocalStore('bills', {}));
+    let heldBillsList = Object.values(getLocalStore('heldBills', {}));
+    let jobCardsList = Object.values(getLocalStore('jobCards', {}));
+    let posBillItems = [];
+    let selectedDamageZones = [];
+    let gstEnabled = false;
+    let discountMode = 'FLAT';
+    let selectedPrintFormat = '80mm';
+    let currentUpsellItem = { id: 'PKG01', name: 'Snow Foam & Spot-Free Wash', price: 499, type: 'SERVICE' };
+    let knownLeadCount = leadsList.length;
+    let knownOrderCount = ordersList.length;
+
+    function showLiveToast(msg) {
+      playGoldChimeSfx();
+      const t = document.getElementById('live-sync-toast');
+      document.getElementById('live-sync-toast-text').textContent = msg;
+      t.classList.remove('hidden');
+      setTimeout(() => t.classList.add('hidden'), 5000);
+    }
+
+    function applyStateFromLocal() {
+      const pkMap = getLocalStore('packages', FALLBACK_PACKAGES);
+      const prMap = getLocalStore('products', FALLBACK_PRODUCTS);
+      const ldMap = getLocalStore('leads', {});
+      const orMap = getLocalStore('orders', {});
+      const blMap = getLocalStore('bills', {});
+      const hlMap = getLocalStore('heldBills', {});
+      const jcMap = getLocalStore('jobCards', {});
+
+      packagesList = Object.values(pkMap);
+      productsList = Object.values(prMap);
+      leadsList = Object.values(ldMap).sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
+      ordersList = Object.values(orMap).sort((a, b) => (b.timestamp || '').localeCompare(a.timestamp || ''));
+      billsList = Object.values(blMap);
+      heldBillsList = Object.values(hlMap);
+      jobCardsList = Object.values(jcMap);
+
+      if (leadsList.length > knownLeadCount) {
+        const newest = leadsList[0];
+        showLiveToast(`New Slot Booking: ${newest?.clientName || 'Customer'} (${newest?.packageName || 'Detail'})`);
+      }
+      if (ordersList.length > knownOrderCount) {
+        const newestOrd = ordersList[0];
+        showLiveToast(`New Accessory Order: ${newestOrd?.customerName || 'Customer'} (₹${newestOrd?.grandTotal || 0})`);
+      }
+      knownLeadCount = leadsList.length;
+      knownOrderCount = ordersList.length;
+
+      document.getElementById('badge-leads').textContent = leadsList.length;
+      document.getElementById('badge-orders').textContent = ordersList.length;
+      document.getElementById('badge-held').textContent = heldBillsList.length;
+      document.getElementById('badge-jobs').textContent = jobCardsList.length;
+
+      renderPosCatalog();
+      renderPackagesEditor();
+      renderInventoryCards();
+      populateQuickStockDropdown();
+      renderLeadsTable();
+      renderOrdersList();
+      renderHeldBillsStrip();
+      renderJobCardsList();
+      renderAiCopilotDashboard();
+    }
+
+    // Pull latest from Firebase Cloud REST & Merge with LocalStorage
+    window.forceCloudPull = async function() {
+      try {
+        const res = await fetch(`${DB_URL}/.json`);
+        if (res.ok) {
+          const cloudData = await res.json();
+          if (cloudData) {
+            ['packages', 'products', 'leads', 'orders', 'bills', 'heldBills', 'jobCards', 'bookedSlots'].forEach(node => {
+              if (cloudData[node]) {
+                const merged = { ...getLocalStore(node, {}), ...cloudData[node] };
+                setLocalStore(node, merged);
+              }
+            });
+            applyStateFromLocal();
+            document.getElementById('sync-status-badge').textContent = '● CLOUD + LOCAL SYNCED';
+          }
+        }
+      } catch (e) {}
+    };
+
+    // Listen for instant cross-tab events from Customer Portal
+    if (syncChannel) {
+      syncChannel.onmessage = () => {
+        applyStateFromLocal();
+      };
+    }
+    window.addEventListener('storage', () => {
+      applyStateFromLocal();
+    });
+
+    // Poll Cloud every 3.5 seconds so bookings from customer mobile phones sync automatically
+    setInterval(forceCloudPull, 3500);
+
+    // Seed initial defaults if empty
+    if (!localStorage.getItem('pushpa_node_packages')) setLocalStore('packages', FALLBACK_PACKAGES);
+    if (!localStorage.getItem('pushpa_node_products')) setLocalStore('products', FALLBACK_PRODUCTS);
+
+    // Owner Login
+    window.handleOwnerLogin = function(e) {
+      e.preventDefault();
+      playClickSfx();
+      const pass = document.getElementById('login-pass').value;
+      if (pass === 'Pushpa@2026' || pass === '9848088319') {
+        playGoldChimeSfx();
+        document.getElementById('owner-login-screen').classList.add('hidden');
+        document.getElementById('owner-crm-workspace').classList.remove('hidden');
+        restoreActiveDraftFromLocal();
+        applyStateFromLocal();
+        forceCloudPull();
+        renderPosBill();
+        triggerDailyAutoExcelIfDue();
+      } else {
+        document.getElementById('login-error').classList.remove('hidden');
+      }
+    };
+
+    window.switchTab = function(tab) {
+      ['pos', 'jobcard', 'ai-copilot', 'leads', 'inventory', 'orders', 'packages'].forEach(t => {
+        document.getElementById(`tab-${t}`).classList.toggle('hidden', t !== tab);
+      });
+    };
+
+    // =========================================================================
+    // AUTO-HOLD DRAFT PERSISTENCE & MULTI-BAY PARKED BILLS
+    // =========================================================================
+    window.saveActiveDraftToLocal = function() {
+      const draft = {
+        customerName: document.getElementById('bill-cust-name')?.value || '',
+        customerPhone: document.getElementById('bill-cust-phone')?.value || '',
+        vehicleNo: document.getElementById('bill-car-no')?.value || '',
+        paymentMode: document.getElementById('bill-pay-mode')?.value || 'UPI QR (9848088319)',
+        gstin: document.getElementById('bill-gstin')?.value || '',
+        discountInput: document.getElementById('bill-discount')?.value || '',
+        discountMode,
+        gstEnabled,
+        items: posBillItems
+      };
+      localStorage.setItem('pushpa_active_pos_draft', JSON.stringify(draft));
+      const ind = document.getElementById('draft-save-indicator');
+      if (ind) ind.textContent = '● Auto-Hold Saved ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    };
+
+    function restoreActiveDraftFromLocal() {
+      try {
+        const raw = localStorage.getItem('pushpa_active_pos_draft');
+        if (!raw) return;
+        const d = JSON.parse(raw);
+        document.getElementById('bill-cust-name').value = d.customerName || '';
+        document.getElementById('bill-cust-phone').value = d.customerPhone || '';
+        document.getElementById('bill-car-no').value = d.vehicleNo || '';
+        document.getElementById('bill-gstin').value = d.gstin || '';
+        document.getElementById('bill-discount').value = d.discountInput || '';
+        if (d.discountMode) setDiscountMode(d.discountMode);
+        if (Array.isArray(d.items)) posBillItems = d.items;
+      } catch (e) {}
+    }
+
+    window.parkCurrentBillToHold = async function() {
+      if (posBillItems.length === 0) return alert("Add at least one item before parking the bill to Hold.");
+      playClickSfx();
+      const holdId = 'HOLD_' + Date.now().toString().slice(-5);
+      const calc = calculateBillSummary();
+      const payload = {
+        holdId,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        customerName: document.getElementById('bill-cust-name').value.trim() || 'Bay Vehicle',
+        customerPhone: document.getElementById('bill-cust-phone').value.trim() || '',
+        vehicleNo: document.getElementById('bill-car-no').value.trim().toUpperCase() || 'BAY-CAR',
+        discountInput: document.getElementById('bill-discount').value || '',
+        discountMode,
+        gstEnabled,
+        items: posBillItems,
+        grandTotal: calc.grandTotal
+      };
+      await syncWriteNodeItem('heldBills', holdId, payload);
+      clearPosBill();
+    };
+
+    function renderHeldBillsStrip() {
+      const strip = document.getElementById('held-bills-strip');
+      if (!strip) return;
+      if (heldBillsList.length === 0) {
+        strip.innerHTML = `<span class="font-mono text-[11px] text-zinc-500">No parked bills in bay queue.</span>`;
+        return;
+      }
+      strip.innerHTML = heldBillsList.map(h => `
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black border border-[#D4AF37] shrink-0">
+          <button onclick="resumeHeldBill('${h.holdId}')" class="text-left">
+            <div class="font-mono text-[11px] font-bold text-[#F5D061]">${h.vehicleNo} • ₹${h.grandTotal}</div>
+            <div class="text-[10px] text-zinc-300">${h.customerName} (${h.time})</div>
+          </button>
+          <button onclick="deleteHeldBill('${h.holdId}')" class="text-rose-400 hover:text-rose-300 font-mono text-xs px-1">✕</button>
+        </div>
+      `).join('');
+    }
+
+    window.resumeHeldBill = async function(holdId) {
+      playClickSfx();
+      const h = heldBillsList.find(x => x.holdId === holdId);
+      if (!h) return;
+      document.getElementById('bill-cust-name').value = h.customerName || '';
+      document.getElementById('bill-cust-phone').value = h.customerPhone || '';
+      document.getElementById('bill-car-no').value = h.vehicleNo || '';
+      document.getElementById('bill-discount').value = h.discountInput || '';
+      setDiscountMode(h.discountMode || 'FLAT');
+      posBillItems = h.items || [];
+      await syncWriteNodeItem('heldBills', holdId, null);
+      renderPosBill();
+    };
+
+    window.deleteHeldBill = async function(holdId) {
+      await syncWriteNodeItem('heldBills', holdId, null);
+    };
+
+    // =========================================================================
+    // DUAL DISCOUNT (₹ FLAT OR %) & GST ENGINE
+    // =========================================================================
+    window.setDiscountMode = function(mode) {
+      discountMode = mode;
+      document.getElementById('disc-mode-flat').className = mode === 'FLAT'
+        ? 'px-2.5 py-1.5 bg-[#D4AF37] text-black font-bold'
+        : 'px-2.5 py-1.5 bg-black text-zinc-400';
+      document.getElementById('disc-mode-pct').className = mode === 'PCT'
+        ? 'px-2.5 py-1.5 bg-[#D4AF37] text-black font-bold'
+        : 'px-2.5 py-1.5 bg-black text-zinc-400';
+      renderPosBill();
+    };
+
+    window.applyQuickDiscount = function(mode, val) {
+      playClickSfx();
+      setDiscountMode(mode);
+      document.getElementById('bill-discount').value = val > 0 ? val : '';
+      renderPosBill();
+    };
+
+    window.toggleGstMode = function() {
+      playClickSfx();
+      gstEnabled = !gstEnabled;
+      const btn = document.getElementById('gst-toggle-btn');
+      const rateSelect = document.getElementById('bill-gst-rate');
+      if (gstEnabled) {
+        btn.textContent = 'GST: ON';
+        btn.className = 'px-2.5 py-1 rounded-lg font-mono text-[11px] font-bold uppercase gold-btn transition';
+        rateSelect.classList.remove('hidden');
+      } else {
+        btn.textContent = 'GST: OFF';
+        btn.className = 'px-2.5 py-1 rounded-lg font-mono text-[11px] font-bold uppercase bg-white/10 text-zinc-300 border border-white/15 transition';
+        rateSelect.classList.add('hidden');
+      }
+      renderPosBill();
+    };
+
+    window.setPrintFormat = function(fmt) {
+      playClickSfx();
+      selectedPrintFormat = fmt;
+      document.getElementById('fmt-80mm').className = fmt === '80mm'
+        ? 'px-2 py-1 rounded gold-btn font-bold uppercase'
+        : 'px-2 py-1 rounded text-zinc-400 hover:text-white uppercase';
+      document.getElementById('fmt-a4').className = fmt === 'A4'
+        ? 'px-2 py-1 rounded gold-btn font-bold uppercase'
+        : 'px-2 py-1 rounded text-zinc-400 hover:text-white uppercase';
+    };
+
+    function calculateBillSummary() {
+      const subtotal = posBillItems.reduce((s, i) => s + i.qty * i.price, 0);
+      const rawDiscInput = Math.max(0, Number(document.getElementById('bill-discount')?.value || 0));
+      const discount = discountMode === 'PCT'
+        ? Math.min(subtotal, +(subtotal * (Math.min(100, rawDiscInput) / 100)).toFixed(2))
+        : Math.min(subtotal, rawDiscInput);
+      const discountLabel = discountMode === 'PCT' ? `Discount (${rawDiscInput}%):` : 'Discount (Flat):';
+      const taxableAmount = Math.max(0, subtotal - discount);
+      const gstRate = gstEnabled ? Number(document.getElementById('bill-gst-rate')?.value || 18) : 0;
+      const totalGst = gstEnabled ? +(taxableAmount * (gstRate / 100)).toFixed(2) : 0;
+      const cgst = +(totalGst / 2).toFixed(2);
+      const sgst = +(totalGst / 2).toFixed(2);
+      const grandTotal = Math.round(taxableAmount + totalGst);
+
+      return { subtotal, discount, discountLabel, taxableAmount, gstEnabled, gstRate, cgst, sgst, totalGst, grandTotal };
+    }
+
+    function buildUpiIntentString(amount, invoiceId) {
+      const amtParam = amount > 0 ? `&am=${amount.toFixed(2)}` : '';
+      return `upi://pay?pa=9848088319@ybl&pn=Pushpa%20Car%20Gallery${amtParam}&cu=INR&tn=${encodeURIComponent(invoiceId || 'PushpaCarGallery')}`;
+    }
+
+    function updateLiveScreenQr(amount) {
+      const qrContainer = document.getElementById('live-screen-qr');
+      if (!qrContainer) return;
+      qrContainer.innerHTML = '';
+      try {
+        new QRCode(qrContainer, {
+          text: buildUpiIntentString(amount, 'POS_BILL'),
+          width: 68, height: 68, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.M
+        });
+      } catch (e) {}
+    }
+
+    // =========================================================================
+    // AI VOICE BILLING, CUSTOMER LOOKUP & UPSELL
+    // =========================================================================
+    window.startAiVoiceBilling = function() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const statusEl = document.getElementById('voice-status');
+      if (!SpeechRecognition) return alert("Voice recognition is supported in Chrome and Edge.");
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'en-IN';
+      statusEl.textContent = "🔴 Listening... Speak item name";
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript.toLowerCase();
+        statusEl.textContent = `🎙️ Heard: "${transcript}"`;
+        const allItems = [
+          ...productsList.map(p => ({ id: p.id, name: p.name, price: p.price, type: 'PRODUCT' })),
+          ...packagesList.map(k => ({ id: k.id, name: k.name, price: k.basePrice, type: 'SERVICE' }))
+        ];
+        const found = allItems.find(item =>
+          item.name.toLowerCase().includes(transcript) ||
+          transcript.split(' ').some(w => w.length > 3 && item.name.toLowerCase().includes(w))
+        );
+        if (found) addItemToPosBill(found.id, found.name, found.price, found.type);
+      };
+      recognition.onerror = () => { statusEl.textContent = "🎙️ Tap Voice to Speak Item"; };
+      recognition.start();
+    };
+
+    window.aiLookupCustomerByPhoneOrCar = function(val) {
+      const q = (val || '').trim().toLowerCase();
+      if (q.length < 4) {
+        document.getElementById('returning-badge').classList.add('hidden');
+        return;
+      }
+      const pastBill = billsList.find(b => (b.customerPhone && b.customerPhone.includes(q)) || (b.vehicleNo && b.vehicleNo.toLowerCase().includes(q)));
+      const pastLead = leadsList.find(l => (l.phone && l.phone.includes(q)) || (l.vehicleModel && l.vehicleModel.toLowerCase().includes(q)));
+      if (pastBill || pastLead) {
+        document.getElementById('returning-badge').classList.remove('hidden');
+        const nameInput = document.getElementById('bill-cust-name');
+        const phoneInput = document.getElementById('bill-cust-phone');
+        const carInput = document.getElementById('bill-car-no');
+        if (!nameInput.value && (pastBill?.customerName || pastLead?.clientName)) nameInput.value = pastBill?.customerName || pastLead?.clientName;
+        if (!phoneInput.value && (pastBill?.customerPhone || pastLead?.phone)) phoneInput.value = pastBill?.customerPhone || pastLead?.phone;
+        if (!carInput.value && (pastBill?.vehicleNo || pastLead?.vehicleModel)) carInput.value = pastBill?.vehicleNo || pastLead?.vehicleModel;
+      }
+    };
+
+    function updateAiUpsellRecommendation() {
+      const namesInBill = posBillItems.map(i => i.name.toLowerCase()).join(' ');
+      const upsellText = document.getElementById('ai-upsell-text');
+      if (namesInBill.includes('ceramic') || namesInBill.includes('teflon')) {
+        currentUpsellItem = { id: 'PRD103', name: '9H Hydrophobic Ceramic Spray (500ml)', price: 899, type: 'PRODUCT' };
+        upsellText.textContent = "AI Upsell: Add 9H Hydrophobic Maintenance Spray (+₹899) to protect coating.";
+      } else {
+        currentUpsellItem = { id: 'PKG01', name: 'Snow Foam & Spot-Free Wash', price: 499, type: 'SERVICE' };
+        upsellText.textContent = "AI Upsell: Add a 0 PPM Spot-Free Snow Foam Wash (+₹499).";
+      }
+    }
+
+    window.applyAiUpsell = function() {
+      if (currentUpsellItem) addItemToPosBill(currentUpsellItem.id, currentUpsellItem.name, currentUpsellItem.price, currentUpsellItem.type);
+    };
+
+    // =========================================================================
+    // POS CATALOG, BARCODE & DIRECT STOCK ADDITION
+    // =========================================================================
+    function populateQuickStockDropdown() {
+      const sel = document.getElementById('quick-stock-product');
+      if (sel) sel.innerHTML = productsList.map(p => `<option value="${p.id}">${p.name} (Stock: ${p.stock}) [${p.barcode}]</option>`).join('');
+    }
+
+    window.addStockDirectlyWhileBilling = async function() {
+      playBarcodeBeepSfx();
+      const prodId = document.getElementById('quick-stock-product').value;
+      const addQty = Number(document.getElementById('quick-stock-qty').value || 0);
+      const prod = productsList.find(p => p.id === prodId);
+      if (!prod || addQty <= 0) return;
+      prod.stock = Number(prod.stock || 0) + addQty;
+      await syncWriteNodeItem('products', prodId, prod);
+    };
+
+    window.openQuickNewProductModal = async function() {
+      const name = prompt("Custom Item / Accessory / Service Name:");
+      if (!name) return;
+      const price = Number(prompt("Selling Price (₹):", "999") || 999);
+      const stock = Number(prompt("Stock Quantity to Add:", "10") || 10);
+      const id = 'PRD' + Date.now().toString().slice(-4);
+      const barcode = 'PCG' + Math.floor(100000 + Math.random() * 900000);
+      const newProd = { id, barcode, name, category: 'Studio Accessory', price, stock, image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=600' };
+      await syncWriteNodeItem('products', id, newProd);
+      addItemToPosBill(id, name, price, 'PRODUCT');
+    };
+
+    window.handleBarcodeScan = function(code) {
+      const clean = code.trim().toUpperCase();
+      const match = productsList.find(p => (p.barcode || '').toUpperCase() === clean || p.id.toUpperCase() === clean);
+      if (match) {
+        addItemToPosBill(match.id, match.name, Number(match.price), 'PRODUCT');
+        document.getElementById('pos-barcode-input').value = '';
+      }
+    };
+
+    window.renderPosCatalog = function() {
+      const grid = document.getElementById('pos-catalog-grid');
+      if (!grid) return;
+      const filter = (document.getElementById('catalog-filter')?.value || '').toLowerCase();
+
+      const prodCards = productsList
+        .filter(p => p.name.toLowerCase().includes(filter) || (p.barcode || '').toLowerCase().includes(filter))
+        .map(p => `
+        <div onclick="addItemToPosBill('${p.id}', '${p.name.replace(/'/g, '')}', ${p.price}, 'PRODUCT')"
+             class="crm-card p-3.5 rounded-xl cursor-pointer hover:border-[#F5D061] transition flex items-center justify-between gap-2">
+          <div>
+            <span class="font-mono text-[10px] ${Number(p.stock) <= 4 ? 'text-rose-400 font-bold' : 'text-[#F5D061]'} block">
+              ${p.barcode} • STOCK: ${p.stock}
             </span>
+            <div class="font-semibold text-xs text-white mt-0.5">${p.name}</div>
+          </div>
+          <span class="font-mono font-bold text-sm text-[#F5D061] shrink-0">₹${p.price}</span>
+        </div>
+      `).join('');
+
+      const pkgCards = packagesList
+        .filter(k => k.name.toLowerCase().includes(filter))
+        .map(pkg => `
+        <div onclick="addItemToPosBill('${pkg.id}', '${pkg.name.replace(/'/g, '')}', ${pkg.basePrice}, 'SERVICE')"
+             class="crm-card p-3.5 rounded-xl cursor-pointer hover:border-white transition flex items-center justify-between gap-2">
+          <div>
+            <span class="font-mono text-[10px] text-zinc-400 block">DETAILING PACKAGE</span>
+            <div class="font-semibold text-xs text-white mt-0.5">${pkg.name}</div>
+          </div>
+          <span class="font-mono font-bold text-sm text-white shrink-0">₹${pkg.basePrice}</span>
+        </div>
+      `).join('');
+
+      grid.innerHTML = prodCards + pkgCards;
+    };
+
+    window.addItemToPosBill = function(id, name, price, type) {
+      playBarcodeBeepSfx();
+      const existing = posBillItems.find(i => i.id === id);
+      if (existing) existing.qty++;
+      else posBillItems.push({ id, name, price: Number(price), qty: 1, type });
+      renderPosBill();
+      updateAiUpsellRecommendation();
+    };
+
+    window.changePosQty = function(id, delta) {
+      playClickSfx();
+      const idx = posBillItems.findIndex(i => i.id === id);
+      if (idx === -1) return;
+      posBillItems[idx].qty += delta;
+      if (posBillItems[idx].qty <= 0) posBillItems.splice(idx, 1);
+      renderPosBill();
+    };
+
+    window.clearPosBill = function() {
+      posBillItems = [];
+      document.getElementById('bill-cust-name').value = '';
+      document.getElementById('bill-cust-phone').value = '';
+      document.getElementById('bill-car-no').value = '';
+      document.getElementById('bill-discount').value = '';
+      document.getElementById('returning-badge').classList.add('hidden');
+      localStorage.removeItem('pushpa_active_pos_draft');
+      renderPosBill();
+    };
+
+    window.renderPosBill = function() {
+      const box = document.getElementById('pos-bill-items');
+      if (!box) return;
+      box.innerHTML = posBillItems.map(item => {
+        const sub = item.qty * item.price;
+        return `
+          <div class="p-2.5 rounded-xl bg-black/80 border border-white/15 flex items-center justify-between text-xs">
+            <div class="truncate pr-2">
+              <div class="text-white font-medium truncate">${item.name}</div>
+              <div class="font-mono text-[10px] text-[#F5D061]">₹${item.price} × ${item.qty} = ₹${sub}</div>
+            </div>
+            <div class="flex items-center gap-1 font-mono shrink-0">
+              <button onclick="changePosQty('${item.id}', -1)" class="w-6 h-6 rounded bg-white/10">-</button>
+              <span class="px-1">${item.qty}</span>
+              <button onclick="changePosQty('${item.id}', 1)" class="w-6 h-6 rounded bg-white/10">+</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const calc = calculateBillSummary();
+      document.getElementById('pos-subtotal').textContent = `₹${calc.subtotal.toFixed(2)}`;
+
+      const discRow = document.getElementById('pos-discount-row');
+      if (calc.discount > 0) {
+        discRow.classList.remove('hidden');
+        document.getElementById('pos-discount-label').textContent = calc.discountLabel;
+        document.getElementById('pos-discount-val').textContent = `-₹${calc.discount.toFixed(2)}`;
+      } else {
+        discRow.classList.add('hidden');
+      }
+
+      const gstBox = document.getElementById('pos-gst-breakdown');
+      if (calc.gstEnabled) {
+        gstBox.classList.remove('hidden');
+        const half = calc.gstRate / 2;
+        document.getElementById('pos-cgst-label').textContent = `CGST (${half}%):`;
+        document.getElementById('pos-sgst-label').textContent = `SGST (${half}%):`;
+        document.getElementById('pos-cgst-val').textContent = `₹${calc.cgst.toFixed(2)}`;
+        document.getElementById('pos-sgst-val').textContent = `₹${calc.sgst.toFixed(2)}`;
+      } else {
+        gstBox.classList.add('hidden');
+      }
+
+      document.getElementById('pos-grand-total').textContent = `₹${calc.grandTotal.toLocaleString('en-IN')}`;
+      updateLiveScreenQr(calc.grandTotal);
+      saveActiveDraftToLocal();
+    };
+
+    // =========================================================================
+    // ZERO-PAPER-WASTE 80MM THERMAL ROLL & A4 SINGLE-PAGE INVOICE BUILDERS
+    // =========================================================================
+    function buildZeroWaste80mmHTML(bill) {
+      const timeStr = new Date(bill.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      return `
+        <div style="width: 72mm; margin: 0 auto; padding: 2mm 1mm; font-family: 'JetBrains Mono', monospace; color: #000; background: #fff; font-size: 10px; line-height: 1.25; box-sizing: border-box;">
+          <div style="text-align: center; border-bottom: 1px dashed #000; padding-bottom: 4px;">
+            <div style="font-size: 14px; font-weight: 800;">PUSHPA CAR GALLERY</div>
+            <div style="font-size: 8.5px;">Bypass Rd, Beside TVS Vajra, Khammam-507002</div>
+            <div style="font-size: 9.5px; font-weight: 700;">Ph/UPI: 098480 88319 | 9035438867</div>
+            ${bill.gstin ? `<div style="font-size: 9px; font-weight: 700;">GSTIN: ${bill.gstin}</div>` : ''}
+            <div style="font-size: 9px; font-weight: 800; margin-top: 2px;">
+              ${bill.gstEnabled ? '--- GST TAX INVOICE ---' : '--- CASH / UPI RECEIPT ---'}
+            </div>
+          </div>
+          <div style="padding: 3px 0; border-bottom: 1px dashed #000; font-size: 9px;">
+            <div style="display:flex; justify-content:space-between;"><span><strong>No:</strong> ${bill.invoiceId}</span><span>${bill.date} ${timeStr}</span></div>
+            <div style="display:flex; justify-content:space-between;"><span><strong>Cust:</strong> ${bill.customerName.slice(0, 16)}</span><span><strong>Car:</strong> ${bill.vehicleNo}</span></div>
+          </div>
+          <table style="width: 100%; border-collapse: collapse; font-size: 9.5px; margin: 3px 0;">
+            <thead>
+              <tr style="border-bottom: 1px dashed #000; text-align: left;">
+                <th style="padding: 2px 0;">ITEM</th><th style="padding: 2px; text-align: center;">QTY</th><th style="padding: 2px 0; text-align: right;">AMT</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${bill.items.map(i => `
+                <tr>
+                  <td style="padding: 2px 0; max-width: 44mm;">${i.name} <span style="font-size:8px;">(@₹${i.price})</span></td>
+                  <td style="padding: 2px; text-align: center; vertical-align: top;">${i.qty}</td>
+                  <td style="padding: 2px 0; text-align: right; vertical-align: top; font-weight: 700;">₹${(i.qty * i.price).toFixed(0)}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+          <div style="border-top: 1px dashed #000; padding-top: 3px; font-size: 9.5px;">
+            <div style="display:flex; justify-content:space-between;"><span>Subtotal:</span><span>₹${bill.subtotal.toFixed(2)}</span></div>
+            ${bill.discount > 0 ? `<div style="display:flex; justify-content:space-between;"><span>${bill.discountLabel}</span><span>-₹${bill.discount.toFixed(2)}</span></div>` : ''}
+            ${bill.gstEnabled ? `
+              <div style="display:flex; justify-content:space-between;"><span>CGST (${bill.gstRate/2}%):</span><span>₹${bill.cgst.toFixed(2)}</span></div>
+              <div style="display:flex; justify-content:space-between;"><span>SGST (${bill.gstRate/2}%):</span><span>₹${bill.sgst.toFixed(2)}</span></div>
+            ` : ''}
+            <div style="display:flex; justify-content:space-between; font-size: 12.5px; font-weight: 800; border-top: 1px dashed #000; border-bottom: 1px dashed #000; padding: 3px 0; margin-top: 2px;">
+              <span>TOTAL (${bill.paymentMode.split(' ')[0]}):</span><span>₹${bill.grandTotal.toLocaleString('en-IN')}</span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: 5px; padding-bottom: 3px; border-bottom: 1px dotted #000;">
+            <div id="print-upi-qr" style="width: 64px; height: 64px; shrink: 0;"></div>
+            <div style="flex: 1; font-size: 8.5px; text-align: left; line-height: 1.3;">
+              <div style="font-weight: 800; font-size: 9.5px;">SCAN TO PAY UPI</div>
+              <div>GPay / PhonePe / Paytm</div>
+              <div><strong>UPI: 9848088319@ybl</strong></div>
+              <div>Amt: <strong>₹${bill.grandTotal.toLocaleString('en-IN')}</strong></div>
+            </div>
+          </div>
+          <div style="text-align: center; margin-top: 3px; font-size: 8px; line-height: 1.2;">
+            <div>Thank You! Visit Pushpa Car Gallery Again.</div>
+            <div style="margin-top: 2px;">POS by <strong>Syed Zeeshaan Ali (@syedzeeshaanali07)</strong></div>
           </div>
         </div>
       `;
+    }
+
+    function buildSinglePageA4HTML(bill) {
+      return `
+        <div style="width: 190mm; max-height: 274mm; margin: 0 auto; padding: 8mm 10mm; font-family: 'Inter', sans-serif; color: #000; background: #fff; border: 1px solid #000; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #000; padding-bottom: 10px;">
+              <div style="display: flex; gap: 12px; align-items: center;">
+                <img src="pushpacarlogo.jpg" onerror="this.style.display='none'" style="width: 56px; height: 56px; object-fit: cover; border-radius: 8px; border: 1px solid #000;" />
+                <div>
+                  <h1 style="font-size: 21px; font-weight: 900; margin: 0;">PUSHPA CAR GALLERY</h1>
+                  <p style="font-size: 10.5px; margin: 2px 0;">11-10-694/7, Bypass Road, Beside TVS Vajra Showroom, Near New Bus Stand, Khammam - 507002</p>
+                  <p style="font-size: 10.5px; font-weight: 700; margin: 0;">Proprietor: Vijay • Phone / UPI: 098480 88319 | 9035438867</p>
+                </div>
+              </div>
+              <div style="text-align: right; font-family: 'JetBrains Mono', monospace;">
+                <div style="font-size: 13px; font-weight: 800; padding: 3px 8px; border: 1.5px solid #000; display: inline-block;">
+                  ${bill.gstEnabled ? 'GST TAX INVOICE' : 'STUDIO RETAIL INVOICE'}
+                </div>
+                <div style="font-size: 10.5px; margin-top: 4px;"><strong>Invoice No:</strong> ${bill.invoiceId}</div>
+                <div style="font-size: 10.5px;"><strong>Date:</strong> ${bill.date}</div>
+                ${bill.gstin ? `<div style="font-size: 10.5px;"><strong>GSTIN:</strong> ${bill.gstin}</div>` : ''}
+              </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin: 10px 0; padding: 8px 12px; border: 1px solid #000; background: #f8f9fa; font-size: 11px;">
+              <div>
+                <span style="font-size: 9.5px; font-weight: 700; color: #444;">CUSTOMER DETAILS:</span>
+                <div style="font-size: 13px; font-weight: 800;">${bill.customerName} ${bill.customerPhone ? `(${bill.customerPhone})` : ''}</div>
+              </div>
+              <div style="text-align: right;">
+                <span style="font-size: 9.5px; font-weight: 700; color: #444;">VEHICLE & PAYMENT:</span>
+                <div style="font-size: 12px; font-weight: 700;">Car No: ${bill.vehicleNo} | Mode: ${bill.paymentMode}</div>
+              </div>
+            </div>
+            <table style="width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 12px;">
+              <thead>
+                <tr style="background: #111; color: #fff; text-align: left;">
+                  <th style="padding: 6px 8px; border: 1px solid #000; width: 32px;">#</th>
+                  <th style="padding: 6px 8px; border: 1px solid #000;">SERVICE / ACCESSORY DESCRIPTION</th>
+                  <th style="padding: 6px 8px; border: 1px solid #000; text-align: center; width: 55px;">QTY</th>
+                  <th style="padding: 6px 8px; border: 1px solid #000; text-align: right; width: 95px;">RATE (₹)</th>
+                  <th style="padding: 6px 8px; border: 1px solid #000; text-align: right; width: 105px;">TOTAL (₹)</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${bill.items.map((item, idx) => `
+                  <tr>
+                    <td style="padding: 5px 8px; border: 1px solid #000;">${idx + 1}</td>
+                    <td style="padding: 5px 8px; border: 1px solid #000; font-weight: 600;">${item.name}</td>
+                    <td style="padding: 5px 8px; border: 1px solid #000; text-align: center;">${item.qty}</td>
+                    <td style="padding: 5px 8px; border: 1px solid #000; text-align: right;">₹${item.price.toFixed(2)}</td>
+                    <td style="padding: 5px 8px; border: 1px solid #000; text-align: right; font-weight: 700;">₹${(item.qty * item.price).toFixed(2)}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: stretch; gap: 16px;">
+              <div style="flex: 1; display: flex; align-items: center; gap: 12px; padding: 8px 12px; border: 1px dashed #000;">
+                <div id="print-upi-qr" style="width: 80px; height: 80px; shrink: 0;"></div>
+                <div style="font-size: 10.5px; line-height: 1.4;">
+                  <div style="font-weight: 800; font-size: 12px;">SCAN QR TO PAY VIA UPI</div>
+                  <div>UPI ID: <strong>9848088319@ybl</strong> (Vijay)</div>
+                  <div>Payable Amount: <strong>₹${bill.grandTotal.toLocaleString('en-IN')}</strong></div>
+                </div>
+              </div>
+              <div style="width: 240px; font-family: 'JetBrains Mono', monospace; font-size: 11px; border: 1.5px solid #000; padding: 8px 10px;">
+                <div style="display:flex; justify-content:space-between; padding: 2px 0;"><span>Subtotal:</span><span>₹${bill.subtotal.toFixed(2)}</span></div>
+                ${bill.discount > 0 ? `<div style="display:flex; justify-content:space-between; padding: 2px 0;"><span>${bill.discountLabel}</span><span>-₹${bill.discount.toFixed(2)}</span></div>` : ''}
+                ${bill.gstEnabled ? `
+                  <div style="display:flex; justify-content:space-between; padding: 2px 0; border-top: 1px dashed #999;"><span>Taxable:</span><span>₹${bill.taxableAmount.toFixed(2)}</span></div>
+                  <div style="display:flex; justify-content:space-between; padding: 2px 0;"><span>CGST (${bill.gstRate/2}%):</span><span>₹${bill.cgst.toFixed(2)}</span></div>
+                  <div style="display:flex; justify-content:space-between; padding: 2px 0;"><span>SGST (${bill.gstRate/2}%):</span><span>₹${bill.sgst.toFixed(2)}</span></div>
+                ` : `<div style="display:flex; justify-content:space-between; padding: 2px 0; font-size:9.5px;"><span>Tax Mode:</span><span>Non-GST Retail</span></div>`}
+                <div style="display:flex; justify-content:space-between; padding: 5px 0 2px; margin-top: 3px; border-top: 2px solid #000; font-size: 14px; font-weight: 900;">
+                  <span>GRAND TOTAL:</span><span>₹${bill.grandTotal.toLocaleString('en-IN')}</span>
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 14px; padding-top: 8px; border-top: 1px solid #000; font-size: 9.5px;">
+              <div>
+                <strong>POS & ERP Engineered By:</strong> Syed Zeeshaan Ali (<strong>@syedzeeshaanali07</strong>)<br/>
+                High-Fledged Engineering & Digital Tech Solutions • Khammam
+              </div>
+              <div style="text-align: right;">
+                <div style="font-weight: 800;">For PUSHPA CAR GALLERY</div>
+                <div style="margin-top: 12px;">Authorized Signatory</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    window.completeAndPrintPosBill = async function(actionMode) {
+      if (posBillItems.length === 0) return alert("Add at least one item or service to the bill first.");
+      playGoldChimeSfx();
+      const invoiceId = 'INV_' + Date.now().toString().slice(-6);
+      const customerName = document.getElementById('bill-cust-name').value.trim() || 'Walk-In Customer';
+      const customerPhone = document.getElementById('bill-cust-phone').value.trim() || '';
+      const vehicleNo = document.getElementById('bill-car-no').value.trim().toUpperCase() || 'N/A';
+      const paymentMode = document.getElementById('bill-pay-mode').value;
+      const gstin = document.getElementById('bill-gstin').value.trim().toUpperCase();
+      const calc = calculateBillSummary();
+
+      const billData = {
+        invoiceId,
+        date: new Date().toISOString().slice(0, 10),
+        timestamp: new Date().toISOString(),
+        customerName, customerPhone, vehicleNo, paymentMode, gstin,
+        ...calc,
+        items: posBillItems
+      };
+
+      await syncWriteNodeItem('bills', invoiceId, billData);
+
+      for (const item of posBillItems) {
+        if (item.type === 'PRODUCT') {
+          const prod = productsList.find(p => p.id === item.id);
+          if (prod) {
+            prod.stock = Math.max(0, Number(prod.stock) - item.qty);
+            await syncWriteNodeItem('products', item.id, prod);
+          }
+        }
+      }
+
+      if (actionMode === 'WHATSAPP') {
+        const upiLink = buildUpiIntentString(billData.grandTotal, invoiceId);
+        const wa = encodeURIComponent(
+          `*${billData.gstEnabled ? 'GST TAX INVOICE' : 'STUDIO BILL'} - PUSHPA CAR GALLERY*\n` +
+          `• *Invoice:* ${invoiceId} (${billData.date})\n` +
+          `• *Customer:* ${customerName} (${vehicleNo})\n` +
+          `• *Items:* ${posBillItems.map(i => `${i.name} x${i.qty} (₹${i.qty * i.price})`).join(', ')}\n` +
+          `• *Subtotal:* ₹${billData.subtotal.toFixed(2)}\n` +
+          (billData.discount > 0 ? `• *${billData.discountLabel}* -₹${billData.discount.toFixed(2)}\n` : '') +
+          (billData.gstEnabled ? `• *GST (${billData.gstRate}%):* ₹${billData.totalGst} (CGST ₹${billData.cgst} + SGST ₹${billData.sgst})\n` : '') +
+          `• *NET PAYABLE:* ₹${billData.grandTotal.toLocaleString('en-IN')}\n` +
+          `• *Pay via UPI:* 9848088319@ybl (Vijay)\n` +
+          `• *Instant UPI Pay:* ${upiLink}\n` +
+          `_POS Engineered by @syedzeeshaanali07_`
+        );
+        const cleanPhone = customerPhone.replace(/\D/g, '').slice(-10);
+        const targetPhone = cleanPhone.length === 10 ? `91${cleanPhone}` : '919848088319';
+        window.open(`https://wa.me/${targetPhone}?text=${wa}`, '_blank');
+      } else {
+        const formatToUse = actionMode || selectedPrintFormat;
+        document.getElementById('dynamic-print-style').innerHTML = formatToUse === '80mm'
+          ? `@page { size: 80mm auto; margin: 0mm; }`
+          : `@page { size: A4 portrait; margin: 6mm; }`;
+
+        const printBox = document.getElementById('printable-area');
+        printBox.classList.remove('hidden');
+        printBox.innerHTML = formatToUse === '80mm' ? buildZeroWaste80mmHTML(billData) : buildSinglePageA4HTML(billData);
+
+        const qrMount = document.getElementById('print-upi-qr');
+        if (qrMount) {
+          new QRCode(qrMount, {
+            text: buildUpiIntentString(billData.grandTotal, invoiceId),
+            width: formatToUse === '80mm' ? 64 : 78,
+            height: formatToUse === '80mm' ? 64 : 78,
+            colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.M
+          });
+        }
+
+        setTimeout(() => {
+          window.print();
+          printBox.classList.add('hidden');
+        }, 180);
+      }
+
+      clearPosBill();
     };
 
-    window.renderPackagesGrid = function() {
-      const grid = document.getElementById('packages-grid');
-      grid.innerHTML = packagesData.map(pkg => `
-        <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-amber-400/50 transition">
-          <div>
-            <div class="flex items-center justify-between font-mono text-[11px] mb-3">
-              <span class="px-2.5 py-1 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20">STEP ${pkg.step || '01'}</span>
-              <span class="text-zinc-400">${pkg.duration || '2 Hrs'}</span>
+    // =========================================================================
+    // DIGITAL VEHICLE JOB CARD & DAMAGE INSPECTION MAP
+    // =========================================================================
+    window.toggleDamageZone = function(btn, zoneName) {
+      playClickSfx();
+      const idx = selectedDamageZones.indexOf(zoneName);
+      if (idx > -1) {
+        selectedDamageZones.splice(idx, 1);
+        btn.className = "dmg-zone p-3 rounded-xl border border-white/15 bg-white/5 text-center";
+      } else {
+        selectedDamageZones.push(zoneName);
+        btn.className = "dmg-zone p-3 rounded-xl border border-[#D4AF37] bg-[#D4AF37]/20 text-[#F5D061] font-bold text-center";
+      }
+    };
+
+    window.saveVehicleJobCard = async function(e) {
+      e.preventDefault();
+      playGoldChimeSfx();
+      const jobId = 'JOB_' + Date.now().toString().slice(-5);
+      const client = document.getElementById('jc-client').value.trim();
+      const phone = document.getElementById('jc-phone').value.trim();
+      const car = document.getElementById('jc-car').value.trim().toUpperCase();
+      const odo = document.getElementById('jc-odo').value.trim() || 'Logged';
+      const notes = document.getElementById('jc-notes').value.trim() || 'Standard Studio Inspection';
+      const zones = selectedDamageZones.length > 0 ? selectedDamageZones.join(', ') : 'No Pre-Existing Scratches Noted';
+
+      const payload = { jobId, date: new Date().toISOString().slice(0, 10), client, phone, car, odo, zones, notes };
+      await syncWriteNodeItem('jobCards', jobId, payload);
+
+      const waMsg = encodeURIComponent(
+        `*VEHICLE INTAKE JOB CARD - PUSHPA CAR GALLERY*\n` +
+        `• *Job ID:* ${jobId}\n• *Client:* ${client} (${car})\n• *Odometer / Fuel:* ${odo}\n` +
+        `• *Marked Panel Notes:* ${zones}\n• *Instructions:* ${notes}\n_Bypass Road, Khammam • 098480 88319_`
+      );
+      window.open(`https://wa.me/91${phone.replace(/\D/g, '').slice(-10)}?text=${waMsg}`, '_blank');
+
+      e.target.reset();
+      selectedDamageZones = [];
+      document.querySelectorAll('.dmg-zone').forEach(b => b.className = "dmg-zone p-3 rounded-xl border border-white/15 bg-white/5 text-center");
+    };
+
+    function renderJobCardsList() {
+      const box = document.getElementById('jobcards-list');
+      if (!box) return;
+      if (jobCardsList.length === 0) {
+        box.innerHTML = `<p class="text-xs text-zinc-500 font-mono">No vehicle inspection job cards logged today.</p>`;
+        return;
+      }
+      box.innerHTML = jobCardsList.map(j => `
+        <div class="p-4 rounded-xl bg-black/70 border border-white/15 space-y-1 text-xs">
+          <div class="flex justify-between font-mono text-[10px] text-[#F5D061]"><span>${j.jobId} • ${j.date}</span><span>Odo: ${j.odo}</span></div>
+          <div class="font-bold text-white">${j.client} — ${j.car} (${j.phone})</div>
+          <div class="text-rose-300 text-[11px]">Marked Panels: ${j.zones}</div>
+          <div class="text-zinc-400 text-[11px]">${j.notes}</div>
+        </div>
+      `).join('');
+    }
+
+    // =========================================================================
+    // AI STUDIO COPILOT, INVENTORY BARCODES, LEADS & ORDERS
+    // =========================================================================
+    function renderAiCopilotDashboard() {
+      const totalBillsRev = billsList.reduce((s, b) => s + Number(b.grandTotal || 0), 0);
+      const totalLeadsRev = leadsList.reduce((s, l) => s + Number(l.price || 0), 0);
+      const revEl = document.getElementById('ai-kpi-revenue');
+      if (revEl) revEl.textContent = '₹' + (totalBillsRev + totalLeadsRev).toLocaleString('en-IN');
+
+      const lowStockItems = productsList.filter(p => Number(p.stock) <= 5);
+      const lsEl = document.getElementById('ai-kpi-lowstock');
+      if (lsEl) lsEl.textContent = `${lowStockItems.length} Items`;
+      const hlEl = document.getElementById('ai-kpi-held');
+      if (hlEl) hlEl.textContent = heldBillsList.length;
+
+      const lowStockBox = document.getElementById('ai-low-stock-list');
+      if (lowStockBox) {
+        lowStockBox.innerHTML = lowStockItems.length === 0
+          ? `<p class="text-emerald-400 font-mono">✓ All accessory stock levels are healthy (> 5 units).</p>`
+          : lowStockItems.map(p => `
+              <div class="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-white">${p.name}</div>
+                  <div class="font-mono text-[10px] text-rose-300">Barcode: ${p.barcode} • Remaining: ${p.stock}</div>
+                </div>
+                <button onclick="quickRestockItem('${p.id}')" class="px-3 py-1.5 rounded-lg gold-btn font-mono text-[10px] font-bold uppercase">+10 Stock</button>
+              </div>
+            `).join('');
+      }
+
+      const retentionBox = document.getElementById('ai-retention-list');
+      if (retentionBox) {
+        const combinedClients = [
+          ...billsList.filter(b => b.customerPhone).map(b => ({ name: b.customerName, phone: b.customerPhone, car: b.vehicleNo, service: (b.items?.[0]?.name || 'Detailing') })),
+          ...leadsList.filter(l => l.phone).map(l => ({ name: l.clientName, phone: l.phone, car: l.vehicleModel, service: l.packageName }))
+        ];
+        retentionBox.innerHTML = combinedClients.slice(0, 12).map(c => {
+          const msg = encodeURIComponent(
+            `Hi ${c.name}, greetings from *Pushpa Car Gallery (Khammam Bypass Road)*! 🚗✨\n` +
+            `Hope your *${c.car}* is shining bright after your *${c.service}*. Book your periodic wash or share your 5-star review here:\n` +
+            `https://search.google.com/local/reviews?placeid=ChIJHXpfBLlZNDoRTxffD-NWtEY`
+          );
+          return `
+            <div class="p-3 rounded-xl bg-black/70 border border-white/15 flex items-center justify-between gap-2">
+              <div>
+                <div class="font-bold text-white">${c.name} <span class="text-[#F5D061] font-mono">(${c.car})</span></div>
+                <div class="text-[11px] text-zinc-400">${c.service} • ${c.phone}</div>
+              </div>
+              <a href="https://wa.me/91${c.phone.replace(/\D/g,'').slice(-10)}?text=${msg}" target="_blank"
+                 class="px-3 py-1.5 rounded-lg gold-btn font-mono text-[10px] font-bold uppercase shrink-0">💬 Follow-Up</a>
             </div>
-            <h3 class="font-display font-bold text-lg uppercase">${pkg.name}</h3>
-            <p class="text-xs text-zinc-400 mt-2 leading-relaxed">${pkg.description || ''}</p>
-          </div>
-          <div class="pt-5 mt-5 border-t border-white/10 flex items-end justify-between">
+          `;
+        }).join('');
+      }
+    }
+
+    window.quickRestockItem = async function(id) {
+      playBarcodeBeepSfx();
+      const p = productsList.find(x => x.id === id);
+      if (p) {
+        p.stock = Number(p.stock || 0) + 10;
+        await syncWriteNodeItem('products', id, p);
+      }
+    };
+
+    window.sendSupplierReorderWhatsApp = function() {
+      const low = productsList.filter(p => Number(p.stock) <= 5);
+      if (low.length === 0) return alert("All products have sufficient stock!");
+      const text = encodeURIComponent(`*STOCK REORDER LIST - PUSHPA CAR GALLERY*\n` + low.map(p => `• ${p.name} [${p.barcode}] — Stock: ${p.stock}`).join('\n'));
+      window.open(`https://wa.me/919848088319?text=${text}`, '_blank');
+    };
+
+    window.saveNewInventoryProduct = async function(e) {
+      e.preventDefault();
+      playGoldChimeSfx();
+      const name = document.getElementById('inv-name').value.trim();
+      const category = document.getElementById('inv-category').value.trim();
+      const price = Number(document.getElementById('inv-price').value);
+      const stock = Number(document.getElementById('inv-stock').value);
+      const id = 'PRD' + Date.now().toString().slice(-4);
+      const barcode = document.getElementById('inv-barcode').value.trim() || ('PCG' + Math.floor(100000 + Math.random() * 900000));
+      let image = document.getElementById('inv-image').value.trim();
+      const fileInput = document.getElementById('inv-file');
+      if (fileInput.files && fileInput.files[0]) {
+        image = await new Promise(res => {
+          const reader = new FileReader();
+          reader.onload = () => res(reader.result);
+          reader.readAsDataURL(fileInput.files[0]);
+        });
+      }
+      await syncWriteNodeItem('products', id, {
+        id, barcode, name, category, price, stock,
+        image: image || 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=600'
+      });
+      e.target.reset();
+    };
+
+    function renderInventoryCards() {
+      const grid = document.getElementById('inventory-cards-grid');
+      if (!grid) return;
+      grid.innerHTML = productsList.map(p => `
+        <div class="crm-card p-5 rounded-2xl flex flex-col justify-between space-y-4">
+          <div class="flex items-center gap-3.5">
+            <img src="${p.image}" class="w-16 h-16 rounded-xl object-cover border border-[#D4AF37]/40" />
             <div>
-              <span class="font-mono text-[10px] text-emerald-400 uppercase block">${pkg.warranty || 'Studio Warranty'}</span>
-              <span class="font-display font-extrabold text-2xl text-white">₹${Number(pkg[currentTierKey] || pkg.basePrice).toLocaleString('en-IN')}</span>
+              <span class="font-mono text-[10px] text-[#F5D061]">${p.category}</span>
+              <h4 class="font-display font-bold text-sm uppercase">${p.name}</h4>
+              <span class="font-mono text-xs text-white">₹${p.price} • Stock: ${p.stock}</span>
             </div>
-            <button onclick="openBookingDrawer('${pkg.name}')" class="px-4 py-2 rounded-xl bg-white text-black font-mono text-xs font-bold uppercase hover:bg-amber-400 transition">Book →</button>
+          </div>
+          <div class="bg-white p-2.5 rounded-xl text-center"><svg id="bc-${p.id}" class="mx-auto"></svg></div>
+          <div class="flex items-center gap-2 font-mono text-xs">
+            <button onclick="printProductBarcodeLabel('${p.id}')" class="flex-1 py-2 rounded-xl gold-btn font-bold uppercase">🖨️ Print Label</button>
+            <button onclick="deleteInventoryProduct('${p.id}')" class="px-3 py-2 rounded-xl bg-rose-500/15 text-rose-400">✕</button>
           </div>
         </div>
       `).join('');
-    };
 
-    window.switchVehicleTier = function(tierKey, btn) {
-      currentTierKey = tierKey;
-      document.querySelectorAll('.tier-btn').forEach(b => b.className = "tier-btn px-3.5 py-1.5 rounded-lg font-mono text-xs text-zinc-300");
-      btn.className = "tier-btn px-3.5 py-1.5 rounded-lg font-mono text-xs bg-amber-400 text-black font-bold";
-      renderPackagesGrid();
-    };
+      productsList.forEach(p => {
+        try { JsBarcode(`#bc-${p.id}`, p.barcode || p.id, { format: "CODE128", width: 1.5, height: 34, displayValue: true, fontSize: 11 }); } catch (e) {}
+      });
+    }
 
-    window.renderProductsGrid = function() {
-      const grid = document.getElementById('products-grid');
-      grid.innerHTML = productsData.map(p => {
-        const inStock = Number(p.stock) > 0;
-        return `
-        <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-amber-400/50 transition">
-          <div>
-            <div class="relative h-48 overflow-hidden bg-zinc-900">
-              <img src="${p.image || 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=600'}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
-              <span class="absolute top-3 left-3 font-mono text-[10px] px-2.5 py-1 rounded bg-black/80 text-zinc-300 border border-white/10">${p.category || 'Accessory'}</span>
-              <span class="absolute top-3 right-3 font-mono text-[10px] px-2.5 py-1 rounded ${inStock ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/30' : 'bg-rose-500/20 text-rose-300'}">
-                ${inStock ? `In Stock (${p.stock})` : 'Out of Stock'}
-              </span>
-            </div>
-            <div class="p-5">
-              <div class="font-mono text-[10px] text-zinc-500">BARCODE: ${p.barcode || p.id}</div>
-              <h3 class="font-display font-bold text-base uppercase mt-1">${p.name}</h3>
-            </div>
-          </div>
-          <div class="px-5 pb-5 pt-3 border-t border-white/10 flex items-center justify-between">
-            <span class="font-display font-extrabold text-2xl text-amber-400">₹${Number(p.price).toLocaleString('en-IN')}</span>
-            <button ${!inStock ? 'disabled' : ''} onclick="addToCart('${p.id}')"
-                    class="px-4 py-2 rounded-xl ${inStock ? 'bg-amber-400 text-black hover:bg-amber-300' : 'bg-white/5 text-zinc-600 cursor-not-allowed'} font-mono text-xs font-bold uppercase transition">
-              ${inStock ? '+ Add to Cart' : 'Sold Out'}
-            </button>
-          </div>
+    window.printProductBarcodeLabel = function(productId) {
+      const p = productsList.find(x => x.id === productId);
+      if (!p) return;
+      document.getElementById('dynamic-print-style').innerHTML = `@page { size: 80mm auto; margin: 0mm; }`;
+      const printBox = document.getElementById('printable-area');
+      printBox.classList.remove('hidden');
+      printBox.innerHTML = `
+        <div style="text-align:center; font-family: 'JetBrains Mono', monospace; width: 68mm; margin: 0 auto; padding: 4px; border: 1px dashed #000;">
+          <div style="font-weight:800; font-size: 11px;">PUSHPA CAR GALLERY</div>
+          <div style="font-size: 9.5px; margin: 2px 0;">${p.name}</div>
+          <svg id="print-bc-svg" style="margin: 0 auto;"></svg>
+          <div style="font-weight:800; font-size: 12px;">MRP: ₹${p.price}/-</div>
         </div>
-      `}).join('');
+      `;
+      JsBarcode("#print-bc-svg", p.barcode || p.id, { format: "CODE128", width: 1.7, height: 36, displayValue: true, fontSize: 10, margin: 2 });
+      setTimeout(() => { window.print(); printBox.classList.add('hidden'); }, 120);
     };
 
-    window.addToCart = function(productId) {
-      const prod = productsData.find(p => p.id === productId);
-      if (!prod) return;
-      const existing = cart.find(i => i.id === productId);
-      if (existing) { if (existing.qty < prod.stock) existing.qty++; }
-      else cart.push({ ...prod, qty: 1 });
-      updateCartUI();
-      toggleCartDrawer(true);
+    window.deleteInventoryProduct = async function(id) {
+      if (confirm("Delete this product from inventory?")) await syncWriteNodeItem('products', id, null);
     };
 
-    window.changeCartQty = function(id, delta) {
-      const idx = cart.findIndex(i => i.id === id);
-      if (idx === -1) return;
-      cart[idx].qty += delta;
-      if (cart[idx].qty <= 0) cart.splice(idx, 1);
-      updateCartUI();
-    };
-
-    window.applyCustomerPromo = function() {
-      const code = (document.getElementById('cart-promo-input').value || '').trim().toUpperCase();
-      const rawTotal = cart.reduce((s, i) => s + i.qty * i.price, 0);
-      if (code === 'PUSHPA5') activePromoDiscount = Math.round(rawTotal * 0.05);
-      else if (code === 'WELCOME100') activePromoDiscount = 100;
-      else { activePromoDiscount = 0; alert("Valid Promo Codes: PUSHPA5 (5% Off) or WELCOME100 (₹100 Off)"); }
-      updateCartUI();
-    };
-
-    function updateCartUI() {
-      const count = cart.reduce((s, i) => s + i.qty, 0);
-      document.getElementById('nav-cart-count').textContent = count;
-      document.getElementById('shop-cart-count').textContent = count;
-      const list = document.getElementById('cart-items-list');
-      if (cart.length === 0) {
-        list.innerHTML = `<p class="text-xs text-zinc-500 font-mono py-8 text-center">Your accessory cart is empty.</p>`;
-        document.getElementById('cart-total-display').textContent = '₹0';
+    window.renderLeadsTable = function() {
+      const q = (document.getElementById('lead-search')?.value || '').toLowerCase();
+      const tbody = document.getElementById('leads-tbody');
+      if (!tbody) return;
+      const filtered = leadsList.filter(l =>
+        (l.clientName || '').toLowerCase().includes(q) || (l.phone || '').includes(q) || (l.vehicleModel || '').toLowerCase().includes(q)
+      );
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center font-mono text-xs text-zinc-500">No bookings yet. Book a slot in the Customer App to see instant live sync!</td></tr>`;
         return;
       }
-      let subtotal = 0;
-      list.innerHTML = cart.map(item => {
-        const sub = item.qty * item.price;
-        subtotal += sub;
-        return `
-          <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between gap-3">
-            <div>
-              <div class="text-xs font-semibold text-white">${item.name}</div>
-              <div class="font-mono text-[11px] text-amber-400">₹${item.price} × ${item.qty} = ₹${sub}</div>
-            </div>
-            <div class="flex items-center gap-1.5 font-mono text-xs">
-              <button type="button" onclick="changeCartQty('${item.id}', -1)" class="w-7 h-7 rounded bg-white/10">-</button>
-              <span class="px-2">${item.qty}</span>
-              <button type="button" onclick="changeCartQty('${item.id}', 1)" class="w-7 h-7 rounded bg-white/10">+</button>
-            </div>
+      tbody.innerHTML = filtered.map(l => `
+        <tr class="hover:bg-white/5">
+          <td class="py-3 px-4"><div class="font-bold text-white">${l.clientName}</div><a href="tel:${l.phone}" class="font-mono text-[11px] text-[#F5D061]">${l.phone}</a></td>
+          <td class="py-3 px-4">${l.vehicleModel} <span class="text-zinc-400">(${l.vehicleType})</span></td>
+          <td class="py-3 px-4"><div class="text-[#F5D061] font-semibold">${l.packageName}</div><div class="text-[10px] text-zinc-400">${l.serviceMode}</div></td>
+          <td class="py-3 px-4 font-mono text-emerald-300 font-bold">${l.date} @ ${l.timeSlot}</td>
+          <td class="py-3 px-4 font-mono font-bold text-white">₹${l.price}</td>
+          <td class="py-3 px-4">
+            <select onchange="changeLeadStatus('${l.id}', this.value)" class="bg-black border border-[#D4AF37]/40 rounded-lg px-2 py-1 font-mono text-[11px] text-white">
+              <option value="NEW" ${l.status === 'NEW' ? 'selected' : ''}>NEW</option>
+              <option value="IN_BAY" ${l.status === 'IN_BAY' ? 'selected' : ''}>IN BAY</option>
+              <option value="COMPLETED" ${l.status === 'COMPLETED' ? 'selected' : ''}>COMPLETED</option>
+            </select>
+          </td>
+          <td class="py-3 px-4 text-right space-x-1.5">
+            <button onclick="convertLeadToPosBill('${l.id}')" class="px-2.5 py-1 rounded gold-btn font-mono text-[10px] font-bold uppercase">⚡ Bill Now</button>
+            <button onclick="releaseBookedSlot('${l.id}', '${l.date}', '${l.timeSlot}')" class="px-2 py-1 rounded bg-rose-500/20 text-rose-300 font-mono text-[10px]">Free Slot</button>
+          </td>
+        </tr>
+      `).join('');
+    };
+
+    window.convertLeadToPosBill = function(leadId) {
+      playClickSfx();
+      const l = leadsList.find(x => x.id === leadId);
+      if (!l) return;
+      switchTab('pos');
+      document.getElementById('bill-cust-name').value = l.clientName || '';
+      document.getElementById('bill-cust-phone').value = l.phone || '';
+      document.getElementById('bill-car-no').value = l.vehicleModel || '';
+      posBillItems = [{ id: l.id, name: l.packageName, price: Number(l.price), qty: 1, type: 'SERVICE' }];
+      renderPosBill();
+    };
+
+    window.changeLeadStatus = async function(id, status) {
+      const l = leadsList.find(x => x.id === id);
+      if (l) {
+        l.status = status;
+        await syncWriteNodeItem('leads', id, l);
+      }
+    };
+
+    window.releaseBookedSlot = async function(leadId, date, slot) {
+      if (confirm(`Release slot ${date} @ ${slot} and remove lead?`)) {
+        await syncWriteNodeItem('leads', leadId, null);
+        const booked = getLocalStore('bookedSlots', {});
+        if (booked[date]) {
+          delete booked[date][slot];
+          setLocalStore('bookedSlots', booked);
+        }
+        try { await fetch(`${DB_URL}/bookedSlots/${encodeURIComponent(date)}/${encodeURIComponent(slot)}.json`, { method: 'DELETE' }); } catch (e) {}
+        if (syncChannel) syncChannel.postMessage({ node: 'bookedSlots', ts: Date.now() });
+      }
+    };
+
+    function renderOrdersList() {
+      const box = document.getElementById('orders-list');
+      if (!box) return;
+      if (ordersList.length === 0) {
+        box.innerHTML = `<p class="text-xs text-zinc-500 font-mono">No online accessory orders yet. Orders placed in Customer Cart appear here live.</p>`;
+        return;
+      }
+      box.innerHTML = ordersList.map(o => `
+        <div class="p-4 rounded-xl bg-black/80 border border-[#D4AF37]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <span class="font-mono text-[10px] text-[#F5D061]">${o.orderId} • ${o.date}</span>
+            <h4 class="font-bold text-sm text-white">${o.customerName} (${o.customerPhone}) — ${o.carModel}</h4>
+            <p class="text-xs text-zinc-300 mt-1">${(o.items || []).map(i => `${i.name} ×${i.qty}`).join(', ')}</p>
           </div>
-        `;
-      }).join('');
-
-      const netTotal = Math.max(0, subtotal - activePromoDiscount);
-      document.getElementById('cart-discount-Tag').classList.toggle('hidden', activePromoDiscount <= 0);
-      document.getElementById('cart-total-display').textContent = `₹${netTotal.toLocaleString('en-IN')}`;
-
-      const qrBox = document.getElementById('cart-upi-qr');
-      if (qrBox) {
-        qrBox.innerHTML = '';
-        try {
-          new QRCode(qrBox, {
-            text: `upi://pay?pa=9848088319@ybl&pn=Pushpa%20Car%20Gallery&am=${netTotal}&cu=INR`,
-            width: 58, height: 58
-          });
-        } catch (e) {}
-      }
-    }
-
-    window.toggleCartDrawer = function(open) {
-      document.getElementById('cart-drawer').classList.toggle('translate-x-full', !open);
-    };
-
-    window.submitCartOrder = async function(e) {
-      e.preventDefault();
-      if (cart.length === 0) return alert("Add at least one accessory to your cart.");
-      const customerName = document.getElementById('order-name').value.trim();
-      const customerPhone = document.getElementById('order-phone').value.trim();
-      const carModel = document.getElementById('order-car').value.trim();
-      const deliveryMode = document.getElementById('order-delivery').value;
-      const subtotal = cart.reduce((s, i) => s + i.qty * i.price, 0);
-      const grandTotal = Math.max(0, subtotal - activePromoDiscount);
-      const orderId = 'ORD_' + Date.now().toString().slice(-6);
-
-      await set(ref(db, `orders/${orderId}`), {
-        orderId, date: new Date().toISOString().slice(0, 10), timestamp: new Date().toISOString(),
-        customerName, customerPhone, carModel, deliveryMode,
-        items: cart.map(i => ({ id: i.id, barcode: i.barcode, name: i.name, qty: i.qty, price: i.price, total: i.qty * i.price })),
-        discount: activePromoDiscount, grandTotal, status: 'NEW_ORDER'
-      });
-
-      for (const item of cart) {
-        const prod = productsData.find(p => p.id === item.id);
-        if (prod) await update(ref(db, `products/${item.id}`), { stock: Math.max(0, Number(prod.stock) - item.qty) });
-      }
-
-      const waMsg = encodeURIComponent(
-        `*NEW ACCESSORY ORDER - PUSHPA CAR GALLERY*\n` +
-        `• *Order ID:* ${orderId}\n• *Customer:* ${customerName} (${customerPhone})\n• *Vehicle:* ${carModel}\n` +
-        `• *Items:* ${cart.map(i => `${i.name} (x${i.qty})`).join(', ')}\n` +
-        (activePromoDiscount > 0 ? `• *Promo Discount:* -₹${activePromoDiscount}\n` : '') +
-        `• *Net Payable:* ₹${grandTotal.toLocaleString('en-IN')} (UPI: 9848088319@ybl)\n• *Mode:* ${deliveryMode}`
-      );
-      cart = [];
-      activePromoDiscount = 0;
-      updateCartUI();
-      toggleCartDrawer(false);
-      window.open(`https://wa.me/919848088319?text=${waMsg}`, '_blank');
-    };
-
-    // Real-Time Slot Booking Matrix
-    document.getElementById('book-date').value = new Date().toISOString().slice(0, 10);
-
-    window.renderLiveSlotGrid = function() {
-      const selectedDate = document.getElementById('book-date').value;
-      const dayBookings = bookedSlotsMap[selectedDate] || {};
-      const currentSelectedSlot = document.getElementById('book-time').value;
-      const grid = document.getElementById('live-slot-grid');
-
-      grid.innerHTML = ALL_TIME_SLOTS.map(slot => {
-        const isBooked = Boolean(dayBookings[slot]);
-        const isSelected = slot === currentSelectedSlot && !isBooked;
-        if (isBooked) {
-          return `
-            <div class="py-2 px-2 rounded-xl border border-rose-500/40 bg-rose-500/10 text-center opacity-75 cursor-not-allowed">
-              <div class="font-mono text-[11px] font-bold text-rose-300 line-through">${slot}</div>
-              <div class="font-mono text-[9px] text-rose-400 uppercase">BOOKED</div>
+          <div class="text-right flex items-center gap-3">
+            <div>
+              <span class="font-display font-extrabold text-xl text-[#F5D061] block">₹${o.grandTotal}</span>
+              <span class="font-mono text-[10px] text-zinc-400">${o.deliveryMode}</span>
             </div>
-          `;
-        }
-        return `
-          <button type="button" onclick="selectTimeSlot('${slot}')"
-                  class="py-2 px-2 rounded-xl border transition text-center ${isSelected ? 'border-amber-400 bg-amber-400 text-black font-bold' : 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300 hover:border-amber-400'}">
-            <div class="font-mono text-[11px] font-bold">${slot}</div>
-            <div class="font-mono text-[9px] uppercase">${isSelected ? 'SELECTED' : 'AVAILABLE'}</div>
-          </button>
-        `;
-      }).join('');
+            <button onclick="loadOrderIntoPos('${o.orderId}')" class="px-3 py-2 rounded-xl gold-btn font-mono text-xs font-bold uppercase">⚡ Bill Order</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    window.loadOrderIntoPos = function(orderId) {
+      playClickSfx();
+      const o = ordersList.find(x => x.orderId === orderId);
+      if (!o) return;
+      switchTab('pos');
+      document.getElementById('bill-cust-name').value = o.customerName || '';
+      document.getElementById('bill-cust-phone').value = o.customerPhone || '';
+      document.getElementById('bill-car-no').value = o.carModel || '';
+      posBillItems = (o.items || []).map(i => ({ id: i.id, name: i.name, price: Number(i.price), qty: Number(i.qty), type: 'PRODUCT' }));
+      renderPosBill();
     };
 
-    window.selectTimeSlot = function(slot) {
-      document.getElementById('book-time').value = slot;
-      renderLiveSlotGrid();
+    function renderPackagesEditor() {
+      const grid = document.getElementById('packages-editor-grid');
+      if (!grid) return;
+      grid.innerHTML = packagesList.map(p => `
+        <div class="crm-card p-5 rounded-2xl space-y-3">
+          <h4 class="font-display font-bold text-base uppercase gold-gradient-text">${p.name}</h4>
+          <div class="grid grid-cols-3 gap-2 font-mono text-xs">
+            <div><label class="text-[10px] text-zinc-400">Hatchback</label><input id="ep-b-${p.id}" type="number" value="${p.basePrice}" class="w-full bg-black border border-white/20 rounded-lg p-2 text-white" /></div>
+            <div><label class="text-[10px] text-zinc-400">Sedan</label><input id="ep-s-${p.id}" type="number" value="${p.sedanPrice}" class="w-full bg-black border border-white/20 rounded-lg p-2 text-white" /></div>
+            <div><label class="text-[10px] text-zinc-400">SUV</label><input id="ep-u-${p.id}" type="number" value="${p.suvPrice}" class="w-full bg-black border border-white/20 rounded-lg p-2 text-white" /></div>
+          </div>
+          <button onclick="savePkgRate('${p.id}')" class="px-4 py-2 rounded-xl gold-btn font-mono text-xs font-bold uppercase">Save Live Rates</button>
+        </div>
+      `).join('');
+    }
+
+    window.savePkgRate = async function(id) {
+      playGoldChimeSfx();
+      const pkg = packagesList.find(x => x.id === id);
+      if (!pkg) return;
+      pkg.basePrice = Number(document.getElementById(`ep-b-${id}`).value);
+      pkg.sedanPrice = Number(document.getElementById(`ep-s-${id}`).value);
+      pkg.suvPrice = Number(document.getElementById(`ep-u-${id}`).value);
+      await syncWriteNodeItem('packages', id, pkg);
+      alert("Package rates synced to Customer App!");
     };
 
-    window.populateDrawerSelect = function(preselect) {
-      const sel = document.getElementById('book-package');
-      sel.innerHTML = packagesData.map(p => `<option value="${p.name}" ${p.name === preselect ? 'selected' : ''}>${p.name}</option>`).join('');
-      updateCalculatedQuote();
+    // =========================================================================
+    // AUTOMATIC DAILY EXCEL DOWNLOAD (.XLSX) + CACHE CLEAR
+    // =========================================================================
+    window.toggleAutoExcelSetting = function(enabled) {
+      localStorage.setItem('pushpa_auto_excel_enabled', enabled ? '1' : '0');
     };
 
-    window.selectDrawerVehicle = function(label, tierKey, btn) {
-      drawerVehicleType = label;
-      drawerTierKey = tierKey;
-      document.querySelectorAll('.veh-opt').forEach(b => b.className = "veh-opt py-2.5 rounded-xl border border-white/10 bg-white/5 text-zinc-300 font-mono text-xs");
-      btn.className = "veh-opt py-2.5 rounded-xl border border-amber-400 bg-amber-400/15 text-amber-300 font-mono text-xs font-bold";
-      updateCalculatedQuote();
+    window.exportDailyExcelReport = function() {
+      const wb = XLSX.utils.book_new();
+      const billsSheet = XLSX.utils.json_to_sheet(billsList.map(b => ({
+        InvoiceID: b.invoiceId, Date: b.date, Customer: b.customerName, Phone: b.customerPhone,
+        Vehicle: b.vehicleNo, PaymentMode: b.paymentMode, GST_Enabled: b.gstEnabled ? `YES (${b.gstRate}%)` : 'NO',
+        Subtotal: b.subtotal || b.grandTotal, Discount: b.discount || 0, CGST: b.cgst || 0, SGST: b.sgst || 0, GrandTotal_INR: b.grandTotal
+      })));
+      const leadsSheet = XLSX.utils.json_to_sheet(leadsList);
+      const stockSheet = XLSX.utils.json_to_sheet(productsList);
+      const jobsSheet = XLSX.utils.json_to_sheet(jobCardsList);
+
+      XLSX.utils.book_append_sheet(wb, billsSheet, "POS_Bills");
+      XLSX.utils.book_append_sheet(wb, leadsSheet, "Slot_Bookings");
+      XLSX.utils.book_append_sheet(wb, stockSheet, "Inventory_Stock");
+      XLSX.utils.book_append_sheet(wb, jobsSheet, "Vehicle_JobCards");
+
+      const todayStr = new Date().toISOString().slice(0, 10);
+      XLSX.writeFile(wb, `Pushpa_Car_Gallery_Report_${todayStr}.xlsx`);
+      localStorage.setItem('pushpa_last_excel_date', todayStr);
+      const lbl = document.getElementById('last-backup-label');
+      if (lbl) lbl.textContent = `Backed Up: ${todayStr}`;
     };
 
-    window.updateCalculatedQuote = function() {
-      const pkgName = document.getElementById('book-package').value;
-      const pkg = packagesData.find(p => p.name === pkgName) || packagesData[0];
-      const price = pkg ? Number(pkg[drawerTierKey] || pkg.basePrice) : 499;
-      document.getElementById('book-quote-display').textContent = `₹${price.toLocaleString('en-IN')}`;
-      return price;
-    };
-
-    window.openBookingDrawer = function(preselectPkg) {
-      populateDrawerSelect(preselectPkg);
-      renderLiveSlotGrid();
-      document.getElementById('booking-backdrop').classList.remove('hidden');
-      document.getElementById('booking-drawer').classList.remove('translate-x-full');
-    };
-
-    window.closeBookingDrawer = function() {
-      document.getElementById('booking-backdrop').classList.add('hidden');
-      document.getElementById('booking-drawer').classList.add('translate-x-full');
-    };
-
-    window.submitCustomerBooking = async function(e) {
-      e.preventDefault();
-      const date = document.getElementById('book-date').value;
-      const timeSlot = document.getElementById('book-time').value;
-      if (bookedSlotsMap[date] && bookedSlotsMap[date][timeSlot]) {
-        return alert("That time slot is already booked! Please select a green available slot.");
-      }
-      const price = updateCalculatedQuote();
-      const leadId = 'LEAD_' + Date.now().toString().slice(-6);
-      const newLead = {
-        id: leadId,
-        clientName: document.getElementById('book-name').value.trim(),
-        phone: document.getElementById('book-phone').value.trim(),
-        vehicleModel: document.getElementById('book-car-model').value.trim(),
-        vehicleType: drawerVehicleType,
-        packageName: document.getElementById('book-package').value,
-        serviceMode: document.getElementById('book-mode').value,
-        price, date, timeSlot, status: 'NEW', createdAt: new Date().toISOString()
-      };
-
-      await set(ref(db, `leads/${leadId}`), newLead);
-      await set(ref(db, `bookedSlots/${date}/${timeSlot}`), { bookedBy: newLead.clientName, vehicle: newLead.vehicleModel, leadId });
-
-      document.getElementById('customer-booking-form').classList.add('hidden');
-      document.getElementById('booking-success-state').classList.remove('hidden');
-      document.getElementById('booking-summary-text').textContent =
-        `${newLead.clientName}, your slot on ${date} at ${timeSlot} is locked for ${newLead.vehicleModel} (${newLead.packageName}).`;
-
-      const qrMount = document.getElementById('booking-upi-qr');
-      if (qrMount) {
-        qrMount.innerHTML = '';
-        try {
-          new QRCode(qrMount, {
-            text: `upi://pay?pa=9848088319@ybl&pn=Pushpa%20Car%20Gallery&am=${price}&cu=INR&tn=${leadId}`,
-            width: 104, height: 104
-          });
-        } catch (err) {}
-      }
-
-      const waMsg = encodeURIComponent(
-        `*NEW SLOT BOOKING - PUSHPA CAR GALLERY*\n` +
-        `• *Booking ID:* ${leadId}\n• *Client:* ${newLead.clientName} (${newLead.phone})\n• *Car:* ${newLead.vehicleModel} (${newLead.vehicleType})\n` +
-        `• *Package:* ${newLead.packageName}\n• *Locked Slot:* ${date} @ ${timeSlot}\n• *Quote:* ₹${price.toLocaleString('en-IN')} (UPI: 9848088319@ybl)`
-      );
-      document.getElementById('whatsapp-direct-btn').href = `https://wa.me/919848088319?text=${waMsg}`;
-    };
-
-    window.resetBookingDrawer = function() {
-      document.getElementById('customer-booking-form').reset();
-      document.getElementById('customer-booking-form').classList.remove('hidden');
-      document.getElementById('booking-success-state').classList.add('hidden');
-      document.getElementById('book-date').value = new Date().toISOString().slice(0, 10);
-      renderLiveSlotGrid();
-    };
-
-    // Single-Tap Invisible Unlimited Google Review Generator
-    window.triggerInvisibleGoogleReview = async function() {
-      const openers = [
-        "Pushpa Car Gallery on Khammam Bypass Road is hands down the best detailing studio in town!",
-        "Extremely impressed with Vijay garu and his team at Pushpa Car Gallery near New Bus Stand.",
-        "Took my car to Pushpa Car Gallery beside TVS Vajra Showroom and the transformation is unbelievable!",
-        "Five stars to Pushpa Car Gallery in Raparthi Nagar, Khammam for genuine showroom-level work.",
-        "Best car detailing and accessories hub in Khammam! Vijay bhai guides you honestly within your budget."
-      ];
-      const services = [
-        "Got the 9H ceramic coating and snow foam decontamination done—the paint looks like a black mirror now.",
-        "Their 3M Teflon coating, swirl removal, and exterior plastic restoration made my car look brand new.",
-        "Installed custom bucket-fit seat covers, 7D floor mats, and genuine LED accessories with factory-grade finish.",
-        "Used their deep interior extraction and spot-free foam wash; every single AC vent and seat corner is spotless.",
-        "Their doorstep pickup and drop facility in Khammam made getting my car detailed super convenient."
-      ];
-      const closers = [
-        "Very reasonable pricing, genuine products, and super fast delivery. Highly recommended!",
-        "Water literally beads right off the bonnet now. Must visit for every car lover in Khammam!",
-        "Punctual slot timing and top-notch workmanship. Thank you Vijay garu!",
-        "Don't go anywhere else on Bypass Road—this studio delivers true luxury finishing.",
-        "10/10 experience from booking the time slot to getting the keys back!"
-      ];
-      const pick = arr => arr[Math.floor(Math.random() * arr.length)];
-      const uniqueReview = `${pick(openers)} ${pick(services)} ${pick(closers)}`;
-
-      try { await navigator.clipboard.writeText(uniqueReview); }
-      catch (e) {
-        const ta = document.createElement('textarea');
-        ta.value = uniqueReview; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-      }
-
-      window.location.href = "https://search.google.com/local/reviews?placeid=ChIJHXpfBLlZNDoRTxffD-NWtEY&q=PUSHPA+CAR+GALLERY,+BYPASS+ROAD,+beside+TVS+VAJRA+SHOWROOM,+near+NEW+BUS+STAND,+Raparthi+Nagar,+Khammam,+Telangana&authuser=0&hl=en&gl=IN";
-    };
-
-    renderPackagesGrid();
-    renderProductsGrid();
-    renderLiveSlotGrid();
-  </script>
-
-  <!-- SCROLL-SCRUBBING & BEAD LAB PHYSICS ENGINE -->
-  <script>
-    const washSection = document.getElementById('wash-scrub');
-    const dirtyClip = document.getElementById('dirty-car-clip');
-    const laserLine = document.getElementById('wash-laser-line');
-    const glossMeter = document.getElementById('gloss-meter');
-    const stageBadge = document.getElementById('scrub-stage-badge');
-    const stepLiveNum = document.getElementById('step-live-number');
-    const stepLiveDesc = document.getElementById('step-live-desc');
-
-    function updateWashWipe(progress) {
-      const clamped = Math.max(0, Math.min(1, progress));
-      const dirtyPercent = Math.round((1 - clamped) * 100);
-      dirtyClip.style.clipPath = `inset(0 ${100 - dirtyPercent}% 0 0)`;
-      laserLine.style.left = `${dirtyPercent}%`;
-      glossMeter.textContent = `${Math.round(14 + clamped * 86)}%`;
-
-      if (clamped < 0.25) {
-        stageBadge.textContent = "01 // SNOW FOAM DWELL";
-        stepLiveNum.textContent = "01. SNOW FOAM";
-        stepLiveDesc.textContent = "pH-neutral foam encapsulates dirt and lifts it off the surface before a mitt ever touches your paint.";
-      } else if (clamped < 0.55) {
-        stageBadge.textContent = "04–05 // WHEELS & IRON DECON";
-        stepLiveNum.textContent = "05. IRON DECONTAMINATION";
-        stepLiveDesc.textContent = "Chemical iron remover dissolves embedded brake dust and road fallout—turning purple as it works.";
-      } else if (clamped < 0.8) {
-        stageBadge.textContent = "08 // INTERIOR EXTRACTION";
-        stepLiveNum.textContent = "08. INTERIOR EXTRACTION";
-        stepLiveDesc.textContent = "Every vent, seam, and crevice is steam-extracted and dressed with UV protection.";
-      } else {
-        stageBadge.textContent = "10 // SHOWROOM. AT HOME.";
-        stepLiveNum.textContent = "10. EVERY SURFACE, WIPED";
-        stepLiveDesc.textContent = "9H Ceramic Armor locked in with a 118° hydrophobic contact angle. Ready for delivery.";
+    function triggerDailyAutoExcelIfDue() {
+      const enabled = localStorage.getItem('pushpa_auto_excel_enabled') !== '0';
+      const todayStr = new Date().toISOString().slice(0, 10);
+      const lastBackup = localStorage.getItem('pushpa_last_excel_date');
+      if (enabled && lastBackup !== todayStr && billsList.length > 0) {
+        exportDailyExcelReport();
       }
     }
 
-    window.addEventListener('scroll', () => {
-      const rect = washSection.getBoundingClientRect();
-      const scrollable = washSection.offsetHeight - window.innerHeight;
-      if (scrollable > 0) updateWashWipe(-rect.top / scrollable);
-    }, { passive: true });
-
-    const carStage = document.getElementById('car-comparison-stage');
-    let dragging = false;
-    carStage.addEventListener('pointerdown', () => dragging = true);
-    window.addEventListener('pointerup', () => dragging = false);
-    carStage.addEventListener('pointermove', e => {
-      if (!dragging && e.buttons !== 1) return;
-      const r = carStage.getBoundingClientRect();
-      updateWashWipe(1 - ((e.clientX - r.left) / r.width));
-    });
-
-    const canvas = document.getElementById('hydro-canvas');
-    const ctx = canvas.getContext('2d');
-    let droplets = [];
-    let isCoated = true;
-
-    function resizeBeadCanvas() { canvas.width = canvas.clientWidth; canvas.height = canvas.clientHeight; }
-    window.addEventListener('resize', resizeBeadCanvas);
-    resizeBeadCanvas();
-
-    function spawnBeads(x, y, n = 3) {
-      for (let i = 0; i < n; i++) {
-        droplets.push({
-          x: x + (Math.random() - 0.5) * 32, y: y + (Math.random() - 0.5) * 32,
-          r: isCoated ? (3 + Math.random() * 5) : (12 + Math.random() * 14),
-          vx: (Math.random() - 0.5) * (isCoated ? 4 : 0.3), vy: isCoated ? (2.5 + Math.random() * 3.5) : 0.2
-        });
+    window.clearDailyCacheAndCompleted = async function() {
+      if (!confirm("Download today's Excel backup first and clear completed leads & draft cache?")) return;
+      exportDailyExcelReport();
+      for (const l of leadsList) {
+        if (l.status === 'COMPLETED') await syncWriteNodeItem('leads', l.id, null);
       }
-    }
-    for (let i = 0; i < 40; i++) spawnBeads(Math.random() * 600, Math.random() * 350, 1);
-
-    canvas.addEventListener('pointermove', e => {
-      const r = canvas.getBoundingClientRect();
-      spawnBeads(e.clientX - r.left, e.clientY - r.top, 2);
-    });
-
-    window.setBeadMode = function(coated) {
-      isCoated = coated;
-      document.getElementById('bead-angle-readout').textContent = coated ? '118°' : '38°';
-      document.getElementById('surface-mode-label').textContent = coated ? 'COATED: 118° HYDROPHOBIC' : 'UNCOATED: WATER SHEETS & STICKS';
-      document.getElementById('btn-coated').className = coated
-        ? 'px-4 py-2.5 rounded-lg font-mono text-xs uppercase bg-white text-black font-bold transition'
-        : 'px-4 py-2.5 rounded-lg font-mono text-xs uppercase bg-white/5 text-zinc-400 border border-white/10';
-      document.getElementById('btn-uncoated').className = !coated
-        ? 'px-4 py-2.5 rounded-lg font-mono text-xs uppercase bg-amber-400 text-black font-bold transition'
-        : 'px-4 py-2.5 rounded-lg font-mono text-xs uppercase bg-white/5 text-zinc-400 border border-white/10';
-      droplets = [];
-      for (let i = 0; i < 30; i++) spawnBeads(Math.random() * canvas.width, Math.random() * canvas.height, 1);
+      localStorage.removeItem('pushpa_active_pos_draft');
+      alert("Daily Excel downloaded & completed cache cleared!");
     };
 
-    function loopBeads() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = droplets.length - 1; i >= 0; i--) {
-        const d = droplets[i];
-        d.x += d.vx; d.y += d.vy;
-        if (isCoated) d.vy += 0.14;
-        const g = ctx.createRadialGradient(d.x - d.r * 0.3, d.y - d.r * 0.3, 1, d.x, d.y, d.r);
-        g.addColorStop(0, isCoated ? 'rgba(255,255,255,0.95)' : 'rgba(200,210,220,0.35)');
-        g.addColorStop(1, isCoated ? 'rgba(56,189,248,0.18)' : 'rgba(100,116,139,0.1)');
-        ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2); ctx.fillStyle = g; ctx.fill();
-        if (d.y > canvas.height + 20) {
-          droplets.splice(i, 1);
-          if (droplets.length < 35) spawnBeads(Math.random() * canvas.width, 10, 1);
-        }
-      }
-      requestAnimationFrame(loopBeads);
+    // Floating Gold Embers VFX Canvas
+    const vfxCanvas = document.getElementById('gold-vfx-canvas');
+    const vfxCtx = vfxCanvas.getContext('2d');
+    let goldParticles = [];
+    function resizeVfx() { vfxCanvas.width = window.innerWidth; vfxCanvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeVfx);
+    resizeVfx();
+    for (let i = 0; i < 35; i++) {
+      goldParticles.push({
+        x: Math.random() * vfxCanvas.width, y: Math.random() * vfxCanvas.height,
+        r: 1 + Math.random() * 2, vy: -0.25 - Math.random() * 0.4, alpha: 0.2 + Math.random() * 0.6
+      });
     }
-    loopBeads();
+    function animateGoldVfx() {
+      vfxCtx.clearRect(0, 0, vfxCanvas.width, vfxCanvas.height);
+      goldParticles.forEach(p => {
+        p.y += p.vy;
+        if (p.y < 0) p.y = vfxCanvas.height;
+        vfxCtx.beginPath();
+        vfxCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        vfxCtx.fillStyle = `rgba(245, 208, 97, ${p.alpha})`;
+        vfxCtx.fill();
+      });
+      requestAnimationFrame(animateGoldVfx);
+    }
+    animateGoldVfx();
   </script>
 </body>
 </html>
