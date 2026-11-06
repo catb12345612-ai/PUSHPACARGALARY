@@ -3,13 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PUSHPA CAR GALLERY | AI POS, Auto-Hold, Job Card & GST ERP</title>
+  <title>PUSHPA CAR GALLERY | 24K Gold Owner ERP, POS & Live Sync</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- SheetJS for Automatic Daily Excel Download -->
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-  <!-- JsBarcode for Product & Receipt Barcode Printing -->
   <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
-  <!-- QRCode.js for Dynamic Amount-Locked UPI QR Generation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <script>
@@ -21,6 +18,11 @@
             display: ['Syne', 'sans-serif'],
             sans: ['Inter', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace']
+          },
+          colors: {
+            gold: '#D4AF37',
+            goldLight: '#F5D061',
+            obsidian: '#050505'
           }
         }
       }
@@ -28,154 +30,153 @@
   </script>
   <style id="dynamic-print-style">@page { margin: 0; }</style>
   <style>
-    body { background-color: #050609; color: #f4f4f5; overflow-x: hidden; }
-    .crm-card { background: rgba(14, 17, 24, 0.92); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.09); }
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #050609; }
-    ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #f59e0b; }
-    /* Zero Paper Waste Print Rules */
+    body { background-color: #050505; color: #ffffff; overflow-x: hidden; }
+    .gold-card {
+      background: linear-gradient(145deg, rgba(16, 16, 18, 0.94), rgba(7, 7, 9, 0.98));
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(212, 175, 55, 0.24);
+      box-shadow: 0 10px 35px -10px rgba(0, 0, 0, 0.8), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+    }
+    .gold-btn {
+      background: linear-gradient(135deg, #F5D061 0%, #D4AF37 50%, #AA820A 100%);
+      color: #050505;
+      font-weight: 800;
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+    }
+    .gold-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .gold-text {
+      background: linear-gradient(135deg, #FFFFFF 0%, #F5D061 55%, #D4AF37 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
     @media print {
-      html, body {
-        background: #ffffff !important;
-        color: #000000 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        height: auto !important;
-        min-height: 0 !important;
-      }
+      html, body { background: #fff !important; color: #000 !important; margin: 0 !important; padding: 0 !important; height: auto !important; }
       body > *:not(#printable-area) { display: none !important; }
       #printable-area {
-        display: block !important;
-        position: static !important;
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        background: #ffffff !important;
-        color: #000000 !important;
-        page-break-after: avoid !important;
-        page-break-before: avoid !important;
-        page-break-inside: avoid !important;
+        display: block !important; position: static !important; width: 100% !important;
+        margin: 0 !important; padding: 0 !important; background: #fff !important; color: #000 !important;
+        page-break-after: avoid !important; page-break-before: avoid !important; page-break-inside: avoid !important;
       }
     }
   </style>
 </head>
-<body class="font-sans antialiased min-h-screen flex flex-col">
+<body class="font-sans antialiased min-h-screen flex flex-col relative">
 
-  <!-- ===================================================================== -->
-  <!-- VIEW 1: DEDICATED OWNER LOGIN ("WELCOME BACK, DETAILER")              -->
-  <!-- ===================================================================== -->
+  <!-- AMBIENT 24K GOLD PARTICLE VFX CANVAS -->
+  <canvas id="gold-vfx-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-45"></canvas>
+
+  <!-- LIVE CUSTOMER BOOKING / ORDER TOAST ALERT -->
+  <div id="live-sync-toast" class="fixed top-5 right-5 z-50 hidden gold-card p-4 rounded-2xl border-2 border-[#F5D061] shadow-2xl max-w-sm animate-bounce">
+    <div class="flex items-start gap-3">
+      <div class="w-9 h-9 rounded-xl gold-btn flex items-center justify-center text-lg shrink-0">🔔</div>
+      <div>
+        <span class="font-mono text-[10px] uppercase tracking-widest text-[#F5D061] block">NEW LIVE CUSTOMER ACTIVITY!</span>
+        <h4 id="toast-title" class="font-display font-bold text-sm text-white mt-0.5">New Slot Booking Received</h4>
+        <p id="toast-body" class="text-xs text-zinc-300 mt-1"></p>
+      </div>
+      <button onclick="document.getElementById('live-sync-toast').classList.add('hidden')" class="text-zinc-400 hover:text-white">✕</button>
+    </div>
+  </div>
+
+  <!-- VIEW 1: DEDICATED OWNER LOGIN ("WELCOME BACK, DETAILER") -->
   <div id="owner-login-screen" class="fixed inset-0 z-50 flex items-center justify-center px-4"
-       style="background: radial-gradient(circle at 50% 30%, rgba(245, 158, 11, 0.18), #050609 70%);">
-    <div class="crm-card w-full max-w-md rounded-2xl p-8 shadow-2xl border border-white/15">
+       style="background: radial-gradient(circle at 50% 25%, rgba(212, 175, 55, 0.22), #050505 70%);">
+    <div class="gold-card w-full max-w-md rounded-2xl p-8 shadow-2xl">
       <div class="flex items-center gap-3.5 mb-6">
-        <img src="pushpacarlogo.jpg" onerror="this.style.display='none'" alt="Pushpa Car Gallery" class="w-12 h-12 rounded-xl object-cover border border-amber-400/40" />
+        <img src="pushpacarlogo.jpg" onerror="this.style.display='none'" alt="Pushpa Car Gallery" class="w-12 h-12 rounded-xl object-cover border border-[#D4AF37]" />
         <div>
-          <span class="font-mono text-[10px] uppercase tracking-widest text-amber-400 block">PUSHPA CAR GALLERY • KHAMMAM</span>
-          <span class="text-xs text-zinc-400">AI POS, Auto-Hold, Job Card & GST ERP</span>
+          <span class="font-mono text-[10px] uppercase tracking-widest text-[#F5D061] block">PUSHPA CAR GALLERY • KHAMMAM</span>
+          <span class="text-xs text-zinc-300">24K Gold Edition • POS, Auto-Hold & Live Sync ERP</span>
         </div>
       </div>
-
-      <h1 class="font-display font-extrabold text-2xl sm:text-3xl uppercase">WELCOME BACK, DETAILER.</h1>
-      <p class="text-xs text-zinc-400 mt-1 mb-6">Sign in to access Auto-Hold POS Billing, Direct WhatsApp Invoices, AI Paint Estimator, and Daily Auto-Excel Backups.</p>
-
+      <h1 class="font-display font-extrabold text-2xl sm:text-3xl uppercase gold-text">WELCOME BACK, DETAILER.</h1>
+      <p class="text-xs text-zinc-400 mt-1 mb-6">Real-time synchronized with customer bookings, cart orders, POS billing, and daily Excel backups.</p>
       <form onsubmit="handleOwnerLogin(event)" class="space-y-4">
         <div>
-          <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1">Owner Email / ID</label>
-          <input type="text" id="login-email" value="admin@pushpacargallery.com" required
-                 class="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-3 text-xs text-white focus:border-amber-400 focus:outline-none" />
+          <label class="block font-mono text-[10px] uppercase text-zinc-300 mb-1">Owner Email / ID</label>
+          <input type="text" id="login-email" value="admin@pushpacargallery.com" required class="w-full bg-black border border-[#D4AF37]/40 rounded-xl px-4 py-3 text-xs text-white focus:border-[#F5D061] focus:outline-none" />
         </div>
         <div>
-          <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1">Master Password</label>
-          <input type="password" id="login-pass" value="Pushpa@2026" required
-                 class="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-3 text-xs text-white focus:border-amber-400 focus:outline-none" />
+          <label class="block font-mono text-[10px] uppercase text-zinc-300 mb-1">Master Password</label>
+          <input type="password" id="login-pass" value="Pushpa@2026" required class="w-full bg-black border border-[#D4AF37]/40 rounded-xl px-4 py-3 text-xs text-white focus:border-[#F5D061] focus:outline-none" />
         </div>
         <p id="login-error" class="text-xs text-rose-400 font-mono hidden">Incorrect password. Default: Pushpa@2026</p>
-        <button type="submit" class="w-full py-3.5 rounded-xl bg-amber-400 text-black font-mono text-xs font-bold uppercase tracking-widest hover:bg-amber-300 transition">
-          Unlock AI Command Center →
+        <button type="submit" class="w-full py-3.5 rounded-xl gold-btn font-mono text-xs uppercase tracking-widest transition">
+          Unlock Command Center →
         </button>
       </form>
-
-      <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between font-mono text-[10px] text-zinc-500">
-        <span>PROPRIETOR: VIJAY (098480 88319)</span>
+      <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between font-mono text-[10px] text-zinc-400">
+        <span>VIJAY • 098480 88319</span>
         <span>DEV: @syedzeeshaanali07</span>
       </div>
     </div>
   </div>
 
-  <!-- ===================================================================== -->
-  <!-- VIEW 2: MAIN OWNER ERP, AI COPILOT & POS WORKSPACE                    -->
-  <!-- ===================================================================== -->
-  <div id="owner-crm-workspace" class="hidden flex-1 flex min-h-screen">
-
+  <!-- VIEW 2: MAIN ERP WORKSPACE -->
+  <div id="owner-crm-workspace" class="hidden flex-1 flex min-h-screen relative z-10">
     <!-- Sidebar -->
-    <aside class="w-64 border-r border-white/10 bg-[#07090e] flex flex-col justify-between shrink-0 hidden lg:flex">
+    <aside class="w-64 border-r border-[#D4AF37]/25 bg-[#070709]/95 flex flex-col justify-between shrink-0 hidden lg:flex">
       <div class="p-5 space-y-5">
         <div class="flex items-center gap-3">
-          <img src="pushpacarlogo.jpg" onerror="this.style.display='none'" class="w-10 h-10 rounded-lg object-cover border border-amber-400/30" />
+          <img src="pushpacarlogo.jpg" onerror="this.style.display='none'" class="w-11 h-11 rounded-xl object-cover border border-[#D4AF37]" />
           <div>
-            <span class="font-display font-bold text-sm block leading-none">PUSHPA AI ERP</span>
-            <span id="firebase-conn-badge" class="font-mono text-[10px] text-emerald-400">● FIREBASE SYNCED</span>
+            <span class="font-display font-extrabold text-sm block leading-none gold-text">PUSHPA ERP</span>
+            <span id="cloud-sync-pill" class="font-mono text-[10px] text-emerald-400">● CLOUD LIVE SYNCED</span>
           </div>
         </div>
 
-        <nav class="space-y-1 font-mono text-xs">
-          <button onclick="switchTab('pos')" id="nav-pos" class="tab-btn w-full text-left px-3.5 py-2.5 rounded-xl bg-amber-400 text-black font-bold flex items-center justify-between">
+        <nav class="space-y-1.5 font-mono text-xs">
+          <button onclick="switchTab('pos')" id="nav-pos" class="w-full text-left px-3.5 py-2.5 rounded-xl gold-btn flex items-center justify-between">
             <span>⚡ POS & AUTO-HOLD</span>
-            <span id="badge-held" class="px-1.5 py-0.5 rounded bg-black/20 text-black text-[10px]">0</span>
+            <span id="badge-held" class="px-1.5 py-0.5 rounded bg-black/25 text-black text-[10px]">0</span>
           </button>
-          <button onclick="switchTab('jobcard')" id="nav-jobcard" class="tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5 flex items-center justify-between">
+          <button onclick="switchTab('leads')" id="nav-leads" class="w-full text-left px-3.5 py-2.5 rounded-xl text-white hover:bg-white/5 border border-transparent hover:border-[#D4AF37]/40 flex items-center justify-between">
+            <span>▣ CUSTOMER BOOKINGS</span>
+            <span id="badge-leads" class="px-2 py-0.5 rounded bg-[#D4AF37] text-black font-bold text-[10px]">0</span>
+          </button>
+          <button onclick="switchTab('orders')" id="nav-orders" class="w-full text-left px-3.5 py-2.5 rounded-xl text-white hover:bg-white/5 border border-transparent hover:border-[#D4AF37]/40 flex items-center justify-between">
+            <span>🛒 CUSTOMER CART ORDERS</span>
+            <span id="badge-orders" class="px-2 py-0.5 rounded bg-white text-black font-bold text-[10px]">0</span>
+          </button>
+          <button onclick="switchTab('jobcard')" id="nav-jobcard" class="w-full text-left px-3.5 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5 flex items-center justify-between">
             <span>🛡️ VEHICLE JOB CARD</span>
             <span id="badge-jobs" class="px-1.5 py-0.5 rounded bg-white/10 text-white text-[10px]">0</span>
           </button>
-          <button onclick="switchTab('ai-copilot')" id="nav-ai-copilot" class="tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-cyan-300 hover:bg-white/5 flex items-center justify-between">
-            <span>🧠 AI STUDIO COPILOT</span>
-            <span class="px-1.5 py-0.5 rounded bg-cyan-400/20 text-cyan-300 text-[9px]">PRO</span>
-          </button>
-          <button onclick="switchTab('leads')" id="nav-leads" class="tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5 flex items-center justify-between">
-            <span>▣ LEADS & TIME SLOTS</span>
-            <span id="badge-leads" class="px-1.5 py-0.5 rounded bg-white/10 text-white text-[10px]">0</span>
-          </button>
-          <button onclick="switchTab('inventory')" id="nav-inventory" class="tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5 flex items-center justify-between">
+          <button onclick="switchTab('inventory')" id="nav-inventory" class="w-full text-left px-3.5 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5 flex items-center justify-between">
             <span>🏷️ STOCK & BARCODES</span>
           </button>
-          <button onclick="switchTab('orders')" id="nav-orders" class="tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5 flex items-center justify-between">
-            <span>🛒 ONLINE CART ORDERS</span>
-            <span id="badge-orders" class="px-1.5 py-0.5 rounded bg-emerald-400/20 text-emerald-300 text-[10px]">0</span>
-          </button>
-          <button onclick="switchTab('packages')" id="nav-packages" class="tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5">
+          <button onclick="switchTab('packages')" id="nav-packages" class="w-full text-left px-3.5 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5">
             <span>◈ DETAILING RATES</span>
           </button>
-          <button onclick="switchTab('bills-history')" id="nav-bills-history" class="tab-btn w-full text-left px-3.5 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5">
-            <span>🧾 INVOICE HISTORY</span>
+          <button onclick="switchTab('ai-copilot')" id="nav-ai-copilot" class="w-full text-left px-3.5 py-2.5 rounded-xl text-[#F5D061] hover:bg-white/5 flex items-center justify-between">
+            <span>🧠 AI STUDIO COPILOT</span>
+            <span class="px-1.5 py-0.5 rounded bg-[#D4AF37]/20 text-[#F5D061] text-[9px]">PRO</span>
           </button>
         </nav>
 
-        <!-- Daily Auto-Excel & Cache Control Box -->
-        <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <div class="p-3.5 rounded-2xl bg-black/80 border border-[#D4AF37]/30 space-y-2">
           <div class="flex items-center justify-between">
-            <span class="font-mono text-[10px] uppercase text-amber-400">DAILY AUTO-EXCEL</span>
-            <input type="checkbox" id="auto-excel-toggle" checked onchange="toggleAutoExcelSetting(this.checked)" class="accent-amber-400 cursor-pointer" />
+            <span class="font-mono text-[10px] uppercase text-[#F5D061]">DAILY AUTO-EXCEL</span>
+            <input type="checkbox" id="auto-excel-toggle" checked onchange="toggleAutoExcelSetting(this.checked)" class="accent-[#D4AF37] cursor-pointer" />
           </div>
-          <button onclick="exportDailyExcelReport()" class="w-full py-2 rounded-xl bg-emerald-500 text-black font-mono text-[11px] font-bold uppercase hover:bg-emerald-400 transition">
+          <button onclick="exportDailyExcelReport()" class="w-full py-2 rounded-xl bg-white text-black font-mono text-[11px] font-bold uppercase hover:bg-[#F5D061] transition">
             ⬇ Download Excel (.xlsx)
           </button>
-          <button onclick="clearDailyCacheAndCompleted()" class="w-full py-2 rounded-xl bg-rose-500/15 text-rose-300 border border-rose-500/30 font-mono text-[11px] uppercase hover:bg-rose-500/25 transition">
+          <button onclick="clearDailyCacheAndCompleted()" class="w-full py-2 rounded-xl bg-white/5 text-zinc-300 border border-white/15 font-mono text-[11px] uppercase hover:border-[#F5D061] transition">
             🧹 Clear Daily Cache
           </button>
           <div id="last-backup-label" class="font-mono text-[10px] text-zinc-400 text-center">Auto-Sync Active</div>
         </div>
       </div>
 
-      <!-- Single-Tap Developer Logo Signature -->
-      <div class="p-4 border-t border-white/10">
+      <div class="p-4 border-t border-[#D4AF37]/20">
         <a href="https://catb12345612-ai.github.io/Syed-Zeeshaan-Ali-High-Fledged-Engineering-And-Digital-Tech-Solutions-Site/"
-           target="_blank" class="flex items-center gap-2.5 p-2.5 rounded-xl bg-black/60 border border-amber-400/30 hover:border-amber-400 transition">
+           target="_blank" class="flex items-center gap-2.5 p-2.5 rounded-xl bg-black border border-[#D4AF37]/40 hover:border-[#F5D061] transition">
           <img src="dev-logo.png.png" onerror="this.style.display='none'" class="w-9 h-9 rounded-full object-contain" />
           <div class="font-mono text-[10px] leading-tight">
-            <span class="text-amber-400 font-bold block">SYED ZEESHAAN ALI</span>
-            <span class="text-zinc-300 block">@syedzeeshaanali07</span>
-            <span class="text-zinc-500 text-[9px]">High-Fledged Solutions ↗</span>
+            <span class="text-[#F5D061] font-bold block">SYED ZEESHAAN ALI</span>
+            <span class="text-white block">@syedzeeshaanali07</span>
+            <span class="text-zinc-400 text-[9px]">High-Fledged Solutions ↗</span>
           </div>
         </a>
       </div>
@@ -183,129 +184,123 @@
 
     <!-- Main Content -->
     <main class="flex-1 flex flex-col min-w-0">
-      <header class="h-16 border-b border-white/10 px-4 sm:px-6 flex items-center justify-between bg-[#07090e]/90 backdrop-blur-md">
+      <header class="h-16 border-b border-[#D4AF37]/25 px-4 sm:px-6 flex items-center justify-between bg-[#050505]/90 backdrop-blur-md">
         <div class="flex items-center gap-3">
-          <h2 class="font-display font-extrabold text-sm sm:text-xl uppercase">AI POS • AUTO-HOLD • DIRECT WHATSAPP & QR</h2>
-          <span id="draft-save-indicator" class="hidden sm:inline-block font-mono text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/30">
-            ● Auto-Hold Draft Saved
+          <h2 class="font-display font-extrabold text-sm sm:text-xl uppercase gold-text">24K GOLD POS • LIVE CUSTOMER SYNC</h2>
+          <span id="draft-save-indicator" class="hidden sm:inline-block font-mono text-[10px] px-2.5 py-0.5 rounded-full bg-[#D4AF37]/15 text-[#F5D061] border border-[#D4AF37]/40">
+            ● Auto-Hold Ready
           </span>
         </div>
-        <div class="flex flex-wrap items-center gap-1.5">
-          <button onclick="switchTab('pos')" class="lg:hidden px-2.5 py-1 rounded bg-amber-400 text-black font-mono text-[11px] font-bold">POS</button>
-          <button onclick="switchTab('jobcard')" class="lg:hidden px-2.5 py-1 rounded bg-white/10 font-mono text-[11px]">JobCard</button>
-          <button onclick="switchTab('ai-copilot')" class="lg:hidden px-2.5 py-1 rounded bg-cyan-400/20 text-cyan-300 font-mono text-[11px]">AI</button>
-          <button onclick="switchTab('leads')" class="lg:hidden px-2.5 py-1 rounded bg-white/10 font-mono text-[11px]">Leads</button>
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="forceCloudPull(true)" class="px-3 py-1.5 rounded-xl bg-white/10 border border-[#D4AF37]/40 text-[#F5D061] font-mono text-[11px] font-bold uppercase hover:bg-[#D4AF37] hover:text-black transition">
+            🔄 Sync Now
+          </button>
+          <button onclick="toggleSfxMute()" id="sfx-btn" class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/15 text-white font-mono text-[11px]">
+            🔊 SFX: ON
+          </button>
+          <button onclick="switchTab('pos')" class="lg:hidden px-2.5 py-1 rounded gold-btn font-mono text-[11px]">POS</button>
+          <button onclick="switchTab('leads')" class="lg:hidden px-2.5 py-1 rounded bg-white/10 font-mono text-[11px]">Bookings</button>
+          <button onclick="switchTab('orders')" class="lg:hidden px-2.5 py-1 rounded bg-white/10 font-mono text-[11px]">Orders</button>
           <button onclick="switchTab('inventory')" class="lg:hidden px-2.5 py-1 rounded bg-white/10 font-mono text-[11px]">Stock</button>
-          <button onclick="triggerAdminGoogleReviewLink()" class="px-3 py-1.5 rounded-xl bg-amber-400/15 border border-amber-400/40 text-amber-300 font-mono text-[11px] font-bold uppercase hover:bg-amber-400 hover:text-black transition">
-            ★ 1-Tap 5★ Review
-          </button>
-          <button onclick="exportDailyExcelReport()" class="px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 font-mono text-[11px] font-bold uppercase">
-            ⬇ Excel
-          </button>
         </div>
       </header>
 
-      <!-- ================================================================= -->
-      <!-- TAB 1: POS BILLING + AUTO-HOLD + DISCOUNTS + WHATSAPP + 80MM/A4   -->
-      <!-- ================================================================= -->
+      <!-- TAB 1: POS BILLING + AUTO-HOLD + DISCOUNTS + WHATSAPP + 80MM/A4 -->
       <section id="tab-pos" class="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-5 flex-1 overflow-y-auto">
-        <!-- Left 7 Cols -->
         <div class="lg:col-span-7 space-y-4">
-
-          <!-- Held / Parked Bills Queue -->
-          <div class="crm-card p-3.5 rounded-2xl border border-amber-400/30 bg-amber-500/5">
+          <!-- Held / Parked Bills Bar -->
+          <div class="gold-card p-3.5 rounded-2xl">
             <div class="flex items-center justify-between mb-2">
-              <span class="font-mono text-[11px] font-bold text-amber-300 uppercase">⏸ PARKED / HELD BAY BILLS (1-TAP RESUME)</span>
-              <button onclick="parkCurrentBillToHold()" class="px-3 py-1 rounded-lg bg-amber-400 text-black font-mono text-[11px] font-bold uppercase hover:bg-amber-300 transition">
+              <span class="font-mono text-[11px] font-bold text-[#F5D061] uppercase">⏸ PARKED / HELD BAY BILLS (1-TAP RESUME)</span>
+              <button onclick="parkCurrentBillToHold()" class="px-3 py-1 rounded-lg gold-btn font-mono text-[11px] uppercase">
                 + Park Active Bill
               </button>
             </div>
             <div id="held-bills-strip" class="flex items-center gap-2 overflow-x-auto pb-1 text-xs"></div>
           </div>
 
-          <!-- Barcode Scanner + AI Voice Billing + Direct Stock Refill -->
-          <div class="crm-card p-4 rounded-2xl space-y-3 border-l-4 border-l-amber-400">
+          <!-- Barcode + Voice + Direct Stock Refill -->
+          <div class="gold-card p-4 rounded-2xl space-y-3 border-l-4 border-l-[#F5D061]">
             <div class="flex flex-wrap items-center justify-between gap-2">
-              <span class="font-mono text-xs font-bold text-amber-400 uppercase">⚡ BARCODE SCANNER, VOICE BILLING & DIRECT STOCK ADD</span>
-              <span id="voice-status" class="font-mono text-[10px] text-cyan-400">🎙️ Tap Voice to Speak Item</span>
+              <span class="font-mono text-xs font-bold text-[#F5D061] uppercase">⚡ BARCODE SCANNER, VOICE BILLING & STOCK REFILL</span>
+              <span id="voice-status" class="font-mono text-[10px] text-white">🎙️ Tap Voice to Speak Item</span>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-12 gap-2">
               <input type="text" id="pos-barcode-input" oninput="handleBarcodeScan(this.value)" placeholder="Scan Barcode or Type Code (e.g. PCG890101)..."
-                     class="sm:col-span-7 bg-black/70 border border-amber-400/40 rounded-xl px-3.5 py-2 text-xs text-white font-mono focus:outline-none" />
-              <button type="button" onclick="startAiVoiceBilling()" class="sm:col-span-2 py-2 px-3 rounded-xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 font-mono text-xs font-bold uppercase hover:bg-cyan-500/30">
+                     class="sm:col-span-7 bg-black border border-[#D4AF37]/40 rounded-xl px-3.5 py-2 text-xs text-white font-mono focus:outline-none" />
+              <button type="button" onclick="startAiVoiceBilling()" class="sm:col-span-2 py-2 px-3 rounded-xl bg-white/10 border border-[#D4AF37]/40 text-[#F5D061] font-mono text-xs font-bold uppercase">
                 🎙️ Voice
               </button>
-              <button type="button" onclick="openQuickNewProductModal()" class="sm:col-span-3 py-2 px-3 rounded-xl bg-white/10 hover:bg-white/20 font-mono text-xs text-white uppercase">
+              <button type="button" onclick="openQuickNewProductModal()" class="sm:col-span-3 py-2 px-3 rounded-xl bg-white text-black font-mono text-xs font-bold uppercase">
                 + Custom Item
               </button>
             </div>
             <div class="pt-2.5 border-t border-white/10 flex flex-wrap items-center gap-2">
-              <span class="font-mono text-[10px] text-zinc-400 uppercase">Direct Stock Add:</span>
-              <select id="quick-stock-product" class="bg-zinc-900 border border-white/15 rounded-xl px-3 py-1.5 text-xs text-white flex-1 min-w-[150px]"></select>
-              <input type="number" id="quick-stock-qty" value="5" min="1" class="w-16 bg-zinc-900 border border-white/15 rounded-xl px-2 py-1.5 text-xs text-white font-mono text-center" />
-              <button onclick="addStockDirectlyWhileBilling()" class="px-3.5 py-1.5 rounded-xl bg-emerald-500 text-black font-mono text-xs font-bold uppercase hover:bg-emerald-400">
+              <span class="font-mono text-[10px] text-zinc-300 uppercase">Direct Stock Add:</span>
+              <select id="quick-stock-product" class="bg-black border border-white/20 rounded-xl px-3 py-1.5 text-xs text-white flex-1 min-w-[150px]"></select>
+              <input type="number" id="quick-stock-qty" value="5" min="1" class="w-16 bg-black border border-white/20 rounded-xl px-2 py-1.5 text-xs text-white font-mono text-center" />
+              <button onclick="addStockDirectlyWhileBilling()" class="px-3.5 py-1.5 rounded-xl gold-btn font-mono text-xs uppercase">
                 + Add Stock
               </button>
             </div>
           </div>
 
-          <!-- AI Smart Upsell Strip -->
-          <div class="crm-card px-4 py-2.5 rounded-xl border border-cyan-400/30 bg-cyan-950/20 flex items-center justify-between gap-3">
+          <!-- AI Upsell Strip -->
+          <div class="gold-card px-4 py-2.5 rounded-xl flex items-center justify-between gap-3">
             <div class="flex items-center gap-2">
-              <span>🧠</span>
+              <span>✨</span>
               <p id="ai-upsell-text" class="text-xs text-zinc-200">AI Upsell: Add a 9H Hydrophobic Spray (₹899) or Snow Foam Wash (₹499).</p>
             </div>
-            <button onclick="applyAiUpsell()" class="px-3 py-1.5 rounded-lg bg-cyan-400 text-black font-mono text-[10px] font-bold uppercase shrink-0">+ Add</button>
+            <button onclick="applyAiUpsell()" class="px-3 py-1.5 rounded-lg bg-white text-black font-mono text-[10px] font-bold uppercase shrink-0">+ Add</button>
           </div>
 
-          <!-- Click-to-Bill Catalog Grid -->
+          <!-- Catalog Grid -->
           <div class="space-y-2">
             <div class="flex items-center justify-between">
-              <h3 class="font-mono text-xs uppercase text-zinc-400">TAP ANY ACCESSORY OR SERVICE TO BILL</h3>
-              <input type="text" id="catalog-filter" oninput="renderPosCatalog()" placeholder="Filter catalog..." class="bg-zinc-900 border border-white/10 rounded-lg px-3 py-1 text-xs text-white" />
+              <h3 class="font-mono text-xs uppercase text-[#F5D061]">TAP ANY ACCESSORY OR SERVICE TO BILL</h3>
+              <input type="text" id="catalog-filter" oninput="renderPosCatalog()" placeholder="Filter catalog..." class="bg-black border border-[#D4AF37]/30 rounded-lg px-3 py-1 text-xs text-white" />
             </div>
-            <div id="pos-catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[420px] overflow-y-auto pr-1"></div>
+            <div id="pos-catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[410px] overflow-y-auto pr-1"></div>
           </div>
         </div>
 
         <!-- Right 5 Cols: Active Invoice Terminal -->
         <div class="lg:col-span-5">
-          <div class="crm-card p-5 rounded-2xl flex flex-col justify-between space-y-3 sticky top-4">
+          <div class="gold-card p-5 rounded-2xl flex flex-col justify-between space-y-3 sticky top-4">
             <div>
-              <div class="flex items-center justify-between border-b border-white/10 pb-2.5">
+              <div class="flex items-center justify-between border-b border-[#D4AF37]/25 pb-2.5">
                 <div>
-                  <span class="font-mono text-[10px] text-amber-400 uppercase">AUTO-HOLD TERMINAL</span>
-                  <h3 class="font-display font-extrabold text-lg uppercase">ACTIVE CUSTOMER BILL</h3>
+                  <span class="font-mono text-[10px] text-[#F5D061] uppercase">24K GOLD POS TERMINAL</span>
+                  <h3 class="font-display font-extrabold text-lg uppercase text-white">ACTIVE CUSTOMER BILL</h3>
                 </div>
                 <div class="flex items-center gap-2">
-                  <span id="returning-badge" class="hidden font-mono text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">★ Returning</span>
-                  <button onclick="parkCurrentBillToHold()" class="px-2.5 py-1 rounded bg-amber-400/20 text-amber-300 border border-amber-400/40 font-mono text-[10px] uppercase hover:bg-amber-400 hover:text-black transition">
-                    ⏸ Hold Bill
+                  <span id="returning-badge" class="hidden font-mono text-[10px] px-2 py-0.5 rounded bg-[#D4AF37]/20 text-[#F5D061] border border-[#D4AF37]/40">★ VIP Client</span>
+                  <button onclick="parkCurrentBillToHold()" class="px-2.5 py-1 rounded bg-white/10 text-[#F5D061] border border-[#D4AF37]/40 font-mono text-[10px] uppercase">
+                    ⏸ Hold
                   </button>
                   <button onclick="clearPosBill()" class="font-mono text-xs text-rose-400 hover:underline">Clear</button>
                 </div>
               </div>
 
-              <!-- Customer & Vehicle Inputs -->
               <div class="grid grid-cols-2 gap-2 my-2.5">
-                <input type="tel" id="bill-cust-phone" oninput="aiLookupCustomerByPhoneOrCar(this.value); saveActiveDraftToLocal();" placeholder="WhatsApp / Mobile No" class="bg-zinc-900 border border-white/15 rounded-xl px-3 py-2 text-xs text-white font-mono" />
-                <input type="text" id="bill-cust-name" oninput="saveActiveDraftToLocal()" placeholder="Customer Name" class="bg-zinc-900 border border-white/15 rounded-xl px-3 py-2 text-xs text-white" />
-                <input type="text" id="bill-car-no" oninput="aiLookupCustomerByPhoneOrCar(this.value); saveActiveDraftToLocal();" placeholder="Car No (e.g. TS04FM4599)" class="bg-zinc-900 border border-white/15 rounded-xl px-3 py-2 text-xs text-white uppercase font-mono" />
-                <select id="bill-pay-mode" onchange="saveActiveDraftToLocal()" class="bg-zinc-900 border border-white/15 rounded-xl px-3 py-2 text-xs text-white">
+                <input type="tel" id="bill-cust-phone" oninput="aiLookupCustomerByPhoneOrCar(this.value); saveActiveDraftToLocal();" placeholder="WhatsApp / Mobile No" class="bg-black border border-white/20 rounded-xl px-3 py-2 text-xs text-white font-mono" />
+                <input type="text" id="bill-cust-name" oninput="saveActiveDraftToLocal()" placeholder="Customer Name" class="bg-black border border-white/20 rounded-xl px-3 py-2 text-xs text-white" />
+                <input type="text" id="bill-car-no" oninput="aiLookupCustomerByPhoneOrCar(this.value); saveActiveDraftToLocal();" placeholder="Car No (e.g. TS04FM4599)" class="bg-black border border-white/20 rounded-xl px-3 py-2 text-xs text-white uppercase font-mono" />
+                <select id="bill-pay-mode" onchange="saveActiveDraftToLocal()" class="bg-black border border-white/20 rounded-xl px-3 py-2 text-xs text-white">
                   <option value="UPI QR (9848088319)">UPI QR (9848088319)</option>
                   <option value="Cash">Cash</option>
                   <option value="Card / Split">Card / Split</option>
                 </select>
               </div>
 
-              <!-- GST ON/OFF, Format & Dual Discount Engine -->
-              <div class="p-3 rounded-xl bg-black/60 border border-white/10 space-y-2.5 mb-2.5">
+              <!-- GST & Discount Engine -->
+              <div class="p-3 rounded-xl bg-black/80 border border-[#D4AF37]/25 space-y-2.5 mb-2.5">
                 <div class="flex items-center justify-between gap-2">
                   <div class="flex items-center gap-1.5">
                     <button type="button" id="gst-toggle-btn" onclick="toggleGstMode()" class="px-2.5 py-1 rounded-lg font-mono text-[11px] font-bold uppercase bg-white/10 text-zinc-300 border border-white/15 transition">
                       GST: OFF
                     </button>
-                    <select id="bill-gst-rate" onchange="renderPosBill()" class="hidden bg-zinc-900 border border-amber-400/40 rounded-lg px-2 py-1 font-mono text-[11px] text-amber-300">
+                    <select id="bill-gst-rate" onchange="renderPosBill()" class="hidden bg-black border border-[#D4AF37] rounded-lg px-2 py-1 font-mono text-[11px] text-[#F5D061]">
                       <option value="18">18% (9+9%)</option>
                       <option value="12">12% (6+6%)</option>
                       <option value="28">28% (14+14%)</option>
@@ -313,67 +308,66 @@
                     </select>
                   </div>
                   <div class="flex items-center gap-1 bg-white/5 p-1 rounded-lg border border-white/10 font-mono text-[10px]">
-                    <button type="button" id="fmt-80mm" onclick="setPrintFormat('80mm')" class="px-2 py-1 rounded bg-amber-400 text-black font-bold uppercase">80mm Roll</button>
+                    <button type="button" id="fmt-80mm" onclick="setPrintFormat('80mm')" class="px-2 py-1 rounded gold-btn uppercase">80mm Roll</button>
                     <button type="button" id="fmt-a4" onclick="setPrintFormat('A4')" class="px-2 py-1 rounded text-zinc-400 hover:text-white uppercase">A4 Sheet</button>
                   </div>
                 </div>
 
                 <div class="space-y-1.5 pt-1 border-t border-white/10">
                   <div class="flex items-center gap-1.5">
-                    <div class="flex rounded-lg overflow-hidden border border-white/15 font-mono text-[10px] shrink-0">
-                      <button type="button" id="disc-mode-flat" onclick="setDiscountMode('FLAT')" class="px-2.5 py-1.5 bg-amber-400 text-black font-bold">₹ Flat</button>
-                      <button type="button" id="disc-mode-pct" onclick="setDiscountMode('PCT')" class="px-2.5 py-1.5 bg-zinc-900 text-zinc-400">%</button>
+                    <div class="flex rounded-lg overflow-hidden border border-[#D4AF37]/40 font-mono text-[10px] shrink-0">
+                      <button type="button" id="disc-mode-flat" onclick="setDiscountMode('FLAT')" class="px-2.5 py-1.5 gold-btn">₹ Flat</button>
+                      <button type="button" id="disc-mode-pct" onclick="setDiscountMode('PCT')" class="px-2.5 py-1.5 bg-black text-zinc-400">%</button>
                     </div>
-                    <input type="number" id="bill-discount" oninput="renderPosBill()" placeholder="Discount Value" min="0" class="w-full bg-zinc-900 border border-white/15 rounded-lg px-2.5 py-1 text-xs text-white font-mono" />
-                    <input type="text" id="bill-gstin" oninput="saveActiveDraftToLocal()" placeholder="GSTIN (Opt)" class="w-28 bg-zinc-900 border border-white/10 rounded-lg px-2 py-1 text-[10px] text-white font-mono uppercase" />
+                    <input type="number" id="bill-discount" oninput="renderPosBill()" placeholder="Discount Value" min="0" class="w-full bg-black border border-white/20 rounded-lg px-2.5 py-1 text-xs text-white font-mono" />
+                    <input type="text" id="bill-gstin" oninput="saveActiveDraftToLocal()" placeholder="GSTIN (Opt)" class="w-28 bg-black border border-white/15 rounded-lg px-2 py-1 text-[10px] text-white font-mono uppercase" />
                   </div>
                   <div class="flex items-center gap-1.5 font-mono text-[10px]">
-                    <span class="text-zinc-500">Quick Disc:</span>
-                    <button type="button" onclick="applyQuickDiscount('PCT', 5)" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/15 text-zinc-300">5%</button>
-                    <button type="button" onclick="applyQuickDiscount('PCT', 10)" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/15 text-zinc-300">10%</button>
-                    <button type="button" onclick="applyQuickDiscount('FLAT', 100)" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/15 text-zinc-300">₹100</button>
-                    <button type="button" onclick="applyQuickDiscount('FLAT', 500)" class="px-2 py-0.5 rounded bg-white/5 hover:bg-white/15 text-zinc-300">₹500</button>
-                    <button type="button" onclick="applyQuickDiscount('FLAT', 0)" class="px-2 py-0.5 rounded bg-rose-500/15 text-rose-300">Clear</button>
+                    <span class="text-zinc-400">Quick Disc:</span>
+                    <button type="button" onclick="applyQuickDiscount('PCT', 5)" class="px-2 py-0.5 rounded bg-white/10 hover:bg-[#D4AF37] hover:text-black text-white">5%</button>
+                    <button type="button" onclick="applyQuickDiscount('PCT', 10)" class="px-2 py-0.5 rounded bg-white/10 hover:bg-[#D4AF37] hover:text-black text-white">10%</button>
+                    <button type="button" onclick="applyQuickDiscount('FLAT', 100)" class="px-2 py-0.5 rounded bg-white/10 hover:bg-[#D4AF37] hover:text-black text-white">₹100</button>
+                    <button type="button" onclick="applyQuickDiscount('FLAT', 500)" class="px-2 py-0.5 rounded bg-white/10 hover:bg-[#D4AF37] hover:text-black text-white">₹500</button>
+                    <button type="button" onclick="applyQuickDiscount('FLAT', 0)" class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300">Clear</button>
                   </div>
                 </div>
               </div>
 
-              <!-- Bill Line Items -->
               <div id="pos-bill-items" class="space-y-1.5 max-h-40 overflow-y-auto pr-1"></div>
             </div>
 
-            <!-- Totals + Scannable UPI QR + Direct WhatsApp & Print -->
-            <div class="pt-3 border-t border-white/10 space-y-2.5">
+            <!-- Totals + QR + Direct WhatsApp & Print -->
+            <div class="pt-3 border-t border-[#D4AF37]/25 space-y-2.5">
               <div class="flex items-center justify-between gap-3">
                 <div class="flex-1 space-y-0.5 font-mono text-xs">
                   <div class="flex justify-between text-zinc-400 text-[11px]"><span>Subtotal:</span><span id="pos-subtotal">₹0.00</span></div>
-                  <div id="pos-discount-row" class="hidden flex justify-between text-rose-400 text-[11px]">
+                  <div id="pos-discount-row" class="hidden flex justify-between text-[#F5D061] text-[11px]">
                     <span id="pos-discount-label">Discount:</span><span id="pos-discount-val">-₹0.00</span>
                   </div>
-                  <div id="pos-gst-breakdown" class="hidden space-y-0.5 text-cyan-300 text-[10px]">
+                  <div id="pos-gst-breakdown" class="hidden space-y-0.5 text-zinc-200 text-[10px]">
                     <div class="flex justify-between"><span id="pos-cgst-label">CGST (9%):</span><span id="pos-cgst-val">₹0.00</span></div>
                     <div class="flex justify-between"><span id="pos-sgst-label">SGST (9%):</span><span id="pos-sgst-val">₹0.00</span></div>
                   </div>
                   <div class="pt-1 border-t border-white/10">
                     <span class="text-[10px] text-zinc-400 uppercase block">NET PAYABLE (INR)</span>
-                    <span id="pos-grand-total" class="font-display font-extrabold text-2xl sm:text-3xl text-amber-400">₹0</span>
+                    <span id="pos-grand-total" class="font-display font-extrabold text-2xl sm:text-3xl gold-text">₹0</span>
                   </div>
                 </div>
-                <div class="bg-white p-2 rounded-xl text-center shrink-0">
+                <div class="bg-white p-2 rounded-xl text-center shrink-0 border-2 border-[#D4AF37]">
                   <div id="live-screen-qr" class="w-[72px] h-[72px] mx-auto flex items-center justify-center"></div>
                   <span class="font-mono text-[8px] text-black font-bold block mt-0.5">UPI: 9848088319</span>
                 </div>
               </div>
 
               <div class="grid grid-cols-2 gap-2">
-                <button onclick="completeAndPrintPosBill('80mm')" class="py-2.5 rounded-xl bg-amber-400 text-black font-mono text-[11px] font-bold uppercase hover:bg-amber-300 transition">
+                <button onclick="completeAndPrintPosBill('80mm')" class="py-2.5 rounded-xl gold-btn font-mono text-[11px] uppercase transition">
                   🖨️ 80mm Receipt + QR
                 </button>
                 <button onclick="completeAndPrintPosBill('A4')" class="py-2.5 rounded-xl bg-white text-black font-mono text-[11px] font-bold uppercase hover:bg-zinc-200 transition">
                   📄 A4 Invoice + QR
                 </button>
               </div>
-              <button onclick="completeAndPrintPosBill('WHATSAPP')" class="w-full py-3 rounded-xl bg-emerald-500 text-black font-mono text-xs font-extrabold uppercase hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/20">
+              <button onclick="completeAndPrintPosBill('WHATSAPP')" class="w-full py-3 rounded-xl bg-emerald-500 text-black font-mono text-xs font-extrabold uppercase hover:bg-emerald-400 transition shadow-lg">
                 💬 Save & Send Direct WhatsApp Bill + UPI Link →
               </button>
             </div>
@@ -381,16 +375,59 @@
         </div>
       </section>
 
-      <!-- ================================================================= -->
-      <!-- TAB 2: DIGITAL VEHICLE JOB CARD & AI PAINT ESTIMATOR              -->
-      <!-- ================================================================= -->
+      <!-- TAB 2: CUSTOMER SLOT BOOKINGS & LEADS (REAL-TIME SYNCED) -->
+      <section id="tab-leads" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
+        <div class="gold-card rounded-2xl overflow-hidden">
+          <div class="p-5 border-b border-[#D4AF37]/25 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <span class="font-mono text-[10px] text-[#F5D061] uppercase">LIVE SYNCHRONIZED WITH CUSTOMER PORTAL</span>
+              <h3 class="font-display font-bold text-xl uppercase text-white">CUSTOMER SLOT BOOKINGS & LEADS</h3>
+            </div>
+            <div class="flex items-center gap-2">
+              <input type="text" id="lead-search" oninput="renderLeadsTable()" placeholder="Search name, phone, car..." class="bg-black border border-[#D4AF37]/40 rounded-xl px-4 py-2 text-xs text-white w-full sm:w-64" />
+              <button onclick="forceCloudPull(true)" class="px-4 py-2 rounded-xl gold-btn font-mono text-xs uppercase shrink-0">Refresh</button>
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="border-b border-[#D4AF37]/20 font-mono text-[10px] text-[#F5D061] uppercase bg-black/50">
+                  <th class="py-3.5 px-4">Client</th>
+                  <th class="py-3.5 px-4">Vehicle</th>
+                  <th class="py-3.5 px-4">Package & Mode</th>
+                  <th class="py-3.5 px-4">Locked Date & Hour</th>
+                  <th class="py-3.5 px-4">Quote</th>
+                  <th class="py-3.5 px-4">Bay Status (Live on Customer Tracker)</th>
+                  <th class="py-3.5 px-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="leads-tbody" class="divide-y divide-white/10"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: ONLINE CUSTOMER CART ORDERS (REAL-TIME SYNCED) -->
+      <section id="tab-orders" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
+        <div class="gold-card p-6 rounded-2xl">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <span class="font-mono text-[10px] text-[#F5D061] uppercase">LIVE ACCESSORY STORE SYNC</span>
+              <h3 class="font-display font-bold text-xl uppercase">CUSTOMER CART ORDERS</h3>
+            </div>
+            <button onclick="forceCloudPull(true)" class="px-4 py-2 rounded-xl gold-btn font-mono text-xs uppercase">Refresh Orders</button>
+          </div>
+          <div id="orders-list" class="space-y-4"></div>
+        </div>
+      </section>
+
+      <!-- TAB 4: DIGITAL VEHICLE JOB CARD -->
       <section id="tab-jobcard" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          <div class="lg:col-span-6 crm-card p-6 rounded-2xl space-y-4">
-            <span class="font-mono text-xs text-amber-400 uppercase">BAY INTAKE & AI SCRATCH MAP</span>
+          <div class="lg:col-span-6 gold-card p-6 rounded-2xl space-y-4">
+            <span class="font-mono text-xs text-[#F5D061] uppercase">BAY INTAKE CHECKLIST</span>
             <h3 class="font-display font-bold text-xl uppercase">CREATE DIGITAL VEHICLE JOB CARD</h3>
             <p class="text-xs text-zinc-400">Tap any vehicle panel below to log pre-existing scratches, dents, or swirl marks before starting bay work.</p>
-
             <div class="grid grid-cols-3 gap-2.5 font-mono text-xs pt-2">
               <button type="button" onclick="toggleDamageZone(this, 'Front Bumper')" class="dmg-zone p-3 rounded-xl border border-white/15 bg-white/5 text-center">🚗 Front Bumper</button>
               <button type="button" onclick="toggleDamageZone(this, 'Bonnet / Hood')" class="dmg-zone p-3 rounded-xl border border-white/15 bg-white/5 text-center">🛡️ Bonnet / Hood</button>
@@ -402,165 +439,83 @@
               <button type="button" onclick="toggleDamageZone(this, 'Alloy Wheels')" class="dmg-zone p-3 rounded-xl border border-white/15 bg-white/5 text-center">⚙️ Alloy Rims</button>
               <button type="button" onclick="toggleDamageZone(this, 'Interior Cabin')" class="dmg-zone p-3 rounded-xl border border-white/15 bg-white/5 text-center">💺 Interior Seats</button>
             </div>
-
             <form onsubmit="saveVehicleJobCard(event)" class="space-y-3 pt-3 border-t border-white/10">
               <div class="grid grid-cols-2 gap-3">
-                <input type="text" id="jc-client" required placeholder="Customer Name" class="bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
-                <input type="tel" id="jc-phone" required placeholder="WhatsApp Mobile No" class="bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
-                <input type="text" id="jc-car" required placeholder="Car No & Model (e.g. TS04 Creta)" class="bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white uppercase" />
-                <input type="text" id="jc-odo" placeholder="Odometer KM & Fuel %" class="bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
+                <input type="text" id="jc-client" required placeholder="Customer Name" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+                <input type="tel" id="jc-phone" required placeholder="WhatsApp Mobile No" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
+                <input type="text" id="jc-car" required placeholder="Car No & Model (e.g. TS04 Creta)" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white uppercase" />
+                <input type="text" id="jc-odo" placeholder="Odometer KM & Fuel %" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
               </div>
-              <textarea id="jc-notes" rows="2" placeholder="Valuables inside / Specific coating or wash notes..." class="w-full bg-zinc-900 border border-white/15 rounded-xl p-3 text-xs text-white"></textarea>
-              <button type="submit" class="w-full py-3 rounded-xl bg-amber-400 text-black font-mono text-xs font-bold uppercase">
+              <textarea id="jc-notes" rows="2" placeholder="Valuables inside / Specific coating or wash notes..." class="w-full bg-black border border-white/20 rounded-xl p-3 text-xs text-white"></textarea>
+              <button type="submit" class="w-full py-3 rounded-xl gold-btn font-mono text-xs uppercase">
                 Save Job Card & Send WhatsApp Inspection Card →
               </button>
             </form>
           </div>
-
-          <!-- Right Col: AI Paint Estimator + Active Job Cards -->
-          <div class="lg:col-span-6 space-y-6">
-            <div class="crm-card p-6 rounded-2xl space-y-4 border border-cyan-400/30">
-              <span class="font-mono text-xs text-cyan-400 uppercase">🧠 AI PAINT CONDITION & QUOTE ESTIMATOR</span>
-              <div class="grid grid-cols-2 gap-3 text-xs">
-                <select id="ai-est-segment" onchange="runAiPaintEstimator()" class="bg-zinc-900 border border-white/15 rounded-xl p-2.5 text-white">
-                  <option value="1">Hatchback</option>
-                  <option value="1.2">Sedan</option>
-                  <option value="1.4">SUV / MUV</option>
-                </select>
-                <select id="ai-est-condition" onchange="runAiPaintEstimator()" class="bg-zinc-900 border border-white/15 rounded-xl p-2.5 text-white">
-                  <option value="SWIRLS">Heavy Wash Swirls & Oxidation</option>
-                  <option value="WATER">Hard Water Spot Etching</option>
-                  <option value="NEW">Brand New Showroom Protection</option>
-                  <option value="INTERIOR">Stained Cabin & Odor</option>
-                </select>
-              </div>
-              <div id="ai-est-result" class="p-3.5 rounded-xl bg-cyan-500/10 border border-cyan-400/30 text-xs text-cyan-200 font-mono">
-                Recommended: 3M Teflon & Plastic Restoration • Est. Bay Time: 3 Hrs • Suggested Quote: ₹2,499
-              </div>
-            </div>
-
-            <div class="crm-card p-6 rounded-2xl space-y-4">
-              <h3 class="font-display font-bold text-xl uppercase">ACTIVE STUDIO JOB CARDS</h3>
-              <div id="jobcards-list" class="space-y-3 max-h-[340px] overflow-y-auto pr-1"></div>
-            </div>
+          <div class="lg:col-span-6 gold-card p-6 rounded-2xl space-y-4">
+            <h3 class="font-display font-bold text-xl uppercase">ACTIVE STUDIO JOB CARDS</h3>
+            <div id="jobcards-list" class="space-y-3 max-h-[500px] overflow-y-auto pr-1"></div>
           </div>
         </div>
       </section>
 
-      <!-- ================================================================= -->
-      <!-- TAB 3: AI STUDIO COPILOT                                          -->
-      <!-- ================================================================= -->
+      <!-- TAB 5: INVENTORY & BARCODE LABEL PRINTER -->
+      <section id="tab-inventory" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
+        <div class="gold-card p-6 rounded-2xl">
+          <h3 class="font-display font-bold text-lg uppercase mb-4 gold-text">ADD NEW ACCESSORY / PRODUCT WITH BARCODE & IMAGE</h3>
+          <form onsubmit="saveNewInventoryProduct(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
+            <input type="text" id="inv-name" required placeholder="Product Name (e.g. 7D Mats)" class="lg:col-span-2 bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+            <input type="text" id="inv-category" required placeholder="Category (Seat Covers / Care)" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+            <input type="number" id="inv-price" required placeholder="Price (₹)" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
+            <input type="number" id="inv-stock" required placeholder="Initial Stock Qty" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
+            <input type="text" id="inv-barcode" placeholder="Custom Barcode (Auto if blank)" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
+            <input type="url" id="inv-image" placeholder="Image URL (or upload below)" class="lg:col-span-3 bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+            <input type="file" id="inv-file" accept="image/*" class="lg:col-span-2 text-xs text-zinc-400 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:bg-white/10 file:text-white" />
+            <button type="submit" class="py-2.5 px-4 rounded-xl gold-btn font-mono text-xs uppercase">+ Save Product</button>
+          </form>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="inventory-cards-grid"></div>
+      </section>
+
+      <!-- TAB 6: DETAILING RATES EDITOR -->
+      <section id="tab-packages" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
+        <div id="packages-editor-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+      </section>
+
+      <!-- TAB 7: AI STUDIO COPILOT -->
       <section id="tab-ai-copilot" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div class="crm-card p-5 rounded-2xl border-l-4 border-l-cyan-400">
-            <span class="font-mono text-[10px] text-cyan-400 uppercase">TOTAL REVENUE PIPELINE</span>
+          <div class="gold-card p-5 rounded-2xl border-l-4 border-l-[#F5D061]">
+            <span class="font-mono text-[10px] text-[#F5D061] uppercase">TOTAL REVENUE PIPELINE</span>
             <h4 id="ai-kpi-revenue" class="font-display font-extrabold text-3xl mt-1">₹0</h4>
           </div>
-          <div class="crm-card p-5 rounded-2xl border-l-4 border-l-amber-400">
-            <span class="font-mono text-[10px] text-amber-400 uppercase">LOW STOCK ALERTS (&lt; 5 UNITS)</span>
+          <div class="gold-card p-5 rounded-2xl border-l-4 border-l-white">
+            <span class="font-mono text-[10px] text-zinc-300 uppercase">LOW STOCK ALERTS (&lt; 5 UNITS)</span>
             <h4 id="ai-kpi-lowstock" class="font-display font-extrabold text-3xl mt-1">0 Items</h4>
           </div>
-          <div class="crm-card p-5 rounded-2xl border-l-4 border-l-emerald-400">
+          <div class="gold-card p-5 rounded-2xl border-l-4 border-l-emerald-400">
             <span class="font-mono text-[10px] text-emerald-400 uppercase">PARKED / HELD BAY BILLS</span>
             <h4 id="ai-kpi-held" class="font-display font-extrabold text-3xl mt-1">0</h4>
           </div>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div class="crm-card p-6 rounded-2xl space-y-4">
+          <div class="gold-card p-6 rounded-2xl space-y-4">
             <div class="flex items-center justify-between">
               <h3 class="font-display font-bold text-lg uppercase">LOW-STOCK REORDER PREDICTOR</h3>
-              <button onclick="sendSupplierReorderWhatsApp()" class="px-3.5 py-2 rounded-xl bg-amber-400 text-black font-mono text-xs font-bold uppercase">WhatsApp Reorder →</button>
+              <button onclick="sendSupplierReorderWhatsApp()" class="px-3.5 py-2 rounded-xl gold-btn font-mono text-xs uppercase">WhatsApp Reorder →</button>
             </div>
             <div id="ai-low-stock-list" class="space-y-2 text-xs"></div>
           </div>
-          <div class="crm-card p-6 rounded-2xl space-y-4">
+          <div class="gold-card p-6 rounded-2xl space-y-4">
             <h3 class="font-display font-bold text-lg uppercase">1-TAP RETENTION & GOOGLE REVIEW FOLLOW-UP</h3>
             <div id="ai-retention-list" class="space-y-2 max-h-72 overflow-y-auto pr-1 text-xs"></div>
           </div>
         </div>
       </section>
 
-      <!-- ================================================================= -->
-      <!-- TAB 4: LEADS & LIVE TIME-SLOT SCHEDULE CONTROL                    -->
-      <!-- ================================================================= -->
-      <section id="tab-leads" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
-        <div class="crm-card rounded-2xl overflow-hidden">
-          <div class="p-5 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div>
-              <h3 class="font-display font-bold text-lg uppercase">CUSTOMER SLOT BOOKINGS & LEADS</h3>
-              <p class="text-xs text-zinc-400">Convert any lead directly into a POS Bill with 1 tap, or free up their locked hour.</p>
-            </div>
-            <input type="text" id="lead-search" oninput="renderLeadsTable()" placeholder="Search name, phone, car..." class="bg-black/60 border border-white/15 rounded-xl px-4 py-2 text-xs text-white w-full sm:w-64" />
-          </div>
-          <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse text-xs">
-              <thead>
-                <tr class="border-b border-white/10 font-mono text-[10px] text-zinc-400 uppercase">
-                  <th class="py-3.5 px-4">Client</th>
-                  <th class="py-3.5 px-4">Vehicle</th>
-                  <th class="py-3.5 px-4">Package & Mode</th>
-                  <th class="py-3.5 px-4">Locked Date & Hour</th>
-                  <th class="py-3.5 px-4">Quote</th>
-                  <th class="py-3.5 px-4">Status</th>
-                  <th class="py-3.5 px-4 text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody id="leads-tbody" class="divide-y divide-white/5"></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================================================================= -->
-      <!-- TAB 5: INVENTORY & BARCODE LABEL PRINTER                          -->
-      <!-- ================================================================= -->
-      <section id="tab-inventory" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
-        <div class="crm-card p-6 rounded-2xl">
-          <h3 class="font-display font-bold text-lg uppercase mb-4">ADD NEW ACCESSORY / PRODUCT WITH BARCODE & IMAGE</h3>
-          <form onsubmit="saveNewInventoryProduct(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
-            <input type="text" id="inv-name" required placeholder="Product Name (e.g. 7D Mats)" class="lg:col-span-2 bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
-            <input type="text" id="inv-category" required placeholder="Category (Seat Covers / Care)" class="bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
-            <input type="number" id="inv-price" required placeholder="Price (₹)" class="bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
-            <input type="number" id="inv-stock" required placeholder="Initial Stock Qty" class="bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
-            <input type="text" id="inv-barcode" placeholder="Custom Barcode (Auto if blank)" class="bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
-            <input type="url" id="inv-image" placeholder="Image URL (or upload below)" class="lg:col-span-3 bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
-            <input type="file" id="inv-file" accept="image/*" class="lg:col-span-2 text-xs text-zinc-400 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:bg-white/10 file:text-white" />
-            <button type="submit" class="py-2.5 px-4 rounded-xl bg-amber-400 text-black font-mono text-xs font-bold uppercase">+ Save Product</button>
-          </form>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="inventory-cards-grid"></div>
-      </section>
-
-      <!-- ================================================================= -->
-      <!-- TAB 6: ONLINE CART ORDERS                                         -->
-      <!-- ================================================================= -->
-      <section id="tab-orders" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
-        <div class="crm-card p-6 rounded-2xl">
-          <h3 class="font-display font-bold text-lg uppercase mb-4">DIRECT CUSTOMER ACCESSORY ORDERS</h3>
-          <div id="orders-list" class="space-y-4"></div>
-        </div>
-      </section>
-
-      <!-- ================================================================= -->
-      <!-- TAB 7: DETAILING RATES EDITOR                                     -->
-      <!-- ================================================================= -->
-      <section id="tab-packages" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
-        <div id="packages-editor-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
-      </section>
-
-      <!-- ================================================================= -->
-      <!-- TAB 8: PAST INVOICE HISTORY & RE-PRINT                            -->
-      <!-- ================================================================= -->
-      <section id="tab-bills-history" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
-        <div class="crm-card p-6 rounded-2xl">
-          <h3 class="font-display font-bold text-lg uppercase mb-4">COMPLETED POS INVOICES (1-TAP REPRINT OR WHATSAPP)</h3>
-          <div id="bills-history-list" class="space-y-3"></div>
-        </div>
-      </section>
-
-      <footer class="px-6 py-3 border-t border-white/10 bg-[#050609] flex flex-col sm:flex-row items-center justify-between gap-2 font-mono text-[11px] text-zinc-400">
+      <footer class="px-6 py-3 border-t border-[#D4AF37]/20 bg-[#050505] flex flex-col sm:flex-row items-center justify-between gap-2 font-mono text-[11px] text-zinc-400">
         <span>PUSHPA CAR GALLERY • BYPASS ROAD, KHAMMAM (098480 88319)</span>
-        <a href="https://catb12345612-ai.github.io/Syed-Zeeshaan-Ali-High-Fledged-Engineering-And-Digital-Tech-Solutions-Site/" target="_blank" class="text-amber-400 hover:underline">
+        <a href="https://catb12345612-ai.github.io/Syed-Zeeshaan-Ali-High-Fledged-Engineering-And-Digital-Tech-Solutions-Site/" target="_blank" class="text-[#F5D061] hover:underline">
           Engineered by Syed Zeeshaan Ali (@syedzeeshaanali07) • High-Fledged Solutions ↗
         </a>
       </footer>
@@ -570,9 +525,12 @@
   <!-- ZERO-WASTE PRINTABLE CONTAINER -->
   <div id="printable-area" class="hidden"></div>
 
-  <!-- BULLETPROOF DUAL-ENGINE SCRIPT (FIREBASE REST + SDK + LOCALSTORAGE) -->
-  <script>
-    const FIREBASE_CONFIG = {
+  <!-- USER'S REQUESTED FIREBASE MODULE SNIPPET -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-analytics.js";
+
+    const firebaseConfig = {
       apiKey: "AIzaSyDbaJtPbbT_D9TvlOWNYbtL5TfZWSOCMvg",
       authDomain: "pushpacargalary.firebaseapp.com",
       databaseURL: "https://pushpacargalary-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -582,8 +540,108 @@
       appId: "1:307509697690:web:7a1f7679e3bdf6dc4f5323",
       measurementId: "G-5SYNQ62CFX"
     };
-    const DB_URL = FIREBASE_CONFIG.databaseURL;
 
+    try {
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    } catch (e) {}
+  </script>
+
+  <!-- INVINCIBLE TRIPLE-SYNC ENGINE (FIREBASE REST + BROADCASTCHANNEL + LOCALSTORAGE) + SFX/VFX -->
+  <script>
+    const DB_URL = "https://pushpacargalary-default-rtdb.asia-southeast1.firebasedatabase.app";
+    const syncChannel = ('BroadcastChannel' in window) ? new BroadcastChannel('pushpa_live_sync') : null;
+
+    // =========================================================================
+    // BUILT-IN WEB AUDIO API SFX SYNTHESIZER (BEEP, ROYAL CHIME, GOLD CLICK)
+    // =========================================================================
+    let sfxMuted = false;
+    let audioCtx = null;
+
+    function getAudioCtx() {
+      if (!audioCtx) {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (AC) audioCtx = new AC();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
+    }
+
+    function playSfx(type) {
+      if (sfxMuted) return;
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        if (type === 'click') {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(920, now);
+          osc.frequency.exponentialRampToValueAtTime(440, now + 0.045);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.045);
+          osc.connect(gain); gain.connect(ctx.destination);
+          osc.start(now); osc.stop(now + 0.05);
+        } else if (type === 'beep') {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'square';
+          osc.frequency.setValueAtTime(1850, now);
+          gain.gain.setValueAtTime(0.1, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.11);
+          osc.connect(gain); gain.connect(ctx.destination);
+          osc.start(now); osc.stop(now + 0.12);
+        } else if (type === 'chime') {
+          [523.25, 659.25, 783.99, 1046.5].forEach((freq, idx) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, now + idx * 0.09);
+            gain.gain.setValueAtTime(0.14, now + idx * 0.09);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.09 + 0.35);
+            osc.connect(gain); gain.connect(ctx.destination);
+            osc.start(now + idx * 0.09); osc.stop(now + idx * 0.09 + 0.36);
+          });
+        }
+      } catch (e) {}
+    }
+
+    function toggleSfxMute() {
+      sfxMuted = !sfxMuted;
+      document.getElementById('sfx-btn').textContent = sfxMuted ? '🔇 SFX: OFF' : '🔊 SFX: ON';
+    }
+
+    // =========================================================================
+    // 24K GOLD PARTICLE VFX ENGINE
+    // =========================================================================
+    (function initGoldParticles() {
+      const canvas = document.getElementById('gold-vfx-canvas');
+      const ctx = canvas.getContext('2d');
+      let pts = [];
+      function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+      window.addEventListener('resize', resize); resize();
+      for (let i = 0; i < 45; i++) {
+        pts.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 2 + 0.6, vy: -(Math.random() * 0.35 + 0.1), a: Math.random() * 0.6 + 0.2 });
+      }
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pts.forEach(p => {
+          p.y += p.vy;
+          if (p.y < 0) { p.y = canvas.height; p.x = Math.random() * canvas.width; }
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(245, 208, 97, ${p.a})`;
+          ctx.fill();
+        });
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    // =========================================================================
+    // DEFAULT DATA & TRIPLE-SYNC CLOUD + LOCAL STORAGE + BROADCAST STATE
+    // =========================================================================
     const FALLBACK_PACKAGES = [
       { id: "PKG01", step: "01", name: "Snow Foam & Spot-Free Wash", basePrice: 499, sedanPrice: 599, suvPrice: 699, duration: "45 Mins", warranty: "0 PPM Spot-Free" },
       { id: "PKG02", step: "02", name: "3M Teflon & Plastic Restoration", basePrice: 2499, sedanPrice: 2999, suvPrice: 3499, duration: "3 Hours", warranty: "6 Months Gloss" },
@@ -598,113 +656,203 @@
       { id: "PRD104", barcode: "PCG890104", name: "Genuine Maruti/Tata LED Fog & DRL Kit", category: "Lighting", price: 2299, stock: 11, image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80" }
     ];
 
-    let packagesList = JSON.parse(localStorage.getItem('pushpa_packages')) || FALLBACK_PACKAGES;
-    let productsList = JSON.parse(localStorage.getItem('pushpa_products')) || FALLBACK_PRODUCTS;
-    let leadsList = JSON.parse(localStorage.getItem('pushpa_leads')) || [];
-    let ordersList = JSON.parse(localStorage.getItem('pushpa_orders')) || [];
-    let billsList = JSON.parse(localStorage.getItem('pushpa_bills')) || [];
-    let heldBillsList = JSON.parse(localStorage.getItem('pushpa_held_bills')) || [];
-    let jobCardsList = JSON.parse(localStorage.getItem('pushpa_job_cards')) || [];
-
+    let packagesList = JSON.parse(localStorage.getItem('pushpa_packages') || 'null') || FALLBACK_PACKAGES;
+    let productsList = JSON.parse(localStorage.getItem('pushpa_products') || 'null') || FALLBACK_PRODUCTS;
+    let leadsList = JSON.parse(localStorage.getItem('pushpa_leads') || '[]');
+    let ordersList = JSON.parse(localStorage.getItem('pushpa_orders') || '[]');
+    let billsList = JSON.parse(localStorage.getItem('pushpa_bills') || '[]');
+    let heldBillsList = JSON.parse(localStorage.getItem('pushpa_heldBills') || '[]');
+    let jobCardsList = JSON.parse(localStorage.getItem('pushpa_jobCards') || '[]');
     let posBillItems = [];
     let selectedDamageZones = [];
     let gstEnabled = false;
     let discountMode = 'FLAT';
     let selectedPrintFormat = '80mm';
     let currentUpsellItem = { id: 'PKG01', name: 'Snow Foam & Spot-Free Wash', price: 499, type: 'SERVICE' };
+    let knownLeadCount = leadsList.length;
+    let knownOrderCount = ordersList.length;
 
-    // Firebase REST Helper (Works 100% on file:// and https:// without CORS/SDK blocks)
-    async function fbWrite(path, data, method = 'PUT') {
+    // Universal Cloud REST Helpers
+    async function fbPut(path, data) {
       try {
         await fetch(`${DB_URL}/${path}.json`, {
-          method,
+          method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         });
-      } catch (e) { console.warn('Local fallback saved:', path); }
+      } catch (e) {}
+    }
+
+    async function fbPatch(path, data) {
+      try {
+        await fetch(`${DB_URL}/${path}.json`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+      } catch (e) {}
     }
 
     async function fbDelete(path) {
-      try { await fetch(`${DB_URL}/${path}.json`, { method: 'DELETE' }); } catch (e) {}
+      try {
+        await fetch(`${DB_URL}/${path}.json`, { method: 'DELETE' });
+      } catch (e) {}
     }
 
-    async function syncAllFromFirebase() {
+    function mergeById(cloudObj, localArr, idKey) {
+      const map = new Map();
+      (localArr || []).forEach(item => { if (item && item[idKey]) map.set(item[idKey], item); });
+      if (cloudObj && typeof cloudObj === 'object') {
+        Object.values(cloudObj).forEach(item => { if (item && item[idKey]) map.set(item[idKey], item); });
+      }
+      return Array.from(map.values());
+    }
+
+    function showToastAlert(title, body) {
+      playSfx('chime');
+      const t = document.getElementById('live-sync-toast');
+      document.getElementById('toast-title').textContent = title;
+      document.getElementById('toast-body').textContent = body;
+      t.classList.remove('hidden');
+      setTimeout(() => t.classList.add('hidden'), 7000);
+    }
+
+    async function forceCloudPull(manual = false) {
+      if (manual) playSfx('click');
       try {
         const res = await fetch(`${DB_URL}/.json`);
-        if (!res.ok) return;
-        const root = await res.json() || {};
+        if (res.ok) {
+          const data = await res.json() || {};
+          document.getElementById('cloud-sync-pill').textContent = '● CLOUD LIVE SYNCED';
+          document.getElementById('cloud-sync-pill').className = 'font-mono text-[10px] text-emerald-400';
 
-        if (root.packages) packagesList = Object.values(root.packages);
-        else FALLBACK_PACKAGES.forEach(p => fbWrite(`packages/${p.id}`, p));
+          if (data.packages) {
+            packagesList = Object.values(data.packages);
+            localStorage.setItem('pushpa_packages', JSON.stringify(packagesList));
+          } else {
+            FALLBACK_PACKAGES.forEach(p => fbPut(`packages/${p.id}`, p));
+          }
 
-        if (root.products) productsList = Object.values(root.products);
-        else FALLBACK_PRODUCTS.forEach(p => fbWrite(`products/${p.id}`, p));
+          if (data.products) {
+            productsList = Object.values(data.products);
+            localStorage.setItem('pushpa_products', JSON.stringify(productsList));
+          } else {
+            FALLBACK_PRODUCTS.forEach(p => fbPut(`products/${p.id}`, p));
+          }
 
-        leadsList = root.leads ? Object.values(root.leads) : [];
-        ordersList = root.orders ? Object.values(root.orders) : [];
-        billsList = root.bills ? Object.values(root.bills) : [];
-        heldBillsList = root.heldBills ? Object.values(root.heldBills) : [];
-        jobCardsList = root.jobCards ? Object.values(root.jobCards) : [];
+          const localLeads = JSON.parse(localStorage.getItem('pushpa_leads') || '[]');
+          leadsList = mergeById(data.leads, localLeads, 'id').sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
+          localStorage.setItem('pushpa_leads', JSON.stringify(leadsList));
 
-        localStorage.setItem('pushpa_packages', JSON.stringify(packagesList));
-        localStorage.setItem('pushpa_products', JSON.stringify(productsList));
-        localStorage.setItem('pushpa_leads', JSON.stringify(leadsList));
-        localStorage.setItem('pushpa_orders', JSON.stringify(ordersList));
-        localStorage.setItem('pushpa_bills', JSON.stringify(billsList));
-        localStorage.setItem('pushpa_held_bills', JSON.stringify(heldBillsList));
-        localStorage.setItem('pushpa_job_cards', JSON.stringify(jobCardsList));
+          const localOrders = JSON.parse(localStorage.getItem('pushpa_orders') || '[]');
+          ordersList = mergeById(data.orders, localOrders, 'orderId').sort((a, b) => (b.timestamp || '').localeCompare(a.timestamp || ''));
+          localStorage.setItem('pushpa_orders', JSON.stringify(ordersList));
 
-        refreshAllViews();
-        triggerDailyAutoExcelIfDue();
+          const localBills = JSON.parse(localStorage.getItem('pushpa_bills') || '[]');
+          billsList = mergeById(data.bills, localBills, 'invoiceId');
+          localStorage.setItem('pushpa_bills', JSON.stringify(billsList));
+
+          const localHeld = JSON.parse(localStorage.getItem('pushpa_heldBills') || '[]');
+          heldBillsList = mergeById(data.heldBills, localHeld, 'holdId');
+          localStorage.setItem('pushpa_heldBills', JSON.stringify(heldBillsList));
+
+          const localJobs = JSON.parse(localStorage.getItem('pushpa_jobCards') || '[]');
+          jobCardsList = mergeById(data.jobCards, localJobs, 'jobId');
+          localStorage.setItem('pushpa_jobCards', JSON.stringify(jobCardsList));
+        }
       } catch (e) {
-        refreshAllViews();
+        document.getElementById('cloud-sync-pill').textContent = '● LOCAL HIGH-SPEED SYNC';
       }
+
+      if (leadsList.length > knownLeadCount) {
+        const newest = leadsList[0];
+        if (newest) showToastAlert('New Customer Slot Booking!', `${newest.clientName} booked ${newest.packageName} (${newest.date} @ ${newest.timeSlot})`);
+      }
+      knownLeadCount = leadsList.length;
+
+      if (ordersList.length > knownOrderCount) {
+        const newestOrd = ordersList[0];
+        if (newestOrd) showToastAlert('New Accessory Cart Order!', `${newestOrd.customerName} ordered ₹${newestOrd.grandTotal} (${newestOrd.carModel})`);
+      }
+      knownOrderCount = ordersList.length;
+
+      refreshAllAdminUI();
     }
 
-    function refreshAllViews() {
+    function refreshAllAdminUI() {
       document.getElementById('badge-leads').textContent = leadsList.length;
       document.getElementById('badge-orders').textContent = ordersList.length;
       document.getElementById('badge-held').textContent = heldBillsList.length;
       document.getElementById('badge-jobs').textContent = jobCardsList.length;
-
       renderPosCatalog();
-      populateQuickStockDropdown();
-      renderHeldBillsStrip();
       renderLeadsTable();
-      renderInventoryCards();
       renderOrdersList();
+      renderInventoryCards();
+      populateQuickStockDropdown();
       renderPackagesEditor();
+      renderHeldBillsStrip();
       renderJobCardsList();
-      renderBillsHistoryList();
       renderAiCopilotDashboard();
     }
 
-    // Owner Login
+    // Listen for instant local/same-browser messages from Customer App
+    if (syncChannel) {
+      syncChannel.onmessage = (ev) => {
+        if (ev.data && ev.data.type === 'NEW_LEAD') {
+          leadsList = JSON.parse(localStorage.getItem('pushpa_leads') || '[]');
+          knownLeadCount = leadsList.length;
+          showToastAlert('New Customer Slot Booking!', `${ev.data.payload.clientName} booked ${ev.data.payload.packageName} (${ev.data.payload.date} @ ${ev.data.payload.timeSlot})`);
+          refreshAllAdminUI();
+        } else if (ev.data && ev.data.type === 'NEW_ORDER') {
+          ordersList = JSON.parse(localStorage.getItem('pushpa_orders') || '[]');
+          productsList = JSON.parse(localStorage.getItem('pushpa_products') || 'null') || productsList;
+          knownOrderCount = ordersList.length;
+          showToastAlert('New Accessory Cart Order!', `${ev.data.payload.customerName} placed an order for ₹${ev.data.payload.grandTotal}`);
+          refreshAllAdminUI();
+        } else {
+          forceCloudPull(false);
+        }
+      };
+    }
+
+    window.addEventListener('storage', () => {
+      leadsList = JSON.parse(localStorage.getItem('pushpa_leads') || '[]');
+      ordersList = JSON.parse(localStorage.getItem('pushpa_orders') || '[]');
+      productsList = JSON.parse(localStorage.getItem('pushpa_products') || 'null') || productsList;
+      packagesList = JSON.parse(localStorage.getItem('pushpa_packages') || 'null') || packagesList;
+      refreshAllAdminUI();
+    });
+
+    setInterval(() => forceCloudPull(false), 2500);
+
+    // =========================================================================
+    // LOGIN & NAVIGATION
+    // =========================================================================
     function handleOwnerLogin(e) {
       e.preventDefault();
-      const pass = document.getElementById('login-pass').value.trim();
-      if (pass === 'Pushpa@2026' || pass === '9848088319' || pass === 'admin123') {
+      const pass = document.getElementById('login-pass').value;
+      if (pass === 'Pushpa@2026' || pass === '9848088319') {
+        playSfx('chime');
         document.getElementById('owner-login-screen').classList.add('hidden');
         document.getElementById('owner-crm-workspace').classList.remove('hidden');
         restoreActiveDraftFromLocal();
-        syncAllFromFirebase();
+        forceCloudPull(false);
         renderPosBill();
-        setInterval(syncAllFromFirebase, 6000);
+        triggerDailyAutoExcelIfDue();
       } else {
         document.getElementById('login-error').classList.remove('hidden');
       }
     }
 
     function switchTab(tab) {
-      const tabs = ['pos', 'jobcard', 'ai-copilot', 'leads', 'inventory', 'orders', 'packages', 'bills-history'];
-      tabs.forEach(t => {
-        const sec = document.getElementById(`tab-${t}`);
-        if (sec) sec.classList.toggle('hidden', t !== tab);
+      playSfx('click');
+      ['pos', 'jobcard', 'ai-copilot', 'leads', 'inventory', 'orders', 'packages'].forEach(t => {
+        document.getElementById(`tab-${t}`).classList.toggle('hidden', t !== tab);
       });
     }
 
     // =========================================================================
-    // AUTO-HOLD DRAFT PERSISTENCE & MULTI-BAY PARKED BILLS
+    // AUTO-HOLD DRAFTS & PARKED BAY BILLS
     // =========================================================================
     function saveActiveDraftToLocal() {
       const draft = {
@@ -720,9 +868,7 @@
       };
       localStorage.setItem('pushpa_active_pos_draft', JSON.stringify(draft));
       const ind = document.getElementById('draft-save-indicator');
-      if (ind) {
-        ind.textContent = '● Auto-Hold Saved ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      }
+      if (ind) ind.textContent = '● Auto-Hold Saved ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     }
 
     function restoreActiveDraftFromLocal() {
@@ -742,6 +888,7 @@
 
     async function parkCurrentBillToHold() {
       if (posBillItems.length === 0) return alert("Add at least one item before parking the bill to Hold.");
+      playSfx('beep');
       const holdId = 'HOLD_' + Date.now().toString().slice(-5);
       const calc = calculateBillSummary();
       const payload = {
@@ -757,10 +904,10 @@
         grandTotal: calc.grandTotal
       };
       heldBillsList.unshift(payload);
-      localStorage.setItem('pushpa_held_bills', JSON.stringify(heldBillsList));
-      await fbWrite(`heldBills/${holdId}`, payload);
+      localStorage.setItem('pushpa_heldBills', JSON.stringify(heldBillsList));
+      await fbPut(`heldBills/${holdId}`, payload);
       clearPosBill();
-      refreshAllViews();
+      refreshAllAdminUI();
     }
 
     function renderHeldBillsStrip() {
@@ -771,10 +918,10 @@
         return;
       }
       strip.innerHTML = heldBillsList.map(h => `
-        <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/70 border border-amber-400/40 shrink-0">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black border border-[#D4AF37] shrink-0">
           <button onclick="resumeHeldBill('${h.holdId}')" class="text-left">
-            <div class="font-mono text-[11px] font-bold text-amber-300">${h.vehicleNo} • ₹${h.grandTotal}</div>
-            <div class="text-[10px] text-zinc-400">${h.customerName} (${h.time})</div>
+            <div class="font-mono text-[11px] font-bold text-[#F5D061]">${h.vehicleNo} • ₹${h.grandTotal}</div>
+            <div class="text-[10px] text-zinc-300">${h.customerName} (${h.time})</div>
           </button>
           <button onclick="deleteHeldBill('${h.holdId}')" class="text-rose-400 hover:text-rose-300 font-mono text-xs px-1">✕</button>
         </div>
@@ -782,6 +929,7 @@
     }
 
     async function resumeHeldBill(holdId) {
+      playSfx('click');
       const h = heldBillsList.find(x => x.holdId === holdId);
       if (!h) return;
       document.getElementById('bill-cust-name').value = h.customerName || '';
@@ -791,46 +939,44 @@
       setDiscountMode(h.discountMode || 'FLAT');
       posBillItems = h.items || [];
       heldBillsList = heldBillsList.filter(x => x.holdId !== holdId);
-      localStorage.setItem('pushpa_held_bills', JSON.stringify(heldBillsList));
+      localStorage.setItem('pushpa_heldBills', JSON.stringify(heldBillsList));
       await fbDelete(`heldBills/${holdId}`);
       renderPosBill();
-      refreshAllViews();
+      refreshAllAdminUI();
     }
 
     async function deleteHeldBill(holdId) {
       heldBillsList = heldBillsList.filter(x => x.holdId !== holdId);
-      localStorage.setItem('pushpa_held_bills', JSON.stringify(heldBillsList));
+      localStorage.setItem('pushpa_heldBills', JSON.stringify(heldBillsList));
       await fbDelete(`heldBills/${holdId}`);
-      refreshAllViews();
+      refreshAllAdminUI();
     }
 
     // =========================================================================
-    // DUAL DISCOUNT (₹ FLAT OR %) & GST ENGINE
+    // DUAL DISCOUNT & GST ENGINE
     // =========================================================================
     function setDiscountMode(mode) {
       discountMode = mode;
-      document.getElementById('disc-mode-flat').className = mode === 'FLAT'
-        ? 'px-2.5 py-1.5 bg-amber-400 text-black font-bold'
-        : 'px-2.5 py-1.5 bg-zinc-900 text-zinc-400';
-      document.getElementById('disc-mode-pct').className = mode === 'PCT'
-        ? 'px-2.5 py-1.5 bg-amber-400 text-black font-bold'
-        : 'px-2.5 py-1.5 bg-zinc-900 text-zinc-400';
+      document.getElementById('disc-mode-flat').className = mode === 'FLAT' ? 'px-2.5 py-1.5 gold-btn' : 'px-2.5 py-1.5 bg-black text-zinc-400';
+      document.getElementById('disc-mode-pct').className = mode === 'PCT' ? 'px-2.5 py-1.5 gold-btn' : 'px-2.5 py-1.5 bg-black text-zinc-400';
       renderPosBill();
     }
 
     function applyQuickDiscount(mode, val) {
+      playSfx('click');
       setDiscountMode(mode);
       document.getElementById('bill-discount').value = val > 0 ? val : '';
       renderPosBill();
     }
 
     function toggleGstMode() {
+      playSfx('click');
       gstEnabled = !gstEnabled;
       const btn = document.getElementById('gst-toggle-btn');
       const rateSelect = document.getElementById('bill-gst-rate');
       if (gstEnabled) {
         btn.textContent = 'GST: ON';
-        btn.className = 'px-2.5 py-1 rounded-lg font-mono text-[11px] font-bold uppercase bg-emerald-400 text-black border border-emerald-300 transition';
+        btn.className = 'px-2.5 py-1 rounded-lg font-mono text-[11px] font-bold uppercase gold-btn transition';
         rateSelect.classList.remove('hidden');
       } else {
         btn.textContent = 'GST: OFF';
@@ -841,13 +987,10 @@
     }
 
     function setPrintFormat(fmt) {
+      playSfx('click');
       selectedPrintFormat = fmt;
-      document.getElementById('fmt-80mm').className = fmt === '80mm'
-        ? 'px-2 py-1 rounded bg-amber-400 text-black font-bold uppercase'
-        : 'px-2 py-1 rounded text-zinc-400 hover:text-white uppercase';
-      document.getElementById('fmt-a4').className = fmt === 'A4'
-        ? 'px-2 py-1 rounded bg-amber-400 text-black font-bold uppercase'
-        : 'px-2 py-1 rounded text-zinc-400 hover:text-white uppercase';
+      document.getElementById('fmt-80mm').className = fmt === '80mm' ? 'px-2 py-1 rounded gold-btn uppercase' : 'px-2 py-1 rounded text-zinc-400 hover:text-white uppercase';
+      document.getElementById('fmt-a4').className = fmt === 'A4' ? 'px-2 py-1 rounded gold-btn uppercase' : 'px-2 py-1 rounded text-zinc-400 hover:text-white uppercase';
     }
 
     function calculateBillSummary() {
@@ -863,7 +1006,6 @@
       const cgst = +(totalGst / 2).toFixed(2);
       const sgst = +(totalGst / 2).toFixed(2);
       const grandTotal = Math.round(taxableAmount + totalGst);
-
       return { subtotal, discount, discountLabel, taxableAmount, gstEnabled, gstRate, cgst, sgst, totalGst, grandTotal };
     }
 
@@ -879,22 +1021,18 @@
       try {
         new QRCode(qrContainer, {
           text: buildUpiIntentString(amount, 'POS_BILL'),
-          width: 68,
-          height: 68,
-          colorDark: "#000000",
-          colorLight: "#ffffff",
-          correctLevel: QRCode.CorrectLevel.M
+          width: 68, height: 68, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.M
         });
       } catch (e) {}
     }
 
     // =========================================================================
-    // AI VOICE BILLING, RETURNING CUSTOMER LOOKUP & SMART UPSELL
+    // AI VOICE BILLING, CUSTOMER LOOKUP & UPSELL
     // =========================================================================
     function startAiVoiceBilling() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       const statusEl = document.getElementById('voice-status');
-      if (!SpeechRecognition) return alert("Voice recognition works in Chrome and Edge.");
+      if (!SpeechRecognition) return alert("Voice recognition is supported in Chrome and Edge.");
       const recognition = new SpeechRecognition();
       recognition.lang = 'en-IN';
       statusEl.textContent = "🔴 Listening... Speak item name";
@@ -950,21 +1088,6 @@
       if (currentUpsellItem) addItemToPosBill(currentUpsellItem.id, currentUpsellItem.name, currentUpsellItem.price, currentUpsellItem.type);
     }
 
-    function runAiPaintEstimator() {
-      const mult = Number(document.getElementById('ai-est-segment').value || 1);
-      const cond = document.getElementById('ai-est-condition').value;
-      const box = document.getElementById('ai-est-result');
-      if (cond === 'SWIRLS') {
-        box.textContent = `Recommended: 3M Teflon & Plastic Restoration • Est. Bay Time: 3 Hrs • Suggested Quote: ₹${Math.round(2499 * mult).toLocaleString('en-IN')}`;
-      } else if (cond === 'WATER') {
-        box.textContent = `Recommended: Acid-Free Decon + 9H Ceramic Mirror Shield • Est. Time: 1-2 Days • Quote: ₹${Math.round(11999 * mult).toLocaleString('en-IN')}`;
-      } else if (cond === 'NEW') {
-        box.textContent = `Recommended: 9H Ceramic Armor (5 Yr Warranty) • Est. Time: 1 Day • Quote: ₹${Math.round(11999 * mult).toLocaleString('en-IN')}`;
-      } else {
-        box.textContent = `Recommended: Deep Interior Extraction & Ozone • Est. Time: 2.5 Hrs • Quote: ₹${Math.round(1799 * mult).toLocaleString('en-IN')}`;
-      }
-    }
-
     // =========================================================================
     // POS CATALOG, BARCODE & DIRECT STOCK ADDITION
     // =========================================================================
@@ -974,14 +1097,16 @@
     }
 
     async function addStockDirectlyWhileBilling() {
+      playSfx('beep');
       const prodId = document.getElementById('quick-stock-product').value;
       const addQty = Number(document.getElementById('quick-stock-qty').value || 0);
-      const prod = productsList.find(p => p.id === prodId);
-      if (!prod || addQty <= 0) return;
-      prod.stock = Number(prod.stock || 0) + addQty;
+      const idx = productsList.findIndex(p => p.id === prodId);
+      if (idx === -1 || addQty <= 0) return;
+      productsList[idx].stock = Number(productsList[idx].stock || 0) + addQty;
       localStorage.setItem('pushpa_products', JSON.stringify(productsList));
-      await fbWrite(`products/${prodId}`, prod);
-      refreshAllViews();
+      await fbPatch(`products/${prodId}`, { stock: productsList[idx].stock });
+      if (syncChannel) syncChannel.postMessage({ type: 'SYNC_PRODUCTS' });
+      refreshAllAdminUI();
     }
 
     async function openQuickNewProductModal() {
@@ -994,9 +1119,10 @@
       const newProd = { id, barcode, name, category: 'Studio Accessory', price, stock, image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=600' };
       productsList.push(newProd);
       localStorage.setItem('pushpa_products', JSON.stringify(productsList));
-      await fbWrite(`products/${id}`, newProd);
+      await fbPut(`products/${id}`, newProd);
+      if (syncChannel) syncChannel.postMessage({ type: 'SYNC_PRODUCTS' });
       addItemToPosBill(id, name, price, 'PRODUCT');
-      refreshAllViews();
+      refreshAllAdminUI();
     }
 
     function handleBarcodeScan(code) {
@@ -1017,14 +1143,14 @@
         .filter(p => p.name.toLowerCase().includes(filter) || (p.barcode || '').toLowerCase().includes(filter))
         .map(p => `
         <div onclick="addItemToPosBill('${p.id}', '${p.name.replace(/'/g, '')}', ${p.price}, 'PRODUCT')"
-             class="crm-card p-3.5 rounded-xl cursor-pointer hover:border-amber-400 transition flex items-center justify-between gap-2">
+             class="gold-card p-3.5 rounded-xl cursor-pointer hover:border-[#F5D061] transition flex items-center justify-between gap-2">
           <div>
-            <span class="font-mono text-[10px] ${Number(p.stock) <= 4 ? 'text-rose-400 font-bold' : 'text-emerald-400'} block">
+            <span class="font-mono text-[10px] ${Number(p.stock) <= 4 ? 'text-rose-400 font-bold' : 'text-[#F5D061]'} block">
               ${p.barcode} • STOCK: ${p.stock}
             </span>
             <div class="font-semibold text-xs text-white mt-0.5">${p.name}</div>
           </div>
-          <span class="font-mono font-bold text-sm text-amber-400 shrink-0">₹${p.price}</span>
+          <span class="font-mono font-bold text-sm text-[#F5D061] shrink-0">₹${p.price}</span>
         </div>
       `).join('');
 
@@ -1032,9 +1158,9 @@
         .filter(k => k.name.toLowerCase().includes(filter))
         .map(pkg => `
         <div onclick="addItemToPosBill('${pkg.id}', '${pkg.name.replace(/'/g, '')}', ${pkg.basePrice}, 'SERVICE')"
-             class="crm-card p-3.5 rounded-xl cursor-pointer hover:border-cyan-400 transition flex items-center justify-between gap-2">
+             class="gold-card p-3.5 rounded-xl cursor-pointer hover:border-white transition flex items-center justify-between gap-2">
           <div>
-            <span class="font-mono text-[10px] text-cyan-400 block">DETAILING PACKAGE</span>
+            <span class="font-mono text-[10px] text-zinc-400 block">DETAILING PACKAGE</span>
             <div class="font-semibold text-xs text-white mt-0.5">${pkg.name}</div>
           </div>
           <span class="font-mono font-bold text-sm text-white shrink-0">₹${pkg.basePrice}</span>
@@ -1045,6 +1171,7 @@
     }
 
     function addItemToPosBill(id, name, price, type) {
+      playSfx('beep');
       const existing = posBillItems.find(i => i.id === id);
       if (existing) existing.qty++;
       else posBillItems.push({ id, name, price: Number(price), qty: 1, type });
@@ -1053,6 +1180,7 @@
     }
 
     function changePosQty(id, delta) {
+      playSfx('click');
       const idx = posBillItems.findIndex(i => i.id === id);
       if (idx === -1) return;
       posBillItems[idx].qty += delta;
@@ -1077,15 +1205,15 @@
       box.innerHTML = posBillItems.map(item => {
         const sub = item.qty * item.price;
         return `
-          <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between text-xs">
+          <div class="p-2.5 rounded-xl bg-black border border-[#D4AF37]/30 flex items-center justify-between text-xs">
             <div class="truncate pr-2">
               <div class="text-white font-medium truncate">${item.name}</div>
-              <div class="font-mono text-[10px] text-zinc-400">₹${item.price} × ${item.qty} = ₹${sub}</div>
+              <div class="font-mono text-[10px] text-[#F5D061]">₹${item.price} × ${item.qty} = ₹${sub}</div>
             </div>
             <div class="flex items-center gap-1 font-mono shrink-0">
-              <button onclick="changePosQty('${item.id}', -1)" class="w-6 h-6 rounded bg-white/10">-</button>
+              <button onclick="changePosQty('${item.id}', -1)" class="w-6 h-6 rounded bg-white/10 text-white">-</button>
               <span class="px-1">${item.qty}</span>
-              <button onclick="changePosQty('${item.id}', 1)" class="w-6 h-6 rounded bg-white/10">+</button>
+              <button onclick="changePosQty('${item.id}', 1)" class="w-6 h-6 rounded gold-btn">+</button>
             </div>
           </div>
         `;
@@ -1157,14 +1285,14 @@
             </tbody>
           </table>
           <div style="border-top: 1px dashed #000; padding-top: 3px; font-size: 9.5px;">
-            <div style="display:flex; justify-content:space-between;"><span>Subtotal:</span><span>₹${Number(bill.subtotal).toFixed(2)}</span></div>
-            ${bill.discount > 0 ? `<div style="display:flex; justify-content:space-between;"><span>${bill.discountLabel || 'Discount:'}</span><span>-₹${Number(bill.discount).toFixed(2)}</span></div>` : ''}
+            <div style="display:flex; justify-content:space-between;"><span>Subtotal:</span><span>₹${bill.subtotal.toFixed(2)}</span></div>
+            ${bill.discount > 0 ? `<div style="display:flex; justify-content:space-between;"><span>${bill.discountLabel}</span><span>-₹${bill.discount.toFixed(2)}</span></div>` : ''}
             ${bill.gstEnabled ? `
-              <div style="display:flex; justify-content:space-between;"><span>CGST (${bill.gstRate/2}%):</span><span>₹${Number(bill.cgst).toFixed(2)}</span></div>
-              <div style="display:flex; justify-content:space-between;"><span>SGST (${bill.gstRate/2}%):</span><span>₹${Number(bill.sgst).toFixed(2)}</span></div>
+              <div style="display:flex; justify-content:space-between;"><span>CGST (${bill.gstRate/2}%):</span><span>₹${bill.cgst.toFixed(2)}</span></div>
+              <div style="display:flex; justify-content:space-between;"><span>SGST (${bill.gstRate/2}%):</span><span>₹${bill.sgst.toFixed(2)}</span></div>
             ` : ''}
             <div style="display:flex; justify-content:space-between; font-size: 12.5px; font-weight: 800; border-top: 1px dashed #000; border-bottom: 1px dashed #000; padding: 3px 0; margin-top: 2px;">
-              <span>TOTAL (${(bill.paymentMode || 'UPI').split(' ')[0]}):</span><span>₹${Number(bill.grandTotal).toLocaleString('en-IN')}</span>
+              <span>TOTAL (${bill.paymentMode.split(' ')[0]}):</span><span>₹${bill.grandTotal.toLocaleString('en-IN')}</span>
             </div>
           </div>
           <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: 5px; padding-bottom: 3px; border-bottom: 1px dotted #000;">
@@ -1173,7 +1301,7 @@
               <div style="font-weight: 800; font-size: 9.5px;">SCAN TO PAY UPI</div>
               <div>GPay / PhonePe / Paytm</div>
               <div><strong>UPI: 9848088319@ybl</strong></div>
-              <div>Amt: <strong>₹${Number(bill.grandTotal).toLocaleString('en-IN')}</strong></div>
+              <div>Amt: <strong>₹${bill.grandTotal.toLocaleString('en-IN')}</strong></div>
             </div>
           </div>
           <div style="text-align: center; margin-top: 3px; font-size: 8px; line-height: 1.2;">
@@ -1232,7 +1360,7 @@
                     <td style="padding: 5px 8px; border: 1px solid #000;">${idx + 1}</td>
                     <td style="padding: 5px 8px; border: 1px solid #000; font-weight: 600;">${item.name}</td>
                     <td style="padding: 5px 8px; border: 1px solid #000; text-align: center;">${item.qty}</td>
-                    <td style="padding: 5px 8px; border: 1px solid #000; text-align: right;">₹${Number(item.price).toFixed(2)}</td>
+                    <td style="padding: 5px 8px; border: 1px solid #000; text-align: right;">₹${item.price.toFixed(2)}</td>
                     <td style="padding: 5px 8px; border: 1px solid #000; text-align: right; font-weight: 700;">₹${(item.qty * item.price).toFixed(2)}</td>
                   </tr>
                 `).join('')}
@@ -1246,19 +1374,19 @@
                 <div style="font-size: 10.5px; line-height: 1.4;">
                   <div style="font-weight: 800; font-size: 12px;">SCAN QR TO PAY VIA UPI</div>
                   <div>UPI ID: <strong>9848088319@ybl</strong> (Vijay)</div>
-                  <div>Payable Amount: <strong>₹${Number(bill.grandTotal).toLocaleString('en-IN')}</strong></div>
+                  <div>Payable Amount: <strong>₹${bill.grandTotal.toLocaleString('en-IN')}</strong></div>
                 </div>
               </div>
               <div style="width: 240px; font-family: 'JetBrains Mono', monospace; font-size: 11px; border: 1.5px solid #000; padding: 8px 10px;">
-                <div style="display:flex; justify-content:space-between; padding: 2px 0;"><span>Subtotal:</span><span>₹${Number(bill.subtotal).toFixed(2)}</span></div>
-                ${bill.discount > 0 ? `<div style="display:flex; justify-content:space-between; padding: 2px 0;"><span>${bill.discountLabel || 'Discount:'}</span><span>-₹${Number(bill.discount).toFixed(2)}</span></div>` : ''}
+                <div style="display:flex; justify-content:space-between; padding: 2px 0;"><span>Subtotal:</span><span>₹${bill.subtotal.toFixed(2)}</span></div>
+                ${bill.discount > 0 ? `<div style="display:flex; justify-content:space-between; padding: 2px 0;"><span>${bill.discountLabel}</span><span>-₹${bill.discount.toFixed(2)}</span></div>` : ''}
                 ${bill.gstEnabled ? `
-                  <div style="display:flex; justify-content:space-between; padding: 2px 0; border-top: 1px dashed #999;"><span>Taxable:</span><span>₹${Number(bill.taxableAmount).toFixed(2)}</span></div>
-                  <div style="display:flex; justify-content:space-between; padding: 2px 0;"><span>CGST (${bill.gstRate/2}%):</span><span>₹${Number(bill.cgst).toFixed(2)}</span></div>
-                  <div style="display:flex; justify-content:space-between; padding: 2px 0;"><span>SGST (${bill.gstRate/2}%):</span><span>₹${Number(bill.sgst).toFixed(2)}</span></div>
+                  <div style="display:flex; justify-content:space-between; padding: 2px 0; border-top: 1px dashed #999;"><span>Taxable:</span><span>₹${bill.taxableAmount.toFixed(2)}</span></div>
+                  <div style="display:flex; justify-content:space-between; padding: 2px 0;"><span>CGST (${bill.gstRate/2}%):</span><span>₹${bill.cgst.toFixed(2)}</span></div>
+                  <div style="display:flex; justify-content:space-between; padding: 2px 0;"><span>SGST (${bill.gstRate/2}%):</span><span>₹${bill.sgst.toFixed(2)}</span></div>
                 ` : `<div style="display:flex; justify-content:space-between; padding: 2px 0; font-size:9.5px;"><span>Tax Mode:</span><span>Non-GST Retail</span></div>`}
                 <div style="display:flex; justify-content:space-between; padding: 5px 0 2px; margin-top: 3px; border-top: 2px solid #000; font-size: 14px; font-weight: 900;">
-                  <span>GRAND TOTAL:</span><span>₹${Number(bill.grandTotal).toLocaleString('en-IN')}</span>
+                  <span>GRAND TOTAL:</span><span>₹${bill.grandTotal.toLocaleString('en-IN')}</span>
                 </div>
               </div>
             </div>
@@ -1279,6 +1407,7 @@
 
     async function completeAndPrintPosBill(actionMode) {
       if (posBillItems.length === 0) return alert("Add at least one item or service to the bill first.");
+      playSfx('chime');
       const invoiceId = 'INV_' + Date.now().toString().slice(-6);
       const customerName = document.getElementById('bill-cust-name').value.trim() || 'Walk-In Customer';
       const customerPhone = document.getElementById('bill-cust-phone').value.trim() || '';
@@ -1288,55 +1417,42 @@
       const calc = calculateBillSummary();
 
       const billData = {
-        invoiceId,
-        date: new Date().toISOString().slice(0, 10),
-        timestamp: new Date().toISOString(),
-        customerName,
-        customerPhone,
-        vehicleNo,
-        paymentMode,
-        gstin,
-        ...calc,
-        items: [...posBillItems]
+        invoiceId, date: new Date().toISOString().slice(0, 10), timestamp: new Date().toISOString(),
+        customerName, customerPhone, vehicleNo, paymentMode, gstin, ...calc, items: posBillItems
       };
 
       billsList.unshift(billData);
       localStorage.setItem('pushpa_bills', JSON.stringify(billsList));
-      await fbWrite(`bills/${invoiceId}`, billData);
+      await fbPut(`bills/${invoiceId}`, billData);
 
       for (const item of posBillItems) {
         if (item.type === 'PRODUCT') {
-          const prod = productsList.find(p => p.id === item.id);
-          if (prod) {
-            prod.stock = Math.max(0, Number(prod.stock) - item.qty);
-            await fbWrite(`products/${item.id}`, prod);
+          const idx = productsList.findIndex(p => p.id === item.id);
+          if (idx > -1) {
+            productsList[idx].stock = Math.max(0, Number(productsList[idx].stock) - item.qty);
+            await fbPatch(`products/${item.id}`, { stock: productsList[idx].stock });
           }
         }
       }
       localStorage.setItem('pushpa_products', JSON.stringify(productsList));
+      if (syncChannel) syncChannel.postMessage({ type: 'SYNC_PRODUCTS' });
 
-      dispatchPrintOrWhatsApp(billData, actionMode);
-      clearPosBill();
-      refreshAllViews();
-    }
-
-    function dispatchPrintOrWhatsApp(billData, actionMode) {
       if (actionMode === 'WHATSAPP') {
-        const upiLink = buildUpiIntentString(billData.grandTotal, billData.invoiceId);
+        const upiLink = buildUpiIntentString(billData.grandTotal, invoiceId);
         const wa = encodeURIComponent(
           `*${billData.gstEnabled ? 'GST TAX INVOICE' : 'STUDIO BILL'} - PUSHPA CAR GALLERY*\n` +
-          `• *Invoice:* ${billData.invoiceId} (${billData.date})\n` +
-          `• *Customer:* ${billData.customerName} (${billData.vehicleNo})\n` +
-          `• *Items:* ${(billData.items || []).map(i => `${i.name} x${i.qty} (₹${i.qty * i.price})`).join(', ')}\n` +
-          `• *Subtotal:* ₹${Number(billData.subtotal).toFixed(2)}\n` +
-          (billData.discount > 0 ? `• *${billData.discountLabel || 'Discount:'}* -₹${Number(billData.discount).toFixed(2)}\n` : '') +
+          `• *Invoice:* ${invoiceId} (${billData.date})\n` +
+          `• *Customer:* ${customerName} (${vehicleNo})\n` +
+          `• *Items:* ${posBillItems.map(i => `${i.name} x${i.qty} (₹${i.qty * i.price})`).join(', ')}\n` +
+          `• *Subtotal:* ₹${billData.subtotal.toFixed(2)}\n` +
+          (billData.discount > 0 ? `• *${billData.discountLabel}* -₹${billData.discount.toFixed(2)}\n` : '') +
           (billData.gstEnabled ? `• *GST (${billData.gstRate}%):* ₹${billData.totalGst} (CGST ₹${billData.cgst} + SGST ₹${billData.sgst})\n` : '') +
-          `• *NET PAYABLE:* ₹${Number(billData.grandTotal).toLocaleString('en-IN')}\n` +
+          `• *NET PAYABLE:* ₹${billData.grandTotal.toLocaleString('en-IN')}\n` +
           `• *Pay via UPI:* 9848088319@ybl (Vijay)\n` +
           `• *Instant UPI Pay:* ${upiLink}\n` +
           `_POS Engineered by @syedzeeshaanali07_`
         );
-        const cleanPhone = (billData.customerPhone || '').replace(/\D/g, '').slice(-10);
+        const cleanPhone = customerPhone.replace(/\D/g, '').slice(-10);
         const targetPhone = cleanPhone.length === 10 ? `91${cleanPhone}` : '919848088319';
         window.open(`https://wa.me/${targetPhone}?text=${wa}`, '_blank');
       } else {
@@ -1352,12 +1468,10 @@
         const qrMount = document.getElementById('print-upi-qr');
         if (qrMount) {
           new QRCode(qrMount, {
-            text: buildUpiIntentString(billData.grandTotal, billData.invoiceId),
+            text: buildUpiIntentString(billData.grandTotal, invoiceId),
             width: formatToUse === '80mm' ? 64 : 78,
             height: formatToUse === '80mm' ? 64 : 78,
-            colorDark: "#000000",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.M
+            colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.M
           });
         }
 
@@ -1366,51 +1480,29 @@
           printBox.classList.add('hidden');
         }, 180);
       }
-    }
 
-    function renderBillsHistoryList() {
-      const box = document.getElementById('bills-history-list');
-      if (!box) return;
-      if (billsList.length === 0) {
-        box.innerHTML = `<p class="text-xs text-zinc-500 font-mono">No completed invoices recorded yet.</p>`;
-        return;
-      }
-      box.innerHTML = billsList.slice(0, 30).map(b => `
-        <div class="p-4 rounded-xl bg-white/5 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-          <div>
-            <span class="font-mono text-[10px] text-amber-400">${b.invoiceId} • ${b.date}</span>
-            <div class="font-bold text-white">${b.customerName} (${b.vehicleNo}) — ₹${Number(b.grandTotal).toLocaleString('en-IN')}</div>
-            <div class="text-zinc-400 text-[11px]">${(b.items || []).map(i => `${i.name} ×${i.qty}`).join(', ')}</div>
-          </div>
-          <div class="flex items-center gap-2 font-mono text-[11px] shrink-0">
-            <button onclick='reprintOldBill(${JSON.stringify(b).replace(/'/g, "&apos;")}, "80mm")' class="px-3 py-1.5 rounded-lg bg-amber-400 text-black font-bold">80mm</button>
-            <button onclick='reprintOldBill(${JSON.stringify(b).replace(/'/g, "&apos;")}, "A4")' class="px-3 py-1.5 rounded-lg bg-white text-black font-bold">A4</button>
-            <button onclick='reprintOldBill(${JSON.stringify(b).replace(/'/g, "&apos;")}, "WHATSAPP")' class="px-3 py-1.5 rounded-lg bg-emerald-500 text-black font-bold">WhatsApp</button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function reprintOldBill(billObj, mode) {
-      dispatchPrintOrWhatsApp(billObj, mode);
+      clearPosBill();
+      refreshAllAdminUI();
     }
 
     // =========================================================================
     // DIGITAL VEHICLE JOB CARD & DAMAGE INSPECTION MAP
     // =========================================================================
     function toggleDamageZone(btn, zoneName) {
+      playSfx('click');
       const idx = selectedDamageZones.indexOf(zoneName);
       if (idx > -1) {
         selectedDamageZones.splice(idx, 1);
         btn.className = "dmg-zone p-3 rounded-xl border border-white/15 bg-white/5 text-center";
       } else {
         selectedDamageZones.push(zoneName);
-        btn.className = "dmg-zone p-3 rounded-xl border border-rose-400 bg-rose-500/20 text-rose-300 font-bold text-center";
+        btn.className = "dmg-zone p-3 rounded-xl border border-[#F5D061] bg-[#D4AF37]/20 text-[#F5D061] font-bold text-center";
       }
     }
 
     async function saveVehicleJobCard(e) {
       e.preventDefault();
+      playSfx('chime');
       const jobId = 'JOB_' + Date.now().toString().slice(-5);
       const client = document.getElementById('jc-client').value.trim();
       const phone = document.getElementById('jc-phone').value.trim();
@@ -1421,24 +1513,21 @@
 
       const payload = { jobId, date: new Date().toISOString().slice(0, 10), client, phone, car, odo, zones, notes };
       jobCardsList.unshift(payload);
-      localStorage.setItem('pushpa_job_cards', JSON.stringify(jobCardsList));
-      await fbWrite(`jobCards/${jobId}`, payload);
+      localStorage.setItem('pushpa_jobCards', JSON.stringify(jobCardsList));
+      await fbPut(`jobCards/${jobId}`, payload);
+      if (syncChannel) syncChannel.postMessage({ type: 'SYNC_JOBS' });
 
       const waMsg = encodeURIComponent(
         `*VEHICLE INTAKE JOB CARD - PUSHPA CAR GALLERY*\n` +
-        `• *Job ID:* ${jobId}\n` +
-        `• *Client:* ${client} (${car})\n` +
-        `• *Odometer / Fuel:* ${odo}\n` +
-        `• *Marked Panel Notes:* ${zones}\n` +
-        `• *Instructions:* ${notes}\n` +
-        `_Bypass Road, Khammam • 098480 88319_`
+        `• *Job ID:* ${jobId}\n• *Client:* ${client} (${car})\n• *Odometer / Fuel:* ${odo}\n` +
+        `• *Marked Panel Notes:* ${zones}\n• *Instructions:* ${notes}\n_Bypass Road, Khammam • 098480 88319_`
       );
       window.open(`https://wa.me/91${phone.replace(/\D/g, '').slice(-10)}?text=${waMsg}`, '_blank');
 
       e.target.reset();
       selectedDamageZones = [];
       document.querySelectorAll('.dmg-zone').forEach(b => b.className = "dmg-zone p-3 rounded-xl border border-white/15 bg-white/5 text-center");
-      refreshAllViews();
+      refreshAllAdminUI();
     }
 
     function renderJobCardsList() {
@@ -1449,10 +1538,10 @@
         return;
       }
       box.innerHTML = jobCardsList.map(j => `
-        <div class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1 text-xs">
-          <div class="flex justify-between font-mono text-[10px] text-amber-400"><span>${j.jobId} • ${j.date}</span><span>Odo: ${j.odo}</span></div>
+        <div class="p-4 rounded-xl bg-black border border-[#D4AF37]/30 space-y-1 text-xs">
+          <div class="flex justify-between font-mono text-[10px] text-[#F5D061]"><span>${j.jobId} • ${j.date}</span><span>Odo: ${j.odo}</span></div>
           <div class="font-bold text-white">${j.client} — ${j.car} (${j.phone})</div>
-          <div class="text-rose-300 text-[11px]">Marked Panels: ${j.zones}</div>
+          <div class="text-[#F5D061] text-[11px]">Marked Panels: ${j.zones}</div>
           <div class="text-zinc-400 text-[11px]">${j.notes}</div>
         </div>
       `).join('');
@@ -1464,11 +1553,14 @@
     function renderAiCopilotDashboard() {
       const totalBillsRev = billsList.reduce((s, b) => s + Number(b.grandTotal || 0), 0);
       const totalLeadsRev = leadsList.reduce((s, l) => s + Number(l.price || 0), 0);
-      document.getElementById('ai-kpi-revenue').textContent = '₹' + (totalBillsRev + totalLeadsRev).toLocaleString('en-IN');
+      const revEl = document.getElementById('ai-kpi-revenue');
+      if (revEl) revEl.textContent = '₹' + (totalBillsRev + totalLeadsRev).toLocaleString('en-IN');
 
       const lowStockItems = productsList.filter(p => Number(p.stock) <= 5);
-      document.getElementById('ai-kpi-lowstock').textContent = `${lowStockItems.length} Items`;
-      document.getElementById('ai-kpi-held').textContent = heldBillsList.length;
+      const lowEl = document.getElementById('ai-kpi-lowstock');
+      if (lowEl) lowEl.textContent = `${lowStockItems.length} Items`;
+      const heldEl = document.getElementById('ai-kpi-held');
+      if (heldEl) heldEl.textContent = heldBillsList.length;
 
       const lowStockBox = document.getElementById('ai-low-stock-list');
       if (lowStockBox) {
@@ -1480,7 +1572,7 @@
                   <div class="font-bold text-white">${p.name}</div>
                   <div class="font-mono text-[10px] text-rose-300">Barcode: ${p.barcode} • Remaining: ${p.stock}</div>
                 </div>
-                <button onclick="quickRestockItem('${p.id}')" class="px-3 py-1.5 rounded-lg bg-emerald-500 text-black font-mono text-[10px] font-bold uppercase">+10 Stock</button>
+                <button onclick="quickRestockItem('${p.id}')" class="px-3 py-1.5 rounded-lg gold-btn font-mono text-[10px] uppercase">+10 Stock</button>
               </div>
             `).join('');
       }
@@ -1498,13 +1590,13 @@
             `https://search.google.com/local/reviews?placeid=ChIJHXpfBLlZNDoRTxffD-NWtEY`
           );
           return `
-            <div class="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between gap-2">
+            <div class="p-3 rounded-xl bg-black border border-white/15 flex items-center justify-between gap-2">
               <div>
-                <div class="font-bold text-white">${c.name} <span class="text-amber-400 font-mono">(${c.car})</span></div>
+                <div class="font-bold text-white">${c.name} <span class="text-[#F5D061] font-mono">(${c.car})</span></div>
                 <div class="text-[11px] text-zinc-400">${c.service} • ${c.phone}</div>
               </div>
-              <a href="https://wa.me/91${(c.phone || '').replace(/\D/g,'').slice(-10)}?text=${msg}" target="_blank"
-                 class="px-3 py-1.5 rounded-lg bg-cyan-400 text-black font-mono text-[10px] font-bold uppercase shrink-0">💬 Follow-Up</a>
+              <a href="https://wa.me/91${c.phone.replace(/\D/g,'').slice(-10)}?text=${msg}" target="_blank"
+                 class="px-3 py-1.5 rounded-lg gold-btn font-mono text-[10px] uppercase shrink-0">💬 Follow-Up</a>
             </div>
           `;
         }).join('');
@@ -1512,12 +1604,15 @@
     }
 
     async function quickRestockItem(id) {
-      const p = productsList.find(x => x.id === id);
-      if (!p) return;
-      p.stock = Number(p.stock || 0) + 10;
-      localStorage.setItem('pushpa_products', JSON.stringify(productsList));
-      await fbWrite(`products/${id}`, p);
-      refreshAllViews();
+      playSfx('beep');
+      const idx = productsList.findIndex(x => x.id === id);
+      if (idx > -1) {
+        productsList[idx].stock = Number(productsList[idx].stock || 0) + 10;
+        localStorage.setItem('pushpa_products', JSON.stringify(productsList));
+        await fbPatch(`products/${id}`, { stock: productsList[idx].stock });
+        if (syncChannel) syncChannel.postMessage({ type: 'SYNC_PRODUCTS' });
+        refreshAllAdminUI();
+      }
     }
 
     function sendSupplierReorderWhatsApp() {
@@ -1529,6 +1624,7 @@
 
     async function saveNewInventoryProduct(e) {
       e.preventDefault();
+      playSfx('beep');
       const name = document.getElementById('inv-name').value.trim();
       const category = document.getElementById('inv-category').value.trim();
       const price = Number(document.getElementById('inv-price').value);
@@ -1544,34 +1640,32 @@
           reader.readAsDataURL(fileInput.files[0]);
         });
       }
-      const newProd = {
-        id, barcode, name, category, price, stock,
-        image: image || 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=600'
-      };
+      const newProd = { id, barcode, name, category, price, stock, image: image || 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=600' };
       productsList.push(newProd);
       localStorage.setItem('pushpa_products', JSON.stringify(productsList));
-      await fbWrite(`products/${id}`, newProd);
+      await fbPut(`products/${id}`, newProd);
+      if (syncChannel) syncChannel.postMessage({ type: 'SYNC_PRODUCTS' });
       e.target.reset();
-      refreshAllViews();
+      refreshAllAdminUI();
     }
 
     function renderInventoryCards() {
       const grid = document.getElementById('inventory-cards-grid');
       if (!grid) return;
       grid.innerHTML = productsList.map(p => `
-        <div class="crm-card p-5 rounded-2xl flex flex-col justify-between space-y-4">
+        <div class="gold-card p-5 rounded-2xl flex flex-col justify-between space-y-4">
           <div class="flex items-center gap-3.5">
-            <img src="${p.image}" class="w-16 h-16 rounded-xl object-cover border border-white/10" />
+            <img src="${p.image}" class="w-16 h-16 rounded-xl object-cover border border-[#D4AF37]/40" />
             <div>
-              <span class="font-mono text-[10px] text-amber-400">${p.category}</span>
+              <span class="font-mono text-[10px] text-[#F5D061]">${p.category}</span>
               <h4 class="font-display font-bold text-sm uppercase">${p.name}</h4>
               <span class="font-mono text-xs text-emerald-400">₹${p.price} • Stock: ${p.stock}</span>
             </div>
           </div>
           <div class="bg-white p-2.5 rounded-xl text-center"><svg id="bc-${p.id}" class="mx-auto"></svg></div>
           <div class="flex items-center gap-2 font-mono text-xs">
-            <button onclick="printProductBarcodeLabel('${p.id}')" class="flex-1 py-2 rounded-xl bg-amber-400 text-black font-bold uppercase">🖨️ Print Label</button>
-            <button onclick="deleteInventoryProduct('${p.id}')" class="px-3 py-2 rounded-xl bg-rose-500/15 text-rose-400">✕</button>
+            <button onclick="printProductBarcodeLabel('${p.id}')" class="flex-1 py-2 rounded-xl gold-btn uppercase">🖨️ Print Label</button>
+            <button onclick="deleteInventoryProduct('${p.id}')" class="px-3 py-2 rounded-xl bg-rose-500/20 text-rose-300">✕</button>
           </div>
         </div>
       `).join('');
@@ -1604,7 +1698,8 @@
       productsList = productsList.filter(p => p.id !== id);
       localStorage.setItem('pushpa_products', JSON.stringify(productsList));
       await fbDelete(`products/${id}`);
-      refreshAllViews();
+      if (syncChannel) syncChannel.postMessage({ type: 'SYNC_PRODUCTS' });
+      refreshAllAdminUI();
     }
 
     function renderLeadsTable() {
@@ -1614,29 +1709,34 @@
       const filtered = leadsList.filter(l =>
         (l.clientName || '').toLowerCase().includes(q) || (l.phone || '').includes(q) || (l.vehicleModel || '').toLowerCase().includes(q)
       );
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center font-mono text-xs text-zinc-500">No bookings yet. Book a slot on the Customer App to see it appear here live!</td></tr>`;
+        return;
+      }
       tbody.innerHTML = filtered.map(l => `
         <tr class="hover:bg-white/5">
-          <td class="py-3 px-4"><div class="font-bold text-white">${l.clientName}</div><a href="tel:${l.phone}" class="font-mono text-[11px] text-amber-400">${l.phone}</a></td>
-          <td class="py-3 px-4">${l.vehicleModel} <span class="text-zinc-500">(${l.vehicleType})</span></td>
-          <td class="py-3 px-4"><div class="text-amber-300">${l.packageName}</div><div class="text-[10px] text-zinc-400">${l.serviceMode}</div></td>
-          <td class="py-3 px-4 font-mono text-emerald-300">${l.date} @ ${l.timeSlot}</td>
-          <td class="py-3 px-4 font-mono font-bold">₹${l.price}</td>
-          <td class="py-3 px-4">
-            <select onchange="changeLeadStatus('${l.id}', this.value)" class="bg-zinc-900 border border-white/15 rounded-lg px-2 py-1 font-mono text-[11px]">
-              <option value="NEW" ${l.status === 'NEW' ? 'selected' : ''}>NEW</option>
-              <option value="IN_BAY" ${l.status === 'IN_BAY' ? 'selected' : ''}>IN BAY</option>
-              <option value="COMPLETED" ${l.status === 'COMPLETED' ? 'selected' : ''}>COMPLETED</option>
+          <td class="py-3.5 px-4"><div class="font-bold text-white">${l.clientName}</div><a href="tel:${l.phone}" class="font-mono text-[11px] text-[#F5D061]">${l.phone}</a></td>
+          <td class="py-3.5 px-4">${l.vehicleModel} <span class="text-zinc-400">(${l.vehicleType})</span></td>
+          <td class="py-3.5 px-4"><div class="text-[#F5D061] font-semibold">${l.packageName}</div><div class="text-[10px] text-zinc-400">${l.serviceMode}</div></td>
+          <td class="py-3.5 px-4 font-mono text-emerald-300 font-bold">${l.date} @ ${l.timeSlot}</td>
+          <td class="py-3.5 px-4 font-mono font-bold text-white">₹${l.price}</td>
+          <td class="py-3.5 px-4">
+            <select onchange="changeLeadStatus('${l.id}', this.value)" class="bg-black border border-[#D4AF37]/50 rounded-lg px-2.5 py-1 font-mono text-[11px] text-[#F5D061]">
+              <option value="NEW" ${l.status === 'NEW' ? 'selected' : ''}>NEW BOOKING</option>
+              <option value="IN_BAY" ${l.status === 'IN_BAY' ? 'selected' : ''}>IN DETAILING BAY</option>
+              <option value="COMPLETED" ${l.status === 'COMPLETED' ? 'selected' : ''}>READY / COMPLETED</option>
             </select>
           </td>
-          <td class="py-3 px-4 text-right space-x-1.5">
-            <button onclick="convertLeadToPosBill('${l.id}')" class="px-2.5 py-1 rounded bg-amber-400 text-black font-mono text-[10px] font-bold uppercase">⚡ Bill Now</button>
-            <button onclick="releaseBookedSlot('${l.id}', '${l.date}', '${l.timeSlot}')" class="px-2 py-1 rounded bg-rose-500/15 text-rose-300 font-mono text-[10px]">Free Slot</button>
+          <td class="py-3.5 px-4 text-right space-x-1.5">
+            <button onclick="convertLeadToPosBill('${l.id}')" class="px-3 py-1.5 rounded-lg gold-btn font-mono text-[10px] uppercase">⚡ Bill Now</button>
+            <button onclick="releaseBookedSlot('${l.id}', '${l.date}', '${l.timeSlot}')" class="px-2.5 py-1.5 rounded-lg bg-rose-500/20 text-rose-300 font-mono text-[10px]">Free Slot</button>
           </td>
         </tr>
       `).join('');
     }
 
     function convertLeadToPosBill(leadId) {
+      playSfx('beep');
       const l = leadsList.find(x => x.id === leadId);
       if (!l) return;
       switchTab('pos');
@@ -1648,101 +1748,105 @@
     }
 
     async function changeLeadStatus(id, status) {
-      const lead = leadsList.find(x => x.id === id);
-      if (!lead) return;
-      lead.status = status;
-      localStorage.setItem('pushpa_leads', JSON.stringify(leadsList));
-      await fbWrite(`leads/${id}`, lead);
+      playSfx('click');
+      const idx = leadsList.findIndex(x => x.id === id);
+      if (idx > -1) {
+        leadsList[idx].status = status;
+        localStorage.setItem('pushpa_leads', JSON.stringify(leadsList));
+      }
+      await fbPatch(`leads/${id}`, { status });
+      if (syncChannel) syncChannel.postMessage({ type: 'SYNC_LEADS' });
     }
 
     async function releaseBookedSlot(leadId, date, slot) {
       if (!confirm(`Release slot ${date} @ ${slot} and remove lead?`)) return;
-      leadsList = leadsList.filter(x => x.id !== leadId);
+      leadsList = leadsList.filter(l => l.id !== leadId);
       localStorage.setItem('pushpa_leads', JSON.stringify(leadsList));
+      const slotsMap = JSON.parse(localStorage.getItem('pushpa_bookedSlots') || '{}');
+      if (slotsMap[date]) delete slotsMap[date][slot];
+      localStorage.setItem('pushpa_bookedSlots', JSON.stringify(slotsMap));
       await fbDelete(`leads/${leadId}`);
-      await fbDelete(`bookedSlots/${date}/${slot}`);
-      refreshAllViews();
+      await fbDelete(`bookedSlots/${date}/${encodeURIComponent(slot)}`);
+      if (syncChannel) syncChannel.postMessage({ type: 'SYNC_LEADS' });
+      refreshAllAdminUI();
     }
 
     function renderOrdersList() {
       const box = document.getElementById('orders-list');
       if (!box) return;
       if (ordersList.length === 0) {
-        box.innerHTML = `<p class="text-xs text-zinc-500 font-mono">No online accessory orders yet.</p>`;
+        box.innerHTML = `<p class="text-xs text-zinc-500 font-mono">No online accessory orders yet. Orders placed from the Customer Cart appear here live!</p>`;
         return;
       }
       box.innerHTML = ordersList.map(o => `
-        <div class="p-4 rounded-xl bg-white/5 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="p-4 rounded-xl bg-black border border-[#D4AF37]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <span class="font-mono text-[10px] text-amber-400">${o.orderId} • ${o.date}</span>
-            <h4 class="font-bold text-sm text-white">${o.customerName} (${o.customerPhone}) — ${o.carModel}</h4>
+            <span class="font-mono text-[10px] text-[#F5D061]">${o.orderId} • ${o.date} • ${o.deliveryMode}</span>
+            <h4 class="font-bold text-sm text-white mt-0.5">${o.customerName} (${o.customerPhone}) — Car: ${o.carModel}</h4>
             <p class="text-xs text-zinc-300 mt-1">${(o.items || []).map(i => `${i.name} ×${i.qty}`).join(', ')}</p>
           </div>
-          <div class="text-right">
-            <span class="font-display font-extrabold text-xl text-emerald-400 block">₹${o.grandTotal}</span>
-            <span class="font-mono text-[10px] text-zinc-400">${o.deliveryMode}</span>
+          <div class="flex items-center gap-3">
+            <span class="font-display font-extrabold text-xl text-[#F5D061]">₹${o.grandTotal}</span>
+            <button onclick="convertOrderToPosBill('${o.orderId}')" class="px-3.5 py-2 rounded-xl gold-btn font-mono text-xs uppercase">⚡ Load into POS</button>
           </div>
         </div>
       `).join('');
+    }
+
+    function convertOrderToPosBill(orderId) {
+      playSfx('beep');
+      const ord = ordersList.find(x => x.orderId === orderId);
+      if (!ord) return;
+      switchTab('pos');
+      document.getElementById('bill-cust-name').value = ord.customerName || '';
+      document.getElementById('bill-cust-phone').value = ord.customerPhone || '';
+      document.getElementById('bill-car-no').value = ord.carModel || '';
+      posBillItems = (ord.items || []).map(i => ({ id: i.id, name: i.name, price: Number(i.price), qty: Number(i.qty), type: 'PRODUCT' }));
+      renderPosBill();
     }
 
     function renderPackagesEditor() {
       const grid = document.getElementById('packages-editor-grid');
       if (!grid) return;
       grid.innerHTML = packagesList.map(p => `
-        <div class="crm-card p-5 rounded-2xl space-y-3">
-          <h4 class="font-display font-bold text-base uppercase">${p.name}</h4>
+        <div class="gold-card p-5 rounded-2xl space-y-3">
+          <h4 class="font-display font-bold text-base uppercase gold-text">${p.name}</h4>
           <div class="grid grid-cols-3 gap-2 font-mono text-xs">
-            <div><label class="text-[10px] text-zinc-400">Hatchback</label><input id="ep-b-${p.id}" type="number" value="${p.basePrice}" class="w-full bg-black/60 border border-white/15 rounded-lg p-2 text-white" /></div>
-            <div><label class="text-[10px] text-zinc-400">Sedan</label><input id="ep-s-${p.id}" type="number" value="${p.sedanPrice}" class="w-full bg-black/60 border border-white/15 rounded-lg p-2 text-white" /></div>
-            <div><label class="text-[10px] text-zinc-400">SUV</label><input id="ep-u-${p.id}" type="number" value="${p.suvPrice}" class="w-full bg-black/60 border border-white/15 rounded-lg p-2 text-white" /></div>
+            <div><label class="text-[10px] text-zinc-400">Hatchback (₹)</label><input id="ep-b-${p.id}" type="number" value="${p.basePrice}" class="w-full bg-black border border-white/20 rounded-lg p-2 text-white" /></div>
+            <div><label class="text-[10px] text-zinc-400">Sedan (₹)</label><input id="ep-s-${p.id}" type="number" value="${p.sedanPrice}" class="w-full bg-black border border-white/20 rounded-lg p-2 text-white" /></div>
+            <div><label class="text-[10px] text-zinc-400">SUV (₹)</label><input id="ep-u-${p.id}" type="number" value="${p.suvPrice}" class="w-full bg-black border border-white/20 rounded-lg p-2 text-white" /></div>
           </div>
-          <button onclick="savePkgRate('${p.id}')" class="px-4 py-2 rounded-xl bg-amber-400 text-black font-mono text-xs font-bold uppercase">Save Live Rates</button>
+          <button onclick="savePkgRate('${p.id}')" class="px-4 py-2 rounded-xl gold-btn font-mono text-xs uppercase">Save Live Rates</button>
         </div>
       `).join('');
     }
 
     async function savePkgRate(id) {
-      const pkg = packagesList.find(p => p.id === id);
-      if (!pkg) return;
-      pkg.basePrice = Number(document.getElementById(`ep-b-${id}`).value);
-      pkg.sedanPrice = Number(document.getElementById(`ep-s-${id}`).value);
-      pkg.suvPrice = Number(document.getElementById(`ep-u-${id}`).value);
+      playSfx('chime');
+      const idx = packagesList.findIndex(p => p.id === id);
+      if (idx === -1) return;
+      packagesList[idx].basePrice = Number(document.getElementById(`ep-b-${id}`).value);
+      packagesList[idx].sedanPrice = Number(document.getElementById(`ep-s-${id}`).value);
+      packagesList[idx].suvPrice = Number(document.getElementById(`ep-u-${id}`).value);
       localStorage.setItem('pushpa_packages', JSON.stringify(packagesList));
-      await fbWrite(`packages/${id}`, pkg);
-      alert("Package rates synced to Firebase!");
-      refreshAllViews();
+      await fbPatch(`packages/${id}`, {
+        basePrice: packagesList[idx].basePrice,
+        sedanPrice: packagesList[idx].sedanPrice,
+        suvPrice: packagesList[idx].suvPrice
+      });
+      if (syncChannel) syncChannel.postMessage({ type: 'SYNC_PACKAGES' });
+      alert("Package rates updated live across Customer & Admin portals!");
     }
 
     // =========================================================================
-    // 1-TAP INVISIBLE GOOGLE REVIEW GENERATOR + DAILY AUTO-EXCEL (.XLSX)
+    // DAILY AUTO-EXCEL DOWNLOAD (.XLSX) + CACHE CLEAR
     // =========================================================================
-    async function triggerAdminGoogleReviewLink() {
-      const openers = [
-        "Pushpa Car Gallery on Khammam Bypass Road is hands down the best detailing studio in town!",
-        "Extremely impressed with Vijay garu and his team at Pushpa Car Gallery near New Bus Stand.",
-        "Took my car to Pushpa Car Gallery beside TVS Vajra Showroom and the transformation is unbelievable!"
-      ];
-      const services = [
-        "Got the 9H ceramic coating and snow foam decontamination done—the paint looks like a black mirror now.",
-        "Their 3M Teflon coating, swirl removal, and exterior plastic restoration made my car look brand new.",
-        "Installed custom bucket-fit seat covers, 7D floor mats, and genuine LED accessories with factory finish."
-      ];
-      const closers = [
-        "Very reasonable pricing, genuine products, and super fast delivery. Highly recommended!",
-        "Water literally beads right off the bonnet now. Must visit for every car lover in Khammam!"
-      ];
-      const pick = arr => arr[Math.floor(Math.random() * arr.length)];
-      const reviewText = `${pick(openers)} ${pick(services)} ${pick(closers)}`;
-      try { await navigator.clipboard.writeText(reviewText); } catch (e) {}
-      window.open("https://search.google.com/local/reviews?placeid=ChIJHXpfBLlZNDoRTxffD-NWtEY&q=PUSHPA+CAR+GALLERY,+BYPASS+ROAD,+beside+TVS+VAJRA+SHOWROOM,+near+NEW+BUS+STAND,+Raparthi+Nagar,+Khammam,+Telangana&authuser=0&hl=en&gl=IN", "_blank");
-    }
-
     function toggleAutoExcelSetting(enabled) {
       localStorage.setItem('pushpa_auto_excel_enabled', enabled ? '1' : '0');
     }
 
     function exportDailyExcelReport() {
+      playSfx('click');
       const wb = XLSX.utils.book_new();
       const billsSheet = XLSX.utils.json_to_sheet(billsList.map(b => ({
         InvoiceID: b.invoiceId, Date: b.date, Customer: b.customerName, Phone: b.customerPhone,
@@ -1750,11 +1854,13 @@
         Subtotal: b.subtotal || b.grandTotal, Discount: b.discount || 0, CGST: b.cgst || 0, SGST: b.sgst || 0, GrandTotal_INR: b.grandTotal
       })));
       const leadsSheet = XLSX.utils.json_to_sheet(leadsList);
+      const ordersSheet = XLSX.utils.json_to_sheet(ordersList);
       const stockSheet = XLSX.utils.json_to_sheet(productsList);
       const jobsSheet = XLSX.utils.json_to_sheet(jobCardsList);
 
       XLSX.utils.book_append_sheet(wb, billsSheet, "POS_Bills");
       XLSX.utils.book_append_sheet(wb, leadsSheet, "Slot_Bookings");
+      XLSX.utils.book_append_sheet(wb, ordersSheet, "Cart_Orders");
       XLSX.utils.book_append_sheet(wb, stockSheet, "Inventory_Stock");
       XLSX.utils.book_append_sheet(wb, jobsSheet, "Vehicle_JobCards");
 
@@ -1762,20 +1868,20 @@
       XLSX.writeFile(wb, `Pushpa_Car_Gallery_Report_${todayStr}.xlsx`);
       localStorage.setItem('pushpa_last_excel_date', todayStr);
       const lbl = document.getElementById('last-backup-label');
-      if (lbl) lbl.textContent = `Backed up: ${todayStr}`;
+      if (lbl) lbl.textContent = `Backed Up: ${todayStr}`;
     }
 
     function triggerDailyAutoExcelIfDue() {
       const enabled = localStorage.getItem('pushpa_auto_excel_enabled') !== '0';
       const todayStr = new Date().toISOString().slice(0, 10);
       const lastBackup = localStorage.getItem('pushpa_last_excel_date');
-      if (enabled && lastBackup !== todayStr && billsList.length > 0) {
+      if (enabled && lastBackup !== todayStr && (billsList.length > 0 || leadsList.length > 0)) {
         exportDailyExcelReport();
       }
     }
 
     async function clearDailyCacheAndCompleted() {
-      if (!confirm("Download today's Excel backup first and clear completed leads & local browser cache to reduce load?")) return;
+      if (!confirm("Download today's Excel backup first and clear completed leads & local draft cache?")) return;
       exportDailyExcelReport();
       for (const l of leadsList) {
         if (l.status === 'COMPLETED') await fbDelete(`leads/${l.id}`);
@@ -1783,9 +1889,11 @@
       leadsList = leadsList.filter(l => l.status !== 'COMPLETED');
       localStorage.setItem('pushpa_leads', JSON.stringify(leadsList));
       localStorage.removeItem('pushpa_active_pos_draft');
-      refreshAllViews();
-      alert("Daily Excel downloaded & completed cache cleared!");
+      refreshAllAdminUI();
     }
+
+    // Initial Boot
+    forceCloudPull(false);
   </script>
 </body>
 </html>
