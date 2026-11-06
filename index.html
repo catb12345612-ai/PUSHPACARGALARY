@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PUSHPA CAR GALLERY | Road-Worn to Mirror — Khammam</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- QRCode.js for Instant Customer UPI QR Payment -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
@@ -18,16 +20,16 @@
           }
         }
       }
-    }
+    };
   </script>
   <style>
     body { background-color: #050608; color: #f8fafc; overflow-x: hidden; }
-    .glass-nav { background: rgba(5, 6, 8, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .glass-nav { background: rgba(5, 6, 8, 0.86); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); }
     .glass-card { background: linear-gradient(145deg, rgba(18, 21, 30, 0.85), rgba(9, 11, 16, 0.94)); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.09); }
-    .dirty-car-filter { filter: sepia(0.62) brightness(0.60) contrast(1.22) saturate(0.48); }
+    .dirty-car-filter { filter: sepia(0.62) brightness(0.6) contrast(1.22) saturate(0.48); }
     .mud-overlay {
-      background-image: radial-gradient(rgba(130, 95, 55, 0.52) 1.5px, transparent 0),
-                        radial-gradient(rgba(95, 70, 40, 0.62) 2.5px, transparent 0);
+      background-image: radial-gradient(rgba(130, 95, 55, 0.5) 1.5px, transparent 0),
+                        radial-gradient(rgba(95, 70, 40, 0.6) 2.5px, transparent 0);
       background-size: 22px 22px, 36px 36px;
       background-position: 0 0, 11px 11px;
       mix-blend-mode: screen;
@@ -41,34 +43,33 @@
 </head>
 <body class="font-sans antialiased selection:bg-amber-400 selection:text-black">
 
-  <!-- TOP LUXURY NAVBAR (100% CUSTOMER FACING - ZERO ADMIN LOCKS) -->
+  <!-- TOP LUXURY NAVBAR (100% CUSTOMER FACING) -->
   <header class="fixed top-0 inset-x-0 z-40 glass-nav">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between gap-4">
-      <a href="#" class="flex items-center gap-3.5 group">
-        <img src="pushpacarlogo.jpg" onerror="this.src='https://images.unsplash.com/photo-1617788138017-80ad40651399?w=120&q=80'" alt="Pushpa Car Gallery" class="w-12 h-12 rounded-xl object-cover border border-amber-400/40 shadow-lg shadow-amber-500/10" />
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between gap-3">
+      <a href="#" class="flex items-center gap-3 group">
+        <img src="pushpacarlogo.jpg" onerror="this.src='https://images.unsplash.com/photo-1617788138017-80ad40651399?w=120&q=80'" alt="Pushpa Car Gallery Logo" class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl object-cover border border-amber-400/40 shadow-lg" />
         <div>
-          <span class="font-display font-extrabold tracking-wider text-sm sm:text-base block leading-none text-white group-hover:text-amber-400 transition">PUSHPA CAR GALLERY</span>
-          <span class="font-mono text-[10px] text-zinc-400 tracking-widest uppercase">Khammam Bypass Rd • Near New Bus Stand</span>
+          <span class="font-display font-extrabold tracking-wider text-xs sm:text-base block leading-none text-white group-hover:text-amber-400 transition">PUSHPA CAR GALLERY</span>
+          <span class="font-mono text-[9px] sm:text-[10px] text-zinc-400 tracking-widest uppercase">Khammam Bypass Rd • Near New Bus Stand</span>
         </div>
       </a>
 
-      <nav class="hidden lg:flex items-center gap-6 text-xs font-mono uppercase tracking-widest text-zinc-400">
+      <nav class="hidden xl:flex items-center gap-6 text-xs font-mono uppercase tracking-widest text-zinc-400">
         <a href="#wash-scrub" class="hover:text-white transition">01. Wash Lab</a>
-        <a href="#process-steps" class="hover:text-white transition">02. 10-Stage Protocol</a>
-        <a href="#bead-lab" class="hover:text-white transition">03. 118° Bead Lab</a>
-        <a href="#packages" class="hover:text-white transition">04. Packages</a>
-        <a href="#accessories-shop" class="hover:text-amber-400 text-amber-300 transition">05. Accessories Store</a>
-        <a href="#live-bay-tracker" class="hover:text-cyan-400 text-cyan-300 transition">06. Track My Car</a>
+        <a href="#live-tracker" class="hover:text-cyan-400 text-cyan-300 transition">02. Track My Car</a>
+        <a href="#process-steps" class="hover:text-white transition">03. 10-Step Protocol</a>
+        <a href="#bead-lab" class="hover:text-white transition">04. 118° Bead Lab</a>
+        <a href="#packages" class="hover:text-white transition">05. Packages</a>
+        <a href="#accessories-shop" class="hover:text-amber-400 text-amber-300 transition">06. Accessories Shop</a>
       </nav>
 
-      <div class="flex items-center gap-2.5 sm:gap-3">
+      <div class="flex items-center gap-2 sm:gap-3">
         <button onclick="toggleCartDrawer(true)" class="relative px-3.5 py-2.5 rounded-full bg-white/5 border border-white/15 hover:border-amber-400/60 transition flex items-center gap-2 font-mono text-xs">
           <span>🛒</span>
           <span class="hidden sm:inline">Cart</span>
           <span id="nav-cart-count" class="px-1.5 py-0.5 rounded-full bg-amber-400 text-black font-bold text-[10px]">0</span>
         </button>
-
-        <button onclick="openBookingDrawer()" class="px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-black font-mono text-xs font-bold uppercase tracking-wider hover:brightness-110 transition shadow-lg shadow-amber-500/20">
+        <button onclick="openBookingDrawer()" class="px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-black font-mono text-xs font-bold uppercase tracking-wider hover:brightness-110 transition shadow-lg">
           Book Slot →
         </button>
       </div>
@@ -76,10 +77,9 @@
   </header>
 
   <!-- SECTION 1: SCROLL-SCRUBBING REALISTIC FOAM & LASER CAR WASH HERO -->
-  <section id="wash-scrub" class="relative h-[330vh]">
+  <section id="wash-scrub" class="relative h-[320vh]">
     <div class="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between pt-24 pb-8 px-4 sm:px-10">
-      <div class="pointer-events-none absolute inset-0 opacity-35"
-           style="background: radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.22), transparent 68%);"></div>
+      <div class="pointer-events-none absolute inset-0 opacity-35" style="background: radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.22), transparent 68%);"></div>
 
       <!-- Top Studio Telemetry Bar -->
       <div class="relative z-20 max-w-7xl w-full mx-auto flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-3">
@@ -92,35 +92,33 @@
         <div class="flex items-center gap-5 font-mono text-xs">
           <div><span class="text-zinc-500">PAINT CLARITY:</span> <span id="gloss-meter" class="text-white font-bold">14%</span></div>
           <div><span class="text-zinc-500">CONTACT ANGLE:</span> <span class="text-cyan-400 font-bold">118.0°</span></div>
-          <div><span class="text-zinc-500">COATING:</span> <span class="text-amber-400 font-bold">9H / 5 YRS</span></div>
+          <div><span class="text-zinc-500">ARMOR:</span> <span class="text-amber-400 font-bold">9H / 5 YRS</span></div>
         </div>
       </div>
 
-      <!-- Central Vehicle Interactive Scrubbing Viewport -->
+      <!-- Interactive Split-Wipe Car Stage -->
       <div class="relative z-10 my-auto max-w-6xl w-full mx-auto">
-        <div id="car-comparison-stage" class="relative w-full aspect-[16/9] max-h-[56vh] rounded-2xl overflow-hidden border border-white/15 shadow-2xl select-none cursor-ew-resize bg-black">
-          <!-- AFTER: Showroom Mirror Finish -->
+        <div id="car-comparison-stage" class="relative w-full aspect-[16/9] max-h-[55vh] rounded-2xl overflow-hidden border border-white/15 shadow-2xl select-none cursor-ew-resize bg-black">
+          <!-- AFTER: Mirror Finish -->
           <div class="absolute inset-0 w-full h-full">
-            <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1800&q=85"
-                 alt="Mirror Finish Car" class="w-full h-full object-cover object-center scale-105" />
+            <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1800&q=85" alt="Mirror Finish Car" class="w-full h-full object-cover object-center scale-105" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30"></div>
             <div class="absolute top-4 right-5 font-mono text-[11px] uppercase tracking-widest px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 backdrop-blur-md">
               ✦ SHOWROOM MIRROR FINISH
             </div>
           </div>
 
-          <!-- BEFORE: Road-Worn / Muddy Layer -->
+          <!-- BEFORE: Road-Worn Muddy Layer -->
           <div id="dirty-car-clip" class="absolute inset-0 w-full h-full overflow-hidden" style="clip-path: inset(0 18% 0 0);">
-            <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1800&q=85"
-                 alt="Dirty Road Worn Car" class="w-full h-full object-cover object-center scale-105 dirty-car-filter" />
+            <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1800&q=85" alt="Dirty Road Worn Car" class="w-full h-full object-cover object-center scale-105 dirty-car-filter" />
             <div class="absolute inset-0 mud-overlay"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-amber-950/25 to-black/40"></div>
             <div class="absolute top-4 left-5 font-mono text-[11px] uppercase tracking-widest px-3 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 backdrop-blur-md">
-              ROAD-WORN / HIGHWAY MUD & SWIRLS
+              BRING IT DIRTY • HIGHWAY MUD & SWIRLS
             </div>
           </div>
 
-          <!-- Active Foam & Laser Wipe Bar -->
+          <!-- Active Laser Scanner Line -->
           <div id="wash-laser-line" class="absolute top-0 bottom-0 w-1.5 bg-gradient-to-b from-cyan-300 via-white to-amber-400 foam-glow z-30" style="left: 82%;">
             <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-black/90 border-2 border-white flex items-center justify-center shadow-2xl">
               <span class="font-mono text-xs text-white font-bold">⇄</span>
@@ -129,17 +127,14 @@
         </div>
       </div>
 
-      <!-- Dynamic Step Overlay & Headline -->
+      <!-- Bottom Dynamic Headline & Step Card -->
       <div class="relative z-20 max-w-7xl w-full mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-          <p class="font-mono text-xs uppercase tracking-[0.22em] text-amber-400 mb-1.5">
-            CONCIERGE MOBILE & STUDIO DETAILING • KHAMMAM
-          </p>
+          <p class="font-mono text-xs uppercase tracking-[0.22em] text-amber-400 mb-1.5">CONCIERGE MOBILE & STUDIO DETAILING • KHAMMAM</p>
           <h1 id="hero-dynamic-title" class="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight uppercase leading-[0.94]">
             ROAD-WORN<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-amber-400">TO MIRROR.</span>
           </h1>
         </div>
-
         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <div class="glass-card px-5 py-3.5 rounded-xl max-w-xs border-l-4 border-l-amber-400">
             <div class="font-mono text-xs font-bold text-amber-400 uppercase" id="step-live-number">01. SNOW FOAM</div>
@@ -155,7 +150,28 @@
     </div>
   </section>
 
-  <!-- SECTION 2: THE 10-STAGE DETAILING BREAKDOWN -->
+  <!-- SECTION 2: LIVE VEHICLE BAY & JOB CARD TRACKER (Customer Self-Check) -->
+  <section id="live-tracker" class="py-16 px-4 sm:px-10 bg-[#080a10] border-t border-white/10">
+    <div class="max-w-5xl mx-auto glass-card p-6 sm:p-8 rounded-2xl border border-cyan-400/30">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <span class="font-mono text-[10px] uppercase tracking-widest text-cyan-400">LIVE BAY TELEMETRY • REAL-TIME FIREBASE SYNC</span>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl uppercase mt-1">TRACK YOUR VEHICLE IN OUR BAY</h2>
+          <p class="text-xs text-zinc-400 mt-1">Enter your 10-digit mobile number or vehicle registration number to see live detailing progress and job card notes.</p>
+        </div>
+        <div class="flex items-center gap-2 w-full md:w-auto">
+          <input type="text" id="track-input" placeholder="Phone or Car No (e.g. 98480...)"
+                 class="w-full md:w-64 bg-black/70 border border-white/15 rounded-xl px-4 py-3 text-xs text-white font-mono focus:border-cyan-400 focus:outline-none" />
+          <button onclick="checkLiveVehicleStatus()" class="px-5 py-3 rounded-xl bg-cyan-400 text-black font-mono text-xs font-bold uppercase shrink-0 hover:bg-cyan-300 transition">
+            Track →
+          </button>
+        </div>
+      </div>
+      <div id="track-result-box" class="hidden mt-6 pt-5 border-t border-white/10"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: THE 10-STAGE MIRROR PROTOCOL -->
   <section id="process-steps" class="py-24 px-4 sm:px-10 max-w-7xl mx-auto border-t border-white/10">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
       <div>
@@ -203,43 +219,25 @@
     </div>
   </section>
 
-  <!-- SECTION 3: THE BEAD LAB — "WATER CAN'T STICK." -->
+  <!-- SECTION 4: THE BEAD LAB — "WATER CAN'T STICK." -->
   <section id="bead-lab" class="py-24 px-4 sm:px-10 bg-[#080a0f] border-y border-white/10">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
       <div class="lg:col-span-5 space-y-6">
         <div class="font-mono text-xs uppercase tracking-widest text-cyan-400">THE BEAD LAB — TRY IT</div>
-        <h2 class="font-display font-extrabold text-5xl sm:text-6xl uppercase tracking-tight leading-[0.95]">
-          WATER<br>CAN'T<br>STICK.
-        </h2>
+        <h2 class="font-display font-extrabold text-5xl sm:text-6xl uppercase tracking-tight leading-[0.95]">WATER<br>CAN'T<br>STICK.</h2>
         <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
           Run your finger or cursor across the panel to make it rain. A ceramic coating is a liquid glass polymer that bonds to your clear coat. Water beads up and rolls off, taking dirt with it.
         </p>
-
         <div class="flex items-center gap-3">
-          <button id="btn-coated" onclick="setBeadMode(true)" class="px-4 py-2.5 rounded-lg font-mono text-xs uppercase bg-white text-black font-bold transition">
-            Coated Paint
-          </button>
-          <button id="btn-uncoated" onclick="setBeadMode(false)" class="px-4 py-2.5 rounded-lg font-mono text-xs uppercase bg-white/5 text-zinc-400 border border-white/10 hover:text-white transition">
-            Uncoated Paint
-          </button>
+          <button id="btn-coated" onclick="setBeadMode(true)" class="px-4 py-2.5 rounded-lg font-mono text-xs uppercase bg-white text-black font-bold transition">Coated Paint</button>
+          <button id="btn-uncoated" onclick="setBeadMode(false)" class="px-4 py-2.5 rounded-lg font-mono text-xs uppercase bg-white/5 text-zinc-400 border border-white/10 hover:text-white transition">Uncoated Paint</button>
         </div>
-
         <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10">
-          <div>
-            <span class="font-mono text-[10px] uppercase text-zinc-500 block">CONTACT ANGLE</span>
-            <span id="bead-angle-readout" class="font-display font-extrabold text-2xl sm:text-3xl text-white">118°</span>
-          </div>
-          <div>
-            <span class="font-mono text-[10px] uppercase text-zinc-500 block">DURABILITY</span>
-            <span class="font-display font-extrabold text-2xl sm:text-3xl text-white">5 yrs</span>
-          </div>
-          <div>
-            <span class="font-mono text-[10px] uppercase text-zinc-500 block">HARDNESS</span>
-            <span class="font-display font-extrabold text-2xl sm:text-3xl text-cyan-400">9H</span>
-          </div>
+          <div><span class="font-mono text-[10px] uppercase text-zinc-500 block">CONTACT ANGLE</span><span id="bead-angle-readout" class="font-display font-extrabold text-2xl sm:text-3xl text-white">118°</span></div>
+          <div><span class="font-mono text-[10px] uppercase text-zinc-500 block">DURABILITY</span><span class="font-display font-extrabold text-2xl sm:text-3xl text-white">5 yrs</span></div>
+          <div><span class="font-mono text-[10px] uppercase text-zinc-500 block">HARDNESS</span><span class="font-display font-extrabold text-2xl sm:text-3xl text-cyan-400">9H</span></div>
         </div>
       </div>
-
       <div class="lg:col-span-7">
         <div class="relative rounded-2xl overflow-hidden border border-white/15 bg-black shadow-2xl">
           <canvas id="hydro-canvas" class="w-full h-[380px] sm:h-[430px] cursor-crosshair block"></canvas>
@@ -252,11 +250,11 @@
     </div>
   </section>
 
-  <!-- SECTION 4: DETAILING PACKAGES -->
+  <!-- SECTION 5: DETAILING PACKAGES -->
   <section id="packages" class="py-24 px-4 sm:px-10 max-w-7xl mx-auto">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
       <div>
-        <span class="font-mono text-xs uppercase tracking-widest text-amber-400">LIVE FIREBASE PRICING</span>
+        <span class="font-mono text-xs uppercase tracking-widest text-amber-400">TRANSPARENT STUDIO RATES</span>
         <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-2">DETAILING PACKAGES</h2>
       </div>
       <div class="flex items-center gap-2 bg-white/5 p-1.5 rounded-xl border border-white/10 self-start">
@@ -268,7 +266,7 @@
     <div id="packages-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
   </section>
 
-  <!-- SECTION 5: DIRECT CAR ACCESSORIES STORE WITH CART & STOCK BADGES -->
+  <!-- SECTION 6: DIRECT CAR ACCESSORIES STORE -->
   <section id="accessories-shop" class="py-24 px-4 sm:px-10 max-w-7xl mx-auto border-t border-white/10">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
       <div>
@@ -279,40 +277,20 @@
         View Shopping Cart (<span id="shop-cart-count">0</span>) →
       </button>
     </div>
-
     <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
   </section>
 
-  <!-- SECTION 6: LIVE VEHICLE BAY & DIGITAL JOB CARD TRACKER -->
-  <section id="live-bay-tracker" class="py-20 px-4 sm:px-10 bg-[#080a0f] border-t border-white/10">
-    <div class="max-w-4xl mx-auto glass-card p-6 sm:p-10 rounded-3xl border border-cyan-400/30 space-y-6">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <span class="font-mono text-xs uppercase tracking-widest text-cyan-400">REAL-TIME BAY TELEMETRY</span>
-          <h2 class="font-display font-extrabold text-2xl sm:text-4xl uppercase mt-1">TRACK YOUR VEHICLE STATUS</h2>
-        </div>
-        <div class="flex items-center gap-2">
-          <input type="text" id="track-input" placeholder="Enter Car No (TS04...) or Phone" class="bg-black/70 border border-white/15 rounded-xl px-4 py-2.5 text-xs text-white font-mono uppercase focus:border-cyan-400 focus:outline-none" />
-          <button onclick="lookupLiveVehicleStatus()" class="px-5 py-2.5 rounded-xl bg-cyan-400 text-black font-mono text-xs font-bold uppercase hover:bg-cyan-300 transition">
-            Track →
-          </button>
-        </div>
-      </div>
-      <div id="track-result-box" class="hidden p-5 rounded-2xl bg-black/60 border border-white/10 space-y-3 text-xs"></div>
-    </div>
-  </section>
-
-  <!-- SECTION 7: SINGLE-TAP HIDDEN UNLIMITED GOOGLE REVIEW GENERATOR & MAPS -->
-  <section class="py-20 px-4 sm:px-10 border-t border-white/10">
+  <!-- SECTION 7: SINGLE-TAP INVISIBLE GOOGLE REVIEW GENERATOR & MAPS -->
+  <section class="py-20 px-4 sm:px-10 bg-[#080a0f] border-t border-white/10">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
       <div class="lg:col-span-7 space-y-4">
         <span class="font-mono text-xs uppercase tracking-widest text-amber-400">KHAMMAM'S #1 RATED CAR GALLERY</span>
         <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase">LOVE YOUR MIRROR FINISH?</h2>
         <p class="text-xs sm:text-sm text-zinc-400 max-w-xl leading-relaxed">
-          Tap below to silently generate a unique 5-star review in the background (auto-copied to your clipboard—never repeated!) and jump straight to our official Google Review page.
+          Tap the button below to generate a unique, personalized 5-star review in the background (automatically copied to your clipboard) and open our official Google Review page in one tap!
         </p>
         <div class="flex flex-wrap items-center gap-4 pt-2">
-          <button onclick="triggerInvisibleGoogleReview()" class="px-6 py-4 rounded-xl bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-400 text-black font-mono text-xs font-extrabold uppercase tracking-wider shadow-xl shadow-amber-500/20 hover:scale-[1.02] transition">
+          <button onclick="triggerInvisibleGoogleReview()" class="px-6 py-4 rounded-xl bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-400 text-black font-mono text-xs font-extrabold uppercase tracking-wider shadow-xl hover:scale-[1.02] transition">
             ★ 1-Tap Instant 5★ Google Review →
           </button>
           <a href="https://www.google.com/maps?cid=5094792611686717263" target="_blank" rel="noopener"
@@ -334,8 +312,8 @@
           11-10-694/7, Bypass Road, Beside TVS Vajra Showroom, Near New Bus Stand, Raparthi Nagar, Khammam, Telangana 507002
         </p>
         <div class="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] text-emerald-400">
-          <span>UPI PAYMENT: 9848088319</span>
-          <span>DOORSTEP PICKUP AVAILABLE</span>
+          <span>UPI PAYMENT: 9848088319@ybl</span>
+          <span>FREE PICKUP & DROP</span>
         </div>
       </div>
     </div>
@@ -365,7 +343,7 @@
     </div>
   </footer>
 
-  <!-- DRAWER 1: REAL-TIME TIME-SLOT BOOKING DRAWER -->
+  <!-- DRAWER 1: REAL-TIME TIME-SLOT BOOKING DRAWER + UPI QR PASS -->
   <div id="booking-backdrop" onclick="closeBookingDrawer()" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden"></div>
   <aside id="booking-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-lg bg-[#0a0c12] border-l border-white/15 z-50 translate-x-full transition-transform duration-300 flex flex-col justify-between overflow-y-auto p-6 sm:p-8">
     <div>
@@ -419,19 +397,19 @@
           </div>
           <div>
             <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1">Phone / WhatsApp</label>
-            <input type="tel" id="book-phone" required placeholder="10-digit mobile" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+            <input type="tel" id="book-phone" required placeholder="10-digit mobile" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
           </div>
         </div>
 
         <div>
-          <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1">Car Model & Registration No</label>
-          <input type="text" id="book-car-model" required placeholder="e.g. Black Hyundai Creta / TS04FM4599" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+          <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1">Car Model & Registration / Notes</label>
+          <input type="text" id="book-car-model" required placeholder="e.g. Black Hyundai Creta / TS04..." class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
         </div>
 
         <div class="p-4 rounded-xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-between">
           <div>
-            <span class="font-mono text-[10px] uppercase text-amber-300 block">TOTAL ESTIMATED QUOTE</span>
-            <span class="text-[11px] text-zinc-400">Direct UPI: <strong class="text-white">9848088319</strong></span>
+            <span class="font-mono text-[10px] uppercase text-amber-300 block">ESTIMATED STUDIO QUOTE</span>
+            <span class="text-[11px] text-zinc-400">UPI / GPay / PhonePe: <strong class="text-white">9848088319</strong></span>
           </div>
           <span id="book-quote-display" class="font-display font-extrabold text-2xl text-amber-400">₹499</span>
         </div>
@@ -441,22 +419,26 @@
         </button>
       </form>
 
-      <div id="booking-success-state" class="hidden py-10 text-center space-y-4">
-        <div class="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-400 text-emerald-300 flex items-center justify-center mx-auto text-2xl">✓</div>
-        <h4 class="font-display font-extrabold text-3xl uppercase">YOU'RE BOOKED.<br>SEE YOU SOON.</h4>
+      <!-- BOOKING CONFIRMATION WITH LIVE SCANNABLE UPI QR CODE -->
+      <div id="booking-success-state" class="hidden py-8 text-center space-y-4">
+        <div class="w-14 h-14 rounded-full bg-emerald-500/20 border-2 border-emerald-400 text-emerald-300 flex items-center justify-center mx-auto text-xl">✓</div>
+        <h4 class="font-display font-extrabold text-2xl sm:text-3xl uppercase">YOU'RE BOOKED.<br>SEE YOU SOON.</h4>
         <p id="booking-summary-text" class="text-xs text-zinc-400 max-w-sm mx-auto leading-relaxed"></p>
-        <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 font-mono text-xs text-amber-300">
-          Direct UPI Payment Number: <strong>9848088319</strong> (Vijay)
+
+        <div class="bg-white p-3 rounded-2xl w-fit mx-auto text-center shadow-lg">
+          <div id="booking-upi-qr" class="w-[110px] h-[110px] mx-auto flex items-center justify-center"></div>
+          <span class="font-mono text-[9px] text-black font-bold block mt-1">SCAN TO PAY VIA UPI (9848088319@ybl)</span>
         </div>
+
         <a id="whatsapp-direct-btn" href="#" target="_blank" class="block w-full py-3.5 rounded-xl bg-emerald-500 text-black font-mono text-xs font-bold uppercase">
-          Send Slot Ticket on WhatsApp →
+          💬 Send Slot Ticket on WhatsApp →
         </a>
         <button onclick="resetBookingDrawer()" class="block w-full py-2.5 rounded-xl bg-white/5 text-zinc-400 font-mono text-xs uppercase">Book Another Slot</button>
       </div>
     </div>
   </aside>
 
-  <!-- DRAWER 2: ACCESSORIES SHOPPING CART & UPI CHECKOUT DRAWER -->
+  <!-- DRAWER 2: ACCESSORIES SHOPPING CART, PROMO COUPONS & UPI QR CHECKOUT -->
   <aside id="cart-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-[#0a0c12] border-l border-white/15 z-50 translate-x-full transition-transform duration-300 flex flex-col justify-between p-6 sm:p-8 overflow-y-auto">
     <div>
       <div class="flex items-center justify-between border-b border-white/10 pb-4">
@@ -467,36 +449,46 @@
         <button onclick="toggleCartDrawer(false)" class="w-9 h-9 rounded-full bg-white/5 text-zinc-400 hover:text-white">✕</button>
       </div>
 
-      <div id="cart-items-list" class="space-y-3 my-5"></div>
+      <div id="cart-items-list" class="space-y-3 my-4"></div>
 
-      <form id="cart-checkout-form" onsubmit="submitCartOrder(event)" class="space-y-3 pt-4 border-t border-white/10">
+      <!-- Promo Coupon Bar -->
+      <div class="flex items-center gap-2 mb-4">
+        <input type="text" id="cart-promo-input" placeholder="Promo Code (Try PUSHPA5 or WELCOME100)" class="flex-1 bg-zinc-900 border border-white/15 rounded-xl px-3 py-2 text-xs text-white font-mono uppercase" />
+        <button type="button" onclick="applyCustomerPromo()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-amber-400 hover:text-black font-mono text-xs font-bold uppercase transition">
+          Apply
+        </button>
+      </div>
+
+      <form id="cart-checkout-form" onsubmit="submitCartOrder(event)" class="space-y-3 pt-3 border-t border-white/10">
         <input type="text" id="order-name" required placeholder="Your Full Name" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
-        <input type="tel" id="order-phone" required placeholder="Mobile / WhatsApp Number" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+        <input type="tel" id="order-phone" required placeholder="Mobile / WhatsApp Number" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
         <input type="text" id="order-car" required placeholder="Car Model (for fitment check)" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
         <select id="order-delivery" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white">
           <option value="Studio Fitment at Bypass Road">Free Installation at Studio (Bypass Road)</option>
           <option value="Doorstep Delivery in Khammam">Doorstep Delivery in Khammam</option>
         </select>
 
-        <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-400/30 space-y-1">
-          <div class="flex justify-between font-mono text-xs">
-            <span class="text-zinc-300">PAY VIA UPI / GPay / PhonePe:</span>
-            <strong class="text-emerald-400">9848088319</strong>
+        <div class="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-400/30 flex items-center justify-between gap-3">
+          <div class="space-y-1 font-mono text-xs">
+            <span class="text-[10px] text-emerald-300 block">UPI / GPAY: 9848088319@ybl</span>
+            <div id="cart-discount-Tag" class="hidden text-[10px] text-amber-300">Promo Discount Applied!</div>
+            <div class="flex items-baseline gap-2">
+              <span class="text-zinc-400 text-[11px]">Net Payable:</span>
+              <span id="cart-total-display" class="font-display font-extrabold text-2xl text-white">₹0</span>
+            </div>
           </div>
-          <div class="flex justify-between items-center pt-1">
-            <span class="font-mono text-[11px] text-zinc-400">Order Total:</span>
-            <span id="cart-total-display" class="font-display font-extrabold text-2xl text-white">₹0</span>
+          <div class="bg-white p-1.5 rounded-lg shrink-0">
+            <div id="cart-upi-qr" class="w-[60px] h-[60px]"></div>
           </div>
         </div>
 
         <button type="submit" class="w-full py-3.5 rounded-xl bg-amber-400 text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-amber-300 transition">
-          Place Order & Send to Studio →
+          Place Order & Send to WhatsApp →
         </button>
       </form>
     </div>
   </aside>
 
-  <!-- FIREBASE 13.2.0 MODULE -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-analytics.js";
@@ -540,12 +532,13 @@
     let packagesData = DEFAULT_PACKAGES;
     let productsData = DEFAULT_PRODUCTS;
     let bookedSlotsMap = {};
-    let leadsList = [];
-    let jobCardsList = [];
+    let liveLeadsList = [];
+    let liveJobCardsList = [];
     let currentTierKey = 'basePrice';
     let drawerVehicleType = 'Hatchback';
     let drawerTierKey = 'basePrice';
     let cart = [];
+    let activePromoDiscount = 0;
 
     onValue(ref(db, 'packages'), snap => {
       if (snap.val()) packagesData = Object.values(snap.val());
@@ -564,48 +557,53 @@
     });
 
     onValue(ref(db, 'leads'), snap => {
-      leadsList = snap.val() ? Object.values(snap.val()) : [];
+      liveLeadsList = snap.val() ? Object.values(snap.val()) : [];
     });
 
     onValue(ref(db, 'jobCards'), snap => {
-      jobCardsList = snap.val() ? Object.values(snap.val()) : [];
+      liveJobCardsList = snap.val() ? Object.values(snap.val()) : [];
     });
 
-    window.lookupLiveVehicleStatus = function() {
+    // Live Bay & Job Card Status Tracker
+    window.checkLiveVehicleStatus = function() {
       const q = (document.getElementById('track-input').value || '').trim().toLowerCase();
       const box = document.getElementById('track-result-box');
-      if (!q) return;
       box.classList.remove('hidden');
-
-      const jc = jobCardsList.find(j =>
-        (j.vehicleNo && j.vehicleNo.toLowerCase().includes(q)) ||
-        (j.phone && j.phone.includes(q))
-      );
-      const lead = leadsList.find(l =>
-        (l.vehicleModel && l.vehicleModel.toLowerCase().includes(q)) ||
-        (l.phone && l.phone.includes(q))
-      );
-
-      if (jc) {
-        box.innerHTML = `
-          <div class="flex items-center justify-between border-b border-white/10 pb-2">
-            <span class="font-mono text-cyan-400 font-bold">JOB CARD: ${jc.jobId} • ${jc.vehicleNo}</span>
-            <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-mono text-[10px]">${jc.stage || 'IN STUDIO BAY'}</span>
-          </div>
-          <p class="text-zinc-300"><strong>Client:</strong> ${jc.customerName} | <strong>Fuel Level:</strong> ${jc.fuelLevel || '50%'} | <strong>Odometer:</strong> ${jc.odometer || 'N/A'} km</p>
-          <p class="text-zinc-400"><strong>Inspection Notes:</strong> ${jc.notes || 'Standard studio inspection completed.'}</p>
-        `;
-      } else if (lead) {
-        box.innerHTML = `
-          <div class="flex items-center justify-between border-b border-white/10 pb-2">
-            <span class="font-mono text-amber-400 font-bold">BOOKING: ${lead.vehicleModel}</span>
-            <span class="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 font-mono text-[10px]">${lead.status}</span>
-          </div>
-          <p class="text-zinc-300"><strong>Package:</strong> ${lead.packageName} | <strong>Slot:</strong> ${lead.date} at ${lead.timeSlot}</p>
-        `;
-      } else {
-        box.innerHTML = `<p class="text-zinc-400 font-mono">No active bay job card or booking found for "${q}". Call Vijay at 098480 88319 for instant status.</p>`;
+      if (q.length < 4) {
+        box.innerHTML = `<p class="text-xs text-rose-400 font-mono">Please enter at least 4 digits of your phone or vehicle number.</p>`;
+        return;
       }
+
+      const matchedLead = liveLeadsList.find(l => (l.phone || '').includes(q) || (l.vehicleModel || '').toLowerCase().includes(q));
+      const matchedJob = liveJobCardsList.find(j => (j.phone || '').includes(q) || (j.car || '').toLowerCase().includes(q));
+
+      if (!matchedLead && !matchedJob) {
+        box.innerHTML = `<p class="text-xs text-zinc-400 font-mono">No active bay record found for "${q}". Call Vijay directly at 098480 88319 for instant updates.</p>`;
+        return;
+      }
+
+      const status = matchedLead?.status || 'IN_BAY';
+      const statusColors = {
+        NEW: 'bg-amber-400/20 text-amber-300 border-amber-400/40',
+        IN_BAY: 'bg-cyan-400/20 text-cyan-300 border-cyan-400/40',
+        COMPLETED: 'bg-emerald-400/20 text-emerald-300 border-emerald-400/40'
+      };
+
+      box.innerHTML = `
+        <div class="p-4 rounded-xl bg-white/5 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="font-mono text-[10px] text-cyan-400">VEHICLE FOUND IN STUDIO SYSTEM</div>
+            <div class="font-display font-bold text-lg text-white">${matchedLead?.vehicleModel || matchedJob?.car} — ${matchedLead?.clientName || matchedJob?.client}</div>
+            <div class="text-xs text-zinc-300">Service: <strong class="text-amber-300">${matchedLead?.packageName || 'Bay Detailing & Inspection'}</strong> (${matchedLead?.date || matchedJob?.date} ${matchedLead?.timeSlot || ''})</div>
+            ${matchedJob ? `<div class="text-[11px] text-zinc-400 font-mono">Job Card Panels: ${matchedJob.zones} | Notes: ${matchedJob.notes}</div>` : ''}
+          </div>
+          <div class="text-right">
+            <span class="font-mono text-xs px-3 py-1.5 rounded-full border ${statusColors[status] || statusColors.IN_BAY} font-bold uppercase">
+              ● ${status.replace('_', ' ')}
+            </span>
+          </div>
+        </div>
+      `;
     };
 
     window.renderPackagesGrid = function() {
@@ -625,9 +623,7 @@
               <span class="font-mono text-[10px] text-emerald-400 uppercase block">${pkg.warranty || 'Studio Warranty'}</span>
               <span class="font-display font-extrabold text-2xl text-white">₹${Number(pkg[currentTierKey] || pkg.basePrice).toLocaleString('en-IN')}</span>
             </div>
-            <button onclick="openBookingDrawer('${pkg.name}')" class="px-4 py-2 rounded-xl bg-white text-black font-mono text-xs font-bold uppercase hover:bg-amber-400 transition">
-              Book →
-            </button>
+            <button onclick="openBookingDrawer('${pkg.name}')" class="px-4 py-2 rounded-xl bg-white text-black font-mono text-xs font-bold uppercase hover:bg-amber-400 transition">Book →</button>
           </div>
         </div>
       `).join('');
@@ -674,11 +670,8 @@
       const prod = productsData.find(p => p.id === productId);
       if (!prod) return;
       const existing = cart.find(i => i.id === productId);
-      if (existing) {
-        if (existing.qty < prod.stock) existing.qty++;
-      } else {
-        cart.push({ ...prod, qty: 1 });
-      }
+      if (existing) { if (existing.qty < prod.stock) existing.qty++; }
+      else cart.push({ ...prod, qty: 1 });
       updateCartUI();
       toggleCartDrawer(true);
     };
@@ -688,6 +681,15 @@
       if (idx === -1) return;
       cart[idx].qty += delta;
       if (cart[idx].qty <= 0) cart.splice(idx, 1);
+      updateCartUI();
+    };
+
+    window.applyCustomerPromo = function() {
+      const code = (document.getElementById('cart-promo-input').value || '').trim().toUpperCase();
+      const rawTotal = cart.reduce((s, i) => s + i.qty * i.price, 0);
+      if (code === 'PUSHPA5') activePromoDiscount = Math.round(rawTotal * 0.05);
+      else if (code === 'WELCOME100') activePromoDiscount = 100;
+      else { activePromoDiscount = 0; alert("Valid Promo Codes: PUSHPA5 (5% Off) or WELCOME100 (₹100 Off)"); }
       updateCartUI();
     };
 
@@ -701,10 +703,10 @@
         document.getElementById('cart-total-display').textContent = '₹0';
         return;
       }
-      let total = 0;
+      let subtotal = 0;
       list.innerHTML = cart.map(item => {
         const sub = item.qty * item.price;
-        total += sub;
+        subtotal += sub;
         return `
           <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between gap-3">
             <div>
@@ -712,14 +714,28 @@
               <div class="font-mono text-[11px] text-amber-400">₹${item.price} × ${item.qty} = ₹${sub}</div>
             </div>
             <div class="flex items-center gap-1.5 font-mono text-xs">
-              <button type="button" onclick="changeCartQty('${item.id}', -1)" class="w-7 h-7 rounded bg-white/10 hover:bg-white/20">-</button>
+              <button type="button" onclick="changeCartQty('${item.id}', -1)" class="w-7 h-7 rounded bg-white/10">-</button>
               <span class="px-2">${item.qty}</span>
-              <button type="button" onclick="changeCartQty('${item.id}', 1)" class="w-7 h-7 rounded bg-white/10 hover:bg-white/20">+</button>
+              <button type="button" onclick="changeCartQty('${item.id}', 1)" class="w-7 h-7 rounded bg-white/10">+</button>
             </div>
           </div>
         `;
       }).join('');
-      document.getElementById('cart-total-display').textContent = `₹${total.toLocaleString('en-IN')}`;
+
+      const netTotal = Math.max(0, subtotal - activePromoDiscount);
+      document.getElementById('cart-discount-Tag').classList.toggle('hidden', activePromoDiscount <= 0);
+      document.getElementById('cart-total-display').textContent = `₹${netTotal.toLocaleString('en-IN')}`;
+
+      const qrBox = document.getElementById('cart-upi-qr');
+      if (qrBox) {
+        qrBox.innerHTML = '';
+        try {
+          new QRCode(qrBox, {
+            text: `upi://pay?pa=9848088319@ybl&pn=Pushpa%20Car%20Gallery&am=${netTotal}&cu=INR`,
+            width: 58, height: 58
+          });
+        } catch (e) {}
+      }
     }
 
     window.toggleCartDrawer = function(open) {
@@ -733,47 +749,37 @@
       const customerPhone = document.getElementById('order-phone').value.trim();
       const carModel = document.getElementById('order-car').value.trim();
       const deliveryMode = document.getElementById('order-delivery').value;
-      const grandTotal = cart.reduce((s, i) => s + i.qty * i.price, 0);
-
+      const subtotal = cart.reduce((s, i) => s + i.qty * i.price, 0);
+      const grandTotal = Math.max(0, subtotal - activePromoDiscount);
       const orderId = 'ORD_' + Date.now().toString().slice(-6);
-      const orderPayload = {
-        orderId,
-        date: new Date().toISOString().slice(0, 10),
-        timestamp: new Date().toISOString(),
-        customerName,
-        customerPhone,
-        carModel,
-        deliveryMode,
-        items: cart.map(i => ({ id: i.id, barcode: i.barcode, name: i.name, qty: i.qty, price: i.price, total: i.qty * i.price })),
-        grandTotal,
-        status: 'NEW_ORDER'
-      };
 
-      try {
-        await set(ref(db, `orders/${orderId}`), orderPayload);
-        for (const item of cart) {
-          const prod = productsData.find(p => p.id === item.id);
-          if (prod) {
-            await update(ref(db, `products/${item.id}`), { stock: Math.max(0, Number(prod.stock) - item.qty) });
-          }
-        }
-      } catch (err) { console.warn(err); }
+      await set(ref(db, `orders/${orderId}`), {
+        orderId, date: new Date().toISOString().slice(0, 10), timestamp: new Date().toISOString(),
+        customerName, customerPhone, carModel, deliveryMode,
+        items: cart.map(i => ({ id: i.id, barcode: i.barcode, name: i.name, qty: i.qty, price: i.price, total: i.qty * i.price })),
+        discount: activePromoDiscount, grandTotal, status: 'NEW_ORDER'
+      });
+
+      for (const item of cart) {
+        const prod = productsData.find(p => p.id === item.id);
+        if (prod) await update(ref(db, `products/${item.id}`), { stock: Math.max(0, Number(prod.stock) - item.qty) });
+      }
 
       const waMsg = encodeURIComponent(
         `*NEW ACCESSORY ORDER - PUSHPA CAR GALLERY*\n` +
-        `• *Order ID:* ${orderId}\n` +
-        `• *Customer:* ${customerName} (${customerPhone})\n` +
-        `• *Vehicle:* ${carModel}\n` +
+        `• *Order ID:* ${orderId}\n• *Customer:* ${customerName} (${customerPhone})\n• *Vehicle:* ${carModel}\n` +
         `• *Items:* ${cart.map(i => `${i.name} (x${i.qty})`).join(', ')}\n` +
-        `• *Total:* ₹${grandTotal.toLocaleString('en-IN')} (UPI: 9848088319)\n` +
-        `• *Mode:* ${deliveryMode}`
+        (activePromoDiscount > 0 ? `• *Promo Discount:* -₹${activePromoDiscount}\n` : '') +
+        `• *Net Payable:* ₹${grandTotal.toLocaleString('en-IN')} (UPI: 9848088319@ybl)\n• *Mode:* ${deliveryMode}`
       );
       cart = [];
+      activePromoDiscount = 0;
       updateCartUI();
       toggleCartDrawer(false);
       window.open(`https://wa.me/919848088319?text=${waMsg}`, '_blank');
     };
 
+    // Real-Time Slot Booking Matrix
     document.getElementById('book-date').value = new Date().toISOString().slice(0, 10);
 
     window.renderLiveSlotGrid = function() {
@@ -847,9 +853,8 @@
       const date = document.getElementById('book-date').value;
       const timeSlot = document.getElementById('book-time').value;
       if (bookedSlotsMap[date] && bookedSlotsMap[date][timeSlot]) {
-        return alert("That time slot was just booked! Please tap an available green slot.");
+        return alert("That time slot is already booked! Please select a green available slot.");
       }
-
       const price = updateCalculatedQuote();
       const leadId = 'LEAD_' + Date.now().toString().slice(-6);
       const newLead = {
@@ -860,34 +865,32 @@
         vehicleType: drawerVehicleType,
         packageName: document.getElementById('book-package').value,
         serviceMode: document.getElementById('book-mode').value,
-        price,
-        date,
-        timeSlot,
-        status: 'NEW',
-        createdAt: new Date().toISOString()
+        price, date, timeSlot, status: 'NEW', createdAt: new Date().toISOString()
       };
 
-      try {
-        await set(ref(db, `leads/${leadId}`), newLead);
-        await set(ref(db, `bookedSlots/${date}/${timeSlot}`), {
-          bookedBy: newLead.clientName,
-          vehicle: newLead.vehicleModel,
-          leadId: leadId
-        });
-      } catch (err) { console.warn(err); }
+      await set(ref(db, `leads/${leadId}`), newLead);
+      await set(ref(db, `bookedSlots/${date}/${timeSlot}`), { bookedBy: newLead.clientName, vehicle: newLead.vehicleModel, leadId });
 
       document.getElementById('customer-booking-form').classList.add('hidden');
       document.getElementById('booking-success-state').classList.remove('hidden');
       document.getElementById('booking-summary-text').textContent =
         `${newLead.clientName}, your slot on ${date} at ${timeSlot} is locked for ${newLead.vehicleModel} (${newLead.packageName}).`;
 
+      const qrMount = document.getElementById('booking-upi-qr');
+      if (qrMount) {
+        qrMount.innerHTML = '';
+        try {
+          new QRCode(qrMount, {
+            text: `upi://pay?pa=9848088319@ybl&pn=Pushpa%20Car%20Gallery&am=${price}&cu=INR&tn=${leadId}`,
+            width: 104, height: 104
+          });
+        } catch (err) {}
+      }
+
       const waMsg = encodeURIComponent(
         `*NEW SLOT BOOKING - PUSHPA CAR GALLERY*\n` +
-        `• *Client:* ${newLead.clientName} (${newLead.phone})\n` +
-        `• *Car:* ${newLead.vehicleModel} (${newLead.vehicleType})\n` +
-        `• *Package:* ${newLead.packageName}\n` +
-        `• *Locked Slot:* ${date} @ ${timeSlot}\n` +
-        `• *Quote:* ₹${price.toLocaleString('en-IN')} (UPI: 9848088319)`
+        `• *Booking ID:* ${leadId}\n• *Client:* ${newLead.clientName} (${newLead.phone})\n• *Car:* ${newLead.vehicleModel} (${newLead.vehicleType})\n` +
+        `• *Package:* ${newLead.packageName}\n• *Locked Slot:* ${date} @ ${timeSlot}\n• *Quote:* ₹${price.toLocaleString('en-IN')} (UPI: 9848088319@ybl)`
       );
       document.getElementById('whatsapp-direct-btn').href = `https://wa.me/919848088319?text=${waMsg}`;
     };
@@ -900,6 +903,7 @@
       renderLiveSlotGrid();
     };
 
+    // Single-Tap Invisible Unlimited Google Review Generator
     window.triggerInvisibleGoogleReview = async function() {
       const openers = [
         "Pushpa Car Gallery on Khammam Bypass Road is hands down the best detailing studio in town!",
@@ -911,9 +915,9 @@
       const services = [
         "Got the 9H ceramic coating and snow foam decontamination done—the paint looks like a black mirror now.",
         "Their 3M Teflon coating, swirl removal, and exterior plastic restoration made my car look brand new.",
-        "Installed custom bucket-fit seat covers, 7D floor mats, and genuine LED accessories with factory-grade wiring.",
+        "Installed custom bucket-fit seat covers, 7D floor mats, and genuine LED accessories with factory-grade finish.",
         "Used their deep interior extraction and spot-free foam wash; every single AC vent and seat corner is spotless.",
-        "Their doorstep pickup and drop facility in Khammam made getting my car detailed super convenient and hassle-free."
+        "Their doorstep pickup and drop facility in Khammam made getting my car detailed super convenient."
       ];
       const closers = [
         "Very reasonable pricing, genuine products, and super fast delivery. Highly recommended!",
@@ -925,15 +929,10 @@
       const pick = arr => arr[Math.floor(Math.random() * arr.length)];
       const uniqueReview = `${pick(openers)} ${pick(services)} ${pick(closers)}`;
 
-      try {
-        await navigator.clipboard.writeText(uniqueReview);
-      } catch (e) {
+      try { await navigator.clipboard.writeText(uniqueReview); }
+      catch (e) {
         const ta = document.createElement('textarea');
-        ta.value = uniqueReview;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
+        ta.value = uniqueReview; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
       }
 
       window.location.href = "https://search.google.com/local/reviews?placeid=ChIJHXpfBLlZNDoRTxffD-NWtEY&q=PUSHPA+CAR+GALLERY,+BYPASS+ROAD,+beside+TVS+VAJRA+SHOWROOM,+near+NEW+BUS+STAND,+Raparthi+Nagar,+Khammam,+Telangana&authuser=0&hl=en&gl=IN";
@@ -944,7 +943,7 @@
     renderLiveSlotGrid();
   </script>
 
-  <!-- SCROLL-SCRUBBING & BEAD LAB PHYSICS SCRIPT -->
+  <!-- SCROLL-SCRUBBING & BEAD LAB PHYSICS ENGINE -->
   <script>
     const washSection = document.getElementById('wash-scrub');
     const dirtyClip = document.getElementById('dirty-car-clip');
@@ -1001,21 +1000,16 @@
     let droplets = [];
     let isCoated = true;
 
-    function resizeBeadCanvas() {
-      canvas.width = canvas.clientWidth;
-      canvas.height = canvas.clientHeight;
-    }
+    function resizeBeadCanvas() { canvas.width = canvas.clientWidth; canvas.height = canvas.clientHeight; }
     window.addEventListener('resize', resizeBeadCanvas);
     resizeBeadCanvas();
 
     function spawnBeads(x, y, n = 3) {
       for (let i = 0; i < n; i++) {
         droplets.push({
-          x: x + (Math.random() - 0.5) * 32,
-          y: y + (Math.random() - 0.5) * 32,
+          x: x + (Math.random() - 0.5) * 32, y: y + (Math.random() - 0.5) * 32,
           r: isCoated ? (3 + Math.random() * 5) : (12 + Math.random() * 14),
-          vx: (Math.random() - 0.5) * (isCoated ? 4 : 0.3),
-          vy: isCoated ? (2.5 + Math.random() * 3.5) : 0.2
+          vx: (Math.random() - 0.5) * (isCoated ? 4 : 0.3), vy: isCoated ? (2.5 + Math.random() * 3.5) : 0.2
         });
       }
     }
