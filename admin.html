@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PUSHPA CAR GALLERY | Owner CRM & Detailing Command Center</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #07080c; color: #f4f4f5; }
+    .crm-card { background: rgba(16, 19, 27, 0.85); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); }
+  </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- VIEW 1: DEDICATED OWNER LOGIN SCREEN ("WELCOME BACK, DETAILER" from Video 2) -->
+  <div id="owner-login-screen" class="fixed inset-0 z-50 flex items-center justify-center px-4"
+       style="background: radial-gradient(circle at 50% 35%, rgba(245, 158, 11, 0.14), #050608 70%);">
+    <div class="crm-card w-full max-w-md rounded-2xl p-8 shadow-2xl border border-white/15">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-9 h-9 rounded-lg bg-amber-400 text-black font-display font-extrabold flex items-center justify-center">P</div>
+        <div>
+          <span class="font-mono text-[10px] uppercase tracking-widest text-amber-400 block">PUSHPA CAR GALLERY • KHAMMAM</span>
+          <span class="text-xs text-zinc-400">Owner & Bay Management Portal</span>
+        </div>
+      </div>
+
+      <h1 class="font-display font-extrabold text-2xl sm:text-3xl uppercase tracking-tight">WELCOME BACK, DETAILER.</h1>
+      <p class="text-xs text-zinc-400 mt-1 mb-6">Sign in to inspect customer leads, bay status, and package pricing.</p>
+
+      <form onsubmit="handleOwnerLogin(event)" class="space-y-4">
+        <div>
+          <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1.5">Owner Email</label>
+          <input type="email" id="login-email" value="admin@pushpacargallery.com" required
+                 class="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-amber-400" />
+        </div>
+        <div>
+          <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1.5">Access Password</label>
+          <input type="password" id="login-pass" value="Pushpa@2026" required
+                 class="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-amber-400" />
+        </div>
+        <p id="login-error" class="text-xs text-rose-400 font-mono hidden">Invalid owner credentials. Default: Pushpa@2026</p>
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-white text-black font-mono text-xs font-bold uppercase tracking-widest hover:bg-amber-400 transition">
+          Unlock Leads Dashboard →
+        </button>
+      </form>
+
+      <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between font-mono text-[11px] text-zinc-500">
+        <span>PROPRIETOR: VIJAY</span>
+        <span>DEFAULT PASS: Pushpa@2026</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW 2: FULL LEADS & STUDIO CRM WORKSPACE (Matches Video 2 0:24 - 0:28) -->
+  <div id="owner-crm-workspace" class="hidden flex-1 flex min-h-screen">
+
+    <!-- Left Sidebar -->
+    <aside class="w-64 border-r border-white/10 bg-[#090b10] flex flex-col justify-between shrink-0 hidden md:flex">
+      <div class="p-6 space-y-8">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-amber-400 text-black font-display font-extrabold flex items-center justify-center">P</div>
+          <div>
+            <span class="font-display font-bold text-sm block leading-none">PUSHPA GALLERY</span>
+            <span class="font-mono text-[10px] text-emerald-400">● LIVE STUDIO CRM</span>
+          </div>
+        </div>
+
+        <nav class="space-y-1.5 font-mono text-xs">
+          <button onclick="switchCrmTab('leads')" id="tab-btn-leads" class="w-full text-left px-4 py-3 rounded-xl bg-white/10 text-white font-semibold flex items-center justify-between">
+            <span>▣ LEADS & BOOKINGS</span>
+            <span id="sidebar-lead-count" class="px-2 py-0.5 rounded bg-amber-400 text-black text-[10px] font-bold">0</span>
+          </button>
+          <button onclick="switchCrmTab('packages')" id="tab-btn-packages" class="w-full text-left px-4 py-3 rounded-xl text-zinc-400 hover:text-white hover:bg-white/5 transition">
+            <span>◈ PACKAGE PRICING</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="p-6 border-t border-white/10 space-y-3 font-mono text-[11px]">
+        <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+          <span class="text-zinc-500 block">STUDIO HOTLINE</span>
+          <span class="text-white">098480 88319</span>
+        </div>
+        <button onclick="logoutOwner()" class="w-full py-2.5 rounded-xl border border-white/10 text-zinc-400 hover:text-white hover:border-white/30">
+          Lock Portal
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Dashboard Content -->
+    <main class="flex-1 flex flex-col min-w-0">
+      <!-- Top Bar -->
+      <header class="h-20 border-b border-white/10 px-6 sm:px-10 flex items-center justify-between bg-[#090b10]/80 backdrop-blur-md">
+        <div>
+          <span class="font-mono text-[10px] uppercase tracking-widest text-amber-400">KHAMMAM BYPASS ROAD • RAPARTHI NAGAR</span>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl uppercase tracking-tight" id="crm-header-title">LEADS</h2>
+        </div>
+        <div class="flex items-center gap-3">
+          <button onclick="openNewWalkInModal()" class="px-4 py-2.5 rounded-xl bg-amber-400 text-black font-mono text-xs font-bold uppercase hover:bg-amber-300 transition">
+            + Add Walk-In Vehicle
+          </button>
+        </div>
+      </header>
+
+      <!-- TAB 1: LEADS TABLE & KPI CARDS -->
+      <section id="crm-tab-leads" class="p-6 sm:p-10 space-y-8 flex-1 overflow-y-auto">
+        <!-- KPI Row -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="crm-card p-5 rounded-2xl">
+            <span class="font-mono text-[10px] text-zinc-400 uppercase">TOTAL ACTIVE LEADS</span>
+            <p id="kpi-total" class="font-display font-extrabold text-3xl mt-1">0</p>
+          </div>
+          <div class="crm-card p-5 rounded-2xl">
+            <span class="font-mono text-[10px] text-amber-400 uppercase">NEW / UNCONTACTED</span>
+            <p id="kpi-new" class="font-display font-extrabold text-3xl text-amber-400 mt-1">0</p>
+          </div>
+          <div class="crm-card p-5 rounded-2xl">
+            <span class="font-mono text-[10px] text-cyan-400 uppercase">IN DETAILING BAY</span>
+            <p id="kpi-bay" class="font-display font-extrabold text-3xl text-cyan-400 mt-1">0</p>
+          </div>
+          <div class="crm-card p-5 rounded-2xl">
+            <span class="font-mono text-[10px] text-emerald-400 uppercase">PIPELINE VALUE (₹)</span>
+            <p id="kpi-revenue" class="font-display font-extrabold text-3xl text-emerald-400 mt-1">₹0</p>
+          </div>
+        </div>
+
+        <!-- Search & Status Filter Bar -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+            <button onclick="setLeadFilter('ALL')" class="flt-btn px-3.5 py-1.5 rounded-lg bg-white text-black font-bold">ALL</button>
+            <button onclick="setLeadFilter('NEW')" class="flt-btn px-3.5 py-1.5 rounded-lg bg-white/5 text-zinc-400 hover:text-white">NEW</button>
+            <button onclick="setLeadFilter('CONFIRMED')" class="flt-btn px-3.5 py-1.5 rounded-lg bg-white/5 text-zinc-400 hover:text-white">CONFIRMED</button>
+            <button onclick="setLeadFilter('IN_BAY')" class="flt-btn px-3.5 py-1.5 rounded-lg bg-white/5 text-zinc-400 hover:text-white">IN BAY</button>
+            <button onclick="setLeadFilter('COMPLETED')" class="flt-btn px-3.5 py-1.5 rounded-lg bg-white/5 text-zinc-400 hover:text-white">COMPLETED</button>
+          </div>
+          <input type="text" id="lead-search" oninput="renderLeadsTable()" placeholder="Search client, car model, or phone..."
+                 class="bg-black/60 border border-white/15 rounded-xl px-4 py-2 text-xs text-white w-full sm:w-72 focus:outline-none focus:border-amber-400" />
+        </div>
+
+        <!-- Leads Table -->
+        <div class="crm-card rounded-2xl overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-white/10 font-mono text-[11px] text-zinc-400 uppercase">
+                  <th class="py-4 px-5">Client</th>
+                  <th class="py-4 px-5">Vehicle</th>
+                  <th class="py-4 px-5">Package & Mode</th>
+                  <th class="py-4 px-5">Preferred Slot</th>
+                  <th class="py-4 px-5">Quote</th>
+                  <th class="py-4 px-5">Status</th>
+                  <th class="py-4 px-5 text-right">Inspect</th>
+                </tr>
+              </thead>
+              <tbody id="leads-tbody" class="divide-y divide-white/5 text-xs"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: LIVE PACKAGE & PRICE EDITOR -->
+      <section id="crm-tab-packages" class="hidden p-6 sm:p-10 space-y-6 flex-1 overflow-y-auto">
+        <p class="text-xs text-zinc-400">Any price adjustments saved here automatically update the customer booking drawer.</p>
+        <div id="owner-packages-list" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- RIGHT-SIDE LEAD INSPECTOR DRAWER (Matches Video 2 0:26 Nikhil Tremblay Drawer) -->
+  <aside id="lead-inspector-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-[#0c0f17] border-l border-white/15 z-50 translate-x-full transition-transform duration-300 flex flex-col justify-between p-6 sm:p-8 overflow-y-auto">
+    <div id="inspector-content"></div>
+  </aside>
+
+  <script>
+    const FIREBASE_DB_URL = ""; // Optional: Add your Firebase Realtime DB URL
+
+    const SEED_LEADS = [
+      {
+        id: "LEAD_1001",
+        clientName: "Nikhil Tremblay",
+        phone: "9848011223",
+        vehicleModel: "Hyundai Creta Knight Edition",
+        vehicleType: "SUV / MUV",
+        packageName: "9H Ceramic Mirror Shield",
+        serviceMode: "Free Pickup & Drop (Khammam)",
+        price: 16999,
+        date: "2026-11-07",
+        timeSlot: "10:00 AM",
+        status: "NEW",
+        notes: "Black paint has swirl marks from local wash. Needs full mirror finish and plastic restoration."
+      },
+      {
+        id: "LEAD_1002",
+        clientName: "Sairam Srirangam",
+        phone: "9032211445",
+        vehicleModel: "Maruti Suzuki Swift ZXi",
+        vehicleType: "Hatchback",
+        packageName: "3M Teflon & Plastic Restoration",
+        serviceMode: "Studio Visit (Bypass Road)",
+        price: 2499,
+        date: "2026-11-06",
+        timeSlot: "02:00 PM",
+        status: "CONFIRMED",
+        notes: "Also inquiring about 7D mats and wheel alignment."
+      },
+      {
+        id: "LEAD_1003",
+        clientName: "Tharak Ram",
+        phone: "9515700998",
+        vehicleModel: "Honda City ZX",
+        vehicleType: "Sedan",
+        packageName: "Deep Interior Extraction & Sanitization",
+        serviceMode: "Free Pickup & Drop (Khammam)",
+        price: 2199,
+        date: "2026-11-06",
+        timeSlot: "11:30 AM",
+        status: "IN_BAY",
+        notes: "Beige seat extraction + exterior snow foam wash add-on."
+      }
+    ];
+
+    let leads = JSON.parse(localStorage.getItem('pushpa_leads')) || SEED_LEADS;
+    let activeFilter = 'ALL';
+
+    function saveLeadsState() {
+      localStorage.setItem('pushpa_leads', JSON.stringify(leads));
+      renderLeadsTable();
+    }
+
+    function handleOwnerLogin(e) {
+      e.preventDefault();
+      const pass = document.getElementById('login-pass').value;
+      if (pass === 'Pushpa@2026' || pass === 'admin123') {
+        document.getElementById('owner-login-screen').classList.add('hidden');
+        document.getElementById('owner-crm-workspace').classList.remove('hidden');
+        renderLeadsTable();
+        renderOwnerPackages();
+      } else {
+        document.getElementById('login-error').classList.remove('hidden');
+      }
+    }
+
+    function logoutOwner() {
+      document.getElementById('owner-crm-workspace').classList.add('hidden');
+      document.getElementById('owner-login-screen').classList.remove('hidden');
+    }
+
+    function statusBadgeHTML(status) {
+      const map = {
+        NEW: 'bg-amber-400/15 text-amber-300 border-amber-400/30',
+        CONFIRMED: 'bg-sky-400/15 text-sky-300 border-sky-400/30',
+        IN_BAY: 'bg-purple-400/15 text-purple-300 border-purple-400/30',
+        COMPLETED: 'bg-emerald-400/15 text-emerald-300 border-emerald-400/30'
+      };
+      return `<span class="font-mono text-[10px] px-2.5 py-1 rounded-full border ${map[status] || map.NEW}">${status.replace('_', ' ')}</span>`;
+    }
+
+    function renderLeadsTable() {
+      leads = JSON.parse(localStorage.getItem('pushpa_leads')) || SEED_LEADS;
+      const q = (document.getElementById('lead-search')?.value || '').toLowerCase();
+
+      const filtered = leads.filter(l => {
+        const matchesStatus = activeFilter === 'ALL' || l.status === activeFilter;
+        const matchesQuery = l.clientName.toLowerCase().includes(q) ||
+                             l.vehicleModel.toLowerCase().includes(q) ||
+                             l.phone.includes(q);
+        return matchesStatus && matchesQuery;
+      });
+
+      // Update KPIs
+      document.getElementById('kpi-total').textContent = leads.length;
+      document.getElementById('sidebar-lead-count').textContent = leads.length;
+      document.getElementById('kpi-new').textContent = leads.filter(l => l.status === 'NEW').length;
+      document.getElementById('kpi-bay').textContent = leads.filter(l => l.status === 'IN_BAY').length;
+      const totalRev = leads.reduce((sum, l) => sum + Number(l.price || 0), 0);
+      document.getElementById('kpi-revenue').textContent = '₹' + totalRev.toLocaleString('en-IN');
+
+      const tbody = document.getElementById('leads-tbody');
+      tbody.innerHTML = filtered.map(l => `
+        <tr onclick="inspectLead('${l.id}')" class="hover:bg-white/5 cursor-pointer transition">
+          <td class="py-4 px-5">
+            <div class="font-semibold text-white">${l.clientName}</div>
+            <div class="font-mono text-[11px] text-zinc-400">${l.phone}</div>
+          </td>
+          <td class="py-4 px-5">
+            <div class="text-white">${l.vehicleModel}</div>
+            <div class="font-mono text-[10px] text-zinc-500">${l.vehicleType}</div>
+          </td>
+          <td class="py-4 px-5">
+            <div class="text-amber-300 font-medium">${l.packageName}</div>
+            <div class="text-[11px] text-zinc-400">${l.serviceMode}</div>
+          </td>
+          <td class="py-4 px-5 font-mono text-[11px] text-zinc-300">
+            ${l.date} • ${l.timeSlot}
+          </td>
+          <td class="py-4 px-5 font-mono font-bold text-white">
+            ₹${Number(l.price).toLocaleString('en-IN')}
+          </td>
+          <td class="py-4 px-5">${statusBadgeHTML(l.status)}</td>
+          <td class="py-4 px-5 text-right font-mono text-amber-400">Open →</td>
+        </tr>
+      `).join('');
+    }
+
+    function setLeadFilter(status) {
+      activeFilter = status;
+      renderLeadsTable();
+    }
+
+    function inspectLead(id) {
+      const lead = leads.find(l => l.id === id);
+      if (!lead) return;
+      const drawer = document.getElementById('lead-inspector-drawer');
+      const box = document.getElementById('inspector-content');
+
+      const waText = encodeURIComponent(
+        `Hi ${lead.clientName}, this is Vijay from *Pushpa Car Gallery (Khammam Bypass Road)*. Your booking for *${lead.packageName}* (${lead.vehicleModel}) on ${lead.date} at ${lead.timeSlot} is confirmed!`
+      );
+
+      box.innerHTML = `
+        <div class="flex items-center justify-between border-b border-white/10 pb-4">
+          <div>
+            <span class="font-mono text-[10px] text-amber-400 uppercase">${lead.id}</span>
+            <h3 class="font-display font-extrabold text-2xl uppercase">${lead.clientName}</h3>
+          </div>
+          <button onclick="closeInspector()" class="w-8 h-8 rounded-full bg-white/5 text-zinc-400 hover:text-white">✕</button>
+        </div>
+
+        <div class="space-y-4 mt-6 text-xs">
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+            <div class="flex justify-between"><span class="text-zinc-400">Phone:</span><a href="tel:${lead.phone}" class="font-mono text-amber-400">${lead.phone}</a></div>
+            <div class="flex justify-between"><span class="text-zinc-400">Vehicle:</span><span class="text-white font-semibold">${lead.vehicleModel} (${lead.vehicleType})</span></div>
+            <div class="flex justify-between"><span class="text-zinc-400">Package:</span><span class="text-white">${lead.packageName}</span></div>
+            <div class="flex justify-between"><span class="text-zinc-400">Service Mode:</span><span class="text-cyan-300">${lead.serviceMode}</span></div>
+            <div class="flex justify-between"><span class="text-zinc-400">Slot:</span><span class="font-mono text-white">${lead.date} @ ${lead.timeSlot}</span></div>
+            <div class="flex justify-between"><span class="text-zinc-400">Quote Amount:</span><span class="font-mono text-base font-bold text-emerald-400">₹${Number(lead.price).toLocaleString('en-IN')}</span></div>
+          </div>
+
+          <div>
+            <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1.5">Update Bay / Lead Status</label>
+            <div class="grid grid-cols-2 gap-2 font-mono text-[11px]">
+              <button onclick="updateLeadStatus('${lead.id}', 'NEW')" class="py-2 rounded-lg border border-white/10 hover:border-amber-400">NEW</button>
+              <button onclick="updateLeadStatus('${lead.id}', 'CONFIRMED')" class="py-2 rounded-lg border border-white/10 hover:border-sky-400">CONFIRMED</button>
+              <button onclick="updateLeadStatus('${lead.id}', 'IN_BAY')" class="py-2 rounded-lg border border-white/10 hover:border-purple-400">IN BAY</button>
+              <button onclick="updateLeadStatus('${lead.id}', 'COMPLETED')" class="py-2 rounded-lg border border-white/10 hover:border-emerald-400">COMPLETED</button>
+            </div>
+          </div>
+
+          <div>
+            <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1.5">Inspection Notes</label>
+            <textarea id="inspector-notes" rows="3" class="w-full bg-black/60 border border-white/15 rounded-xl p-3 text-xs text-white">${lead.notes || ''}</textarea>
+            <button onclick="saveLeadNotes('${lead.id}')" class="mt-2 px-4 py-2 rounded-lg bg-white/10 font-mono text-[11px] hover:bg-white/20">Save Notes</button>
+          </div>
+
+          <div class="pt-4 border-t border-white/10 space-y-2.5">
+            <a href="https://wa.me/91${lead.phone}?text=${waText}" target="_blank"
+               class="block w-full text-center py-3.5 rounded-xl bg-emerald-500 text-black font-mono text-xs font-bold uppercase">
+              Send WhatsApp Confirmation →
+            </a>
+            <button onclick="deleteLead('${lead.id}')" class="w-full py-2.5 rounded-xl bg-rose-500/10 text-rose-400 border border-rose-500/20 font-mono text-xs uppercase">
+              Delete Lead
+            </button>
+          </div>
+        </div>
+      `;
+      drawer.classList.remove('translate-x-full');
+    }
+
+    function closeInspector() {
+      document.getElementById('lead-inspector-drawer').classList.add('translate-x-full');
+    }
+
+    function updateLeadStatus(id, status) {
+      const idx = leads.findIndex(l => l.id === id);
+      if (idx > -1) {
+        leads[idx].status = status;
+        saveLeadsState();
+        inspectLead(id);
+      }
+    }
+
+    function saveLeadNotes(id) {
+      const idx = leads.findIndex(l => l.id === id);
+      if (idx > -1) {
+        leads[idx].notes = document.getElementById('inspector-notes').value;
+        saveLeadsState();
+      }
+    }
+
+    function deleteLead(id) {
+      leads = leads.filter(l => l.id !== id);
+      saveLeadsState();
+      closeInspector();
+    }
+
+    function openNewWalkInModal() {
+      const name = prompt("Walk-In Customer Name:");
+      if (!name) return;
+      const phone = prompt("Customer Phone Number:", "98480");
+      const car = prompt("Vehicle Model (e.g. Maruti Brezza / Tata Nexon):", "Maruti Suzuki Swift");
+      const pkg = prompt("Selected Service:", "Snow Foam & Spot-Free Wash");
+      const price = Number(prompt("Quoted Price (₹):", "599") || 599);
+
+      leads.unshift({
+        id: 'LEAD_' + Date.now().toString().slice(-5),
+        clientName: name,
+        phone: phone || '',
+        vehicleModel: car || 'Car',
+        vehicleType: 'Studio Walk-In',
+        packageName: pkg || 'Detailing Service',
+        serviceMode: 'Studio Visit (Bypass Road)',
+        price: price,
+        date: new Date().toISOString().slice(0, 10),
+        timeSlot: 'Walk-In Now',
+        status: 'IN_BAY',
+        notes: 'Added directly by Owner at Studio desk.'
+      });
+      saveLeadsState();
+    }
+
+    function switchCrmTab(tab) {
+      document.getElementById('crm-tab-leads').classList.toggle('hidden', tab !== 'leads');
+      document.getElementById('crm-tab-packages').classList.toggle('hidden', tab !== 'packages');
+      document.getElementById('crm-header-title').textContent = tab === 'leads' ? 'LEADS & BAY QUEUE' : 'PACKAGE PRICING EDITOR';
+    }
+
+    function renderOwnerPackages() {
+      const pkgs = JSON.parse(localStorage.getItem('pushpa_packages')) || [
+        { id: "PKG01", step: "01", name: "Snow Foam & Spot-Free Wash", basePrice: 499, sedanPrice: 599, suvPrice: 699, duration: "45 Mins", warranty: "Spot-Free Guarantee", description: "pH-neutral thick snow foam blanket, wheel arch blast, 0 PPM spot-free rinse, and microfiber hand dry." },
+        { id: "PKG02", step: "02", name: "3M Teflon & Plastic Restoration", basePrice: 2499, sedanPrice: 2999, suvPrice: 3499, duration: "3 Hours", warranty: "6 Months Shine", description: "Swirl mark removal, exterior plastic trim UV restoration, machine polish, and genuine Teflon sealant." },
+        { id: "PKG03", step: "03", name: "Deep Interior Extraction & Sanitization", basePrice: 1799, sedanPrice: 2199, suvPrice: 2599, duration: "2.5 Hours", warranty: "Odor-Free Cabin", description: "Hot-water fabric extraction, roof liner foam clean, AC vent steam sanitization, and leather conditioning." },
+        { id: "PKG04", step: "04", name: "9H Ceramic Mirror Shield", basePrice: 11999, sedanPrice: 14499, suvPrice: 16999, duration: "1-2 Days", warranty: "5 Years / 118° Contact Angle", description: "Multi-stage paint correction, iron decontamination, clay bar prep, and dual-layer 9H super-hydrophobic armor." },
+        { id: "PKG05", step: "05", name: "Full Cabin Accessories & Seat Upgrade", basePrice: 4999, sedanPrice: 5999, suvPrice: 7499, duration: "4 Hours", warranty: "Genuine Fitment Warranty", description: "Custom-stitched bucket seat covers, 7D floor mats, ambient footwell lighting, and genuine Maruti/Tata accessories." }
+      ];
+
+      const container = document.getElementById('owner-packages-list');
+      container.innerHTML = pkgs.map((p, i) => `
+        <div class="crm-card p-6 rounded-2xl space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs text-amber-400">PACKAGE ${p.step}</span>
+            <span class="font-mono text-xs text-zinc-400">${p.duration}</span>
+          </div>
+          <h4 class="font-display font-bold text-lg uppercase">${p.name}</h4>
+          <div class="grid grid-cols-3 gap-3 font-mono text-xs">
+            <div>
+              <label class="text-[10px] text-zinc-400 block mb-1">Hatchback (₹)</label>
+              <input type="number" id="pkg-base-${i}" value="${p.basePrice}" class="w-full bg-black/60 border border-white/15 rounded-lg px-3 py-2 text-white" />
+            </div>
+            <div>
+              <label class="text-[10px] text-zinc-400 block mb-1">Sedan (₹)</label>
+              <input type="number" id="pkg-sedan-${i}" value="${p.sedanPrice}" class="w-full bg-black/60 border border-white/15 rounded-lg px-3 py-2 text-white" />
+            </div>
+            <div>
+              <label class="text-[10px] text-zinc-400 block mb-1">SUV (₹)</label>
+              <input type="number" id="pkg-suv-${i}" value="${p.suvPrice}" class="w-full bg-black/60 border border-white/15 rounded-lg px-3 py-2 text-white" />
+            </div>
+          </div>
+          <button onclick="savePackagePrice(${i})" class="px-4 py-2 rounded-xl bg-amber-400 text-black font-mono text-xs font-bold uppercase">
+            Update Live Pricing
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function savePackagePrice(idx) {
+      const pkgs = JSON.parse(localStorage.getItem('pushpa_packages')) || [];
+      if (!pkgs[idx]) return;
+      pkgs[idx].basePrice = Number(document.getElementById(`pkg-base-${idx}`).value);
+      pkgs[idx].sedanPrice = Number(document.getElementById(`pkg-sedan-${idx}`).value);
+      pkgs[idx].suvPrice = Number(document.getElementById(`pkg-suv-${idx}`).value);
+      localStorage.setItem('pushpa_packages', JSON.stringify(pkgs));
+      alert('Package pricing updated! Refresh the Customer Portal to see the new rates immediately.');
+    }
+
+    // Auto-refresh leads table when a customer submits a booking in another tab
+    window.addEventListener('storage', () => renderLeadsTable());
+  </script>
+</body>
+</html>
