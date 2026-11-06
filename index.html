@@ -1,17 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PUSHPA CAR GALLERY | Owner AI POS, Job Card Inspection, 80mm/A4 GST & ERP</title>
+  <title>PUSHPA CAR GALLERY | Road-Worn to Mirror — Khammam</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- SheetJS for Daily Auto-Excel Export -->
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-  <!-- JsBarcode for Product & Receipt Barcode Printing -->
-  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
-  <!-- QRCode.js for Instant Offline-Capable UPI QR Generation -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -26,284 +20,1044 @@
       }
     }
   </script>
-  <style id="dynamic-print-style">
-    @page { margin: 0; }
-  </style>
   <style>
-    body { background-color: #06070b; color: #f4f4f5; }
-    .crm-card { background: rgba(15, 18, 26, 0.9); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.09); }
-    @media print {
-      html, body {
-        background: #ffffff !important;
-        color: #000000 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        height: auto !important;
-        min-height: 0 !important;
-      }
-      body > *:not(#printable-area) {
-        display: none !important;
-      }
-      #printable-area {
-        display: block !important;
-        position: static !important;
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        background: #ffffff !important;
-        color: #000000 !important;
-        page-break-after: avoid !important;
-        page-break-before: avoid !important;
-        page-break-inside: avoid !important;
-      }
+    body { background-color: #050608; color: #f8fafc; overflow-x: hidden; }
+    .glass-nav { background: rgba(5, 6, 8, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .glass-card { background: linear-gradient(145deg, rgba(18, 21, 30, 0.85), rgba(9, 11, 16, 0.94)); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.09); }
+    .dirty-car-filter { filter: sepia(0.62) brightness(0.60) contrast(1.22) saturate(0.48); }
+    .mud-overlay {
+      background-image: radial-gradient(rgba(130, 95, 55, 0.52) 1.5px, transparent 0),
+                        radial-gradient(rgba(95, 70, 40, 0.62) 2.5px, transparent 0);
+      background-size: 22px 22px, 36px 36px;
+      background-position: 0 0, 11px 11px;
+      mix-blend-mode: screen;
     }
+    .foam-glow { box-shadow: 0 0 32px 6px rgba(56, 189, 248, 0.85); }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #050608; }
+    ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #f59e0b; }
   </style>
 </head>
-<body class="font-sans antialiased min-h-screen flex flex-col">
+<body class="font-sans antialiased selection:bg-amber-400 selection:text-black">
 
-  <!-- VIEW 1: DEDICATED OWNER LOGIN ("WELCOME BACK, DETAILER") -->
-  <div id="owner-login-screen" class="fixed inset-0 z-50 flex items-center justify-center px-4"
-       style="background: radial-gradient(circle at 50% 30%, rgba(245, 158, 11, 0.16), #050609 70%);">
-    <div class="crm-card w-full max-w-md rounded-2xl p-8 shadow-2xl border border-white/15">
-      <div class="flex items-center gap-3.5 mb-6">
-        <img src="pushpacarlogo.jpg" onerror="this.style.display='none'" alt="Pushpa Car Gallery" class="w-12 h-12 rounded-xl object-cover border border-amber-400/40" />
+  <!-- TOP LUXURY NAVBAR (100% CUSTOMER FACING - ZERO ADMIN LOCKS) -->
+  <header class="fixed top-0 inset-x-0 z-40 glass-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between gap-4">
+      <a href="#" class="flex items-center gap-3.5 group">
+        <img src="pushpacarlogo.jpg" onerror="this.src='https://images.unsplash.com/photo-1617788138017-80ad40651399?w=120&q=80'" alt="Pushpa Car Gallery" class="w-12 h-12 rounded-xl object-cover border border-amber-400/40 shadow-lg shadow-amber-500/10" />
         <div>
-          <span class="font-mono text-[10px] uppercase tracking-widest text-amber-400 block">PUSHPA CAR GALLERY • KHAMMAM</span>
-          <span class="text-xs text-zinc-400">AI POS, Job Card Inspection, 80mm/A4 GST & ERP</span>
+          <span class="font-display font-extrabold tracking-wider text-sm sm:text-base block leading-none text-white group-hover:text-amber-400 transition">PUSHPA CAR GALLERY</span>
+          <span class="font-mono text-[10px] text-zinc-400 tracking-widest uppercase">Khammam Bypass Rd • Near New Bus Stand</span>
+        </div>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-6 text-xs font-mono uppercase tracking-widest text-zinc-400">
+        <a href="#wash-scrub" class="hover:text-white transition">01. Wash Lab</a>
+        <a href="#process-steps" class="hover:text-white transition">02. 10-Stage Protocol</a>
+        <a href="#bead-lab" class="hover:text-white transition">03. 118° Bead Lab</a>
+        <a href="#packages" class="hover:text-white transition">04. Packages</a>
+        <a href="#accessories-shop" class="hover:text-amber-400 text-amber-300 transition">05. Accessories Store</a>
+        <a href="#live-bay-tracker" class="hover:text-cyan-400 text-cyan-300 transition">06. Track My Car</a>
+      </nav>
+
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <button onclick="toggleCartDrawer(true)" class="relative px-3.5 py-2.5 rounded-full bg-white/5 border border-white/15 hover:border-amber-400/60 transition flex items-center gap-2 font-mono text-xs">
+          <span>🛒</span>
+          <span class="hidden sm:inline">Cart</span>
+          <span id="nav-cart-count" class="px-1.5 py-0.5 rounded-full bg-amber-400 text-black font-bold text-[10px]">0</span>
+        </button>
+
+        <button onclick="openBookingDrawer()" class="px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-black font-mono text-xs font-bold uppercase tracking-wider hover:brightness-110 transition shadow-lg shadow-amber-500/20">
+          Book Slot →
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECTION 1: SCROLL-SCRUBBING REALISTIC FOAM & LASER CAR WASH HERO -->
+  <section id="wash-scrub" class="relative h-[330vh]">
+    <div class="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between pt-24 pb-8 px-4 sm:px-10">
+      <div class="pointer-events-none absolute inset-0 opacity-35"
+           style="background: radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.22), transparent 68%);"></div>
+
+      <!-- Top Studio Telemetry Bar -->
+      <div class="relative z-20 max-w-7xl w-full mx-auto flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-3">
+        <div class="flex items-center gap-3">
+          <span id="scrub-stage-badge" class="font-mono text-[11px] uppercase tracking-widest px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300">
+            01 // SNOW FOAM DWELL
+          </span>
+          <span class="font-mono text-xs text-zinc-400 hidden md:inline">SCROLL DOWN OR DRAG LASER TO WASH</span>
+        </div>
+        <div class="flex items-center gap-5 font-mono text-xs">
+          <div><span class="text-zinc-500">PAINT CLARITY:</span> <span id="gloss-meter" class="text-white font-bold">14%</span></div>
+          <div><span class="text-zinc-500">CONTACT ANGLE:</span> <span class="text-cyan-400 font-bold">118.0°</span></div>
+          <div><span class="text-zinc-500">COATING:</span> <span class="text-amber-400 font-bold">9H / 5 YRS</span></div>
         </div>
       </div>
 
-      <h1 class="font-display font-extrabold text-2xl sm:text-3xl uppercase">WELCOME BACK, DETAILER.</h1>
-      <p class="text-xs text-zinc-400 mt-1 mb-6">Sign in to access AI Voice Billing, Digital Vehicle Job Cards, UPI QR Receipts, and Barcode Printing.</p>
+      <!-- Central Vehicle Interactive Scrubbing Viewport -->
+      <div class="relative z-10 my-auto max-w-6xl w-full mx-auto">
+        <div id="car-comparison-stage" class="relative w-full aspect-[16/9] max-h-[56vh] rounded-2xl overflow-hidden border border-white/15 shadow-2xl select-none cursor-ew-resize bg-black">
+          <!-- AFTER: Showroom Mirror Finish -->
+          <div class="absolute inset-0 w-full h-full">
+            <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1800&q=85"
+                 alt="Mirror Finish Car" class="w-full h-full object-cover object-center scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30"></div>
+            <div class="absolute top-4 right-5 font-mono text-[11px] uppercase tracking-widest px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 backdrop-blur-md">
+              ✦ SHOWROOM MIRROR FINISH
+            </div>
+          </div>
 
-      <form onsubmit="handleOwnerLogin(event)" class="space-y-4">
-        <div>
-          <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1">Owner Email / ID</label>
-          <input type="text" id="login-email" value="admin@pushpacargallery.com" required
-                 class="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-3 text-xs text-white focus:border-amber-400 focus:outline-none" />
+          <!-- BEFORE: Road-Worn / Muddy Layer -->
+          <div id="dirty-car-clip" class="absolute inset-0 w-full h-full overflow-hidden" style="clip-path: inset(0 18% 0 0);">
+            <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1800&q=85"
+                 alt="Dirty Road Worn Car" class="w-full h-full object-cover object-center scale-105 dirty-car-filter" />
+            <div class="absolute inset-0 mud-overlay"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-amber-950/25 to-black/40"></div>
+            <div class="absolute top-4 left-5 font-mono text-[11px] uppercase tracking-widest px-3 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 backdrop-blur-md">
+              ROAD-WORN / HIGHWAY MUD & SWIRLS
+            </div>
+          </div>
+
+          <!-- Active Foam & Laser Wipe Bar -->
+          <div id="wash-laser-line" class="absolute top-0 bottom-0 w-1.5 bg-gradient-to-b from-cyan-300 via-white to-amber-400 foam-glow z-30" style="left: 82%;">
+            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-black/90 border-2 border-white flex items-center justify-center shadow-2xl">
+              <span class="font-mono text-xs text-white font-bold">⇄</span>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Dynamic Step Overlay & Headline -->
+      <div class="relative z-20 max-w-7xl w-full mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-          <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1">Master Password</label>
-          <input type="password" id="login-pass" value="Pushpa@2026" required
-                 class="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-3 text-xs text-white focus:border-amber-400 focus:outline-none" />
+          <p class="font-mono text-xs uppercase tracking-[0.22em] text-amber-400 mb-1.5">
+            CONCIERGE MOBILE & STUDIO DETAILING • KHAMMAM
+          </p>
+          <h1 id="hero-dynamic-title" class="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight uppercase leading-[0.94]">
+            ROAD-WORN<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-amber-400">TO MIRROR.</span>
+          </h1>
         </div>
-        <p id="login-error" class="text-xs text-rose-400 font-mono hidden">Incorrect password. Default: Pushpa@2026</p>
-        <button type="submit" class="w-full py-3.5 rounded-xl bg-amber-400 text-black font-mono text-xs font-bold uppercase tracking-widest hover:bg-amber-300 transition">
-          Unlock AI Command Center →
+
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <div class="glass-card px-5 py-3.5 rounded-xl max-w-xs border-l-4 border-l-amber-400">
+            <div class="font-mono text-xs font-bold text-amber-400 uppercase" id="step-live-number">01. SNOW FOAM</div>
+            <p class="text-xs text-zinc-300 mt-1 leading-relaxed" id="step-live-desc">
+              pH-neutral foam encapsulates dirt and lifts road grime before a mitt ever touches your paint.
+            </p>
+          </div>
+          <button onclick="openBookingDrawer()" class="px-6 py-4 rounded-xl bg-white text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-amber-400 transition shrink-0">
+            Book A Detail →
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: THE 10-STAGE DETAILING BREAKDOWN -->
+  <section id="process-steps" class="py-24 px-4 sm:px-10 max-w-7xl mx-auto border-t border-white/10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+      <div>
+        <span class="font-mono text-xs uppercase tracking-widest text-amber-400">EVERY SURFACE, WIPED</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-2">THE 10-STAGE MIRROR PROTOCOL</h2>
+      </div>
+      <p class="text-xs sm:text-sm text-zinc-400 max-w-md">
+        Precision paint correction, iron decontamination, and genuine OEM customization supervised personally by Vijay at Pushpa Car Gallery.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="glass-card rounded-2xl p-6 hover:border-amber-400/50 transition">
+        <span class="font-mono text-xs text-amber-400">STAGE 01</span>
+        <h3 class="font-display font-extrabold text-2xl uppercase mt-1">01. SNOW FOAM</h3>
+        <p class="text-xs text-zinc-400 mt-2 leading-relaxed">pH-neutral snow foam clings to vertical panels to dissolve traffic film and Khammam highway dust safely.</p>
+      </div>
+      <div class="glass-card rounded-2xl p-6 hover:border-cyan-400/50 transition">
+        <span class="font-mono text-xs text-cyan-400">STAGE 02</span>
+        <h3 class="font-display font-extrabold text-2xl uppercase mt-1">02. SPOT-FREE RINSE</h3>
+        <p class="text-xs text-zinc-400 mt-2 leading-relaxed">Triple-filtered de-ionized water leaves zero dissolved minerals—preventing hard water spots even in direct sun.</p>
+      </div>
+      <div class="glass-card rounded-2xl p-6 hover:border-purple-400/50 transition">
+        <span class="font-mono text-xs text-purple-400">STAGE 04 & 05</span>
+        <h3 class="font-display font-extrabold text-2xl uppercase mt-1">04–05. IRON DECONTAMINATION</h3>
+        <p class="text-xs text-zinc-400 mt-2 leading-relaxed">Wheel barrels, brake calipers, and clear coat are treated with reactive iron remover that bleeds purple on contact.</p>
+      </div>
+      <div class="glass-card rounded-2xl p-6 hover:border-emerald-400/50 transition">
+        <span class="font-mono text-xs text-emerald-400">STAGE 08</span>
+        <h3 class="font-display font-extrabold text-2xl uppercase mt-1">08. INTERIOR EXTRACTION</h3>
+        <p class="text-xs text-zinc-400 mt-2 leading-relaxed">Every vent, stitch, and carpet fiber is steam-extracted, followed by dashboard UV conditioning.</p>
+      </div>
+      <div class="glass-card rounded-2xl p-6 md:col-span-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-amber-400/30">
+        <div>
+          <span class="font-mono text-xs text-amber-400">STAGE 10 // FINAL FINISH</span>
+          <h3 class="font-display font-extrabold text-2xl sm:text-3xl uppercase mt-1">10. SHOWROOM. AT HOME.</h3>
+          <p class="text-xs text-zinc-300 mt-2 max-w-xl leading-relaxed">
+            Every surface wiped, tires dressed in satin graphene, and glass sealed. Enjoy complimentary Doorstep Pickup & Drop across Khammam.
+          </p>
+        </div>
+        <button onclick="openBookingDrawer('9H Ceramic Mirror Shield')" class="px-6 py-3.5 rounded-xl bg-amber-400 text-black font-mono text-xs font-bold uppercase tracking-wider shrink-0 hover:bg-amber-300 transition">
+          Lock Ceramic Slot →
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: THE BEAD LAB — "WATER CAN'T STICK." -->
+  <section id="bead-lab" class="py-24 px-4 sm:px-10 bg-[#080a0f] border-y border-white/10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-5 space-y-6">
+        <div class="font-mono text-xs uppercase tracking-widest text-cyan-400">THE BEAD LAB — TRY IT</div>
+        <h2 class="font-display font-extrabold text-5xl sm:text-6xl uppercase tracking-tight leading-[0.95]">
+          WATER<br>CAN'T<br>STICK.
+        </h2>
+        <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+          Run your finger or cursor across the panel to make it rain. A ceramic coating is a liquid glass polymer that bonds to your clear coat. Water beads up and rolls off, taking dirt with it.
+        </p>
+
+        <div class="flex items-center gap-3">
+          <button id="btn-coated" onclick="setBeadMode(true)" class="px-4 py-2.5 rounded-lg font-mono text-xs uppercase bg-white text-black font-bold transition">
+            Coated Paint
+          </button>
+          <button id="btn-uncoated" onclick="setBeadMode(false)" class="px-4 py-2.5 rounded-lg font-mono text-xs uppercase bg-white/5 text-zinc-400 border border-white/10 hover:text-white transition">
+            Uncoated Paint
+          </button>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10">
+          <div>
+            <span class="font-mono text-[10px] uppercase text-zinc-500 block">CONTACT ANGLE</span>
+            <span id="bead-angle-readout" class="font-display font-extrabold text-2xl sm:text-3xl text-white">118°</span>
+          </div>
+          <div>
+            <span class="font-mono text-[10px] uppercase text-zinc-500 block">DURABILITY</span>
+            <span class="font-display font-extrabold text-2xl sm:text-3xl text-white">5 yrs</span>
+          </div>
+          <div>
+            <span class="font-mono text-[10px] uppercase text-zinc-500 block">HARDNESS</span>
+            <span class="font-display font-extrabold text-2xl sm:text-3xl text-cyan-400">9H</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7">
+        <div class="relative rounded-2xl overflow-hidden border border-white/15 bg-black shadow-2xl">
+          <canvas id="hydro-canvas" class="w-full h-[380px] sm:h-[430px] cursor-crosshair block"></canvas>
+          <div class="pointer-events-none absolute bottom-4 left-4 right-4 flex items-center justify-between text-[11px] font-mono text-zinc-400 bg-black/70 backdrop-blur-md px-4 py-2 rounded-lg border border-white/10">
+            <span>DRAG CURSOR / FINGER ACROSS PANEL</span>
+            <span id="surface-mode-label" class="text-cyan-400 font-bold">COATED: 118° HYDROPHOBIC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: DETAILING PACKAGES -->
+  <section id="packages" class="py-24 px-4 sm:px-10 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+      <div>
+        <span class="font-mono text-xs uppercase tracking-widest text-amber-400">LIVE FIREBASE PRICING</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-2">DETAILING PACKAGES</h2>
+      </div>
+      <div class="flex items-center gap-2 bg-white/5 p-1.5 rounded-xl border border-white/10 self-start">
+        <button onclick="switchVehicleTier('basePrice', this)" class="tier-btn px-3.5 py-1.5 rounded-lg font-mono text-xs bg-amber-400 text-black font-bold">Hatchback</button>
+        <button onclick="switchVehicleTier('sedanPrice', this)" class="tier-btn px-3.5 py-1.5 rounded-lg font-mono text-xs text-zinc-300">Sedan</button>
+        <button onclick="switchVehicleTier('suvPrice', this)" class="tier-btn px-3.5 py-1.5 rounded-lg font-mono text-xs text-zinc-300">SUV / MUV</button>
+      </div>
+    </div>
+    <div id="packages-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+  </section>
+
+  <!-- SECTION 5: DIRECT CAR ACCESSORIES STORE WITH CART & STOCK BADGES -->
+  <section id="accessories-shop" class="py-24 px-4 sm:px-10 max-w-7xl mx-auto border-t border-white/10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+      <div>
+        <span class="font-mono text-xs uppercase tracking-widest text-amber-400">GENUINE MARUTI • TATA • HYUNDAI ACCESSORIES</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-2">ORDER ACCESSORIES DIRECTLY</h2>
+      </div>
+      <button onclick="toggleCartDrawer(true)" class="px-5 py-3 rounded-xl bg-white/10 border border-white/15 font-mono text-xs uppercase hover:border-amber-400 transition self-start">
+        View Shopping Cart (<span id="shop-cart-count">0</span>) →
+      </button>
+    </div>
+
+    <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+  </section>
+
+  <!-- SECTION 6: LIVE VEHICLE BAY & DIGITAL JOB CARD TRACKER -->
+  <section id="live-bay-tracker" class="py-20 px-4 sm:px-10 bg-[#080a0f] border-t border-white/10">
+    <div class="max-w-4xl mx-auto glass-card p-6 sm:p-10 rounded-3xl border border-cyan-400/30 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <span class="font-mono text-xs uppercase tracking-widest text-cyan-400">REAL-TIME BAY TELEMETRY</span>
+          <h2 class="font-display font-extrabold text-2xl sm:text-4xl uppercase mt-1">TRACK YOUR VEHICLE STATUS</h2>
+        </div>
+        <div class="flex items-center gap-2">
+          <input type="text" id="track-input" placeholder="Enter Car No (TS04...) or Phone" class="bg-black/70 border border-white/15 rounded-xl px-4 py-2.5 text-xs text-white font-mono uppercase focus:border-cyan-400 focus:outline-none" />
+          <button onclick="lookupLiveVehicleStatus()" class="px-5 py-2.5 rounded-xl bg-cyan-400 text-black font-mono text-xs font-bold uppercase hover:bg-cyan-300 transition">
+            Track →
+          </button>
+        </div>
+      </div>
+      <div id="track-result-box" class="hidden p-5 rounded-2xl bg-black/60 border border-white/10 space-y-3 text-xs"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: SINGLE-TAP HIDDEN UNLIMITED GOOGLE REVIEW GENERATOR & MAPS -->
+  <section class="py-20 px-4 sm:px-10 border-t border-white/10">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-7 space-y-4">
+        <span class="font-mono text-xs uppercase tracking-widest text-amber-400">KHAMMAM'S #1 RATED CAR GALLERY</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase">LOVE YOUR MIRROR FINISH?</h2>
+        <p class="text-xs sm:text-sm text-zinc-400 max-w-xl leading-relaxed">
+          Tap below to silently generate a unique 5-star review in the background (auto-copied to your clipboard—never repeated!) and jump straight to our official Google Review page.
+        </p>
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <button onclick="triggerInvisibleGoogleReview()" class="px-6 py-4 rounded-xl bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-400 text-black font-mono text-xs font-extrabold uppercase tracking-wider shadow-xl shadow-amber-500/20 hover:scale-[1.02] transition">
+            ★ 1-Tap Instant 5★ Google Review →
+          </button>
+          <a href="https://www.google.com/maps?cid=5094792611686717263" target="_blank" rel="noopener"
+             class="px-5 py-4 rounded-xl bg-white/5 border border-white/15 font-mono text-xs uppercase text-zinc-200 hover:border-white/40 transition">
+            📍 Open Google Maps Directions
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 glass-card p-6 rounded-2xl space-y-3 font-mono text-xs">
+        <div class="flex items-center gap-3">
+          <img src="pushpacarlogo.jpg" onerror="this.style.display='none'" alt="Pushpa Logo" class="w-12 h-12 rounded-lg object-cover border border-white/15" />
+          <div>
+            <div class="text-white font-bold text-sm">PUSHPA CAR GALLERY</div>
+            <div class="text-amber-400 text-[11px]">Proprietor: Vijay • 098480 88319</div>
+          </div>
+        </div>
+        <p class="text-zinc-400 text-[11px] leading-relaxed">
+          11-10-694/7, Bypass Road, Beside TVS Vajra Showroom, Near New Bus Stand, Raparthi Nagar, Khammam, Telangana 507002
+        </p>
+        <div class="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] text-emerald-400">
+          <span>UPI PAYMENT: 9848088319</span>
+          <span>DOORSTEP PICKUP AVAILABLE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER WITH SINGLE-TAP DEVELOPER LOGO SIGNATURE -->
+  <footer class="py-12 px-4 sm:px-10 border-t border-white/10 bg-black">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <img src="pushpacarlogo.jpg" onerror="this.style.display='none'" alt="Pushpa Car Gallery" class="w-10 h-10 rounded-lg object-cover" />
+        <div class="text-xs font-mono text-zinc-400">
+          <strong class="text-white block">PUSHPA CAR GALLERY • KHAMMAM</strong>
+          © 2026 All Rights Reserved • Call: 098480 88319 / 9035438867
+        </div>
+      </div>
+
+      <a href="https://catb12345612-ai.github.io/Syed-Zeeshaan-Ali-High-Fledged-Engineering-And-Digital-Tech-Solutions-Site/"
+         target="_blank" rel="noopener"
+         class="group flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-zinc-900 via-black to-zinc-900 border border-amber-400/30 hover:border-amber-400 transition shadow-lg">
+        <img src="dev-logo.png.png" onerror="this.style.display='none'" alt="Syed Zeeshaan Ali Smart Scan" class="w-12 h-12 rounded-full object-contain group-hover:scale-105 transition" />
+        <div class="text-left">
+          <span class="font-mono text-[9px] uppercase tracking-widest text-amber-400 block">ENGINEERED & AUTOMATED BY</span>
+          <span class="font-display font-bold text-xs text-white group-hover:text-amber-300 transition block">Syed Zeeshaan Ali (@syedzeeshaanali07)</span>
+          <span class="font-mono text-[10px] text-zinc-500">High-Fledged Engineering & Digital Tech Solutions ↗</span>
+        </div>
+      </a>
+    </div>
+  </footer>
+
+  <!-- DRAWER 1: REAL-TIME TIME-SLOT BOOKING DRAWER -->
+  <div id="booking-backdrop" onclick="closeBookingDrawer()" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden"></div>
+  <aside id="booking-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-lg bg-[#0a0c12] border-l border-white/15 z-50 translate-x-full transition-transform duration-300 flex flex-col justify-between overflow-y-auto p-6 sm:p-8">
+    <div>
+      <div class="flex items-center justify-between border-b border-white/10 pb-4">
+        <div>
+          <span class="font-mono text-[10px] text-amber-400 uppercase tracking-widest">LIVE SCHEDULE MATRIX</span>
+          <h3 class="font-display font-extrabold text-2xl uppercase">BOOK YOUR DETAIL SLOT</h3>
+        </div>
+        <button onclick="closeBookingDrawer()" class="w-9 h-9 rounded-full bg-white/5 text-zinc-400 hover:text-white">✕</button>
+      </div>
+
+      <form id="customer-booking-form" onsubmit="submitCustomerBooking(event)" class="space-y-4 mt-5">
+        <div>
+          <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1.5">1. Vehicle Segment</label>
+          <div class="grid grid-cols-3 gap-2">
+            <button type="button" onclick="selectDrawerVehicle('Hatchback', 'basePrice', this)" class="veh-opt py-2.5 rounded-xl border border-amber-400 bg-amber-400/15 text-amber-300 font-mono text-xs font-bold">Hatchback</button>
+            <button type="button" onclick="selectDrawerVehicle('Sedan', 'sedanPrice', this)" class="veh-opt py-2.5 rounded-xl border border-white/10 bg-white/5 text-zinc-300 font-mono text-xs">Sedan</button>
+            <button type="button" onclick="selectDrawerVehicle('SUV / MUV', 'suvPrice', this)" class="veh-opt py-2.5 rounded-xl border border-white/10 bg-white/5 text-zinc-300 font-mono text-xs">SUV / MUV</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1.5">2. Detailing Package</label>
+            <select id="book-package" onchange="updateCalculatedQuote()" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white"></select>
+          </div>
+          <div>
+            <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1.5">3. Pickup or Studio</label>
+            <select id="book-mode" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white">
+              <option value="Studio Visit (Bypass Road)">Studio Visit (Bypass Road)</option>
+              <option value="Free Pickup & Drop (Khammam)">Free Pickup & Drop (Khammam)</option>
+              <option value="Doorstep Car Wash">Doorstep Wash at Home</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="font-mono text-[10px] uppercase text-zinc-400">4. Select Date & Available Bay Hour</label>
+            <span class="font-mono text-[10px] text-emerald-400">● Green = Open | ● Red = Booked</span>
+          </div>
+          <input type="date" id="book-date" onchange="renderLiveSlotGrid()" required class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white mb-3" />
+          <div id="live-slot-grid" class="grid grid-cols-3 sm:grid-cols-4 gap-2"></div>
+          <input type="hidden" id="book-time" value="10:00 AM" required />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1">Your Name</label>
+            <input type="text" id="book-name" required placeholder="Full Name" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+          </div>
+          <div>
+            <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1">Phone / WhatsApp</label>
+            <input type="tel" id="book-phone" required placeholder="10-digit mobile" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-mono text-[10px] uppercase text-zinc-400 mb-1">Car Model & Registration No</label>
+          <input type="text" id="book-car-model" required placeholder="e.g. Black Hyundai Creta / TS04FM4599" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+        </div>
+
+        <div class="p-4 rounded-xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-between">
+          <div>
+            <span class="font-mono text-[10px] uppercase text-amber-300 block">TOTAL ESTIMATED QUOTE</span>
+            <span class="text-[11px] text-zinc-400">Direct UPI: <strong class="text-white">9848088319</strong></span>
+          </div>
+          <span id="book-quote-display" class="font-display font-extrabold text-2xl text-amber-400">₹499</span>
+        </div>
+
+        <button type="submit" class="w-full py-4 rounded-xl bg-amber-400 text-black font-mono text-xs font-bold uppercase tracking-widest hover:bg-amber-300 transition">
+          Lock Time Slot & Confirm →
         </button>
       </form>
 
-      <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between font-mono text-[10px] text-zinc-500">
-        <span>PROPRIETOR: VIJAY</span>
-        <span>DEV: @syedzeeshaanali07</span>
+      <div id="booking-success-state" class="hidden py-10 text-center space-y-4">
+        <div class="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-400 text-emerald-300 flex items-center justify-center mx-auto text-2xl">✓</div>
+        <h4 class="font-display font-extrabold text-3xl uppercase">YOU'RE BOOKED.<br>SEE YOU SOON.</h4>
+        <p id="booking-summary-text" class="text-xs text-zinc-400 max-w-sm mx-auto leading-relaxed"></p>
+        <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 font-mono text-xs text-amber-300">
+          Direct UPI Payment Number: <strong>9848088319</strong> (Vijay)
+        </div>
+        <a id="whatsapp-direct-btn" href="#" target="_blank" class="block w-full py-3.5 rounded-xl bg-emerald-500 text-black font-mono text-xs font-bold uppercase">
+          Send Slot Ticket on WhatsApp →
+        </a>
+        <button onclick="resetBookingDrawer()" class="block w-full py-2.5 rounded-xl bg-white/5 text-zinc-400 font-mono text-xs uppercase">Book Another Slot</button>
       </div>
     </div>
-  </div>
+  </aside>
 
-  <!-- VIEW 2: FULL OWNER ERP, AI COPILOT, JOB CARD & POS WORKSPACE -->
-  <div id="owner-crm-workspace" class="hidden flex-1 flex min-h-screen">
+  <!-- DRAWER 2: ACCESSORIES SHOPPING CART & UPI CHECKOUT DRAWER -->
+  <aside id="cart-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-[#0a0c12] border-l border-white/15 z-50 translate-x-full transition-transform duration-300 flex flex-col justify-between p-6 sm:p-8 overflow-y-auto">
+    <div>
+      <div class="flex items-center justify-between border-b border-white/10 pb-4">
+        <div>
+          <span class="font-mono text-[10px] text-amber-400 uppercase">GENUINE CAR ACCESSORIES</span>
+          <h3 class="font-display font-extrabold text-2xl uppercase">YOUR SHOPPING CART</h3>
+        </div>
+        <button onclick="toggleCartDrawer(false)" class="w-9 h-9 rounded-full bg-white/5 text-zinc-400 hover:text-white">✕</button>
+      </div>
 
-    <!-- Sidebar -->
-    <aside class="w-64 border-r border-white/10 bg-[#080a0f] flex flex-col justify-between shrink-0 hidden lg:flex">
-      <div class="p-5 space-y-5">
-        <div class="flex items-center gap-3">
-          <img src="pushpacarlogo.jpg" onerror="this.style.display='none'" class="w-10 h-10 rounded-lg object-cover border border-amber-400/30" />
+      <div id="cart-items-list" class="space-y-3 my-5"></div>
+
+      <form id="cart-checkout-form" onsubmit="submitCartOrder(event)" class="space-y-3 pt-4 border-t border-white/10">
+        <input type="text" id="order-name" required placeholder="Your Full Name" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+        <input type="tel" id="order-phone" required placeholder="Mobile / WhatsApp Number" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+        <input type="text" id="order-car" required placeholder="Car Model (for fitment check)" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+        <select id="order-delivery" class="w-full bg-zinc-900 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white">
+          <option value="Studio Fitment at Bypass Road">Free Installation at Studio (Bypass Road)</option>
+          <option value="Doorstep Delivery in Khammam">Doorstep Delivery in Khammam</option>
+        </select>
+
+        <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-400/30 space-y-1">
+          <div class="flex justify-between font-mono text-xs">
+            <span class="text-zinc-300">PAY VIA UPI / GPay / PhonePe:</span>
+            <strong class="text-emerald-400">9848088319</strong>
+          </div>
+          <div class="flex justify-between items-center pt-1">
+            <span class="font-mono text-[11px] text-zinc-400">Order Total:</span>
+            <span id="cart-total-display" class="font-display font-extrabold text-2xl text-white">₹0</span>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-amber-400 text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-amber-300 transition">
+          Place Order & Send to Studio →
+        </button>
+      </form>
+    </div>
+  </aside>
+
+  <!-- FIREBASE 13.2.0 MODULE -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-analytics.js";
+    import { getDatabase, ref, onValue, set, update } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDbaJtPbbT_D9TvlOWNYbtL5TfZWSOCMvg",
+      authDomain: "pushpacargalary.firebaseapp.com",
+      databaseURL: "https://pushpacargalary-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "pushpacargalary",
+      storageBucket: "pushpacargalary.firebasestorage.app",
+      messagingSenderId: "307509697690",
+      appId: "1:307509697690:web:7a1f7679e3bdf6dc4f5323",
+      measurementId: "G-5SYNQ62CFX"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    try { getAnalytics(app); } catch (e) {}
+    const db = getDatabase(app);
+
+    const ALL_TIME_SLOTS = [
+      "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
+      "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM",
+      "06:00 PM", "07:00 PM", "08:00 PM"
+    ];
+
+    const DEFAULT_PACKAGES = [
+      { id: "PKG01", step: "01", name: "Snow Foam & Spot-Free Wash", basePrice: 499, sedanPrice: 599, suvPrice: 699, duration: "45 Mins", warranty: "Spot-Free Guarantee", description: "pH-neutral thick snow foam blanket, high-pressure wheel arch blast, 0 PPM spot-free rinse, and microfiber hand dry." },
+      { id: "PKG02", step: "02", name: "3M Teflon & Plastic Restoration", basePrice: 2499, sedanPrice: 2999, suvPrice: 3499, duration: "3 Hours", warranty: "6 Months High Gloss", description: "Swirl mark removal, exterior plastic trim UV restoration, machine polish, and genuine 3M Teflon sealant." },
+      { id: "PKG03", step: "03", name: "Deep Interior Extraction & Ozone", basePrice: 1799, sedanPrice: 2199, suvPrice: 2599, duration: "2.5 Hours", warranty: "Odor-Free Cabin", description: "Hot-water fabric extraction, roof liner foam clean, AC vent steam sanitization, and leather conditioning." },
+      { id: "PKG04", step: "04", name: "9H Ceramic Mirror Shield", basePrice: 11999, sedanPrice: 14499, suvPrice: 16999, duration: "1-2 Days", warranty: "5 Years • 118° Angle", description: "Multi-stage paint correction, iron decontamination, clay bar prep, and dual-layer 9H super-hydrophobic armor." }
+    ];
+
+    const DEFAULT_PRODUCTS = [
+      { id: "PRD101", barcode: "PCG890101", name: "7D Luxury Diamond Floor Mats", category: "Interior", price: 3499, stock: 14, image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80" },
+      { id: "PRD102", barcode: "PCG890102", name: "Custom Bucket Fit Napa Seat Covers", category: "Seat Covers", price: 6499, stock: 8, image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" },
+      { id: "PRD103", barcode: "PCG890103", name: "9H Ceramic Hydrophobic Spray (500ml)", category: "Detailing Care", price: 899, stock: 25, image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=800&q=80" },
+      { id: "PRD104", barcode: "PCG890104", name: "Genuine Maruti/Tata LED Fog & DRL Kit", category: "Lighting", price: 2299, stock: 11, image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" }
+    ];
+
+    let packagesData = DEFAULT_PACKAGES;
+    let productsData = DEFAULT_PRODUCTS;
+    let bookedSlotsMap = {};
+    let leadsList = [];
+    let jobCardsList = [];
+    let currentTierKey = 'basePrice';
+    let drawerVehicleType = 'Hatchback';
+    let drawerTierKey = 'basePrice';
+    let cart = [];
+
+    onValue(ref(db, 'packages'), snap => {
+      if (snap.val()) packagesData = Object.values(snap.val());
+      renderPackagesGrid();
+      populateDrawerSelect();
+    });
+
+    onValue(ref(db, 'products'), snap => {
+      if (snap.val()) productsData = Object.values(snap.val());
+      renderProductsGrid();
+    });
+
+    onValue(ref(db, 'bookedSlots'), snap => {
+      bookedSlotsMap = snap.val() || {};
+      renderLiveSlotGrid();
+    });
+
+    onValue(ref(db, 'leads'), snap => {
+      leadsList = snap.val() ? Object.values(snap.val()) : [];
+    });
+
+    onValue(ref(db, 'jobCards'), snap => {
+      jobCardsList = snap.val() ? Object.values(snap.val()) : [];
+    });
+
+    window.lookupLiveVehicleStatus = function() {
+      const q = (document.getElementById('track-input').value || '').trim().toLowerCase();
+      const box = document.getElementById('track-result-box');
+      if (!q) return;
+      box.classList.remove('hidden');
+
+      const jc = jobCardsList.find(j =>
+        (j.vehicleNo && j.vehicleNo.toLowerCase().includes(q)) ||
+        (j.phone && j.phone.includes(q))
+      );
+      const lead = leadsList.find(l =>
+        (l.vehicleModel && l.vehicleModel.toLowerCase().includes(q)) ||
+        (l.phone && l.phone.includes(q))
+      );
+
+      if (jc) {
+        box.innerHTML = `
+          <div class="flex items-center justify-between border-b border-white/10 pb-2">
+            <span class="font-mono text-cyan-400 font-bold">JOB CARD: ${jc.jobId} • ${jc.vehicleNo}</span>
+            <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-mono text-[10px]">${jc.stage || 'IN STUDIO BAY'}</span>
+          </div>
+          <p class="text-zinc-300"><strong>Client:</strong> ${jc.customerName} | <strong>Fuel Level:</strong> ${jc.fuelLevel || '50%'} | <strong>Odometer:</strong> ${jc.odometer || 'N/A'} km</p>
+          <p class="text-zinc-400"><strong>Inspection Notes:</strong> ${jc.notes || 'Standard studio inspection completed.'}</p>
+        `;
+      } else if (lead) {
+        box.innerHTML = `
+          <div class="flex items-center justify-between border-b border-white/10 pb-2">
+            <span class="font-mono text-amber-400 font-bold">BOOKING: ${lead.vehicleModel}</span>
+            <span class="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 font-mono text-[10px]">${lead.status}</span>
+          </div>
+          <p class="text-zinc-300"><strong>Package:</strong> ${lead.packageName} | <strong>Slot:</strong> ${lead.date} at ${lead.timeSlot}</p>
+        `;
+      } else {
+        box.innerHTML = `<p class="text-zinc-400 font-mono">No active bay job card or booking found for "${q}". Call Vijay at 098480 88319 for instant status.</p>`;
+      }
+    };
+
+    window.renderPackagesGrid = function() {
+      const grid = document.getElementById('packages-grid');
+      grid.innerHTML = packagesData.map(pkg => `
+        <div class="glass-card p-6 rounded-2xl flex flex-col justify-between hover:border-amber-400/50 transition">
           <div>
-            <span class="font-display font-bold text-sm block leading-none">PUSHPA AI ERP</span>
-            <span class="font-mono text-[10px] text-emerald-400">● FIREBASE LIVE</span>
+            <div class="flex items-center justify-between font-mono text-[11px] mb-3">
+              <span class="px-2.5 py-1 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20">STEP ${pkg.step || '01'}</span>
+              <span class="text-zinc-400">${pkg.duration || '2 Hrs'}</span>
+            </div>
+            <h3 class="font-display font-bold text-lg uppercase">${pkg.name}</h3>
+            <p class="text-xs text-zinc-400 mt-2 leading-relaxed">${pkg.description || ''}</p>
           </div>
-        </div>
-
-        <nav class="space-y-1 font-mono text-xs">
-          <button onclick="switchTab('pos')" id="nav-pos" class="tab-nav w-full text-left px-4 py-2.5 rounded-xl bg-amber-400 text-black font-bold flex items-center justify-between">
-            <span>⚡ AI POS & QR BILLING</span>
-          </button>
-          <button onclick="switchTab('jobcard')" id="nav-jobcard" class="tab-nav w-full text-left px-4 py-2.5 rounded-xl text-emerald-300 hover:bg-white/5 flex items-center justify-between">
-            <span>🛡️ DIGITAL JOB CARD</span>
-            <span id="badge-jobcards" class="px-1.5 py-0.5 rounded bg-emerald-400/20 text-emerald-300 text-[9px]">NEW</span>
-          </button>
-          <button onclick="switchTab('ai-copilot')" id="nav-ai-copilot" class="tab-nav w-full text-left px-4 py-2.5 rounded-xl text-cyan-300 hover:bg-white/5 flex items-center justify-between">
-            <span>🧠 AI STUDIO COPILOT</span>
-          </button>
-          <button onclick="switchTab('leads')" id="nav-leads" class="tab-nav w-full text-left px-4 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5 flex items-center justify-between">
-            <span>▣ LEADS & TIME SLOTS</span>
-            <span id="badge-leads" class="px-2 py-0.5 rounded bg-white/10 text-white text-[10px]">0</span>
-          </button>
-          <button onclick="switchTab('inventory')" id="nav-inventory" class="tab-nav w-full text-left px-4 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5 flex items-center justify-between">
-            <span>🏷️ PRODUCTS & BARCODES</span>
-          </button>
-          <button onclick="switchTab('orders')" id="nav-orders" class="tab-nav w-full text-left px-4 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5 flex items-center justify-between">
-            <span>🛒 ONLINE CART ORDERS</span>
-            <span id="badge-orders" class="px-2 py-0.5 rounded bg-emerald-400/20 text-emerald-300 text-[10px]">0</span>
-          </button>
-          <button onclick="switchTab('packages')" id="nav-packages" class="tab-nav w-full text-left px-4 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5">
-            <span>◈ DETAILING RATES</span>
-          </button>
-        </nav>
-
-        <!-- Daily Excel & Cache Maintenance Box -->
-        <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-          <span class="font-mono text-[10px] uppercase text-amber-400 block">DAILY MAINTENANCE</span>
-          <button onclick="exportDailyExcelReport()" class="w-full py-2 rounded-xl bg-emerald-500 text-black font-mono text-[11px] font-bold uppercase hover:bg-emerald-400 transition">
-            ⬇ Download Excel (.xlsx)
-          </button>
-          <button onclick="clearDailyCacheAndCompleted()" class="w-full py-2 rounded-xl bg-rose-500/15 text-rose-300 border border-rose-500/30 font-mono text-[11px] uppercase hover:bg-rose-500/25 transition">
-            🧹 Clear Daily Cache
-          </button>
-          <div id="last-backup-label" class="font-mono text-[10px] text-zinc-500 text-center">Auto-Sync Active</div>
-        </div>
-      </div>
-
-      <!-- Developer Signature in Admin Sidebar -->
-      <div class="p-4 border-t border-white/10">
-        <a href="https://catb12345612-ai.github.io/Syed-Zeeshaan-Ali-High-Fledged-Engineering-And-Digital-Tech-Solutions-Site/"
-           target="_blank" class="flex items-center gap-2.5 p-2.5 rounded-xl bg-black/60 border border-amber-400/30 hover:border-amber-400 transition">
-          <img src="dev-logo.png.png" onerror="this.style.display='none'" class="w-9 h-9 rounded-full object-contain" />
-          <div class="font-mono text-[10px] leading-tight">
-            <span class="text-amber-400 font-bold block">SYED ZEESHAAN ALI</span>
-            <span class="text-zinc-300 block">@syedzeeshaanali07</span>
-            <span class="text-zinc-500 text-[9px]">High-Fledged Solutions ↗</span>
-          </div>
-        </a>
-      </div>
-    </aside>
-
-    <!-- Main Content Area -->
-    <main class="flex-1 flex flex-col min-w-0">
-      <!-- Top Header -->
-      <header class="h-16 border-b border-white/10 px-6 flex items-center justify-between bg-[#080a0f]/90 backdrop-blur-md">
-        <div class="flex items-center gap-3">
-          <h2 id="workspace-title" class="font-display font-extrabold text-base sm:text-xl uppercase">AI POS BILLING (ZERO-WASTE 80MM & A4 + UPI QR)</h2>
-        </div>
-        <div class="flex flex-wrap items-center gap-2">
-          <button onclick="switchTab('pos')" class="lg:hidden px-2.5 py-1 rounded bg-amber-400 text-black font-mono text-xs font-bold">POS</button>
-          <button onclick="switchTab('jobcard')" class="lg:hidden px-2.5 py-1 rounded bg-emerald-400/20 text-emerald-300 font-mono text-xs">Job Card</button>
-          <button onclick="switchTab('ai-copilot')" class="lg:hidden px-2.5 py-1 rounded bg-cyan-400/20 text-cyan-300 font-mono text-xs">AI</button>
-          <button onclick="switchTab('leads')" class="lg:hidden px-2.5 py-1 rounded bg-white/10 font-mono text-xs">Leads</button>
-          <button onclick="switchTab('inventory')" class="lg:hidden px-2.5 py-1 rounded bg-white/10 font-mono text-xs">Barcodes</button>
-          <button onclick="exportDailyExcelReport()" class="px-3.5 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 font-mono text-xs font-bold uppercase">
-            ⬇ Daily Excel
-          </button>
-        </div>
-      </header>
-
-      <!-- ================================================================= -->
-      <!-- TAB 1: AI POS BILLING + ZERO-WASTE 80MM / A4 + DYNAMIC UPI QR     -->
-      <!-- ================================================================= -->
-      <section id="tab-pos" class="p-5 grid grid-cols-1 lg:grid-cols-12 gap-5 flex-1 overflow-y-auto">
-        <!-- Left 7 Cols: Barcode, Voice Command, Stock Refill & Catalog -->
-        <div class="lg:col-span-7 space-y-4">
-
-          <!-- Barcode Scanner + AI Voice Billing + Instant Stock Adder -->
-          <div class="crm-card p-4 rounded-2xl space-y-3 border-l-4 border-l-amber-400">
-            <div class="flex flex-wrap items-center justify-between gap-2">
-              <span class="font-mono text-xs font-bold text-amber-400 uppercase">⚡ BARCODE, AI VOICE BILLING & INSTANT STOCK REFILL</span>
-              <span id="voice-status" class="font-mono text-[10px] text-cyan-400">🎙️ Tap Mic to Speak Item Name</span>
+          <div class="pt-5 mt-5 border-t border-white/10 flex items-end justify-between">
+            <div>
+              <span class="font-mono text-[10px] text-emerald-400 uppercase block">${pkg.warranty || 'Studio Warranty'}</span>
+              <span class="font-display font-extrabold text-2xl text-white">₹${Number(pkg[currentTierKey] || pkg.basePrice).toLocaleString('en-IN')}</span>
             </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-12 gap-2">
-              <input type="text" id="pos-barcode-input" oninput="handleBarcodeScan(this.value)" placeholder="Scan Barcode or Type Item Code (e.g. PCG890101)..."
-                     class="sm:col-span-7 bg-black/70 border border-amber-400/40 rounded-xl px-3.5 py-2 text-xs text-white font-mono focus:outline-none" />
-              <button type="button" onclick="startAiVoiceBilling()" id="voice-btn"
-                      class="sm:col-span-2 py-2 px-3 rounded-xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 font-mono text-xs font-bold uppercase hover:bg-cyan-500/30 transition">
-                🎙️ Voice
-              </button>
-              <button type="button" onclick="openQuickNewProductModal()"
-                      class="sm:col-span-3 py-2 px-3 rounded-xl bg-white/10 hover:bg-white/20 font-mono text-xs text-white uppercase">
-                + Custom Item
-              </button>
-            </div>
-
-            <!-- Direct Stock Increment Bar while Billing -->
-            <div class="pt-2.5 border-t border-white/10 flex flex-wrap items-center gap-2">
-              <span class="font-mono text-[10px] text-zinc-400 uppercase">Instant Stock Add:</span>
-              <select id="quick-stock-product" class="bg-zinc-900 border border-white/15 rounded-xl px-3 py-1.5 text-xs text-white flex-1 min-w-[160px]"></select>
-              <input type="number" id="quick-stock-qty" value="5" min="1" class="w-16 bg-zinc-900 border border-white/15 rounded-xl px-2.5 py-1.5 text-xs text-white font-mono text-center" />
-              <button onclick="addStockDirectlyWhileBilling()" class="px-3.5 py-1.5 rounded-xl bg-emerald-500 text-black font-mono text-xs font-bold uppercase hover:bg-emerald-400">
-                + Add Stock
-              </button>
-            </div>
-          </div>
-
-          <!-- AI Smart Upsell Strip -->
-          <div id="ai-upsell-banner" class="crm-card px-4 py-3 rounded-xl border border-cyan-400/30 bg-cyan-950/20 flex items-center justify-between gap-3">
-            <div class="flex items-center gap-2.5">
-              <span class="text-lg">🧠</span>
-              <div>
-                <span class="font-mono text-[10px] uppercase text-cyan-400 block">AI SMART UPSELL SUGGESTION</span>
-                <p id="ai-upsell-text" class="text-xs text-zinc-200">Add a 9H Hydrophobic Spray (₹899) or Snow Foam Wash (₹499) to boost ticket value.</p>
-              </div>
-            </div>
-            <button id="ai-upsell-btn" onclick="applyAiUpsell()" class="px-3 py-1.5 rounded-lg bg-cyan-400 text-black font-mono text-[11px] font-bold uppercase shrink-0">
-              + Add Upsell
+            <button onclick="openBookingDrawer('${pkg.name}')" class="px-4 py-2 rounded-xl bg-white text-black font-mono text-xs font-bold uppercase hover:bg-amber-400 transition">
+              Book →
             </button>
           </div>
+        </div>
+      `).join('');
+    };
 
-          <!-- Click-to-Bill Products & Detailing Services Grid -->
-          <div class="space-y-2">
-            <div class="flex items-center justify-between">
-              <h3 class="font-mono text-xs uppercase text-zinc-400">TAP PRODUCT OR SERVICE TO BILL</h3>
-              <input type="text" id="catalog-filter" oninput="renderPosCatalog()" placeholder="Filter items..." class="bg-zinc-900 border border-white/10 rounded-lg px-3 py-1 text-xs text-white" />
+    window.switchVehicleTier = function(tierKey, btn) {
+      currentTierKey = tierKey;
+      document.querySelectorAll('.tier-btn').forEach(b => b.className = "tier-btn px-3.5 py-1.5 rounded-lg font-mono text-xs text-zinc-300");
+      btn.className = "tier-btn px-3.5 py-1.5 rounded-lg font-mono text-xs bg-amber-400 text-black font-bold";
+      renderPackagesGrid();
+    };
+
+    window.renderProductsGrid = function() {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = productsData.map(p => {
+        const inStock = Number(p.stock) > 0;
+        return `
+        <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-amber-400/50 transition">
+          <div>
+            <div class="relative h-48 overflow-hidden bg-zinc-900">
+              <img src="${p.image || 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=600'}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+              <span class="absolute top-3 left-3 font-mono text-[10px] px-2.5 py-1 rounded bg-black/80 text-zinc-300 border border-white/10">${p.category || 'Accessory'}</span>
+              <span class="absolute top-3 right-3 font-mono text-[10px] px-2.5 py-1 rounded ${inStock ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/30' : 'bg-rose-500/20 text-rose-300'}">
+                ${inStock ? `In Stock (${p.stock})` : 'Out of Stock'}
+              </span>
             </div>
-            <div id="pos-catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[430px] overflow-y-auto pr-1"></div>
+            <div class="p-5">
+              <div class="font-mono text-[10px] text-zinc-500">BARCODE: ${p.barcode || p.id}</div>
+              <h3 class="font-display font-bold text-base uppercase mt-1">${p.name}</h3>
+            </div>
+          </div>
+          <div class="px-5 pb-5 pt-3 border-t border-white/10 flex items-center justify-between">
+            <span class="font-display font-extrabold text-2xl text-amber-400">₹${Number(p.price).toLocaleString('en-IN')}</span>
+            <button ${!inStock ? 'disabled' : ''} onclick="addToCart('${p.id}')"
+                    class="px-4 py-2 rounded-xl ${inStock ? 'bg-amber-400 text-black hover:bg-amber-300' : 'bg-white/5 text-zinc-600 cursor-not-allowed'} font-mono text-xs font-bold uppercase transition">
+              ${inStock ? '+ Add to Cart' : 'Sold Out'}
+            </button>
           </div>
         </div>
+      `}).join('');
+    };
 
-        <!-- Right 5 Cols: Active Customer Invoice + Live UPI QR Preview -->
-        <div class="lg:col-span-5">
-          <div class="crm-card p-5 rounded-2xl flex flex-col justify-between space-y-3.5 sticky top-4">
+    window.addToCart = function(productId) {
+      const prod = productsData.find(p => p.id === productId);
+      if (!prod) return;
+      const existing = cart.find(i => i.id === productId);
+      if (existing) {
+        if (existing.qty < prod.stock) existing.qty++;
+      } else {
+        cart.push({ ...prod, qty: 1 });
+      }
+      updateCartUI();
+      toggleCartDrawer(true);
+    };
+
+    window.changeCartQty = function(id, delta) {
+      const idx = cart.findIndex(i => i.id === id);
+      if (idx === -1) return;
+      cart[idx].qty += delta;
+      if (cart[idx].qty <= 0) cart.splice(idx, 1);
+      updateCartUI();
+    };
+
+    function updateCartUI() {
+      const count = cart.reduce((s, i) => s + i.qty, 0);
+      document.getElementById('nav-cart-count').textContent = count;
+      document.getElementById('shop-cart-count').textContent = count;
+      const list = document.getElementById('cart-items-list');
+      if (cart.length === 0) {
+        list.innerHTML = `<p class="text-xs text-zinc-500 font-mono py-8 text-center">Your accessory cart is empty.</p>`;
+        document.getElementById('cart-total-display').textContent = '₹0';
+        return;
+      }
+      let total = 0;
+      list.innerHTML = cart.map(item => {
+        const sub = item.qty * item.price;
+        total += sub;
+        return `
+          <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between gap-3">
             <div>
-              <div class="flex items-center justify-between border-b border-white/10 pb-2.5">
-                <div>
-                  <span class="font-mono text-[10px] text-amber-400 uppercase">ZERO-PAPER-WASTE POS</span>
-                  <h3 class="font-display font-extrabold text-lg uppercase">CUSTOMER INVOICE</h3>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span id="returning-badge" class="hidden font-mono text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">★ Returning Client</span>
-                  <button onclick="clearPosBill()" class="font-mono text-xs text-rose-400 hover:underline">Reset</button>
-                </div>
-              </div>
+              <div class="text-xs font-semibold text-white">${item.name}</div>
+              <div class="font-mono text-[11px] text-amber-400">₹${item.price} × ${item.qty} = ₹${sub}</div>
+            </div>
+            <div class="flex items-center gap-1.5 font-mono text-xs">
+              <button type="button" onclick="changeCartQty('${item.id}', -1)" class="w-7 h-7 rounded bg-white/10 hover:bg-white/20">-</button>
+              <span class="px-2">${item.qty}</span>
+              <button type="button" onclick="changeCartQty('${item.id}', 1)" class="w-7 h-7 rounded bg-white/10 hover:bg-white/20">+</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+      document.getElementById('cart-total-display').textContent = `₹${total.toLocaleString('en-IN')}`;
+    }
 
-              <!-- Customer & Vehicle Inputs with AI Auto-Lookup -->
-              <div class="grid grid-cols-2 gap-2 my-2.5">
-                <input type="tel" id="bill-cust-phone" oninput="aiLookupCustomerByPhoneOrCar(this.value)" placeholder="Mobile No (Auto-Fills)" class="bg-zinc-900 border border-white/15 rounded-xl px-3 py-2 text-xs text-white font-mono" />
-                <input type="text" id="bill-cust-name" placeholder="Customer Name" class="bg-zinc-900 border border-white/15 rounded-xl px-3 py-2 text-xs text-white" />
-                <input type="text" id="bill-car-no" oninput="aiLookupCustomerByPhoneOrCar(this.value)" placeholder="Car No (e.g. TS04FM4599)" class="bg-zinc-900 border border-white/15 rounded-xl px-3 py-2 text-xs text-white uppercase font-mono" />
-                <select id="bill-pay-mode" class="bg-zinc-900 border border-white/15 rounded-xl px-3 py-2 text-xs text-white">
-                  <option value="UPI QR (9848088319)">UPI QR (9848088319)</option>
-                  <option value="Cash">Cash</option>
-                  <option value="Card / Split">Card / Split</option>
-                </select>
-              </div>
+    window.toggleCartDrawer = function(open) {
+      document.getElementById('cart-drawer').classList.toggle('translate-x-full', !open);
+    };
 
-              <!-- GST ON/OFF & PAPER FORMAT (80MM COMPACT vs A4 SINGLE PAGE) -->
-              <div class="p-3 rounded-xl bg-black/50 border border-white/10 space-y-2.5 mb-2.5">
-                <div class="flex items-center justify-between gap-2">
-                  <div class="flex items-center gap-1.5">
-                    <button type="button" id="gst-toggle-btn" onclick="toggleGstMode()"
-                            class="px-3 py-1 rounded-lg font-mono text-[11px] font-bold uppercase bg-white/10 text-zinc-300 border border-white/15 transition">
-                      GST: OFF
-                    </button>
-                    <select id="bill-gst-rate" onchange="renderPosBill()" class="hidden bg-zinc-900 border border-amber-400/40 rounded-lg px-2 py-1 font-mono text-[11px] text-amber-300">
-                      <option value="18">18% (9+9%)</option>
-                      <option value="12">12% (6+6%)</option>
-                      <option value="28">28% (14+14%)</option>
-                      <option value="5">5% (2.5+2.5%)</option>
-                    </select>
-                  </div>
+    window.submitCartOrder = async function(e) {
+      e.preventDefault();
+      if (cart.length === 0) return alert("Add at least one accessory to your cart.");
+      const customerName = document.getElementById('order-name').value.trim();
+      const customerPhone = document.getElementById('order-phone').value.trim();
+      const carModel = document.getElementById('order-car').value.trim();
+      const deliveryMode = document.getElementById('order-delivery').value;
+      const grandTotal = cart.reduce((s, i) => s + i.qty * i.price, 0);
 
-                  <div class="flex items-center gap-1 bg-white/5 p-1 rounded-lg border border-white/10 font-mono text-[10px]">
-                    <button type="button" id="fmt-80mm" onclick="setPrintFormat('80mm')" class="px-2 py-1 rounded bg-amber-400 text-black font-bold uppercase">
-                      80mm Eco
-                    </button>
-                    <button type="button" id="fmt-a4" onclick="setPrintFormat('A4')" class="px-2 py-1 rounded text-zinc-400 hover:text-white uppercase">
-                      A4 1-Page
-                    </button>
-                  </div>
-                </div>
+      const orderId = 'ORD_' + Date.now().toString().slice(-6);
+      const orderPayload = {
+        orderId,
+        date: new Date().toISOString().slice(0, 10),
+        timestamp: new Date().toISOString(),
+        customerName,
+        customerPhone,
+        carModel,
+        deliveryMode,
+        items: cart.map(i => ({ id: i.id, barcode: i.barcode, name: i.name, qty: i.qty, price: i.price, total: i.qty * i.price })),
+        grandTotal,
+        status: 'NEW_ORDER'
+      };
 
-                <div class="grid grid-cols-2 gap-2">
-                  <input type="text" id="bill-gstin" placeholder="GSTIN (Optional)" class="bg-zinc-900 border border-white/10 rounded-lg px-2.5 py-1 text-[11px] text-white font-mono uppercase" />
-                  <input type="number" id="bill-discount" oninput="renderPosBill()" placeholder="Discount (₹)" min="0" class="bg-zinc-900 border border-white/10 rounded-lg px-2.5 py-1 text-[11px] text-white font-mono" />
-                </div>
-              </div>
+      try {
+        await set(ref(db, `orders/${orderId}`), orderPayload);
+        for (const item of cart) {
+          const prod = productsData.find(p => p.id === item.id);
+          if (prod) {
+            await update(ref(db, `products/${item.id}`), { stock: Math.max(0, Number(prod.stock) - item.qty) });
+          }
+        }
+      } catch (err) { console.warn(err); }
+
+      const waMsg = encodeURIComponent(
+        `*NEW ACCESSORY ORDER - PUSHPA CAR GALLERY*\n` +
+        `• *Order ID:* ${orderId}\n` +
+        `• *Customer:* ${customerName} (${customerPhone})\n` +
+        `• *Vehicle:* ${carModel}\n` +
+        `• *Items:* ${cart.map(i => `${i.name} (x${i.qty})`).join(', ')}\n` +
+        `• *Total:* ₹${grandTotal.toLocaleString('en-IN')} (UPI: 9848088319)\n` +
+        `• *Mode:* ${deliveryMode}`
+      );
+      cart = [];
+      updateCartUI();
+      toggleCartDrawer(false);
+      window.open(`https://wa.me/919848088319?text=${waMsg}`, '_blank');
+    };
+
+    document.getElementById('book-date').value = new Date().toISOString().slice(0, 10);
+
+    window.renderLiveSlotGrid = function() {
+      const selectedDate = document.getElementById('book-date').value;
+      const dayBookings = bookedSlotsMap[selectedDate] || {};
+      const currentSelectedSlot = document.getElementById('book-time').value;
+      const grid = document.getElementById('live-slot-grid');
+
+      grid.innerHTML = ALL_TIME_SLOTS.map(slot => {
+        const isBooked = Boolean(dayBookings[slot]);
+        const isSelected = slot === currentSelectedSlot && !isBooked;
+        if (isBooked) {
+          return `
+            <div class="py-2 px-2 rounded-xl border border-rose-500/40 bg-rose-500/10 text-center opacity-75 cursor-not-allowed">
+              <div class="font-mono text-[11px] font-bold text-rose-300 line-through">${slot}</div>
+              <div class="font-mono text-[9px] text-rose-400 uppercase">BOOKED</div>
+            </div>
+          `;
+        }
+        return `
+          <button type="button" onclick="selectTimeSlot('${slot}')"
+                  class="py-2 px-2 rounded-xl border transition text-center ${isSelected ? 'border-amber-400 bg-amber-400 text-black font-bold' : 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300 hover:border-amber-400'}">
+            <div class="font-mono text-[11px] font-bold">${slot}</div>
+            <div class="font-mono text-[9px] uppercase">${isSelected ? 'SELECTED' : 'AVAILABLE'}</div>
+          </button>
+        `;
+      }).join('');
+    };
+
+    window.selectTimeSlot = function(slot) {
+      document.getElementById('book-time').value = slot;
+      renderLiveSlotGrid();
+    };
+
+    window.populateDrawerSelect = function(preselect) {
+      const sel = document.getElementById('book-package');
+      sel.innerHTML = packagesData.map(p => `<option value="${p.name}" ${p.name === preselect ? 'selected' : ''}>${p.name}</option>`).join('');
+      updateCalculatedQuote();
+    };
+
+    window.selectDrawerVehicle = function(label, tierKey, btn) {
+      drawerVehicleType = label;
+      drawerTierKey = tierKey;
+      document.querySelectorAll('.veh-opt').forEach(b => b.className = "veh-opt py-2.5 rounded-xl border border-white/10 bg-white/5 text-zinc-300 font-mono text-xs");
+      btn.className = "veh-opt py-2.5 rounded-xl border border-amber-400 bg-amber-400/15 text-amber-300 font-mono text-xs font-bold";
+      updateCalculatedQuote();
+    };
+
+    window.updateCalculatedQuote = function() {
+      const pkgName = document.getElementById('book-package').value;
+      const pkg = packagesData.find(p => p.name === pkgName) || packagesData[0];
+      const price = pkg ? Number(pkg[drawerTierKey] || pkg.basePrice) : 499;
+      document.getElementById('book-quote-display').textContent = `₹${price.toLocaleString('en-IN')}`;
+      return price;
+    };
+
+    window.openBookingDrawer = function(preselectPkg) {
+      populateDrawerSelect(preselectPkg);
+      renderLiveSlotGrid();
+      document.getElementById('booking-backdrop').classList.remove('hidden');
+      document.getElementById('booking-drawer').classList.remove('translate-x-full');
+    };
+
+    window.closeBookingDrawer = function() {
+      document.getElementById('booking-backdrop').classList.add('hidden');
+      document.getElementById('booking-drawer').classList.add('translate-x-full');
+    };
+
+    window.submitCustomerBooking = async function(e) {
+      e.preventDefault();
+      const date = document.getElementById('book-date').value;
+      const timeSlot = document.getElementById('book-time').value;
+      if (bookedSlotsMap[date] && bookedSlotsMap[date][timeSlot]) {
+        return alert("That time slot was just booked! Please tap an available green slot.");
+      }
+
+      const price = updateCalculatedQuote();
+      const leadId = 'LEAD_' + Date.now().toString().slice(-6);
+      const newLead = {
+        id: leadId,
+        clientName: document.getElementById('book-name').value.trim(),
+        phone: document.getElementById('book-phone').value.trim(),
+        vehicleModel: document.getElementById('book-car-model').value.trim(),
+        vehicleType: drawerVehicleType,
+        packageName: document.getElementById('book-package').value,
+        serviceMode: document.getElementById('book-mode').value,
+        price,
+        date,
+        timeSlot,
+        status: 'NEW',
+        createdAt: new Date().toISOString()
+      };
+
+      try {
+        await set(ref(db, `leads/${leadId}`), newLead);
+        await set(ref(db, `bookedSlots/${date}/${timeSlot}`), {
+          bookedBy: newLead.clientName,
+          vehicle: newLead.vehicleModel,
+          leadId: leadId
+        });
+      } catch (err) { console.warn(err); }
+
+      document.getElementById('customer-booking-form').classList.add('hidden');
+      document.getElementById('booking-success-state').classList.remove('hidden');
+      document.getElementById('booking-summary-text').textContent =
+        `${newLead.clientName}, your slot on ${date} at ${timeSlot} is locked for ${newLead.vehicleModel} (${newLead.packageName}).`;
+
+      const waMsg = encodeURIComponent(
+        `*NEW SLOT BOOKING - PUSHPA CAR GALLERY*\n` +
+        `• *Client:* ${newLead.clientName} (${newLead.phone})\n` +
+        `• *Car:* ${newLead.vehicleModel} (${newLead.vehicleType})\n` +
+        `• *Package:* ${newLead.packageName}\n` +
+        `• *Locked Slot:* ${date} @ ${timeSlot}\n` +
+        `• *Quote:* ₹${price.toLocaleString('en-IN')} (UPI: 9848088319)`
+      );
+      document.getElementById('whatsapp-direct-btn').href = `https://wa.me/919848088319?text=${waMsg}`;
+    };
+
+    window.resetBookingDrawer = function() {
+      document.getElementById('customer-booking-form').reset();
+      document.getElementById('customer-booking-form').classList.remove('hidden');
+      document.getElementById('booking-success-state').classList.add('hidden');
+      document.getElementById('book-date').value = new Date().toISOString().slice(0, 10);
+      renderLiveSlotGrid();
+    };
+
+    window.triggerInvisibleGoogleReview = async function() {
+      const openers = [
+        "Pushpa Car Gallery on Khammam Bypass Road is hands down the best detailing studio in town!",
+        "Extremely impressed with Vijay garu and his team at Pushpa Car Gallery near New Bus Stand.",
+        "Took my car to Pushpa Car Gallery beside TVS Vajra Showroom and the transformation is unbelievable!",
+        "Five stars to Pushpa Car Gallery in Raparthi Nagar, Khammam for genuine showroom-level work.",
+        "Best car detailing and accessories hub in Khammam! Vijay bhai guides you honestly within your budget."
+      ];
+      const services = [
+        "Got the 9H ceramic coating and snow foam decontamination done—the paint looks like a black mirror now.",
+        "Their 3M Teflon coating, swirl removal, and exterior plastic restoration made my car look brand new.",
+        "Installed custom bucket-fit seat covers, 7D floor mats, and genuine LED accessories with factory-grade wiring.",
+        "Used their deep interior extraction and spot-free foam wash; every single AC vent and seat corner is spotless.",
+        "Their doorstep pickup and drop facility in Khammam made getting my car detailed super convenient and hassle-free."
+      ];
+      const closers = [
+        "Very reasonable pricing, genuine products, and super fast delivery. Highly recommended!",
+        "Water literally beads right off the bonnet now. Must visit for every car lover in Khammam!",
+        "Punctual slot timing and top-notch workmanship. Thank you Vijay garu!",
+        "Don't go anywhere else on Bypass Road—this studio delivers true luxury finishing.",
+        "10/10 experience from booking the time slot to getting the keys back!"
+      ];
+      const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+      const uniqueReview = `${pick(openers)} ${pick(services)} ${pick(closers)}`;
+
+      try {
+        await navigator.clipboard.writeText(uniqueReview);
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = uniqueReview;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+
+      window.location.href = "https://search.google.com/local/reviews?placeid=ChIJHXpfBLlZNDoRTxffD-NWtEY&q=PUSHPA+CAR+GALLERY,+BYPASS+ROAD,+beside+TVS+VAJRA+SHOWROOM,+near+NEW+BUS+STAND,+Raparthi+Nagar,+Khammam,+Telangana&authuser=0&hl=en&gl=IN";
+    };
+
+    renderPackagesGrid();
+    renderProductsGrid();
+    renderLiveSlotGrid();
+  </script>
+
+  <!-- SCROLL-SCRUBBING & BEAD LAB PHYSICS SCRIPT -->
+  <script>
+    const washSection = document.getElementById('wash-scrub');
+    const dirtyClip = document.getElementById('dirty-car-clip');
+    const laserLine = document.getElementById('wash-laser-line');
+    const glossMeter = document.getElementById('gloss-meter');
+    const stageBadge = document.getElementById('scrub-stage-badge');
+    const stepLiveNum = document.getElementById('step-live-number');
+    const stepLiveDesc = document.getElementById('step-live-desc');
+
+    function updateWashWipe(progress) {
+      const clamped = Math.max(0, Math.min(1, progress));
+      const dirtyPercent = Math.round((1 - clamped) * 100);
+      dirtyClip.style.clipPath = `inset(0 ${100 - dirtyPercent}% 0 0)`;
+      laserLine.style.left = `${dirtyPercent}%`;
+      glossMeter.textContent = `${Math.round(14 + clamped * 86)}%`;
+
+      if (clamped < 0.25) {
+        stageBadge.textContent = "01 // SNOW FOAM DWELL";
+        stepLiveNum.textContent = "01. SNOW FOAM";
+        stepLiveDesc.textContent = "pH-neutral foam encapsulates dirt and lifts it off the surface before a mitt ever touches your paint.";
+      } else if (clamped < 0.55) {
+        stageBadge.textContent = "04–05 // WHEELS & IRON DECON";
+        stepLiveNum.textContent = "05. IRON DECONTAMINATION";
+        stepLiveDesc.textContent = "Chemical iron remover dissolves embedded brake dust and road fallout—turning purple as it works.";
+      } else if (clamped < 0.8) {
+        stageBadge.textContent = "08 // INTERIOR EXTRACTION";
+        stepLiveNum.textContent = "08. INTERIOR EXTRACTION";
+        stepLiveDesc.textContent = "Every vent, seam, and crevice is steam-extracted and dressed with UV protection.";
+      } else {
+        stageBadge.textContent = "10 // SHOWROOM. AT HOME.";
+        stepLiveNum.textContent = "10. EVERY SURFACE, WIPED";
+        stepLiveDesc.textContent = "9H Ceramic Armor locked in with a 118° hydrophobic contact angle. Ready for delivery.";
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      const rect = washSection.getBoundingClientRect();
+      const scrollable = washSection.offsetHeight - window.innerHeight;
+      if (scrollable > 0) updateWashWipe(-rect.top / scrollable);
+    }, { passive: true });
+
+    const carStage = document.getElementById('car-comparison-stage');
+    let dragging = false;
+    carStage.addEventListener('pointerdown', () => dragging = true);
+    window.addEventListener('pointerup', () => dragging = false);
+    carStage.addEventListener('pointermove', e => {
+      if (!dragging && e.buttons !== 1) return;
+      const r = carStage.getBoundingClientRect();
+      updateWashWipe(1 - ((e.clientX - r.left) / r.width));
+    });
+
+    const canvas = document.getElementById('hydro-canvas');
+    const ctx = canvas.getContext('2d');
+    let droplets = [];
+    let isCoated = true;
+
+    function resizeBeadCanvas() {
+      canvas.width = canvas.clientWidth;
+      canvas.height = canvas.clientHeight;
+    }
+    window.addEventListener('resize', resizeBeadCanvas);
+    resizeBeadCanvas();
+
+    function spawnBeads(x, y, n = 3) {
+      for (let i = 0; i < n; i++) {
+        droplets.push({
+          x: x + (Math.random() - 0.5) * 32,
+          y: y + (Math.random() - 0.5) * 32,
+          r: isCoated ? (3 + Math.random() * 5) : (12 + Math.random() * 14),
+          vx: (Math.random() - 0.5) * (isCoated ? 4 : 0.3),
+          vy: isCoated ? (2.5 + Math.random() * 3.5) : 0.2
+        });
+      }
+    }
+    for (let i = 0; i < 40; i++) spawnBeads(Math.random() * 600, Math.random() * 350, 1);
+
+    canvas.addEventListener('pointermove', e => {
+      const r = canvas.getBoundingClientRect();
+      spawnBeads(e.clientX - r.left, e.clientY - r.top, 2);
+    });
+
+    window.setBeadMode = function(coated) {
+      isCoated = coated;
+      document.getElementById('bead-angle-readout').textContent = coated ? '118°' : '38°';
+      document.getElementById('surface-mode-label').textContent = coated ? 'COATED: 118° HYDROPHOBIC' : 'UNCOATED: WATER SHEETS & STICKS';
+      document.getElementById('btn-coated').className = coated
+        ? 'px-4 py-2.5 rounded-lg font-mono text-xs uppercase bg-white text-black font-bold transition'
+        : 'px-4 py-2.5 rounded-lg font-mono text-xs uppercase bg-white/5 text-zinc-400 border border-white/10';
+      document.getElementById('btn-uncoated').className = !coated
+        ? 'px-4 py-2.5 rounded-lg font-mono text-xs uppercase bg-amber-400 text-black font-bold transition'
+        : 'px-4 py-2.5 rounded-lg font-mono text-xs uppercase bg-white/5 text-zinc-400 border border-white/10';
+      droplets = [];
+      for (let i = 0; i < 30; i++) spawnBeads(Math.random() * canvas.width, Math.random() * canvas.height, 1);
+    };
+
+    function loopBeads() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = droplets.length - 1; i >= 0; i--) {
+        const d = droplets[i];
+        d.x += d.vx; d.y += d.vy;
+        if (isCoated) d.vy += 0.14;
+        const g = ctx.createRadialGradient(d.x - d.r * 0.3, d.y - d.r * 0.3, 1, d.x, d.y, d.r);
+        g.addColorStop(0, isCoated ? 'rgba(255,255,255,0.95)' : 'rgba(200,210,220,0.35)');
+        g.addColorStop(1, isCoated ? 'rgba(56,189,248,0.18)' : 'rgba(100,116,139,0.1)');
+        ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2); ctx.fillStyle = g; ctx.fill();
+        if (d.y > canvas.height + 20) {
+          droplets.splice(i, 1);
+          if (droplets.length < 35) spawnBeads(Math.random() * canvas.width, 10, 1);
+        }
+      }
+      requestAnimationFrame(loopBeads);
+    }
+    loopBeads();
+  </script>
+</body>
+</html>
