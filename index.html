@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PUSHPA CAR GALLERY | Sapphire, White & Emerald Luxury Detailing Studio — Khammam</title>
+  <title>PUSHPA CAR GALLERY | 24K Gold Luxury Detailing Studio — Khammam</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
@@ -18,764 +18,520 @@
             mono: ['JetBrains Mono', 'monospace']
           },
           colors: {
-            sapphire: '#030917',
-            royal: '#0066FF',
-            cyanGlow: '#38BDF8',
-            emeraldMint: '#10B981',
-            emeraldBright: '#34D399',
-            crispWhite: '#F8FAFC'
+            obsidian: '#06070A',
+            charcoal: '#0E1015',
+            gold: '#D4AF37',
+            goldLight: '#F5D061',
+            goldDark: '#997A15',
+            ivory: '#FAF9F6'
           }
         }
       }
     };
   </script>
   <style>
-    :root {
-      --bg-deep: #030917;
-      --royal-blue: #0066FF;
-      --sky-blue: #38BDF8;
-      --emerald-green: #10B981;
-      --emerald-light: #34D399;
-      --pure-white: #FFFFFF;
-    }
     body {
-      background: radial-gradient(circle at 50% 0%, #0A224E 0%, #041026 48%, #020712 100%);
+      background: #06070A;
       color: #FFFFFF;
       overflow-x: hidden;
     }
     .glass-nav {
-      background: rgba(3, 10, 24, 0.86);
-      backdrop-filter: blur(22px) saturate(180%);
-      border-bottom: 1px solid rgba(16, 185, 129, 0.3);
-      box-shadow: 0 10px 30px -10px rgba(0, 102, 255, 0.3);
+      background: rgba(6, 7, 10, 0.88);
+      backdrop-filter: blur(20px) saturate(160%);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.28);
     }
-    .studio-card {
-      background: linear-gradient(155deg, rgba(8, 25, 56, 0.94) 0%, rgba(4, 12, 28, 0.98) 100%);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 22px;
-      box-shadow: 0 18px 45px -12px rgba(2, 8, 20, 0.9), inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
-      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.28s ease, box-shadow 0.28s ease;
+    .gold-card {
+      background: linear-gradient(160deg, rgba(18, 20, 28, 0.95) 0%, rgba(9, 10, 14, 0.99) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      border-radius: 20px;
+      box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
-    .studio-card:hover {
-      border-color: #10B981;
-      box-shadow: 0 22px 50px -12px rgba(0, 102, 255, 0.35), 0 0 22px rgba(16, 185, 129, 0.22);
+    .gold-card:hover {
+      border-color: #F5D061;
+      box-shadow: 0 24px 55px -12px rgba(212, 175, 55, 0.2);
       transform: translateY(-3px);
     }
-    .emerald-card {
-      background: linear-gradient(155deg, rgba(6, 36, 62, 0.96) 0%, rgba(4, 16, 34, 0.99) 100%);
-      border: 1px solid rgba(16, 185, 129, 0.45);
-      border-radius: 24px;
-      box-shadow: 0 24px 60px -12px rgba(16, 185, 129, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.22);
+    .ivory-card {
+      background: linear-gradient(155deg, #FFFFFF 0%, #FAF8F2 100%);
+      color: #090A0F;
+      border: 1.5px solid #D4AF37;
+      border-radius: 20px;
+      box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.15);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
-    .white-luxe-card {
-      background: linear-gradient(145deg, #FFFFFF 0%, #F0FDF9 52%, #EFF6FF 100%);
-      color: #030917;
-      border: 2px solid #0066FF;
-      border-radius: 22px;
-      box-shadow: 0 20px 50px -12px rgba(0, 102, 255, 0.22);
-      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
-    }
-    .white-luxe-card:hover {
+    .ivory-card:hover {
       transform: translateY(-3px);
-      border-color: #10B981;
-      box-shadow: 0 25px 55px -10px rgba(16, 185, 129, 0.32);
+      box-shadow: 0 25px 50px -12px rgba(212, 175, 55, 0.28);
     }
-    .emerald-btn {
-      background: linear-gradient(135deg, #34D399 0%, #10B981 50%, #059669 100%);
-      color: #030917;
+    .gold-btn {
+      background: linear-gradient(135deg, #FFF3C4 0%, #F5D061 35%, #D4AF37 75%, #AA8214 100%);
+      color: #06070A;
       font-weight: 800;
-      box-shadow: 0 8px 26px -4px rgba(16, 185, 129, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-      transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: 0 8px 25px -5px rgba(212, 175, 55, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+      transition: all 0.22s ease;
     }
-    .emerald-btn:hover {
-      filter: brightness(1.08);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px -4px rgba(52, 211, 153, 0.75);
+    .gold-btn:hover {
+      filter: brightness(1.07);
+      transform: translateY(-1.5px);
+      box-shadow: 0 12px 30px -4px rgba(245, 208, 97, 0.65);
     }
-    .royal-btn {
-      background: linear-gradient(135deg, #0066FF 0%, #0284C7 55%, #10B981 100%);
-      color: #FFFFFF;
-      font-weight: 800;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      box-shadow: 0 8px 25px -4px rgba(0, 102, 255, 0.55);
-      transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    .gold-outline-btn {
+      background: rgba(212, 175, 55, 0.08);
+      color: #F5D061;
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      font-weight: 700;
+      transition: all 0.22s ease;
     }
-    .royal-btn:hover {
-      filter: brightness(1.1);
-      transform: translateY(-2px);
+    .gold-outline-btn:hover {
+      background: rgba(212, 175, 55, 0.18);
+      border-color: #F5D061;
     }
-    .brand-gradient-text {
-      background: linear-gradient(135deg, #FFFFFF 0%, #38BDF8 48%, #34D399 100%);
+    .gold-text {
+      background: linear-gradient(135deg, #FFFFFF 0%, #F5D061 50%, #D4AF37 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .laser-glow {
-      box-shadow: 0 0 35px 8px rgba(56, 189, 248, 0.85), 0 0 18px 4px rgba(16, 185, 129, 0.9);
-    }
-    @keyframes scanPulse {
-      0%, 100% { top: 8%; opacity: 0.85; }
-      50% { top: 88%; opacity: 1; }
-    }
-    .ai-laser-bar { animation: scanPulse 2.2s ease-in-out infinite; }
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #030917; }
-    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #0066FF, #10B981); border-radius: 3px; }
+    ::-webkit-scrollbar-track { background: #06070A; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #F5D061, #997A15); border-radius: 3px; }
   </style>
 </head>
-<body class="font-sans antialiased selection:bg-[#10B981] selection:text-black relative">
+<body class="font-sans antialiased selection:bg-[#D4AF37] selection:text-black">
 
-  <!-- AMBIENT BLUE-WHITE-EMERALD PARTICLE VFX CANVAS -->
-  <canvas id="ambient-vfx-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-45"></canvas>
-
-  <!-- LIVE TOAST NOTIFICATION -->
-  <div id="cust-toast" class="fixed top-24 right-5 z-50 hidden studio-card p-4 rounded-2xl border-2 border-[#10B981] shadow-2xl max-w-sm transition-all">
+  <!-- LIVE STUDIO SYNC TOAST -->
+  <div id="cust-toast" class="fixed top-24 right-5 z-50 hidden gold-card p-4 border-2 border-[#F5D061] shadow-2xl max-w-sm">
     <div class="flex items-start gap-3">
-      <div id="cust-toast-icon" class="w-9 h-9 rounded-xl emerald-btn flex items-center justify-center text-lg shrink-0">✨</div>
+      <div id="cust-toast-icon" class="w-9 h-9 rounded-xl gold-btn flex items-center justify-center text-base shrink-0">✦</div>
       <div class="flex-1">
-        <span id="cust-toast-tag" class="font-mono text-[10px] uppercase tracking-widest text-emerald-300 block">LIVE STUDIO SYNC</span>
+        <span id="cust-toast-tag" class="font-mono text-[10px] uppercase tracking-widest text-[#F5D061] block">LIVE STUDIO SYNC</span>
         <h4 id="cust-toast-title" class="font-display font-bold text-sm text-white mt-0.5">Updated</h4>
-        <p id="cust-toast-body" class="text-xs text-slate-300 mt-1"></p>
+        <p id="cust-toast-body" class="text-xs text-zinc-300 mt-1"></p>
       </div>
-      <button type="button" onclick="hideCustToast()" class="text-slate-400 hover:text-white font-mono text-xs">✕</button>
+      <button type="button" onclick="hideCustToast()" class="text-zinc-400 hover:text-white font-mono text-xs">✕</button>
     </div>
   </div>
 
-  <!-- TOP UTILITY BAR + LUXURY NAVBAR -->
+  <!-- HEADER & LUXURY BRAND CREST -->
   <header class="fixed top-0 inset-x-0 z-40 glass-nav">
-    <div class="bg-gradient-to-r from-[#020813] via-[#0052CC] to-[#042F2E] border-b border-white/15 px-4 sm:px-8 py-1.5 text-[10px] sm:text-[11px] font-mono">
+    <div class="bg-[#0B0C10] border-b border-[#D4AF37]/20 px-4 sm:px-8 py-1.5 text-[10px] sm:text-[11px] font-mono">
       <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-        <div class="flex items-center gap-4 text-white">
-          <span class="text-emerald-300 font-bold">● LIVE STUDIO ERP CONNECTED</span>
-          <span class="hidden md:inline text-sky-100">📍 Bypass Road, Beside TVS Vajra Showroom, Khammam</span>
+        <div class="flex items-center gap-4">
+          <span class="text-[#F5D061] font-bold flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> LIVE BAY SCHEDULE SYNCED
+          </span>
+          <span class="hidden md:inline text-zinc-400">📍 Bypass Road, Beside TVS Vajra Showroom, Khammam</span>
         </div>
         <div class="flex items-center gap-4">
-          <a href="tel:09848088319" class="text-white hover:text-emerald-300 font-bold">📞 +91-98480-88319</a>
-          <span class="text-sky-200 hidden sm:inline">9AM – 9PM • 0-PPM SPOT-FREE BAY</span>
-          <button type="button" onclick="openBookingDrawer()" class="px-2.5 py-0.5 rounded bg-[#10B981] text-[#030917] font-extrabold uppercase">Instant Slot Lock</button>
+          <a href="tel:09848088319" class="text-white hover:text-[#F5D061] font-bold">📞 +91 98480 88319</a>
+          <span class="text-zinc-400 hidden sm:inline">9AM – 9PM • 0-PPM SPOT-FREE BAY</span>
         </div>
       </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-2">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
+      <!-- PUSHPA CAR GALLERY CUSTOM SVG CREST LOGO -->
       <a href="#top" class="flex items-center gap-3 group shrink-0">
-        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-[#0066FF] via-[#0284C7] to-[#10B981] p-0.5 shadow-lg">
-          <div class="w-full h-full bg-[#030917] rounded-[14px] flex flex-col items-center justify-center font-mono">
-            <span class="text-[10px] font-extrabold text-white leading-none">PUSHPA</span>
-            <span class="text-[8px] font-bold text-emerald-400 mt-0.5">STUDIO</span>
-          </div>
-        </div>
+        <svg class="w-11 h-11 sm:w-12 sm:h-12 shrink-0 drop-shadow-lg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="crestGold" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#FFF3C4"/>
+              <stop offset="45%" stop-color="#F5D061"/>
+              <stop offset="100%" stop-color="#997A15"/>
+            </linearGradient>
+          </defs>
+          <rect x="4" y="4" width="112" height="112" rx="26" fill="#0B0C10" stroke="url(#crestGold)" stroke-width="4"/>
+          <path d="M22 72 L34 48 Q44 36 60 36 Q76 36 86 48 L98 72" fill="none" stroke="url(#crestGold)" stroke-width="4" stroke-linecap="round"/>
+          <path d="M18 72 H102" stroke="url(#crestGold)" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="38" cy="74" r="8" fill="#0B0C10" stroke="url(#crestGold)" stroke-width="3.5"/>
+          <circle cx="82" cy="74" r="8" fill="#0B0C10" stroke="url(#crestGold)" stroke-width="3.5"/>
+          <text x="60" y="26" text-anchor="middle" fill="url(#crestGold)" font-family="Syne, sans-serif" font-weight="800" font-size="13" letter-spacing="1.5">PUSHPA</text>
+          <text x="60" y="102" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono, monospace" font-weight="700" font-size="9.5" letter-spacing="2">CAR GALLERY</text>
+        </svg>
         <div>
-          <span class="font-display font-extrabold tracking-wider text-xs sm:text-base block leading-none brand-gradient-text">PUSHPA CAR GALLERY</span>
-          <span class="font-mono text-[9px] sm:text-[10px] text-emerald-300 tracking-widest uppercase">Blue • White • Emerald Detailing</span>
+          <span class="font-display font-extrabold tracking-wider text-sm sm:text-lg block leading-none gold-text">PUSHPA CAR GALLERY</span>
+          <span class="font-mono text-[9px] sm:text-[10px] text-zinc-400 tracking-widest uppercase">24K Luxury Detailing &amp; PPF Studio</span>
         </div>
       </a>
 
-      <nav class="hidden xl:flex items-center gap-1 bg-white/[0.06] px-3 py-1.5 rounded-full border border-sky-400/30 text-[11px] font-mono uppercase tracking-wider text-white">
-        <a href="#wash-scrub" class="px-3 py-1.5 rounded-full hover:bg-[#0066FF] transition">01. Live Video</a>
-        <a href="#mafia-services" class="px-3 py-1.5 rounded-full hover:bg-[#0066FF] text-emerald-300 transition">02. Services</a>
-        <a href="#milkshake-bar" class="px-3 py-1.5 rounded-full hover:bg-[#0066FF] text-sky-300 transition">03. Customizer</a>
-        <a href="#ai-advisor" class="px-3 py-1.5 rounded-full hover:bg-[#0066FF] transition">04. AI Scanner</a>
-        <a href="#live-tracker" class="px-3 py-1.5 rounded-full hover:bg-[#0066FF] text-emerald-300 transition">05. Bay Tracker</a>
-        <a href="#packages" class="px-3 py-1.5 rounded-full hover:bg-[#0066FF] transition">06. Packages</a>
-        <a href="#accessories-shop" class="px-3 py-1.5 rounded-full hover:bg-[#0066FF] transition">07. Store</a>
+      <!-- SYSTEMATIC NAVIGATION -->
+      <nav class="hidden xl:flex items-center gap-1 bg-white/[0.04] px-2.5 py-1.5 rounded-full border border-[#D4AF37]/25 text-[11px] font-mono uppercase tracking-wider text-zinc-200">
+        <a href="#cinema-hero" class="px-3 py-1.5 rounded-full hover:bg-[#D4AF37] hover:text-black transition">01. Studio Live</a>
+        <a href="#slot-matrix" class="px-3 py-1.5 rounded-full hover:bg-[#D4AF37] hover:text-black text-[#F5D061] transition">02. Live Slots</a>
+        <a href="#services" class="px-3 py-1.5 rounded-full hover:bg-[#D4AF37] hover:text-black transition">03. Treatments</a>
+        <a href="#customizer" class="px-3 py-1.5 rounded-full hover:bg-[#D4AF37] hover:text-black transition">04. Custom Build</a>
+        <a href="#live-tracker" class="px-3 py-1.5 rounded-full hover:bg-[#D4AF37] hover:text-black transition">05. Track Car</a>
+        <a href="#store" class="px-3 py-1.5 rounded-full hover:bg-[#D4AF37] hover:text-black transition">06. Accessories</a>
       </nav>
 
-      <div class="flex items-center gap-1.5 sm:gap-2">
-        <button type="button" onclick="openFirebaseConsoleModal()" id="fb-status-pill" class="px-3 py-2 rounded-full bg-emerald-500/15 border border-emerald-400/50 font-mono text-[10px] text-emerald-200 hover:bg-emerald-500/25 transition flex items-center gap-1.5">
-          <span id="fb-dot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span class="hidden md:inline" id="fb-pill-text">ERP Synced</span>
-        </button>
-        <button type="button" onclick="toggleCustomerSfx()" id="cust-sfx-btn" class="px-2.5 py-2 rounded-full bg-white/10 border border-white/20 font-mono text-xs text-sky-300" title="Toggle Sound FX">🔊</button>
-        <button type="button" onclick="toggleCartDrawer(true)" class="relative px-3.5 py-2 rounded-full bg-white text-[#030917] font-bold border-2 border-[#0066FF] hover:border-[#10B981] transition flex items-center gap-1.5 font-mono text-xs shadow-md">
+      <!-- ACTION CONTROLS -->
+      <div class="flex items-center gap-2">
+        <span id="fb-pill-text" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-[#D4AF37]/30 font-mono text-[10px] text-[#F5D061]">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> ERP Synced
+        </span>
+        <button type="button" onclick="toggleCartDrawer(true)" class="relative px-3.5 py-2 rounded-full bg-white text-black font-bold border border-[#D4AF37] hover:bg-[#F5D061] transition flex items-center gap-1.5 font-mono text-xs">
           <span>🛒</span>
-          <span class="hidden sm:inline">Cart</span>
-          <span id="nav-cart-count" class="px-1.5 py-0.5 rounded-full bg-[#10B981] text-[#030917] font-extrabold text-[10px]">0</span>
+          <span id="nav-cart-count" class="px-1.5 py-0.5 rounded-full bg-black text-[#F5D061] font-extrabold text-[10px]">0</span>
         </button>
-        <button type="button" onclick="openBookingDrawer()" class="px-4 sm:px-5 py-2.5 rounded-full emerald-btn font-mono text-xs uppercase tracking-wider">
+        <a href="#slot-matrix" class="px-4 sm:px-5 py-2.5 rounded-full gold-btn font-mono text-xs uppercase tracking-wider">
           Book Slot →
-        </button>
+        </a>
       </div>
     </div>
   </header>
 
   <div id="top"></div>
 
-  <!-- SECTION 1: FULL-VIEWPORT (100VH) VIDEO HERO SYNCED TO video_1.mp4 -->
-  <section id="wash-scrub" class="relative w-full min-h-screen flex flex-col justify-between pt-28 sm:pt-32 pb-8 px-4 sm:px-10 overflow-hidden z-10">
-    <!-- FULL-SCREEN BACKGROUND VIDEO LAYER -->
-    <div id="hero-video-panel" class="absolute inset-0 w-full h-full z-0 bg-[#020712]">
-      <video id="studio-hero-video" class="w-full h-full object-cover" autoplay loop muted playsinline preload="auto">
+  <!-- SECTION 1: FULL-BLEED VIDEO & PROCEDURAL 4-STAGE DETAILING HERO -->
+  <section id="cinema-hero" class="relative w-full min-h-screen flex flex-col justify-between pt-28 sm:pt-32 pb-8 px-4 sm:px-10 overflow-hidden">
+    <!-- Video + Procedural Canvas Simulation Layer -->
+    <div class="absolute inset-0 w-full h-full z-0 bg-[#06070A]">
+      <canvas id="procedural-detailing-canvas" class="absolute inset-0 w-full h-full object-cover"></canvas>
+      <video id="studio-hero-video" class="relative w-full h-full object-cover opacity-90" autoplay loop muted playsinline preload="auto" onerror="this.style.display='none'">
         <source src="video_1.mp4" type="video/mp4" />
       </video>
-      <canvas id="foam-spray-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-10"></canvas>
-      <div class="absolute inset-0 bg-gradient-to-r from-[#020816]/88 via-[#041533]/40 to-[#020816]/80 pointer-events-none"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-[#030917] via-transparent to-[#030917]/65 pointer-events-none"></div>
+      <canvas id="foam-burst-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-10"></canvas>
+      <div class="absolute inset-0 bg-gradient-to-r from-[#06070A]/92 via-[#06070A]/55 to-[#06070A]/85 pointer-events-none"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#06070A] via-transparent to-[#06070A]/70 pointer-events-none"></div>
     </div>
 
-    <!-- Top Hero Telemetry & Mode Switcher -->
-    <div class="relative z-20 max-w-7xl w-full mx-auto flex flex-wrap items-center justify-between gap-3 border-b border-white/20 pb-3">
+    <!-- Top Live Studio Telemetry Bar -->
+    <div class="relative z-20 max-w-7xl w-full mx-auto flex flex-wrap items-center justify-between gap-3 border-b border-[#D4AF37]/25 pb-3">
       <div class="flex flex-wrap items-center gap-2">
-        <span id="scrub-stage-badge" class="font-mono text-[11px] uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-[#0066FF]/85 border border-sky-300 text-white shadow-lg backdrop-blur-md">
-          🎬 LIVE BAY VIDEO // 01: 3pH ACTIVE SNOW FOAM BATH
+        <span id="scrub-stage-badge" class="font-mono text-[11px] uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-black/80 border border-[#D4AF37] text-[#F5D061] backdrop-blur-md">
+          🎬 STUDIO BAY LIVE // 01: 3pH ACTIVE SNOW FOAM BATH
         </span>
-        <div class="flex items-center gap-1 bg-black/75 p-1 rounded-full border border-white/25 font-mono text-[10px] backdrop-blur-md">
-          <button type="button" id="hero-mode-video" onclick="switchHeroMode('video')" class="px-3.5 py-1.5 rounded-full emerald-btn uppercase transition">🎬 HD Cinema Video</button>
-          <button type="button" id="hero-mode-scrub" onclick="switchHeroMode('scrub')" class="px-3.5 py-1.5 rounded-full text-white hover:text-emerald-300 uppercase transition">⇄ Laser Split-Wipe</button>
-          <button type="button" id="hero-mode-frames" onclick="switchHeroMode('frames')" class="px-3.5 py-1.5 rounded-full text-white hover:text-emerald-300 uppercase transition">🎞️ 4-Stage Gallery</button>
+        <div class="flex items-center gap-1 bg-black/80 p-1 rounded-full border border-white/15 font-mono text-[10px] backdrop-blur-md">
+          <button type="button" id="hero-mode-video" onclick="switchHeroMode('video')" class="px-3 py-1 rounded-full gold-btn uppercase">🎬 Live Stage</button>
+          <button type="button" id="hero-mode-scrub" onclick="switchHeroMode('scrub')" class="px-3 py-1 rounded-full text-zinc-300 hover:text-white uppercase">⇄ Before / After</button>
         </div>
       </div>
 
-      <div class="flex items-center gap-3 font-mono text-xs bg-black/70 px-4 py-1.5 rounded-full border border-emerald-400/40 backdrop-blur-md">
-        <div><span class="text-sky-300">CLARITY:</span> <span id="gloss-meter" class="text-white font-bold">99.8%</span></div>
-        <span class="text-white/30">|</span>
-        <div><span class="text-sky-300">HYDRO ANGLE:</span> <span class="text-emerald-400 font-bold">118.0°</span></div>
-        <span class="text-white/30 hidden sm:inline">|</span>
-        <div class="hidden sm:block"><span class="text-sky-300">BAY WATER:</span> <span class="text-white font-bold">0 PPM</span></div>
+      <div class="flex items-center gap-3 font-mono text-xs bg-black/80 px-4 py-1.5 rounded-full border border-[#D4AF37]/30 backdrop-blur-md">
+        <div><span class="text-zinc-400">GLOSS:</span> <span class="text-white font-bold">99.8%</span></div>
+        <span class="text-zinc-600">|</span>
+        <div><span class="text-zinc-400">BEADING:</span> <span class="text-[#F5D061] font-bold">118.0°</span></div>
+        <span class="text-zinc-600 hidden sm:inline">|</span>
+        <div class="hidden sm:block"><span class="text-zinc-400">WATER:</span> <span class="text-emerald-400 font-bold">0 PPM</span></div>
       </div>
     </div>
 
-    <!-- Center Hero Typography + Quick Quote Card -->
-    <div class="relative z-20 max-w-7xl w-full mx-auto my-auto py-6">
-      <div id="hero-overlay-copy" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-        <div class="lg:col-span-8 space-y-4">
-          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white text-[#030917] font-mono text-[11px] font-extrabold uppercase tracking-widest shadow-xl border-2 border-[#10B981]">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-ping"></span>
-            <span>PERFECTION IS IN THE DETAIL • KHAMMAM'S #1 STUDIO</span>
+    <!-- Center Hero Content -->
+    <div class="relative z-20 max-w-7xl w-full mx-auto my-auto py-8">
+      <div id="hero-main-grid" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-5">
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/80 text-[#F5D061] font-mono text-[11px] font-bold uppercase tracking-widest border border-[#D4AF37]/60">
+            <span class="w-2 h-2 rounded-full bg-[#F5D061] animate-ping"></span>
+            <span>KHAMMAM'S PREMIER AUTOMOTIVE DETAILING STUDIO</span>
           </div>
-          <h1 class="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl uppercase tracking-tight leading-[0.94] drop-shadow-2xl">
-            <span class="text-white">“DETAILING IS NOT A SKILL,</span><br/>
-            <span class="brand-gradient-text">IT'S AN ATTITUDE!”</span>
+          <h1 class="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl uppercase tracking-tight leading-[0.95]">
+            <span class="text-white">PERFECTION IS</span><br/>
+            <span class="gold-text">IN THE DETAIL.</span>
           </h1>
-          <p class="text-xs sm:text-base text-slate-100 max-w-2xl leading-relaxed bg-[#030917]/75 backdrop-blur-md p-4 rounded-2xl border border-emerald-400/35">
-            Experience <strong class="text-emerald-300">Pushpa Car Gallery</strong> on Khammam Bypass Road — featuring <strong class="text-sky-300">3pH Active Snow Foam</strong>, <strong class="text-white">Zentool Rotary Paint Correction</strong>, and <strong class="text-emerald-300">5-Year 9H Ceramic &amp; Self-Healing TPU PPF</strong>. Every slot and order syncs live to our studio POS!
+          <p class="text-xs sm:text-base text-zinc-300 max-w-xl leading-relaxed">
+            Precision <strong class="text-white">3pH Active Snow Foam</strong>, <strong class="text-[#F5D061]">Rotary Paint Correction</strong>, and <strong class="text-white">5-Year 9H Ceramic &amp; Self-Healing TPU PPF</strong>. View real-time bay availability and lock your exact time slot online.
           </p>
-          <div class="flex flex-wrap items-center gap-3 pt-1">
-            <button type="button" onclick="openBookingDrawer()" class="px-7 py-4 rounded-full emerald-btn font-mono text-xs uppercase tracking-widest shadow-2xl">
-              ⚡ Book Studio Bay Slot →
-            </button>
-            <button type="button" onclick="triggerFoamCannonBlast()" class="px-5 py-4 rounded-full royal-btn font-mono text-xs uppercase tracking-wider shadow-xl">
-              💨 Spray Snow Foam
-            </button>
-            <button type="button" onclick="toggleHeroVideoPlay()" id="video-play-btn" class="px-4 py-3.5 rounded-full bg-white/15 border border-white/30 text-white font-mono text-xs hover:border-emerald-400 backdrop-blur-md">
-              ⏸ Pause
-            </button>
-            <button type="button" onclick="toggleHeroVideoSpeed()" id="video-speed-btn" class="px-4 py-3.5 rounded-full bg-white/15 border border-white/30 text-emerald-300 font-mono text-xs backdrop-blur-md">
-              1.0x
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <a href="#slot-matrix" class="px-7 py-4 rounded-full gold-btn font-mono text-xs uppercase tracking-widest">
+              📅 Check Live Slots &amp; Book →
+            </a>
+            <button type="button" onclick="triggerFoamCannonBlast()" class="px-5 py-4 rounded-full gold-outline-btn font-mono text-xs uppercase tracking-wider">
+              💨 Demo Snow Foam
             </button>
           </div>
         </div>
 
-        <!-- Right Floating Instant Quote Card (Synced with ERP Packages) -->
-        <div class="lg:col-span-4 white-luxe-card p-6 space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <!-- Right Quick Quote & Live Slot Preview Card -->
+        <div class="lg:col-span-5 ivory-card p-6 sm:p-7 space-y-4">
+          <div class="flex items-center justify-between border-b border-zinc-200 pb-3">
             <div>
-              <span class="font-mono text-[10px] uppercase tracking-widest text-[#0066FF] font-bold block">REAL-TIME ERP PRICING</span>
-              <h3 class="font-display font-extrabold text-lg uppercase text-[#030917]">INSTANT STUDIO QUOTE</h3>
+              <span class="font-mono text-[10px] uppercase tracking-widest text-[#997A15] font-bold block">INSTANT ESTIMATE &amp; AVAILABILITY</span>
+              <h3 class="font-display font-extrabold text-lg uppercase text-black">QUICK STUDIO QUOTE</h3>
             </div>
-            <span class="px-2.5 py-1 rounded-full bg-[#10B981] text-[#030917] font-mono text-[10px] font-extrabold">LIVE SYNC</span>
+            <span id="hero-free-slots-badge" class="px-3 py-1 rounded-full bg-black text-[#F5D061] font-mono text-[10px] font-bold">8 SLOTS FREE TODAY</span>
           </div>
-          <div class="space-y-2.5 text-xs">
+
+          <div class="space-y-3 text-xs">
             <div>
-              <label class="font-mono text-[10px] uppercase text-slate-600 font-bold block mb-1">Select Treatment Package</label>
-              <select id="hero-quick-service" class="w-full bg-slate-100 border border-slate-300 rounded-xl px-3 py-2.5 text-xs text-[#030917] font-bold"></select>
+              <label class="font-mono text-[10px] uppercase text-zinc-600 font-bold block mb-1">1. Vehicle Segment</label>
+              <div class="grid grid-cols-3 gap-1.5 font-mono text-[11px]">
+                <button type="button" onclick="setGlobalTier('basePrice', 'Hatchback', this)" class="global-tier-btn py-2 rounded-xl bg-black text-[#F5D061] font-bold">Hatchback</button>
+                <button type="button" onclick="setGlobalTier('sedanPrice', 'Sedan', this)" class="global-tier-btn py-2 rounded-xl bg-zinc-100 text-zinc-700 font-bold border border-zinc-300">Sedan</button>
+                <button type="button" onclick="setGlobalTier('suvPrice', 'SUV / MUV', this)" class="global-tier-btn py-2 rounded-xl bg-zinc-100 text-zinc-700 font-bold border border-zinc-300">SUV / MUV</button>
+              </div>
             </div>
-            <div class="p-3.5 rounded-xl bg-[#030917] text-white border border-emerald-400/50">
-              <div class="font-mono text-[10px] text-emerald-300 font-bold" id="step-live-number">01. 3pH ACTIVE SNOW FOAM (00:00 - 03:40)</div>
-              <p class="text-[11px] text-slate-200 mt-1 leading-snug" id="step-live-desc">
-                Thick alkaline snow foam encapsulates abrasive road grit on the black AMG GT before zero-contact hydro rinsing.
-              </p>
+            <div>
+              <label class="font-mono text-[10px] uppercase text-zinc-600 font-bold block mb-1">2. Select Detailing Package</label>
+              <select id="hero-quick-service" onchange="syncHeroPackageChoice(this.value)" class="w-full bg-zinc-100 border border-zinc-300 rounded-xl px-3.5 py-2.5 text-xs text-black font-bold"></select>
             </div>
-            <button type="button" onclick="openBookingDrawer(document.getElementById('hero-quick-service').value)" class="w-full py-3.5 rounded-xl emerald-btn font-mono text-xs uppercase tracking-wider">
-              Lock Bay Slot Now →
-            </button>
+            <div class="p-3.5 rounded-xl bg-[#0B0C10] text-white border border-[#D4AF37]/50 flex items-center justify-between">
+              <div>
+                <span class="font-mono text-[10px] text-[#F5D061] block" id="step-live-number">STAGE 01 • 3pH SNOW FOAM</span>
+                <span class="text-[11px] text-zinc-300" id="step-live-desc">Zero-contact pH-neutral snow foam encapsulation</span>
+              </div>
+              <span id="hero-quote-price" class="font-display font-extrabold text-2xl gold-text">₹499</span>
+            </div>
+            <a href="#slot-matrix" class="block text-center w-full py-3.5 rounded-xl gold-btn font-mono text-xs uppercase tracking-wider">
+              Select Time Slot Below →
+            </a>
           </div>
         </div>
       </div>
 
-      <!-- MODE B: INTERACTIVE BEFORE/AFTER LASER SPLIT-WIPE -->
-      <div id="hero-scrub-panel" class="hidden relative w-full aspect-[16/9] max-h-[64vh] rounded-[26px] overflow-hidden border-2 border-[#10B981] shadow-2xl select-none cursor-ew-resize bg-black">
+      <!-- INTERACTIVE LASER BEFORE/AFTER SPLIT WIPE -->
+      <div id="hero-scrub-panel" class="hidden relative w-full aspect-[16/9] max-h-[60vh] rounded-3xl overflow-hidden border-2 border-[#D4AF37] shadow-2xl select-none cursor-ew-resize bg-black">
         <div class="absolute inset-0 w-full h-full">
-          <img data-img-asset="mirror" alt="9H Mirror Finish" class="w-full h-full object-cover object-center" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/25"></div>
-          <div class="absolute top-4 right-5 font-mono text-[11px] uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-[#10B981] text-[#030917] font-extrabold shadow-lg">
-            ✦ AFTER (09:00): 9H CERAMIC MIRROR REVEAL
-          </div>
+          <img data-img-asset="mirror" alt="9H Mirror Finish" class="w-full h-full object-cover" />
+          <div class="absolute top-4 right-5 font-mono text-[11px] uppercase px-3.5 py-1.5 rounded-full gold-btn">✦ AFTER: 9H CERAMIC MIRROR</div>
         </div>
-
-        <div id="dirty-car-clip" class="absolute inset-0 w-full h-full overflow-hidden" style="clip-path: inset(0 45% 0 0);">
-          <img data-img-asset="foam" alt="3pH Snow Foam Pre-Wash" class="w-full h-full object-cover object-center" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/25"></div>
-          <div class="absolute top-4 left-5 font-mono text-[11px] uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-white text-[#030917] font-extrabold border-2 border-[#0066FF]">
-            💨 STAGE 01 (00:01): 3pH SNOW FOAM BLANKET
-          </div>
+        <div id="dirty-car-clip" class="absolute inset-0 w-full h-full overflow-hidden" style="clip-path: inset(0 50% 0 0);">
+          <img data-img-asset="foam" alt="3pH Snow Foam" class="w-full h-full object-cover" />
+          <div class="absolute top-4 left-5 font-mono text-[11px] uppercase px-3.5 py-1.5 rounded-full bg-white text-black font-extrabold">💨 STAGE 01: 3pH SNOW FOAM</div>
         </div>
-
-        <div id="wash-laser-line" class="absolute top-0 bottom-0 w-1.5 bg-gradient-to-b from-white via-[#38BDF8] to-[#10B981] laser-glow z-30" style="left: 55%;">
-          <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-[#030917] border-2 border-[#10B981] flex items-center justify-center shadow-2xl">
-            <span class="font-mono text-xs text-emerald-300 font-bold">⇄</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- MODE C: 4-STAGE HD VIDEO FRAME INSPECTOR -->
-      <div id="hero-frames-panel" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div onclick="switchHeroMode('video'); jumpHeroVideo(0.5);" class="studio-card overflow-hidden cursor-pointer">
-          <img data-img-asset="foam" alt="Stage 1 Foam" class="w-full h-48 object-cover" />
-          <div class="p-5">
-            <span class="font-mono text-[10px] text-sky-300">STAGE 01 • 00:00 – 03:40</span>
-            <h4 class="font-display font-bold text-sm uppercase mt-1 text-white">3pH Active Snow Foam</h4>
-            <p class="text-xs text-slate-300 mt-1">High-density snow foam blankets the bodywork to dissolve traffic film without swirls.</p>
-          </div>
-        </div>
-        <div onclick="switchHeroMode('video'); jumpHeroVideo(4.0);" class="studio-card overflow-hidden cursor-pointer">
-          <img data-img-asset="rinse" alt="Stage 2 Rinse" class="w-full h-48 object-cover" />
-          <div class="p-5">
-            <span class="font-mono text-[10px] text-emerald-300">STAGE 02 • 03:40 – 05:00</span>
-            <h4 class="font-display font-bold text-sm uppercase mt-1 text-white">0-PPM De-Ionized Rinse</h4>
-            <p class="text-xs text-slate-300 mt-1">Spot-free high-pressure rinse sheets away emulsified grit from headlamps and grille.</p>
-          </div>
-        </div>
-        <div onclick="switchHeroMode('video'); jumpHeroVideo(6.2);" class="studio-card overflow-hidden cursor-pointer">
-          <img data-img-asset="polish" alt="Stage 3 Polish" class="w-full h-48 object-cover" />
-          <div class="p-5">
-            <span class="font-mono text-[10px] text-sky-300">STAGE 03 • 05:00 – 08:40</span>
-            <h4 class="font-display font-bold text-sm uppercase mt-1 text-white">Zentool Rotary Correction</h4>
-            <p class="text-xs text-slate-300 mt-1">Yellow Lake Country compounding pad levels micro-scratches and oxidation to 99.8% clarity.</p>
-          </div>
-        </div>
-        <div onclick="switchHeroMode('video'); jumpHeroVideo(9.0);" class="studio-card overflow-hidden cursor-pointer">
-          <img data-img-asset="mirror" alt="Stage 4 Mirror" class="w-full h-48 object-cover" />
-          <div class="p-5">
-            <span class="font-mono text-[10px] text-emerald-300">STAGE 04 • 08:40 – 09:95</span>
-            <h4 class="font-display font-bold text-sm uppercase mt-1 text-white">9H Mirror Shield Reveal</h4>
-            <p class="text-xs text-slate-300 mt-1">Cured 118° super-hydrophobic ceramic armor under studio inspection lighting.</p>
-          </div>
+        <div id="wash-laser-line" class="absolute top-0 bottom-0 w-1 bg-[#F5D061] shadow-[0_0_25px_#F5D061] z-30" style="left: 50%;">
+          <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-11 h-11 rounded-full bg-black border-2 border-[#F5D061] flex items-center justify-center font-mono text-xs text-[#F5D061] font-bold">⇄</div>
         </div>
       </div>
     </div>
 
-    <!-- Bottom Video Chapter Scrubber synced to exact timestamps of video_1.mp4 -->
+    <!-- Bottom 4-Stage Video Scrubber -->
     <div class="relative z-20 max-w-7xl w-full mx-auto space-y-2.5">
-      <div class="flex items-center justify-between text-[11px] font-mono text-sky-200 px-1">
-        <span id="video-live-caption" class="text-emerald-300 font-bold">STAGE 01 (00:00) • HIGH-DENSITY ACTIVE SNOW FOAM DECONTAMINATION</span>
-        <span id="video-timecode" class="text-white font-bold">00.0s / 10.0s</span>
-      </div>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono text-[10px]">
-        <button type="button" onclick="jumpHeroVideo(0.2)" id="vchap-0" class="vchap-btn p-3 rounded-2xl bg-[#030917]/90 border-2 border-[#10B981] text-left backdrop-blur-md transition">
-          <div class="text-emerald-300 font-bold">01. 3pH SNOW FOAM</div>
-          <div class="text-white text-[9px]">00:00 – 03:40 • Alkaline Pre-Wash</div>
+        <button type="button" onclick="jumpHeroStage(0)" id="vchap-0" class="vchap-btn p-3 rounded-xl bg-black/85 border-2 border-[#F5D061] text-left backdrop-blur-md">
+          <div class="text-[#F5D061] font-bold">01. 3pH SNOW FOAM</div>
+          <div class="text-zinc-300 text-[9px]">Alkaline Grit Encapsulation</div>
         </button>
-        <button type="button" onclick="jumpHeroVideo(3.8)" id="vchap-1" class="vchap-btn p-3 rounded-2xl bg-[#030917]/75 border border-sky-400/30 text-left hover:border-[#10B981] backdrop-blur-md transition">
+        <button type="button" onclick="jumpHeroStage(1)" id="vchap-1" class="vchap-btn p-3 rounded-xl bg-black/70 border border-white/15 text-left hover:border-[#D4AF37] backdrop-blur-md">
           <div class="text-white font-bold">02. 0-PPM HYDRO RINSE</div>
-          <div class="text-sky-200 text-[9px]">03:40 – 05:00 • Grille &amp; Headlamp Sheet</div>
+          <div class="text-zinc-400 text-[9px]">De-Ionized Spot-Free Sheet</div>
         </button>
-        <button type="button" onclick="jumpHeroVideo(5.8)" id="vchap-2" class="vchap-btn p-3 rounded-2xl bg-[#030917]/75 border border-sky-400/30 text-left hover:border-[#10B981] backdrop-blur-md transition">
-          <div class="text-white font-bold">03. ZENTOOL ROTARY POLISH</div>
-          <div class="text-sky-200 text-[9px]">05:00 – 08:40 • Yellow Pad Cut &amp; Gloss</div>
+        <button type="button" onclick="jumpHeroStage(2)" id="vchap-2" class="vchap-btn p-3 rounded-xl bg-black/70 border border-white/15 text-left hover:border-[#D4AF37] backdrop-blur-md">
+          <div class="text-white font-bold">03. ROTARY CORRECTION</div>
+          <div class="text-zinc-400 text-[9px]">Swirl &amp; Haze Removal</div>
         </button>
-        <button type="button" onclick="jumpHeroVideo(8.8)" id="vchap-3" class="vchap-btn p-3 rounded-2xl bg-[#030917]/75 border border-sky-400/30 text-left hover:border-[#10B981] backdrop-blur-md transition">
-          <div class="text-white font-bold">04. 9H MIRROR FINISH</div>
-          <div class="text-sky-200 text-[9px]">08:40 – 09:95 • 118° Ceramic Reveal</div>
-        </button>
-      </div>
-      <div class="w-full bg-white/25 h-2.5 rounded-full overflow-hidden cursor-pointer" onclick="scrubVideoTimeline(event)">
-        <div id="video-progress-bar" class="h-full bg-gradient-to-r from-[#0066FF] via-[#38BDF8] to-[#10B981] w-1/4 transition-all duration-75"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 2: 6 SIGNATURE SERVICES (CRISP WHITE, ROYAL BLUE & EMERALD GREEN) -->
-  <section id="mafia-services" class="py-20 px-4 sm:px-10 bg-white text-[#030917] border-t-4 border-[#10B981] relative z-10">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-        <div>
-          <span class="font-mono text-xs uppercase tracking-widest px-3.5 py-1 rounded-full bg-[#0066FF] text-white font-bold">SHOWROOM PRECISION • KHAMMAM BYPASS STUDIO</span>
-          <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-3 text-[#030917]">
-            WHERE THE REAL <span class="text-[#0066FF]">MAGIC</span> <span class="text-[#059669]">HAPPENS</span>
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-600 mt-2 max-w-2xl">
-            Every treatment below is live-linked with our Owner ERP &amp; POS terminal for instant time-slot reservation and digital warranty issuance.
-          </p>
-        </div>
-        <button type="button" onclick="openBookingDrawer()" class="px-6 py-3.5 rounded-full emerald-btn font-mono text-xs uppercase self-start">
-          Book Studio Slot →
+        <button type="button" onclick="jumpHeroStage(3)" id="vchap-3" class="vchap-btn p-3 rounded-xl bg-black/70 border border-white/15 text-left hover:border-[#D4AF37] backdrop-blur-md">
+          <div class="text-white font-bold">04. 9H MIRROR ARMOR</div>
+          <div class="text-zinc-400 text-[9px]">118° Hydrophobic Curing</div>
         </button>
       </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="white-luxe-card p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="w-11 h-11 rounded-2xl bg-[#030917] text-emerald-400 flex items-center justify-center text-xl font-bold">🛡️</span>
-              <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-bold">5-YR WARRANTY</span>
-            </div>
-            <h3 class="font-display font-extrabold text-xl uppercase text-[#030917]">01. 9H CERAMIC MIRROR SHIELD</h3>
-            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
-              Powered by Labocosmetica &amp; Opti-Coat chemistry. Multi-stage rotary correction followed by a permanent 9H super-hydrophobic glass bond (118° water beading).
-            </p>
-          </div>
-          <div class="pt-4 mt-4 border-t border-slate-200 flex items-center justify-between">
-            <span class="font-mono text-xs font-extrabold text-[#0066FF]">From ₹11,999</span>
-            <button type="button" onclick="openBookingDrawer('9H Ceramic Mirror Shield')" class="px-4 py-2 rounded-full bg-[#030917] text-emerald-300 font-mono text-[11px] font-bold uppercase hover:bg-[#0066FF] hover:text-white transition">Book Ceramic →</button>
-          </div>
-        </div>
-
-        <div class="white-luxe-card p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="w-11 h-11 rounded-2xl bg-[#0066FF] text-white flex items-center justify-center text-xl font-bold">💎</span>
-              <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-sky-100 text-[#0066FF] font-bold">SELF-HEALING TPU</span>
-            </div>
-            <h3 class="font-display font-extrabold text-xl uppercase text-[#030917]">02. ULTRASHIELDX PPF ARMOR</h3>
-            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
-              Lubrizol TPU Series (Ultra Crystal Gloss &amp; Stealth Matte). Self-heals swirl marks with warm sunlight and shields against highway stone chips.
-            </p>
-          </div>
-          <div class="pt-4 mt-4 border-t border-slate-200 flex items-center justify-between">
-            <span class="font-mono text-xs font-extrabold text-[#059669]">Edge-to-Edge TPU</span>
-            <button type="button" onclick="openBookingDrawer('9H Ceramic Mirror Shield')" class="px-4 py-2 rounded-full bg-[#030917] text-emerald-300 font-mono text-[11px] font-bold uppercase hover:bg-[#0066FF] hover:text-white transition">Enquire PPF →</button>
-          </div>
-        </div>
-
-        <div class="white-luxe-card p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="w-11 h-11 rounded-2xl bg-[#10B981] text-[#030917] flex items-center justify-center text-xl font-bold">✨</span>
-              <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-bold">6-MO GLOSS</span>
-            </div>
-            <h3 class="font-display font-extrabold text-xl uppercase text-[#030917]">03. 3M TEFLON &amp; D.A. POLISH</h3>
-            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
-              Zentool dual-action compounding with Lake Country pads to remove oxidation, spider-web swirls, and hard-water etching.
-            </p>
-          </div>
-          <div class="pt-4 mt-4 border-t border-slate-200 flex items-center justify-between">
-            <span class="font-mono text-xs font-extrabold text-[#0066FF]">From ₹2,499</span>
-            <button type="button" onclick="openBookingDrawer('3M Teflon & Plastic Restoration')" class="px-4 py-2 rounded-full bg-[#030917] text-emerald-300 font-mono text-[11px] font-bold uppercase hover:bg-[#0066FF] hover:text-white transition">Book Polish →</button>
-          </div>
-        </div>
-
-        <div class="white-luxe-card p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="w-11 h-11 rounded-2xl bg-[#0066FF] text-white flex items-center justify-center text-xl font-bold">💨</span>
-              <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-bold">0-PPM SPOT-FREE</span>
-            </div>
-            <h3 class="font-display font-extrabold text-xl uppercase text-[#030917]">04. 3pH SNOW FOAM &amp; STEAM WASH</h3>
-            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
-              Signature 3-stage pH snow foam wash with Grit Guard two-bucket safety, underbody blast, alloy iron decon, and spot-free rinse.
-            </p>
-          </div>
-          <div class="pt-4 mt-4 border-t border-slate-200 flex items-center justify-between">
-            <span class="font-mono text-xs font-extrabold text-[#0066FF]">From ₹499</span>
-            <button type="button" onclick="openBookingDrawer('Snow Foam & Spot-Free Wash')" class="px-4 py-2 rounded-full bg-[#030917] text-emerald-300 font-mono text-[11px] font-bold uppercase hover:bg-[#0066FF] hover:text-white transition">Book Wash →</button>
-          </div>
-        </div>
-
-        <div class="white-luxe-card p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="w-11 h-11 rounded-2xl bg-[#030917] text-sky-300 flex items-center justify-center text-xl font-bold">🪟</span>
-              <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-sky-100 text-[#0066FF] font-bold">118° ANTI-RAIN</span>
-            </div>
-            <h3 class="font-display font-extrabold text-xl uppercase text-[#030917]">05. HYDROPHOBIC GLASS SHIELD</h3>
-            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
-              118° anti-rain windshield coating and UV sun-control window films for zero-wiper highway clarity during heavy monsoon downpours.
-            </p>
-          </div>
-          <div class="pt-4 mt-4 border-t border-slate-200 flex items-center justify-between">
-            <span class="font-mono text-xs font-extrabold text-[#0066FF]">Add-On ₹499</span>
-            <button type="button" onclick="openBookingDrawer('Snow Foam & Spot-Free Wash')" class="px-4 py-2 rounded-full bg-[#030917] text-emerald-300 font-mono text-[11px] font-bold uppercase hover:bg-[#0066FF] hover:text-white transition">Book Glass →</button>
-          </div>
-        </div>
-
-        <div class="white-luxe-card p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="w-11 h-11 rounded-2xl bg-[#10B981] text-[#030917] flex items-center justify-center text-xl font-bold">💺</span>
-              <span class="font-mono text-[10px] px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-bold">OZONE SANITIZED</span>
-            </div>
-            <h3 class="font-display font-extrabold text-xl uppercase text-[#030917]">06. DEEP INTERIOR &amp; OZONE SPA</h3>
-            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
-              Hot-water upholstery extraction, Detail Factory soft-bristle AC vent steam sanitization, Napa leather conditioning, and odour elimination.
-            </p>
-          </div>
-          <div class="pt-4 mt-4 border-t border-slate-200 flex items-center justify-between">
-            <span class="font-mono text-xs font-extrabold text-[#0066FF]">From ₹1,799</span>
-            <button type="button" onclick="openBookingDrawer('Deep Interior Extraction & Ozone')" class="px-4 py-2 rounded-full bg-[#030917] text-emerald-300 font-mono text-[11px] font-bold uppercase hover:bg-[#0066FF] hover:text-white transition">Book Interior →</button>
-          </div>
-        </div>
+      <div class="w-full bg-white/15 h-1.5 rounded-full overflow-hidden">
+        <div id="video-progress-bar" class="h-full bg-gradient-to-r from-[#D4AF37] to-[#FFF3C4] w-1/4 transition-all duration-150"></div>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 3: CUSTOM DETAILING CONFIGURATOR (SYNCED WITH ERP PACKAGES & ADD201-ADD206) -->
-  <section id="milkshake-bar" class="py-20 px-4 sm:px-10 bg-gradient-to-b from-[#030917] via-[#061A3A] to-[#030917] border-t border-sky-400/25 relative z-10">
+  <!-- SECTION 2: SYSTEMATIC REAL-TIME BAY SLOT BOOKING MATRIX (CUSTOMER <-> ADMIN SYNCED) -->
+  <section id="slot-matrix" class="py-20 px-4 sm:px-10 bg-[#0B0C10] border-y border-[#D4AF37]/25">
     <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
         <div>
-          <span class="font-mono text-xs uppercase tracking-widest text-emerald-300">✦ BESPOKE STUDIO TREATMENT BUILDER • ERP SYNCED</span>
-          <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-1 brand-gradient-text">
-            BUILD YOUR CUSTOM DETAIL
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-300 mt-2 max-w-2xl">
-            Select your primary wash or coating base, then layer our 6 studio protection add-ons (<code class="text-emerald-300">ADD201–ADD206</code>). Your custom build syncs straight into the Owner POS terminal!
+          <span class="font-mono text-xs uppercase tracking-widest text-[#F5D061]">● REAL-TIME BAY TELEMETRY • INSTANT ERP LOCK</span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-1 gold-text">LIVE STUDIO SLOT SCHEDULE</h2>
+          <p class="text-xs sm:text-sm text-zinc-400 mt-1.5 max-w-2xl">
+            Check live bay availability below. <span class="text-emerald-400 font-bold">Green / Gold</span> slots are open for immediate reservation; <span class="text-rose-400 font-bold">Red</span> slots are already locked in our studio ERP.
           </p>
         </div>
-        <div class="px-4 py-2.5 rounded-full emerald-card font-mono text-xs text-emerald-300">
-          🛡️ 100% Genuine 3M • 9H Ceramic • 0-PPM De-Ionized Water
+        <div class="flex items-center gap-3 font-mono text-xs bg-black px-4 py-2.5 rounded-full border border-[#D4AF37]/40">
+          <span class="flex items-center gap-1.5 text-emerald-400"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> Free</span>
+          <span class="flex items-center gap-1.5 text-[#F5D061]"><span class="w-2.5 h-2.5 rounded-full bg-[#F5D061]"></span> Selected</span>
+          <span class="flex items-center gap-1.5 text-rose-400"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Booked</span>
         </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        <div class="lg:col-span-8 space-y-7">
-          <div>
-            <h3 class="font-mono text-xs uppercase tracking-wider text-sky-300 mb-3.5">STEP 1: SELECT PRIMARY WASH OR PAINT PROTECTION BASE</h3>
-            <div id="shake-flavors-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
-          </div>
-
-          <div>
-            <h3 class="font-mono text-xs uppercase tracking-wider text-emerald-300 mb-3.5">STEP 2: LAYER HYDROPHOBIC GLASS, ENGINE, ALLOY &amp; CABIN ADD-ONS</h3>
-            <div id="shake-toppings-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5"></div>
-          </div>
-        </div>
-
-        <!-- Live Custom Prescription Summary Card -->
-        <div class="lg:col-span-4 emerald-card p-6 sm:p-7 sticky top-24 space-y-5">
-          <div class="flex items-center justify-between border-b border-white/15 pb-4">
+        <!-- Left 7 Cols: Interactive Date & Hourly Bay Matrix -->
+        <div class="lg:col-span-7 gold-card p-6 sm:p-7 space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
             <div>
-              <span class="font-mono text-[10px] uppercase text-emerald-300">LIVE TREATMENT CONFIGURATOR</span>
-              <h3 class="font-display font-extrabold text-xl uppercase text-white">YOUR STUDIO BUILD</h3>
+              <label class="font-mono text-[10px] uppercase text-[#F5D061] block mb-1">SELECT APPOINTMENT DATE</label>
+              <input type="date" id="matrix-date" onchange="renderSystematicSlotMatrix()" class="bg-black border border-[#D4AF37]/50 rounded-xl px-4 py-2.5 text-xs text-white font-mono" />
             </div>
-            <div class="w-11 h-11 rounded-2xl emerald-btn flex items-center justify-center text-lg">🛡️</div>
-          </div>
-
-          <div class="p-4 rounded-2xl bg-black/65 border border-white/15 space-y-2.5">
-            <div class="flex justify-between font-mono text-[11px]">
-              <span class="text-slate-400">Primary Base:</span>
-              <span id="mixer-base-name" class="text-sky-300 font-bold text-right">Snow Foam &amp; Spot-Free Wash</span>
-            </div>
-            <div class="flex justify-between font-mono text-[11px]">
-              <span class="text-slate-400">Water Purity:</span>
-              <span class="text-emerald-400 font-bold">0 PPM Spot-Free</span>
-            </div>
-            <div class="pt-2.5 border-t border-white/10">
-              <span class="font-mono text-[10px] uppercase text-slate-400 block mb-1.5">Selected Protection Add-Ons:</span>
-              <div id="mixer-toppings-list" class="space-y-1.5 text-xs text-white font-mono"></div>
+            <div class="text-right font-mono">
+              <span class="text-[10px] text-zinc-400 block">SELECTED DATE SUMMARY</span>
+              <span id="matrix-availability-summary" class="text-sm font-bold text-emerald-400">8 Free • 0 Booked</span>
             </div>
           </div>
 
-          <div class="flex items-end justify-between pt-2 border-t border-white/15">
-            <div>
-              <span class="font-mono text-[10px] uppercase text-slate-400 block">ESTIMATED PACKAGE TOTAL</span>
-              <span id="mixer-total-price" class="font-display font-extrabold text-3xl brand-gradient-text">₹998</span>
-            </div>
-            <span class="font-mono text-[10px] text-emerald-400">● POS Ready</span>
-          </div>
+          <!-- Hourly Bay Grid -->
+          <div id="systematic-slot-cards" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
 
-          <div class="space-y-2.5">
-            <button type="button" onclick="bookCustomShakeSlot()" class="w-full py-3.5 rounded-full emerald-btn font-mono text-xs uppercase tracking-wider">
-              📅 Lock Bay Slot For This Build →
-            </button>
-            <button type="button" onclick="addCustomShakeToCart()" class="w-full py-3 rounded-full royal-btn font-mono text-xs uppercase tracking-wider">
-              🛒 Add Custom Build to Cart →
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 4: AI PAINT SCANNER & 24/7 CONCIERGE -->
-  <section id="ai-advisor" class="py-20 px-4 sm:px-10 max-w-7xl mx-auto border-t border-white/10 relative z-10">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
-      <div>
-        <span class="font-mono text-xs uppercase tracking-widest text-emerald-300">🧠 PUSHPA AI VISION &amp; SURFACE DIAGNOSTICS</span>
-        <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-1 brand-gradient-text">AI PAINT SCANNER &amp; CONCIERGE</h2>
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      <div class="lg:col-span-7 studio-card p-6 sm:p-7 space-y-5">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block font-mono text-[10px] uppercase text-sky-300 mb-1.5">1. Your Vehicle Color</label>
-            <select id="ai-car-color" onchange="runAiPaintAnalysis()" class="w-full bg-black/80 border border-sky-400/40 rounded-2xl px-4 py-3 text-xs text-white">
-              <option value="Dark / Obsidian Black">Dark / Obsidian Black (High Swirl Visibility)</option>
-              <option value="Pearl / Polar White">Pearl / Polar White (Iron Spots &amp; Traffic Film)</option>
-              <option value="Metallic Silver / Grey">Metallic Silver / Grey</option>
-              <option value="Deep Red / Royal Blue">Deep Red / Royal Blue (UV Fade Prone)</option>
-              <option value="Matte / Satin Finish">Matte / Satin Edition</option>
-            </select>
-          </div>
-          <div>
-            <label class="block font-mono text-[10px] uppercase text-sky-300 mb-1.5">2. Current Paint / Cabin Condition</label>
-            <select id="ai-paint-issue" onchange="runAiPaintAnalysis()" class="w-full bg-black/80 border border-sky-400/40 rounded-2xl px-4 py-3 text-xs text-white">
-              <option value="swirls">Spider-Web Swirl Marks &amp; Clear-Coat Haze</option>
-              <option value="mud">Highway Mud, Bug Splatters &amp; Hard Water Spots</option>
-              <option value="interior">Stained Upholstery, AC Odor &amp; Cabin Dust</option>
-              <option value="newcar">Brand New Showroom Car (Needs 5-Yr 9H Armor)</option>
-            </select>
-          </div>
-          <div>
-            <label class="block font-mono text-[10px] uppercase text-sky-300 mb-1.5">3. Driving Exposure</label>
-            <select id="ai-exposure" onchange="runAiPaintAnalysis()" class="w-full bg-black/80 border border-sky-400/40 rounded-2xl px-4 py-3 text-xs text-white">
-              <option value="highway">Khammam Bypass / Highway Daily Commute</option>
-              <option value="sun">Parked Outdoors in Direct Sunlight</option>
-              <option value="covered">Covered Garage / Weekend Drive</option>
-            </select>
-          </div>
-          <div>
-            <label class="block font-mono text-[10px] uppercase text-emerald-300 mb-1.5">4. Upload Car Photo (AI Surface Scan)</label>
-            <input type="file" id="ai-car-photo" accept="image/*" onchange="handleAiCarPhotoUpload(event)" class="w-full text-xs text-slate-300 file:mr-3 file:py-2 file:px-3.5 file:rounded-full file:border-0 file:bg-[#10B981] file:text-black file:font-mono file:font-bold" />
+          <div class="p-4 rounded-xl bg-black/70 border border-white/10 flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] text-zinc-300">
+            <span>🛡️ Every slot includes 0-PPM De-Ionized Water Prep</span>
+            <span class="text-[#F5D061]">Free Pickup &amp; Drop in Khammam</span>
           </div>
         </div>
 
-        <div class="relative h-48 rounded-2xl overflow-hidden border border-emerald-400/40 bg-black flex items-center justify-center">
-          <img id="ai-scan-img" data-img-asset="polish" alt="AI Scan Preview" class="w-full h-full object-cover opacity-80" />
-          <div class="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#34D399] to-transparent laser-glow ai-laser-bar"></div>
-          <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between px-3.5 py-1.5 rounded-full bg-black/85 border border-white/15 font-mono text-[10px]">
-            <span id="ai-scan-status" class="text-sky-300">● AI SURFACE TELEMETRY ACTIVE</span>
-            <span id="ai-scan-metrics" class="text-emerald-400">Predicted Gloss Recovery: +96%</span>
-          </div>
-        </div>
-
-        <div class="p-5 rounded-2xl bg-black/85 border border-emerald-400/45 space-y-3">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <span class="font-mono text-[10px] uppercase px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300">AI RECOMMENDED PRESCRIPTION</span>
-            <span id="ai-rec-price" class="font-display font-extrabold text-2xl text-emerald-300">₹11,999</span>
-          </div>
-          <h3 id="ai-rec-title" class="font-display font-bold text-xl uppercase text-white">9H Ceramic Mirror Shield</h3>
-          <p id="ai-rec-reason" class="text-xs text-slate-300 leading-relaxed">
-            Dark paint shows micro-marring easily under sunlight. Our 2-stage Zentool rotary polish removes 95%+ of swirl marks before locking in a 5-year 9H super-hydrophobic glass shield.
-          </p>
-          <div class="flex flex-wrap gap-2.5 pt-2">
-            <button type="button" onclick="bookAiRecommendedPackage()" class="px-5 py-3 rounded-full emerald-btn font-mono text-xs uppercase">
-              ⚡ Book Recommended Package →
-            </button>
-            <button type="button" onclick="runAiPaintAnalysis(true)" class="px-4 py-3 rounded-full bg-white/10 text-white font-mono text-xs uppercase hover:bg-white/20">
-              🔄 Re-Scan Surface
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right 5 Cols: 24/7 AI Detailing Concierge -->
-      <div class="lg:col-span-5 studio-card p-6 sm:p-7 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between border-b border-white/10 pb-3.5">
-            <div class="flex items-center gap-2.5">
-              <div class="w-10 h-10 rounded-2xl emerald-btn flex items-center justify-center font-bold">🤖</div>
+        <!-- Right 5 Cols: Instant Slot Lock Form -->
+        <div class="lg:col-span-5 ivory-card p-6 sm:p-7">
+          <form id="inline-booking-form" onsubmit="submitInlineSlotBooking(event)" class="space-y-4">
+            <div class="flex items-center justify-between border-b border-zinc-200 pb-3">
               <div>
-                <span class="font-mono text-[10px] text-emerald-300 uppercase block">ONLINE 24/7 • KHAMMAM STUDIO AI</span>
-                <h3 class="font-display font-bold text-base uppercase text-white">ASK VIJAY'S AI CONCIERGE</h3>
+                <span class="font-mono text-[10px] uppercase text-[#997A15] font-bold block">STEP 2 • CONFIRM RESERVATION</span>
+                <h3 class="font-display font-extrabold text-xl uppercase text-black">LOCK YOUR BAY SLOT</h3>
+              </div>
+              <span id="selected-slot-pill" class="px-3 py-1 rounded-full bg-black text-[#F5D061] font-mono text-xs font-bold">10:00 AM</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="font-mono text-[10px] uppercase text-zinc-600 font-bold block mb-1">Package</label>
+                <select id="book-package" onchange="updateInlineQuote()" class="w-full bg-zinc-100 border border-zinc-300 rounded-xl px-3 py-2.5 text-xs text-black font-bold"></select>
+              </div>
+              <div>
+                <label class="font-mono text-[10px] uppercase text-zinc-600 font-bold block mb-1">Service Mode</label>
+                <select id="book-mode" class="w-full bg-zinc-100 border border-zinc-300 rounded-xl px-3 py-2.5 text-xs text-black font-semibold">
+                  <option value="Studio Visit (Bypass Road)">Studio Visit (Bypass Rd)</option>
+                  <option value="Free Pickup & Drop (Khammam)">Free Pickup &amp; Drop</option>
+                  <option value="Doorstep Car Wash">Doorstep Wash</option>
+                </select>
               </div>
             </div>
-            <span class="font-mono text-[10px] text-emerald-400">● Instant Reply</span>
-          </div>
 
-          <div id="ai-chat-messages" class="space-y-3 my-4 max-h-72 overflow-y-auto pr-1 text-xs">
-            <div class="p-3.5 rounded-2xl bg-white/[0.05] border border-sky-400/30 text-slate-100">
-              <strong class="text-emerald-300 font-mono block text-[10px] mb-1">PUSHPA AI CONCIERGE</strong>
-              Namaskaram! Welcome to Pushpa Car Gallery (Bypass Road, Khammam). Ask me about <strong>9H Ceramic vs 3M Teflon</strong>, <strong>3pH Snow Foam</strong>, <strong>7D Mats &amp; Napa Seat Covers</strong>, or <strong>Free Pickup &amp; Drop</strong>!
+            <div>
+              <label class="font-mono text-[10px] uppercase text-zinc-600 font-bold block mb-1">Optional Protection Add-On</label>
+              <select id="book-addon" onchange="updateInlineQuote()" class="w-full bg-zinc-100 border border-zinc-300 rounded-xl px-3 py-2.5 text-xs text-black font-semibold">
+                <option value="0" data-name="">None (Standard Package)</option>
+                <option value="499" data-name="118° Windshield Anti-Rain Shield">🌧️ 118° Windshield Anti-Rain Shield (+₹499)</option>
+                <option value="599" data-name="Engine Bay Steam & Satin Dressing">⚙️ Engine Bay Steam &amp; Satin Dressing (+₹599)</option>
+                <option value="349" data-name="Alloy Wheel Iron Decon & Tire Gel">🛞 Alloy Wheel Iron Decon &amp; Tire Gel (+₹349)</option>
+                <option value="699" data-name="AC Vent Steam & Cabin Ozone">💺 AC Vent Steam &amp; Cabin Ozone (+₹699)</option>
+              </select>
             </div>
-          </div>
-        </div>
 
-        <div class="space-y-2.5 pt-2 border-t border-white/10">
-          <div class="flex flex-wrap gap-1.5 font-mono text-[10px]">
-            <button type="button" onclick="sendQuickAiQuestion('9H Ceramic vs 3M Teflon?')" class="px-3 py-1 rounded-full bg-white/5 hover:bg-[#10B981] hover:text-black border border-white/10 transition">Ceramic vs Teflon?</button>
-            <button type="button" onclick="sendQuickAiQuestion('How does 3pH Snow Foam work?')" class="px-3 py-1 rounded-full bg-white/5 hover:bg-[#10B981] hover:text-black border border-white/10 transition">3pH Snow Foam?</button>
-            <button type="button" onclick="sendQuickAiQuestion('Seat covers & 7D mats price?')" class="px-3 py-1 rounded-full bg-white/5 hover:bg-[#10B981] hover:text-black border border-white/10 transition">7D Mats &amp; Seats?</button>
-            <button type="button" onclick="sendQuickAiQuestion('Free pickup in Khammam?')" class="px-3 py-1 rounded-full bg-white/5 hover:bg-[#10B981] hover:text-black border border-white/10 transition">Free Pickup?</button>
-          </div>
-          <form onsubmit="handleAiChatSubmit(event)" class="flex gap-2">
-            <input type="text" id="ai-chat-input" placeholder="Ask about coating, prices, accessories..." class="flex-1 bg-black/80 border border-sky-400/40 rounded-full px-4 py-2.5 text-xs text-white focus:outline-none" />
-            <button type="submit" class="px-5 py-2.5 rounded-full emerald-btn font-mono text-xs uppercase">Send</button>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="font-mono text-[10px] uppercase text-zinc-600 font-bold block mb-1">Full Name</label>
+                <input type="text" id="book-name" required placeholder="Your Name" class="w-full bg-zinc-100 border border-zinc-300 rounded-xl px-3.5 py-2.5 text-xs text-black" />
+              </div>
+              <div>
+                <label class="font-mono text-[10px] uppercase text-zinc-600 font-bold block mb-1">WhatsApp / Mobile</label>
+                <input type="tel" id="book-phone" required placeholder="10-digit mobile" class="w-full bg-zinc-100 border border-zinc-300 rounded-xl px-3.5 py-2.5 text-xs text-black font-mono" />
+              </div>
+            </div>
+
+            <div>
+              <label class="font-mono text-[10px] uppercase text-zinc-600 font-bold block mb-1">Vehicle No &amp; Model</label>
+              <input type="text" id="book-car-model" required placeholder="e.g. TS04FM4599 Black Creta" class="w-full bg-zinc-100 border border-zinc-300 rounded-xl px-3.5 py-2.5 text-xs text-black uppercase font-mono" />
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-black text-white flex items-center justify-between border border-[#D4AF37]">
+              <div>
+                <span class="font-mono text-[10px] text-[#F5D061] block">ESTIMATED STUDIO TOTAL</span>
+                <span class="text-[10px] text-zinc-400">Pay at Studio or UPI: 9848088319@ybl</span>
+              </div>
+              <span id="inline-quote-display" class="font-display font-extrabold text-2xl gold-text">₹499</span>
+            </div>
+
+            <button type="submit" class="w-full py-4 rounded-xl gold-btn font-mono text-xs uppercase tracking-widest">
+              🔒 Lock Time Slot &amp; Notify Studio →
+            </button>
           </form>
+
+          <!-- Instant Confirmed Ticket -->
+          <div id="booking-ticket-box" class="hidden text-center space-y-4 py-2">
+            <div class="w-12 h-12 rounded-full gold-btn flex items-center justify-center mx-auto text-xl">✓</div>
+            <h4 class="font-display font-extrabold text-2xl uppercase text-black">BAY SLOT LOCKED!</h4>
+            <p id="booking-ticket-summary" class="text-xs text-zinc-700 leading-relaxed"></p>
+            <div class="p-3 rounded-xl bg-zinc-100 border border-[#D4AF37] w-fit mx-auto">
+              <div id="booking-upi-qr" class="w-[104px] h-[104px] mx-auto"></div>
+              <span class="font-mono text-[9px] text-black font-bold block mt-1">UPI: 9848088319@ybl</span>
+            </div>
+            <a id="booking-wa-link" href="https://wa.me/919848088319" target="_blank" class="block w-full py-3 rounded-xl bg-emerald-600 text-white font-mono text-xs font-bold uppercase">
+              💬 Send Ticket on WhatsApp →
+            </a>
+            <button type="button" onclick="resetInlineBooking()" class="w-full py-2 rounded-xl bg-zinc-200 text-black font-mono text-xs uppercase">Book Another Slot</button>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 5: UNIFIED LIVE BAY, ORDER, JOB CARD & INVOICE TRACKER -->
-  <section id="live-tracker" class="py-16 px-4 sm:px-10 bg-[#051329] border-t border-white/10 relative z-10">
-    <div class="max-w-5xl mx-auto emerald-card p-6 sm:p-8">
+  <!-- SECTION 3: SIGNATURE PACKAGES (CRISP IVORY & GOLD) -->
+  <section id="services" class="py-20 px-4 sm:px-10 bg-[#FAF9F6] text-black">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="font-mono text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-black text-[#F5D061] font-bold">TRANSPARENT STUDIO RATES • ERP SYNCED</span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-3 text-black">SIGNATURE DETAILING PACKAGES</h2>
+        </div>
+        <div class="flex items-center gap-1.5 bg-black p-1.5 rounded-full self-start">
+          <button type="button" onclick="setGlobalTier('basePrice', 'Hatchback', this)" class="tier-pill px-4 py-1.5 rounded-full font-mono text-xs gold-btn">Hatchback</button>
+          <button type="button" onclick="setGlobalTier('sedanPrice', 'Sedan', this)" class="tier-pill px-4 py-1.5 rounded-full font-mono text-xs text-zinc-300">Sedan</button>
+          <button type="button" onclick="setGlobalTier('suvPrice', 'SUV / MUV', this)" class="tier-pill px-4 py-1.5 rounded-full font-mono text-xs text-zinc-300">SUV / MUV</button>
+        </div>
+      </div>
+      <div id="packages-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: CUSTOM TREATMENT BUILDER -->
+  <section id="customizer" class="py-20 px-4 sm:px-10 bg-[#06070A] border-t border-[#D4AF37]/25">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-10">
+        <span class="font-mono text-xs uppercase tracking-widest text-[#F5D061]">✦ BESPOKE STUDIO TREATMENT CONFIGURATOR</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-1 gold-text">BUILD YOUR CUSTOM DETAIL</h2>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-8 space-y-6">
+          <div>
+            <h3 class="font-mono text-xs uppercase tracking-wider text-zinc-400 mb-3">STEP 1: SELECT PRIMARY BASE TREATMENT</h3>
+            <div id="mixer-bases-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+          </div>
+          <div>
+            <h3 class="font-mono text-xs uppercase tracking-wider text-[#F5D061] mb-3">STEP 2: LAYER SURFACE PROTECTION ADD-ONS</h3>
+            <div id="mixer-addons-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5"></div>
+          </div>
+        </div>
+        <div class="lg:col-span-4 gold-card p-6 sm:p-7 sticky top-24 space-y-5">
+          <div class="border-b border-white/10 pb-3">
+            <span class="font-mono text-[10px] uppercase text-[#F5D061]">YOUR STUDIO BUILD</span>
+            <h3 class="font-display font-extrabold text-xl uppercase text-white">CUSTOM ESTIMATE</h3>
+          </div>
+          <div class="space-y-2 text-xs font-mono">
+            <div class="flex justify-between"><span class="text-zinc-400">Base:</span><span id="mixer-base-label" class="text-white font-bold">Snow Foam Wash</span></div>
+            <div id="mixer-addons-summary" class="space-y-1 pt-2 border-t border-white/10 text-zinc-300"></div>
+          </div>
+          <div class="pt-3 border-t border-white/10 flex items-end justify-between">
+            <span class="font-mono text-[10px] text-zinc-400 uppercase">TOTAL ESTIMATE</span>
+            <span id="mixer-total-display" class="font-display font-extrabold text-3xl gold-text">₹998</span>
+          </div>
+          <div class="space-y-2.5">
+            <a href="#slot-matrix" onclick="applyCustomBuildToBooking()" class="block text-center w-full py-3.5 rounded-full gold-btn font-mono text-xs uppercase">📅 Lock Slot for This Build →</a>
+            <button type="button" onclick="addCustomBuildToCart()" class="w-full py-3 rounded-full gold-outline-btn font-mono text-xs uppercase">🛒 Add Build to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: UNIFIED LIVE BAY, ORDER & INVOICE TRACKER -->
+  <section id="live-tracker" class="py-16 px-4 sm:px-10 bg-[#0B0C10] border-y border-[#D4AF37]/25">
+    <div class="max-w-5xl mx-auto gold-card p-6 sm:p-8">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <span class="font-mono text-[10px] uppercase tracking-widest text-emerald-300">LIVE BAY TELEMETRY • REAL-TIME ERP &amp; FIREBASE SYNC</span>
-          <h2 class="font-display font-extrabold text-2xl sm:text-3xl uppercase mt-1 brand-gradient-text">TRACK YOUR CAR, JOB CARD OR INVOICE</h2>
-          <p class="text-xs text-slate-300 mt-1">Enter your Mobile Number, Vehicle No (<code class="text-sky-300">TS04...</code>), Booking ID, Order ID, Job Card (<code class="text-emerald-300">JOB_...</code>), or POS Invoice (<code class="text-sky-300">INV_...</code>).</p>
+          <span class="font-mono text-[10px] uppercase tracking-widest text-[#F5D061]">LIVE BAY TELEMETRY • REAL-TIME ERP SYNC</span>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl uppercase mt-1 gold-text">TRACK YOUR CAR OR INVOICE</h2>
+          <p class="text-xs text-zinc-400 mt-1">Search by Mobile No, Vehicle No (<code class="text-[#F5D061]">TS04...</code>), Booking ID, Order ID, or Invoice ID.</p>
         </div>
         <div class="flex items-center gap-2 w-full md:w-auto">
-          <input type="text" id="track-input" placeholder="Phone, Car No, JOB_ or INV_..."
-                 class="w-full md:w-64 bg-black/85 border border-emerald-400/40 rounded-full px-4 py-3 text-xs text-white font-mono focus:border-emerald-300 focus:outline-none" />
-          <button type="button" onclick="checkLiveVehicleStatus()" class="px-6 py-3 rounded-full emerald-btn font-mono text-xs uppercase shrink-0">
-            Track →
-          </button>
+          <input type="text" id="track-input" placeholder="Phone, Car No, LEAD_ or INV_..." class="w-full md:w-64 bg-black border border-[#D4AF37]/50 rounded-full px-4 py-3 text-xs text-white font-mono focus:outline-none" />
+          <button type="button" onclick="checkLiveVehicleStatus()" class="px-6 py-3 rounded-full gold-btn font-mono text-xs uppercase shrink-0">Track →</button>
         </div>
       </div>
       <div id="track-result-box" class="hidden mt-6 pt-5 border-t border-white/15 space-y-3"></div>
     </div>
   </section>
 
-  <!-- SECTION 6: THE 118° BEAD LAB — INTERACTIVE HYDROPHOBIC PHYSICS -->
-  <section id="bead-lab" class="py-20 px-4 sm:px-10 bg-[#030917] border-y border-white/10 relative z-10">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-      <div class="lg:col-span-5 space-y-5">
-        <div class="font-mono text-xs uppercase tracking-widest text-emerald-300">THE 118° BEAD LAB — INTERACTIVE PHYSICS</div>
-        <h2 class="font-display font-extrabold text-5xl sm:text-6xl uppercase tracking-tight leading-[0.95] brand-gradient-text">WATER<br>CAN'T<br>STICK.</h2>
-        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-          Move your cursor or finger across the bonnet panel to simulate rain. Our 9H Ceramic Armor creates a 118° super-hydrophobic lotus effect so mud and water bead off effortlessly.
-        </p>
-        <div class="flex items-center gap-3">
-          <button type="button" id="btn-coated" onclick="setBeadMode(true)" class="px-5 py-2.5 rounded-full font-mono text-xs uppercase emerald-btn transition">9H Coated Paint</button>
-          <button type="button" id="btn-uncoated" onclick="setBeadMode(false)" class="px-5 py-2.5 rounded-full font-mono text-xs uppercase bg-white/5 text-slate-300 border border-white/15 hover:text-white transition">Uncoated Paint</button>
-        </div>
-        <div class="grid grid-cols-3 gap-4 pt-4 border-t border-white/10">
-          <div><span class="font-mono text-[10px] uppercase text-slate-400 block">CONTACT ANGLE</span><span id="bead-angle-readout" class="font-display font-extrabold text-2xl sm:text-3xl text-white">118°</span></div>
-          <div><span class="font-mono text-[10px] uppercase text-slate-400 block">DURABILITY</span><span class="font-display font-extrabold text-2xl sm:text-3xl text-white">5 yrs</span></div>
-          <div><span class="font-mono text-[10px] uppercase text-slate-400 block">HARDNESS</span><span class="font-display font-extrabold text-2xl sm:text-3xl text-emerald-400">9H</span></div>
-        </div>
-      </div>
-      <div class="lg:col-span-7">
-        <div class="relative rounded-[28px] overflow-hidden border border-emerald-400/40 bg-black shadow-2xl">
-          <canvas id="hydro-canvas" class="w-full h-[340px] sm:h-[390px] cursor-crosshair block"></canvas>
-          <div class="pointer-events-none absolute bottom-4 left-4 right-4 flex items-center justify-between text-[11px] font-mono text-slate-200 bg-black/80 backdrop-blur-md px-4 py-2 rounded-full border border-emerald-400/30">
-            <span>DRAG CURSOR / FINGER ACROSS PANEL</span>
-            <span id="surface-mode-label" class="text-emerald-300 font-bold">COATED: 118° HYDROPHOBIC</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 7: SIGNATURE DETAILING PACKAGES (LIVE SYNCED WITH ERP RATES EDITOR) -->
-  <section id="packages" class="py-20 px-4 sm:px-10 max-w-7xl mx-auto relative z-10">
+  <!-- SECTION 6: CAR ACCESSORIES & CARE STORE (LIVE STOCK SYNCED) -->
+  <section id="store" class="py-20 px-4 sm:px-10 max-w-7xl mx-auto">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
       <div>
-        <span class="font-mono text-xs uppercase tracking-widest text-emerald-300">TRANSPARENT STUDIO RATES • LIVE ERP SYNCED</span>
-        <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-2 brand-gradient-text">SIGNATURE DETAILING PACKAGES</h2>
-      </div>
-      <div class="flex items-center gap-1.5 bg-white/5 p-1.5 rounded-full border border-sky-400/30 self-start">
-        <button type="button" onclick="switchVehicleTier('basePrice', this)" class="tier-btn px-4 py-1.5 rounded-full font-mono text-xs emerald-btn">Hatchback</button>
-        <button type="button" onclick="switchVehicleTier('sedanPrice', this)" class="tier-btn px-4 py-1.5 rounded-full font-mono text-xs text-slate-300">Sedan</button>
-        <button type="button" onclick="switchVehicleTier('suvPrice', this)" class="tier-btn px-4 py-1.5 rounded-full font-mono text-xs text-slate-300">SUV / MUV</button>
-      </div>
-    </div>
-    <div id="packages-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
-  </section>
-
-  <!-- SECTION 8: CAR ACCESSORIES & CARE STORE (LIVE SYNCED WITH ERP STOCK & BARCODES) -->
-  <section id="accessories-shop" class="py-20 px-4 sm:px-10 max-w-7xl mx-auto border-t border-white/10 relative z-10">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
-      <div>
-        <span class="font-mono text-xs uppercase tracking-widest text-emerald-300">LIVE STOCK SYNCED WITH STUDIO ERP INVENTORY</span>
-        <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-2 brand-gradient-text">CAR ACCESSORIES &amp; CARE STORE</h2>
+        <span class="font-mono text-xs uppercase tracking-widest text-[#F5D061]">LIVE STOCK SYNCED WITH STUDIO ERP</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-2 gold-text">CAR ACCESSORIES &amp; CARE STORE</h2>
       </div>
       <div class="flex flex-wrap items-center gap-2.5">
-        <input type="text" id="shop-search-input" oninput="renderProductsGrid()" placeholder="Search 7D mats, seat covers, spray..." class="bg-black/80 border border-sky-400/40 rounded-full px-4 py-2.5 text-xs text-white font-mono" />
-        <button type="button" onclick="toggleCartDrawer(true)" class="px-5 py-2.5 rounded-full emerald-btn font-mono text-xs uppercase">
+        <input type="text" id="shop-search-input" oninput="renderProductsGrid()" placeholder="Search 7D mats, seat covers..." class="bg-[#0E1015] border border-[#D4AF37]/40 rounded-full px-4 py-2.5 text-xs text-white font-mono" />
+        <button type="button" onclick="toggleCartDrawer(true)" class="px-5 py-2.5 rounded-full gold-btn font-mono text-xs uppercase">
           View Cart (<span id="shop-cart-count">0</span>) →
         </button>
       </div>
@@ -783,241 +539,57 @@
     <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
   </section>
 
-  <!-- SECTION 9: 1-TAP GOOGLE REVIEW & DIRECTIONS -->
-  <section class="py-16 px-4 sm:px-10 bg-[#051329] border-t border-white/10 relative z-10">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-      <div class="lg:col-span-7 space-y-4">
-        <span class="font-mono text-xs uppercase tracking-widest text-emerald-300">KHAMMAM'S #1 RATED CAR GALLERY</span>
-        <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase brand-gradient-text">LOVE YOUR MIRROR FINISH?</h2>
-        <p class="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed">
-          Tap below to copy a 5-star review note and open our official Google Review page, or navigate straight to our Bypass Road bay!
-        </p>
-        <div class="flex flex-wrap items-center gap-4 pt-2">
-          <button type="button" onclick="triggerInvisibleGoogleReview()" class="px-6 py-4 rounded-full emerald-btn font-mono text-xs uppercase tracking-wider shadow-xl">
-            ★ 1-Tap Instant 5★ Google Review →
-          </button>
-          <a href="https://www.google.com/maps?cid=5094792611686717263" target="_blank" rel="noopener"
-             class="px-6 py-4 rounded-full royal-btn font-mono text-xs font-bold uppercase">
-            📍 Open Google Maps Directions
-          </a>
-        </div>
-      </div>
-
-      <div class="lg:col-span-5 emerald-card p-6 sm:p-7 space-y-3 font-mono text-xs">
-        <div class="flex items-center justify-between">
-          <div>
-            <div class="text-white font-bold text-sm">PUSHPA CAR GALLERY</div>
-            <div class="text-emerald-300 text-[11px]">Proprietor: Vijay • 098480 88319</div>
-          </div>
-          <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px]">OPEN 9AM–9PM</span>
-        </div>
-        <p class="text-slate-300 text-[11px] leading-relaxed">
-          11-10-694/7, Bypass Road, Beside TVS Vajra Showroom, Near New Bus Stand, Raparthi Nagar, Khammam, Telangana 507002
-        </p>
-        <div class="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] text-sky-300">
-          <span>UPI: 9848088319@ybl</span>
-          <span class="text-emerald-300 font-bold">FREE PICKUP &amp; DROP</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="py-10 px-4 sm:px-10 border-t border-white/10 bg-[#020712] relative z-10">
+  <!-- FOOTER WITH DEVELOPER ATTRIBUTION -->
+  <footer class="py-10 px-4 sm:px-10 border-t border-[#D4AF37]/25 bg-[#040507]">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
-      <div class="text-xs font-mono text-slate-400">
-        <strong class="text-white block">PUSHPA CAR GALLERY • KHAMMAM</strong>
-        © 2026 All Rights Reserved • Call: 098480 88319 / 9035438867
+      <div class="text-xs font-mono text-zinc-400">
+        <strong class="text-white block">PUSHPA CAR GALLERY • BYPASS ROAD, KHAMMAM</strong>
+        © 2026 All Rights Reserved • Call: 098480 88319 / 9035438867 • UPI: 9848088319@ybl
       </div>
       <a href="https://catb12345612-ai.github.io/Syed-Zeeshaan-Ali-High-Fledged-Engineering-And-Digital-Tech-Solutions-Site/"
          target="_blank" rel="noopener"
-         class="group flex items-center gap-3.5 px-4 py-2.5 rounded-full bg-black border border-emerald-400/50 hover:border-emerald-300 transition shadow-lg">
-        <div class="w-9 h-9 rounded-full bg-emerald-500/20 border border-emerald-400 flex items-center justify-center font-mono text-xs font-bold text-emerald-300">SZA</div>
+         class="flex items-center gap-3 px-4 py-2.5 rounded-full bg-[#0E1015] border border-[#D4AF37]/50 hover:border-[#F5D061] transition">
+        <div class="w-9 h-9 rounded-full gold-btn flex items-center justify-center font-mono text-xs font-extrabold">SZA</div>
         <div class="text-left pr-2">
-          <span class="font-mono text-[9px] uppercase tracking-widest text-emerald-300 block">ENGINEERED &amp; AUTOMATED BY</span>
-          <span class="font-display font-bold text-xs text-white group-hover:text-emerald-300 transition block">Syed Zeeshaan Ali (@syedzeeshaanali07)</span>
+          <span class="font-mono text-[9px] uppercase tracking-widest text-[#F5D061] block">ENGINEERED &amp; AUTOMATED BY</span>
+          <span class="font-display font-bold text-xs text-white block">Syed Zeeshaan Ali (@syedzeeshaanali07)</span>
         </div>
       </a>
     </div>
   </footer>
 
-  <!-- DRAWER 1: REAL-TIME TIME-SLOT BOOKING DRAWER (SYNCED WITH ERP LEADS & BOOKED SLOTS) -->
-  <div id="booking-backdrop" onclick="closeBookingDrawer()" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden"></div>
-  <aside id="booking-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-lg bg-[#041126] border-l border-emerald-400/40 z-50 translate-x-full transition-transform duration-300 flex flex-col justify-between overflow-y-auto p-6 sm:p-8">
+  <!-- SHOPPING CART DRAWER -->
+  <aside id="cart-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-[#0B0C10] border-l border-[#D4AF37]/40 z-50 translate-x-full transition-transform duration-300 flex flex-col justify-between p-6 sm:p-8 overflow-y-auto">
     <div>
       <div class="flex items-center justify-between border-b border-white/10 pb-4">
         <div>
-          <span class="font-mono text-[10px] text-emerald-300 uppercase tracking-widest">LIVE SCHEDULE MATRIX • ERP SYNCED</span>
-          <h3 class="font-display font-extrabold text-2xl uppercase brand-gradient-text">BOOK YOUR DETAIL SLOT</h3>
+          <span class="font-mono text-[10px] text-[#F5D061] uppercase">SYNCED WITH STUDIO POS &amp; INVENTORY</span>
+          <h3 class="font-display font-extrabold text-2xl uppercase gold-text">YOUR SHOPPING CART</h3>
         </div>
-        <button type="button" onclick="closeBookingDrawer()" class="w-9 h-9 rounded-full bg-white/5 text-slate-400 hover:text-white">✕</button>
+        <button type="button" onclick="toggleCartDrawer(false)" class="w-9 h-9 rounded-full bg-white/5 text-zinc-400 hover:text-white">✕</button>
       </div>
-
-      <form id="customer-booking-form" onsubmit="submitCustomerBooking(event)" class="space-y-4 mt-5">
-        <div>
-          <label class="block font-mono text-[10px] uppercase text-slate-300 mb-1.5">1. Vehicle Segment</label>
-          <div class="grid grid-cols-3 gap-2">
-            <button type="button" onclick="selectDrawerVehicle('Hatchback', 'basePrice', this)" class="veh-opt py-2.5 rounded-full emerald-btn font-mono text-xs">Hatchback</button>
-            <button type="button" onclick="selectDrawerVehicle('Sedan', 'sedanPrice', this)" class="veh-opt py-2.5 rounded-full border border-white/15 bg-white/5 text-slate-300 font-mono text-xs">Sedan</button>
-            <button type="button" onclick="selectDrawerVehicle('SUV / MUV', 'suvPrice', this)" class="veh-opt py-2.5 rounded-full border border-white/15 bg-white/5 text-slate-300 font-mono text-xs">SUV / MUV</button>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block font-mono text-[10px] uppercase text-slate-300 mb-1.5">2. Detailing Package</label>
-            <select id="book-package" onchange="updateCalculatedQuote()" class="w-full bg-black border border-sky-400/40 rounded-2xl px-3.5 py-2.5 text-xs text-white"></select>
-          </div>
-          <div>
-            <label class="block font-mono text-[10px] uppercase text-slate-300 mb-1.5">3. Pickup or Studio</label>
-            <select id="book-mode" class="w-full bg-black border border-sky-400/40 rounded-2xl px-3.5 py-2.5 text-xs text-white">
-              <option value="Studio Visit (Bypass Road)">Studio Visit (Bypass Road)</option>
-              <option value="Free Pickup & Drop (Khammam)">Free Pickup &amp; Drop (Khammam)</option>
-              <option value="Doorstep Car Wash">Doorstep Wash at Home</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <label class="block font-mono text-[10px] uppercase text-emerald-300 mb-1.5">4. Add Surface Protection Essential (Optional)</label>
-          <select id="book-foam-addon" onchange="updateCalculatedQuote()" class="w-full bg-black border border-emerald-400/40 rounded-2xl px-3.5 py-2.5 text-xs text-white">
-            <option value="0" data-name="">Standard 3pH Snow Foam (Included)</option>
-            <option value="499" data-name="118° Windshield Anti-Rain Shield">🌧️ 118° Windshield Anti-Rain Shield (+₹499)</option>
-            <option value="599" data-name="Engine Bay Steam & Satin Polymer Dressing">⚙️ Engine Bay Steam &amp; Satin Dressing (+₹599)</option>
-            <option value="349" data-name="Alloy Wheel Iron Decon & Graphene Tire Gel">🛞 Alloy Wheel Iron Decon &amp; Tire Gel (+₹349)</option>
-            <option value="699" data-name="AC Vent Steam & Cabin Ozone Sanitization">💺 AC Vent Steam &amp; Cabin Ozone (+₹699)</option>
-            <option value="799" data-name="Headlight Oxidation Polish & UV Clear Seal">🔦 Headlight Oxidation UV Seal (+₹799)</option>
-          </select>
-        </div>
-
-        <div>
-          <div class="flex items-center justify-between mb-1.5">
-            <label class="font-mono text-[10px] uppercase text-slate-300">5. Select Date &amp; Available Bay Hour</label>
-            <span class="font-mono text-[10px] text-emerald-300">● Emerald = Selected | ● Red = Booked</span>
-          </div>
-          <input type="date" id="book-date" onchange="renderLiveSlotGrid()" required class="w-full bg-black border border-sky-400/40 rounded-2xl px-3.5 py-2.5 text-xs text-white mb-3" />
-          <div id="live-slot-grid" class="grid grid-cols-3 sm:grid-cols-4 gap-2"></div>
-          <input type="hidden" id="book-time" value="10:00 AM" required />
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block font-mono text-[10px] uppercase text-slate-300 mb-1">Your Name</label>
-            <input type="text" id="book-name" required placeholder="Full Name" class="w-full bg-black border border-white/20 rounded-2xl px-3.5 py-2.5 text-xs text-white" />
-          </div>
-          <div>
-            <label class="block font-mono text-[10px] uppercase text-slate-300 mb-1">Phone / WhatsApp</label>
-            <input type="tel" id="book-phone" required placeholder="10-digit mobile" class="w-full bg-black border border-white/20 rounded-2xl px-3.5 py-2.5 text-xs text-white font-mono" />
-          </div>
-        </div>
-
-        <div>
-          <label class="block font-mono text-[10px] uppercase text-slate-300 mb-1">Car Model &amp; Registration No</label>
-          <input type="text" id="book-car-model" required placeholder="e.g. TS04FM4599 Black Hyundai Creta" class="w-full bg-black border border-white/20 rounded-2xl px-3.5 py-2.5 text-xs text-white uppercase" />
-        </div>
-
-        <div class="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-400/40 flex items-center justify-between">
-          <div>
-            <span class="font-mono text-[10px] uppercase text-emerald-300 block">ESTIMATED STUDIO QUOTE</span>
-            <span class="text-[11px] text-slate-300">UPI / GPay: <strong class="text-white">9848088319@ybl</strong></span>
-          </div>
-          <span id="book-quote-display" class="font-display font-extrabold text-2xl text-emerald-300">₹499</span>
-        </div>
-
-        <button type="submit" class="w-full py-4 rounded-full emerald-btn font-mono text-xs uppercase tracking-widest">
-          Lock Time Slot &amp; Sync to Studio ERP →
-        </button>
-      </form>
-
-      <div id="booking-success-state" class="hidden py-6 text-center space-y-4">
-        <div class="w-14 h-14 rounded-full emerald-btn flex items-center justify-center mx-auto text-xl">✓</div>
-        <h4 class="font-display font-extrabold text-2xl sm:text-3xl uppercase brand-gradient-text">SLOT LOCKED IN ERP!</h4>
-        <p id="booking-summary-text" class="text-xs text-slate-300 max-w-sm mx-auto leading-relaxed"></p>
-        <div class="bg-white p-3 rounded-2xl w-fit mx-auto text-center border-2 border-[#10B981]">
-          <div id="booking-upi-qr" class="w-[110px] h-[110px] mx-auto flex items-center justify-center"></div>
-          <span class="font-mono text-[9px] text-black font-bold block mt-1">SCAN TO PAY VIA UPI (9848088319@ybl)</span>
-        </div>
-        <a id="whatsapp-direct-btn" href="https://wa.me/919848088319" target="_blank" class="block w-full py-3.5 rounded-full emerald-btn font-mono text-xs uppercase">
-          💬 Send Slot Ticket on WhatsApp →
-        </a>
-        <button type="button" onclick="resetBookingDrawer()" class="block w-full py-2.5 rounded-full bg-white/5 text-slate-300 font-mono text-xs uppercase">Book Another Slot</button>
-      </div>
-    </div>
-  </aside>
-
-  <!-- DRAWER 2: ACCESSORIES SHOPPING CART & LIVE ERP ORDER CHECKOUT -->
-  <aside id="cart-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-[#041126] border-l border-emerald-400/40 z-50 translate-x-full transition-transform duration-300 flex flex-col justify-between p-6 sm:p-8 overflow-y-auto">
-    <div>
-      <div class="flex items-center justify-between border-b border-white/10 pb-4">
-        <div>
-          <span class="font-mono text-[10px] text-emerald-300 uppercase">SYNCED WITH OWNER POS &amp; INVENTORY</span>
-          <h3 class="font-display font-extrabold text-2xl uppercase brand-gradient-text">YOUR SHOPPING CART</h3>
-        </div>
-        <button type="button" onclick="toggleCartDrawer(false)" class="w-9 h-9 rounded-full bg-white/5 text-slate-400 hover:text-white">✕</button>
-      </div>
-
       <div id="cart-items-list" class="space-y-3 my-4"></div>
-
-      <div class="flex items-center gap-2 mb-4">
-        <input type="text" id="cart-promo-input" placeholder="Promo Code (PUSHPA5, VIP10, WELCOME100)" class="flex-1 bg-black border border-white/20 rounded-full px-4 py-2 text-xs text-white font-mono uppercase" />
-        <button type="button" onclick="applyCustomerPromo()" class="px-4 py-2 rounded-full emerald-btn font-mono text-xs uppercase">Apply</button>
-      </div>
-
-      <form id="cart-checkout-form" onsubmit="submitCartOrder(event)" class="space-y-3 pt-3 border-t border-white/10">
-        <input type="text" id="order-name" required placeholder="Your Full Name" class="w-full bg-black border border-white/20 rounded-2xl px-3.5 py-2.5 text-xs text-white" />
-        <input type="tel" id="order-phone" required placeholder="Mobile / WhatsApp Number" class="w-full bg-black border border-white/20 rounded-2xl px-3.5 py-2.5 text-xs text-white font-mono" />
-        <input type="text" id="order-car" required placeholder="Car No & Model (e.g. TS04 Creta)" class="w-full bg-black border border-white/20 rounded-2xl px-3.5 py-2.5 text-xs text-white uppercase" />
-        <select id="order-delivery" class="w-full bg-black border border-white/20 rounded-2xl px-3.5 py-2.5 text-xs text-white">
+      <form onsubmit="submitCartOrder(event)" class="space-y-3 pt-3 border-t border-white/10">
+        <input type="text" id="order-name" required placeholder="Your Full Name" class="w-full bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+        <input type="tel" id="order-phone" required placeholder="Mobile / WhatsApp Number" class="w-full bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
+        <input type="text" id="order-car" required placeholder="Car No & Model (e.g. TS04 Creta)" class="w-full bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white uppercase" />
+        <select id="order-delivery" class="w-full bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white">
           <option value="Studio Fitment at Bypass Road">Free Installation at Studio (Bypass Road)</option>
           <option value="Doorstep Delivery in Khammam">Doorstep Delivery in Khammam</option>
         </select>
-
-        <div class="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-400/40 flex items-center justify-between gap-3">
-          <div class="space-y-1 font-mono text-xs">
-            <span class="text-[10px] text-emerald-300 block">UPI / GPAY: 9848088319@ybl</span>
-            <div id="cart-discount-Tag" class="hidden text-[10px] text-emerald-400">Promo Discount Applied!</div>
-            <div class="flex items-baseline gap-2">
-              <span class="text-slate-300 text-[11px]">Net Payable:</span>
-              <span id="cart-total-display" class="font-display font-extrabold text-2xl text-white">₹0</span>
-            </div>
+        <div class="p-3.5 rounded-xl bg-black border border-[#D4AF37]/40 flex items-center justify-between">
+          <div>
+            <span class="font-mono text-[10px] text-[#F5D061] block">UPI: 9848088319@ybl</span>
+            <span id="cart-total-display" class="font-display font-extrabold text-2xl text-white">₹0</span>
           </div>
-          <div class="bg-white p-1.5 rounded-xl shrink-0">
-            <div id="cart-upi-qr" class="w-[60px] h-[60px]"></div>
-          </div>
+          <div class="bg-white p-1.5 rounded-lg"><div id="cart-upi-qr" class="w-[56px] h-[56px]"></div></div>
         </div>
-
-        <button type="submit" class="w-full py-3.5 rounded-full emerald-btn font-mono text-xs uppercase tracking-wider">
-          Place Order &amp; Sync to Studio POS →
-        </button>
+        <button type="submit" class="w-full py-3.5 rounded-full gold-btn font-mono text-xs uppercase tracking-wider">Place Order &amp; Sync to Studio →</button>
       </form>
     </div>
   </aside>
 
-  <!-- MODAL: FIREBASE LIVE CONNECTION CONSOLE -->
-  <div id="firebase-console-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-    <div class="emerald-card w-full max-w-2xl p-6 space-y-4 border-2 border-[#10B981] max-h-[90vh] overflow-y-auto">
-      <div class="flex items-center justify-between border-b border-white/15 pb-3">
-        <div>
-          <span class="font-mono text-[10px] text-emerald-300 uppercase">CUSTOMER ↔ OWNER ERP BRIDGE</span>
-          <h3 class="font-display font-extrabold text-xl uppercase text-white">🔥 FIREBASE LIVE SYNC DIAGNOSTICS</h3>
-        </div>
-        <button type="button" onclick="closeFirebaseConsoleModal()" class="w-8 h-8 rounded-full bg-white/10 text-white">✕</button>
-      </div>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono text-xs">
-        <div class="p-3 rounded-2xl bg-black border border-white/15"><span class="text-[10px] text-slate-400 block">PROJECT ID</span><span class="text-sky-300 font-bold">pushpacargalary</span></div>
-        <div class="p-3 rounded-2xl bg-black border border-white/15"><span class="text-[10px] text-slate-400 block">CLOUD STATUS</span><span id="fb-diag-status" class="text-emerald-400 font-bold">Connected</span></div>
-        <div class="p-3 rounded-2xl bg-black border border-white/15"><span class="text-[10px] text-slate-400 block">PING LATENCY</span><span id="fb-diag-ping" class="text-white font-bold">-- ms</span></div>
-        <div class="p-3 rounded-2xl bg-black border border-white/15"><span class="text-[10px] text-slate-400 block">SYNCED ITEMS</span><span id="fb-diag-counts" class="text-emerald-300 font-bold">0</span></div>
-      </div>
-      <div id="fb-console-log" class="p-3.5 rounded-2xl bg-black border border-white/15 font-mono text-[11px] text-emerald-300 h-36 overflow-y-auto space-y-1"></div>
-      <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-white/10">
-        <button type="button" onclick="runFirebaseConnectionCheck()" class="px-4 py-2.5 rounded-full emerald-btn font-mono text-xs uppercase">🔄 Test ERP Sync Now</button>
-        <a href="https://console.firebase.google.com/project/pushpacargalary/database/pushpacargalary-default-rtdb/data" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-full royal-btn font-mono text-xs uppercase">Open Firebase Console ↗</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- FIREBASE REALTIME SDK MODULE -->
+  <!-- FIREBASE REALTIME SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
     import { getDatabase, ref, onValue, set, update } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
@@ -1029,105 +601,58 @@
       projectId: "pushpacargalary",
       storageBucket: "pushpacargalary.firebasestorage.app",
       messagingSenderId: "307509697690",
-      appId: "1:307509697690:web:7a1f7679e3bdf6dc4f5323",
-      measurementId: "G-5SYNQ62CFX"
+      appId: "1:307509697690:web:7a1f7679e3bdf6dc4f5323"
     };
 
     try {
       const app = initializeApp(firebaseConfig);
       const db = getDatabase(app);
-      window.__pushpaFbSdkWrite = async (path, payload) => {
-        try { await set(ref(db, path), payload); return true; } catch (e) { return false; }
-      };
-      window.__pushpaFbSdkPatch = async (path, payload) => {
-        try { await update(ref(db, path), payload); return true; } catch (e) { return false; }
-      };
-
-      ['packages', 'products', 'leads', 'orders', 'bills', 'jobCards', 'bookedSlots'].forEach(node => {
-        onValue(ref(db, node), (snapshot) => {
-          if (snapshot.exists() && typeof window.__handleRealtimeNodeUpdate === 'function') {
-            window.__handleRealtimeNodeUpdate(node, snapshot.val());
+      window.__pushpaFbWrite = async (path, payload) => { try { await set(ref(db, path), payload); } catch (e) {} };
+      window.__pushpaFbPatch = async (path, payload) => { try { await update(ref(db, path), payload); } catch (e) {} };
+      ['packages', 'products', 'leads', 'orders', 'bills', 'bookedSlots'].forEach(node => {
+        onValue(ref(db, node), snap => {
+          if (snap.exists() && typeof window.__handleRealtimeNode === 'function') {
+            window.__handleRealtimeNode(node, snap.val());
           }
         });
       });
     } catch (e) {}
   </script>
 
-  <!-- COMPLETE CUSTOMER PORTAL & ERP BI-DIRECTIONAL SYNC ENGINE -->
+  <!-- CUSTOMER PORTAL ENGINE -->
   <script>
     const DB_URL = "https://pushpacargalary-default-rtdb.asia-southeast1.firebasedatabase.app";
     const syncChannel = ('BroadcastChannel' in window) ? new BroadcastChannel('pushpa_live_sync') : null;
 
-    // SVG High-Definition Studio Stage Placeholders (Used if video frames are paused/inspected)
-    function createStageSvgDataUri(title, subtitle, accentHex) {
+    function createStageSvg(title, sub, accent) {
       const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
-        <defs>
-          <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#030917"/><stop offset="55%" stop-color="#071F46"/><stop offset="100%" stop-color="#02101EC"/>
-          </linearGradient>
-        </defs>
-        <rect width="800" height="450" fill="url(#bg)"/>
-        <circle cx="650" cy="90" r="180" fill="${accentHex}" opacity="0.14"/>
-        <path d="M120 310 L215 215 Q265 180 410 180 Q545 180 610 220 L690 310 Z" fill="#0B1933" stroke="${accentHex}" stroke-width="5"/>
-        <circle cx="250" cy="315" r="46" fill="#040B18" stroke="#FFFFFF" stroke-width="6"/>
-        <circle cx="575" cy="315" r="46" fill="#040B18" stroke="#FFFFFF" stroke-width="6"/>
-        <text x="60" y="90" fill="${accentHex}" font-family="monospace" font-weight="800" font-size="20">${title}</text>
-        <text x="60" y="128" fill="#FFFFFF" font-family="sans-serif" font-weight="800" font-size="28">${subtitle}</text>
+        <rect width="800" height="450" fill="#08090D"/>
+        <circle cx="620" cy="110" r="190" fill="${accent}" opacity="0.14"/>
+        <path d="M130 310 L225 210 Q285 175 415 175 Q545 175 615 215 L685 310 Z" fill="#12141D" stroke="${accent}" stroke-width="5"/>
+        <circle cx="250" cy="315" r="45" fill="#06070A" stroke="#F5D061" stroke-width="6"/>
+        <circle cx="575" cy="315" r="45" fill="#06070A" stroke="#F5D061" stroke-width="6"/>
+        <text x="55" y="85" fill="${accent}" font-family="monospace" font-weight="800" font-size="20">${title}</text>
+        <text x="55" y="122" fill="#FFFFFF" font-family="sans-serif" font-weight="800" font-size="28">${sub}</text>
       </svg>`;
       return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
     }
 
     const STAGE_IMAGES = {
-      foam: createStageSvgDataUri("STAGE 01 // 00:00 - 03:40", "3pH ACTIVE SNOW FOAM BATH", "#38BDF8"),
-      rinse: createStageSvgDataUri("STAGE 02 // 03:40 - 05:00", "0-PPM SPOT-FREE HYDRO RINSE", "#10B981"),
-      polish: createStageSvgDataUri("STAGE 03 // 05:00 - 08:40", "ZENTOOL ROTARY COMPOUNDING", "#0066FF"),
-      mirror: createStageSvgDataUri("STAGE 04 // 08:40 - 09:95", "9H CERAMIC MIRROR REVEAL", "#34D399")
+      foam: createStageSvg("STAGE 01", "3pH ACTIVE SNOW FOAM BATH", "#F5D061"),
+      rinse: createStageSvg("STAGE 02", "0-PPM SPOT-FREE HYDRO RINSE", "#FFFFFF"),
+      polish: createStageSvg("STAGE 03", "ROTARY PAINT CORRECTION", "#D4AF37"),
+      mirror: createStageSvg("STAGE 04", "9H CERAMIC MIRROR FINISH", "#F5D061")
     };
-
-    document.querySelectorAll('[data-img-asset]').forEach(img => {
-      const key = img.getAttribute('data-img-asset');
-      if (STAGE_IMAGES[key]) img.src = STAGE_IMAGES[key];
+    document.querySelectorAll('[data-img-asset]').forEach(el => {
+      const k = el.getAttribute('data-img-asset');
+      if (STAGE_IMAGES[k]) el.src = STAGE_IMAGES[k];
     });
 
-    // Safe LocalStorage Helpers (Shared keys with Owner ERP)
-    function safeGetStorage(key, fallback) {
-      try { return localStorage.getItem(key) || fallback; } catch (e) { return fallback; }
-    }
-    function safeSetStorage(key, val) {
-      try { localStorage.setItem(key, val); } catch (e) {}
-    }
+    function safeGet(k, f) { try { return localStorage.getItem(k) || f; } catch (e) { return f; } }
+    function safeSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
 
-    // Sound FX Engine
-    let custSfxMuted = false;
-    let custAudioCtx = null;
-    function playCustSfx(type) {
-      if (custSfxMuted) return;
-      try {
-        const AC = window.AudioContext || window.webkitAudioContext;
-        if (!custAudioCtx && AC) custAudioCtx = new AC();
-        if (!custAudioCtx) return;
-        if (custAudioCtx.state === 'suspended') custAudioCtx.resume();
-        const now = custAudioCtx.currentTime;
-        const osc = custAudioCtx.createOscillator();
-        const gain = custAudioCtx.createGain();
-        osc.type = type === 'chime' ? 'triangle' : 'sine';
-        osc.frequency.setValueAtTime(type === 'chime' ? 587.33 : 880, now);
-        osc.frequency.exponentialRampToValueAtTime(type === 'chime' ? 1174.66 : 440, now + (type === 'chime' ? 0.22 : 0.05));
-        gain.gain.setValueAtTime(0.09, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + (type === 'chime' ? 0.24 : 0.06));
-        osc.connect(gain); gain.connect(custAudioCtx.destination);
-        osc.start(now); osc.stop(now + (type === 'chime' ? 0.25 : 0.06));
-      } catch (e) {}
-    }
-    function toggleCustomerSfx() {
-      custSfxMuted = !custSfxMuted;
-      document.getElementById('cust-sfx-btn').textContent = custSfxMuted ? '🔇' : '🔊';
-    }
-
-    function showCustToast(title, body, tag = "LIVE STUDIO SYNC", icon = "✨") {
-      playCustSfx('chime');
+    function showCustToast(title, body, tag = "LIVE STUDIO SYNC", icon = "✦") {
       const t = document.getElementById('cust-toast');
-      if (!t) return;
       document.getElementById('cust-toast-title').textContent = title;
       document.getElementById('cust-toast-body').textContent = body;
       document.getElementById('cust-toast-tag').textContent = tag;
@@ -1135,13 +660,8 @@
       t.classList.remove('hidden');
       setTimeout(() => t.classList.add('hidden'), 5500);
     }
-    function hideCustToast() {
-      document.getElementById('cust-toast')?.classList.add('hidden');
-    }
+    function hideCustToast() { document.getElementById('cust-toast').classList.add('hidden'); }
 
-    // =========================================================================
-    // SHARED ERP DATA SCHEMAS (IDENTICAL TO OWNER POS ERP)
-    // =========================================================================
     const FALLBACK_PACKAGES = [
       { id: "PKG01", step: "01", name: "Snow Foam & Spot-Free Wash", basePrice: 499, sedanPrice: 599, suvPrice: 699, duration: "45 Mins", warranty: "0 PPM Spot-Free" },
       { id: "PKG02", step: "02", name: "3M Teflon & Plastic Restoration", basePrice: 2499, sedanPrice: 2999, suvPrice: 3499, duration: "3 Hours", warranty: "6 Months Gloss" },
@@ -1157,376 +677,425 @@
       { id: "ADD201", barcode: "PCGADD01", name: "🌧️ 118° Windshield Hydrophobic Anti-Rain Shield", category: "Protection Add-On", price: 499, stock: 40, image: STAGE_IMAGES.rinse },
       { id: "ADD202", barcode: "PCGADD02", name: "⚙️ Engine Bay Steam & Satin Polymer Dressing", category: "Protection Add-On", price: 599, stock: 35, image: STAGE_IMAGES.polish },
       { id: "ADD203", barcode: "PCGADD03", name: "🛞 Alloy Wheel Iron Decon & Graphene Tire Gel", category: "Protection Add-On", price: 349, stock: 45, image: STAGE_IMAGES.foam },
-      { id: "ADD204", barcode: "PCGADD04", name: "💺 AC Vent Steam & Cabin Ozone Sanitization", category: "Protection Add-On", price: 699, stock: 30, image: STAGE_IMAGES.rinse },
-      { id: "ADD205", barcode: "PCGADD05", name: "🔦 Headlight Oxidation Polish & UV Clear Seal", category: "Protection Add-On", price: 799, stock: 25, image: STAGE_IMAGES.polish },
-      { id: "ADD206", barcode: "PCGADD06", name: "🧽 400 GSM Edgeless Plush Microfiber Towel", category: "Protection Add-On", price: 299, stock: 50, image: STAGE_IMAGES.mirror }
+      { id: "ADD204", barcode: "PCGADD04", name: "💺 AC Vent Steam & Cabin Ozone Sanitization", category: "Protection Add-On", price: 699, stock: 30, image: STAGE_IMAGES.rinse }
     ];
 
-    const STUDIO_TIME_SLOTS = ["09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM"];
+    const STUDIO_TIME_SLOTS = [
+      { time: "09:00 AM", bay: "Bay 1 • Express Foam" },
+      { time: "10:00 AM", bay: "Bay 1 • Detailing" },
+      { time: "11:00 AM", bay: "Bay 2 • Ceramic/PPF" },
+      { time: "12:00 PM", bay: "Bay 1 • Detailing" },
+      { time: "02:00 PM", bay: "Bay 1 • Detailing" },
+      { time: "03:00 PM", bay: "Bay 2 • Ceramic/PPF" },
+      { time: "04:00 PM", bay: "Bay 1 • Express Foam" },
+      { time: "05:00 PM", bay: "Bay 1 • Evening Slot" },
+      { time: "06:00 PM", bay: "Bay 1 • Final Wash" }
+    ];
 
-    let packagesList = JSON.parse(safeGetStorage('pushpa_packages', 'null')) || FALLBACK_PACKAGES;
-    let productsList = JSON.parse(safeGetStorage('pushpa_products', 'null')) || FALLBACK_PRODUCTS;
-    let leadsList = JSON.parse(safeGetStorage('pushpa_leads', '[]'));
-    let ordersList = JSON.parse(safeGetStorage('pushpa_orders', '[]'));
-    let billsList = JSON.parse(safeGetStorage('pushpa_bills', '[]'));
-    let jobCardsList = JSON.parse(safeGetStorage('pushpa_jobCards', '[]'));
-    let bookedSlotsMap = JSON.parse(safeGetStorage('pushpa_bookedSlots', '{}'));
+    let packagesList = JSON.parse(safeGet('pushpa_packages', 'null')) || FALLBACK_PACKAGES;
+    let productsList = JSON.parse(safeGet('pushpa_products', 'null')) || FALLBACK_PRODUCTS;
+    let leadsList = JSON.parse(safeGet('pushpa_leads', '[]'));
+    let ordersList = JSON.parse(safeGet('pushpa_orders', '[]'));
+    let billsList = JSON.parse(safeGet('pushpa_bills', '[]'));
+    let bookedSlotsMap = JSON.parse(safeGet('pushpa_bookedSlots', '{}'));
 
-    let activeVehicleTier = 'basePrice';
-    let drawerVehicleLabel = 'Hatchback';
-    let drawerVehicleTier = 'basePrice';
+    let activeTierKey = 'basePrice';
+    let activeTierLabel = 'Hatchback';
+    let selectedSlotTime = '10:00 AM';
     let selectedBasePkgId = 'PKG01';
-    let selectedToppingsIds = ['ADD201'];
-    let shoppingCart = JSON.parse(safeGetStorage('pushpa_cust_cart', '[]'));
-    let activePromoDiscount = 0;
+    let selectedAddOnIds = ['ADD201'];
+    let shoppingCart = JSON.parse(safeGet('pushpa_cust_cart', '[]'));
 
-    // =========================================================================
-    // VIDEO_1.MP4 TELEMETRY, CHAPTER SCRUBBER & SNOW FOAM CANNON VFX
-    // =========================================================================
+    // PROCEDURAL CINEMATIC 4-STAGE DETAILING CANVAS + VIDEO SYNC
+    const procCanvas = document.getElementById('procedural-detailing-canvas');
+    const foamCanvas = document.getElementById('foam-burst-canvas');
     const videoEl = document.getElementById('studio-hero-video');
-    const foamCanvas = document.getElementById('foam-spray-canvas');
-    let foamBubbles = [];
+    let heroStageIdx = 0;
+    let foamParticles = [];
 
-    if (videoEl) {
-      videoEl.addEventListener('timeupdate', () => {
-        const t = videoEl.currentTime || 0;
-        const dur = videoEl.duration || 9.958;
-        const pct = Math.min(100, (t / dur) * 100);
-        const bar = document.getElementById('video-progress-bar');
-        if (bar) bar.style.width = `${pct}%`;
-        const tc = document.getElementById('video-timecode');
-        if (tc) tc.textContent = `${t.toFixed(1)}s / ${dur.toFixed(1)}s`;
+    (function initHeroVisuals() {
+      const pCtx = procCanvas ? procCanvas.getContext('2d') : null;
+      const fCtx = foamCanvas ? foamCanvas.getContext('2d') : null;
+      let t = 0;
+      function resize() {
+        if (procCanvas) { procCanvas.width = window.innerWidth; procCanvas.height = window.innerHeight; }
+        if (foamCanvas) { foamCanvas.width = window.innerWidth; foamCanvas.height = window.innerHeight; }
+      }
+      window.addEventListener('resize', resize); resize();
 
-        let activeStage = 0;
-        let badgeTxt = "🎬 LIVE BAY VIDEO // 01: 3pH ACTIVE SNOW FOAM BATH";
-        let capTxt = "STAGE 01 (00:00–03:40) • HIGH-DENSITY ALKALINE SNOW FOAM DECONTAMINATION";
-        let liveNum = "01. 3pH ACTIVE SNOW FOAM";
-        let liveDesc = "Thick alkaline snow foam encapsulates abrasive highway grit on the black AMG GT before zero-contact rinsing.";
+      function renderLoop() {
+        t += 0.015;
+        if (pCtx && procCanvas) {
+          const w = procCanvas.width, h = procCanvas.height;
+          pCtx.fillStyle = '#06070A';
+          pCtx.fillRect(0, 0, w, h);
 
-        if (t >= 3.4 && t < 5.0) {
-          activeStage = 1;
-          badgeTxt = "🎬 LIVE BAY VIDEO // 02: 0-PPM DE-IONIZED HYDRO RINSE";
-          capTxt = "STAGE 02 (03:40–05:00) • HIGH-PRESSURE SPOT-FREE WATER SHEET ACROSS GRILLE & HEADLAMP";
-          liveNum = "02. 0-PPM DE-IONIZED RINSE";
-          liveDesc = "Triple-filtered 0-PPM water strips away dissolved traffic film without mineral spotting.";
-        } else if (t >= 5.0 && t < 8.4) {
-          activeStage = 2;
-          badgeTxt = "🎬 LIVE BAY VIDEO // 03: ZENTOOL ROTARY MACHINE POLISH";
-          capTxt = "STAGE 03 (05:00–08:40) • YELLOW LAKE COUNTRY FOAM PAD LEVELING SWIRLS ON BONNET";
-          liveNum = "03. ZENTOOL ROTARY POLISH";
-          liveDesc = "Dual-action rotary compounding eliminates 95%+ of spider-web swirls and clear-coat haze.";
-        } else if (t >= 8.4) {
-          activeStage = 3;
-          badgeTxt = "🎬 LIVE BAY VIDEO // 04: 9H CERAMIC MIRROR REVEAL";
-          capTxt = "STAGE 04 (08:40–09:95) • CURED 118° SUPER-HYDROPHOBIC 9H GLASS MIRROR FINISH";
-          liveNum = "04. 9H MIRROR SHIELD REVEAL";
-          liveDesc = "Showroom-ready obsidian mirror finish locked under 5-year 9H ceramic protection.";
+          // Studio overhead LED light bars
+          const grad = pCtx.createLinearGradient(0, 0, w, h);
+          grad.addColorStop(0, 'rgba(212, 175, 55, 0.14)');
+          grad.addColorStop(0.5, 'rgba(255, 255, 255, 0.04)');
+          grad.addColorStop(1, 'rgba(6, 7, 10, 0.95)');
+          pCtx.fillStyle = grad;
+          pCtx.fillRect(0, 0, w, h);
+
+          // Animated golden reflection sweep across luxury coupe silhouette
+          const sweepX = ((Math.sin(t * 0.7) + 1) / 2) * w;
+          const beam = pCtx.createRadialGradient(sweepX, h * 0.45, 20, sweepX, h * 0.45, w * 0.35);
+          beam.addColorStop(0, 'rgba(245, 208, 97, 0.22)');
+          beam.addColorStop(1, 'rgba(6, 7, 10, 0)');
+          pCtx.fillStyle = beam;
+          pCtx.fillRect(0, 0, w, h);
         }
 
-        document.getElementById('scrub-stage-badge').textContent = badgeTxt;
-        document.getElementById('video-live-caption').textContent = capTxt;
-        document.getElementById('step-live-number').textContent = liveNum;
-        document.getElementById('step-live-desc').textContent = liveDesc;
+        if (fCtx && foamParticles.length > 0) {
+          fCtx.clearRect(0, 0, foamCanvas.width, foamCanvas.height);
+          foamParticles.forEach(b => {
+            b.x += b.vx; b.y += b.vy; b.a -= 0.007;
+            fCtx.beginPath();
+            fCtx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+            fCtx.fillStyle = `rgba(255, 250, 240, ${Math.max(0, b.a)})`;
+            fCtx.fill();
+          });
+          foamParticles = foamParticles.filter(b => b.a > 0);
+        }
+        requestAnimationFrame(renderLoop);
+      }
+      renderLoop();
+    })();
 
-        [0, 1, 2, 3].forEach(idx => {
-          const btn = document.getElementById(`vchap-${idx}`);
-          if (btn) {
-            btn.className = idx === activeStage
-              ? "vchap-btn p-3 rounded-2xl bg-[#030917]/95 border-2 border-[#10B981] text-left backdrop-blur-md transition shadow-lg"
-              : "vchap-btn p-3 rounded-2xl bg-[#030917]/70 border border-sky-400/30 text-left hover:border-[#10B981] backdrop-blur-md transition";
-          }
+    function triggerFoamCannonBlast() {
+      if (!foamCanvas) return;
+      for (let i = 0; i < 120; i++) {
+        foamParticles.push({
+          x: Math.random() * foamCanvas.width,
+          y: Math.random() * foamCanvas.height * 0.5,
+          r: Math.random() * 16 + 4,
+          vy: Math.random() * 2.5 + 1,
+          vx: (Math.random() - 0.5) * 1.6,
+          a: 0.9
         });
-      });
+      }
     }
 
-    function jumpHeroVideo(sec) {
-      playCustSfx('click');
+    const STAGE_META = [
+      { badge: "🎬 STUDIO BAY LIVE // 01: 3pH ACTIVE SNOW FOAM", num: "STAGE 01 • 3pH SNOW FOAM", desc: "Zero-contact alkaline snow foam encapsulates abrasive road film", sec: 0.2, pct: "25%" },
+      { badge: "🎬 STUDIO BAY LIVE // 02: 0-PPM HYDRO RINSE", num: "STAGE 02 • 0-PPM HYDRO RINSE", desc: "De-ionized spot-free high-pressure rinse sheets away dirt", sec: 3.6, pct: "50%" },
+      { badge: "🎬 STUDIO BAY LIVE // 03: ROTARY PAINT CORRECTION", num: "STAGE 03 • ROTARY CORRECTION", desc: "Dual-action compounding removes 95%+ swirl marks", sec: 5.8, pct: "75%" },
+      { badge: "🎬 STUDIO BAY LIVE // 04: 9H CERAMIC MIRROR", num: "STAGE 04 • 9H MIRROR ARMOR", desc: "118° super-hydrophobic 5-year glass mirror finish", sec: 8.6, pct: "100%" }
+    ];
+
+    function jumpHeroStage(idx) {
+      heroStageIdx = idx;
       switchHeroMode('video');
-      if (videoEl) {
-        videoEl.currentTime = sec;
+      const m = STAGE_META[idx];
+      document.getElementById('scrub-stage-badge').textContent = m.badge;
+      document.getElementById('step-live-number').textContent = m.num;
+      document.getElementById('step-live-desc').textContent = m.desc;
+      document.getElementById('video-progress-bar').style.width = m.pct;
+      [0, 1, 2, 3].forEach(i => {
+        const b = document.getElementById(`vchap-${i}`);
+        if (b) b.className = i === idx
+          ? "vchap-btn p-3 rounded-xl bg-black/90 border-2 border-[#F5D061] text-left backdrop-blur-md"
+          : "vchap-btn p-3 rounded-xl bg-black/70 border border-white/15 text-left hover:border-[#D4AF37] backdrop-blur-md";
+      });
+      if (videoEl && videoEl.readyState >= 2) {
+        videoEl.currentTime = m.sec;
         videoEl.play().catch(() => {});
       }
     }
 
-    function scrubVideoTimeline(e) {
-      if (!videoEl) return;
-      const rect = e.currentTarget.getBoundingClientRect();
-      const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-      videoEl.currentTime = ratio * (videoEl.duration || 9.958);
-    }
-
-    function toggleHeroVideoPlay() {
-      if (!videoEl) return;
-      const btn = document.getElementById('video-play-btn');
-      if (videoEl.paused) {
-        videoEl.play();
-        btn.textContent = '⏸ Pause';
-      } else {
-        videoEl.pause();
-        btn.textContent = '▶ Play';
-      }
-    }
-
-    function toggleHeroVideoSpeed() {
-      if (!videoEl) return;
-      const speeds = [1.0, 1.5, 0.5];
-      const next = speeds[(speeds.indexOf(videoEl.playbackRate) + 1) % speeds.length];
-      videoEl.playbackRate = next;
-      document.getElementById('video-speed-btn').textContent = `${next.toFixed(1)}x`;
-    }
-
     function switchHeroMode(mode) {
-      playCustSfx('click');
-      document.getElementById('hero-overlay-copy').classList.toggle('hidden', mode !== 'video');
+      document.getElementById('hero-main-grid').classList.toggle('hidden', mode !== 'video');
       document.getElementById('hero-scrub-panel').classList.toggle('hidden', mode !== 'scrub');
-      document.getElementById('hero-frames-panel').classList.toggle('hidden', mode !== 'frames');
-      ['video', 'scrub', 'frames'].forEach(m => {
-        const b = document.getElementById(`hero-mode-${m}`);
-        if (b) b.className = m === mode ? 'px-3.5 py-1.5 rounded-full emerald-btn uppercase transition' : 'px-3.5 py-1.5 rounded-full text-white hover:text-emerald-300 uppercase transition';
-      });
+      document.getElementById('hero-mode-video').className = mode === 'video' ? 'px-3 py-1 rounded-full gold-btn uppercase' : 'px-3 py-1 rounded-full text-zinc-300 hover:text-white uppercase';
+      document.getElementById('hero-mode-scrub').className = mode === 'scrub' ? 'px-3 py-1 rounded-full gold-btn uppercase' : 'px-3 py-1 rounded-full text-zinc-300 hover:text-white uppercase';
     }
 
-    function triggerFoamCannonBlast() {
-      playCustSfx('chime');
-      if (!foamCanvas) return;
-      foamCanvas.width = window.innerWidth;
-      foamCanvas.height = window.innerHeight;
-      for (let i = 0; i < 110; i++) {
-        foamBubbles.push({
-          x: Math.random() * foamCanvas.width,
-          y: Math.random() * foamCanvas.height * 0.6,
-          r: Math.random() * 18 + 5,
-          vy: Math.random() * 2.2 + 0.8,
-          vx: (Math.random() - 0.5) * 1.5,
-          a: 0.85
-        });
-      }
-    }
-
-    (function animateFoamAndParticles() {
-      const fCtx = foamCanvas ? foamCanvas.getContext('2d') : null;
-      const pCanvas = document.getElementById('ambient-vfx-canvas');
-      const pCtx = pCanvas ? pCanvas.getContext('2d') : null;
-      let ambientPts = [];
-      if (pCanvas) {
-        pCanvas.width = window.innerWidth;
-        pCanvas.height = window.innerHeight;
-        for (let i = 0; i < 40; i++) {
-          ambientPts.push({
-            x: Math.random() * pCanvas.width,
-            y: Math.random() * pCanvas.height,
-            r: Math.random() * 2 + 0.8,
-            vy: -(Math.random() * 0.35 + 0.1),
-            color: i % 2 === 0 ? '56, 189, 248' : '52, 211, 153',
-            a: Math.random() * 0.55 + 0.2
-          });
-        }
-      }
-
-      function loop() {
-        if (pCtx && pCanvas) {
-          pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
-          ambientPts.forEach(p => {
-            p.y += p.vy;
-            if (p.y < 0) { p.y = pCanvas.height; p.x = Math.random() * pCanvas.width; }
-            pCtx.beginPath();
-            pCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            pCtx.fillStyle = `rgba(${p.color}, ${p.a})`;
-            pCtx.fill();
-          });
-        }
-        if (fCtx && foamBubbles.length > 0) {
-          fCtx.clearRect(0, 0, foamCanvas.width, foamCanvas.height);
-          foamBubbles.forEach(b => {
-            b.x += b.vx;
-            b.y += b.vy;
-            b.a -= 0.006;
-            fCtx.beginPath();
-            fCtx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
-            fCtx.fillStyle = `rgba(240, 253, 250, ${Math.max(0, b.a)})`;
-            fCtx.fill();
-          });
-          foamBubbles = foamBubbles.filter(b => b.a > 0);
-        }
-        requestAnimationFrame(loop);
-      }
-      loop();
-    })();
-
-    // Laser Split-Wipe Dragging
-    (function initSplitScrubber() {
+    (function initSplitScrub() {
       const panel = document.getElementById('hero-scrub-panel');
       const clip = document.getElementById('dirty-car-clip');
       const line = document.getElementById('wash-laser-line');
-      if (!panel || !clip || !line) return;
-      let dragging = false;
-      function updateWipe(clientX) {
-        const rect = panel.getBoundingClientRect();
-        const pct = Math.max(5, Math.min(95, ((clientX - rect.left) / rect.width) * 100));
+      if (!panel) return;
+      let drag = false;
+      function move(x) {
+        const r = panel.getBoundingClientRect();
+        const pct = Math.max(5, Math.min(95, ((x - r.left) / r.width) * 100));
         clip.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
         line.style.left = `${pct}%`;
       }
-      panel.addEventListener('pointerdown', e => { dragging = true; updateWipe(e.clientX); });
-      window.addEventListener('pointermove', e => { if (dragging) updateWipe(e.clientX); });
-      window.addEventListener('pointerup', () => { dragging = false; });
+      panel.addEventListener('pointerdown', e => { drag = true; move(e.clientX); });
+      window.addEventListener('pointermove', e => { if (drag) move(e.clientX); });
+      window.addEventListener('pointerup', () => drag = false);
     })();
 
-    // =========================================================================
-    // CUSTOM DETAILING CONFIGURATOR (MILKSHAKE BAR UI)
-    // =========================================================================
-    function renderCustomDetailBuilder() {
-      const baseGrid = document.getElementById('shake-flavors-grid');
-      const topGrid = document.getElementById('shake-toppings-grid');
-      if (!baseGrid || !topGrid) return;
+    // SYSTEMATIC LIVE SLOT MATRIX (REAL-TIME CUSTOMER <-> ADMIN SYNC)
+    function isSlotBooked(dateStr, timeStr) {
+      const mapTaken = Boolean(bookedSlotsMap[dateStr] && bookedSlotsMap[dateStr][timeStr]);
+      const leadTaken = leadsList.some(l => l.date === dateStr && l.timeSlot === timeStr && l.status !== 'COMPLETED');
+      return mapTaken || leadTaken;
+    }
 
-      baseGrid.innerHTML = packagesList.map(pkg => {
-        const active = pkg.id === selectedBasePkgId;
-        const price = Number(pkg[activeVehicleTier] || pkg.basePrice);
+    function renderSystematicSlotMatrix() {
+      const dateInput = document.getElementById('matrix-date');
+      if (!dateInput.value) dateInput.value = new Date().toISOString().slice(0, 10);
+      const dateStr = dateInput.value;
+      const grid = document.getElementById('systematic-slot-cards');
+
+      let freeCount = 0, bookedCount = 0;
+      const firstFree = STUDIO_TIME_SLOTS.find(s => !isSlotBooked(dateStr, s.time));
+      if (isSlotBooked(dateStr, selectedSlotTime) && firstFree) {
+        selectedSlotTime = firstFree.time;
+      }
+
+      grid.innerHTML = STUDIO_TIME_SLOTS.map(slot => {
+        const booked = isSlotBooked(dateStr, slot.time);
+        if (booked) bookedCount++; else freeCount++;
+        const selected = !booked && slot.time === selectedSlotTime;
+
         return `
-          <div onclick="selectMixerBase('${pkg.id}')" class="p-4 rounded-2xl cursor-pointer transition border-2 ${active ? 'bg-[#0066FF]/25 border-[#10B981] shadow-lg' : 'bg-black/60 border-white/15 hover:border-sky-400'}">
-            <div class="flex items-center justify-between">
-              <span class="font-mono text-[10px] text-emerald-300 uppercase">STEP ${pkg.step || '01'} • ${pkg.duration}</span>
-              <span class="font-mono font-extrabold text-sm text-white">₹${price}</span>
+          <button type="button" ${booked ? 'disabled' : ''} onclick="chooseMatrixSlot('${slot.time}')"
+                  class="p-3.5 rounded-2xl border text-left transition flex flex-col justify-between ${
+                    booked
+                      ? 'bg-rose-950/35 border-rose-500/40 text-rose-300 cursor-not-allowed opacity-75'
+                      : selected
+                        ? 'gold-btn border-transparent shadow-lg'
+                        : 'bg-black/80 border-emerald-500/40 text-white hover:border-[#F5D061]'
+                  }">
+            <div class="flex items-center justify-between w-full">
+              <span class="font-mono font-extrabold text-sm">${slot.time}</span>
+              <span class="font-mono text-[9px] px-2 py-0.5 rounded-full font-bold uppercase ${
+                booked ? 'bg-rose-500/25 text-rose-300' : selected ? 'bg-black text-[#F5D061]' : 'bg-emerald-500/20 text-emerald-300'
+              }">
+                ${booked ? 'BOOKED' : selected ? 'SELECTED' : 'FREE'}
+              </span>
             </div>
-            <h4 class="font-display font-bold text-sm uppercase text-white mt-1">${pkg.name}</h4>
-            <p class="text-[11px] text-slate-300 mt-0.5">${pkg.warranty}</p>
-          </div>
+            <span class="font-mono text-[10px] mt-1.5 ${selected ? 'text-black/80 font-semibold' : 'text-zinc-400'}">${slot.bay}</span>
+          </button>
         `;
       }).join('');
 
-      const addOns = productsList.filter(p => p.category === 'Protection Add-On' || String(p.id).startsWith('ADD'));
-      topGrid.innerHTML = addOns.map(add => {
-        const selected = selectedToppingsIds.includes(add.id);
-        return `
-          <div onclick="toggleMixerTopping('${add.id}')" class="p-3.5 rounded-2xl cursor-pointer transition border ${selected ? 'bg-emerald-500/20 border-[#10B981]' : 'bg-black/55 border-white/15 hover:border-sky-400'} flex items-center justify-between gap-2">
-            <div>
-              <div class="font-semibold text-xs text-white">${add.name}</div>
-              <span class="font-mono text-[10px] text-emerald-300">+₹${add.price} • Stock: ${add.stock}</span>
-            </div>
-            <span class="w-6 h-6 rounded-full ${selected ? 'emerald-btn' : 'bg-white/10 text-slate-400'} flex items-center justify-center font-mono text-xs">${selected ? '✓' : '+'}</span>
-          </div>
-        `;
-      }).join('');
-
-      const basePkg = packagesList.find(p => p.id === selectedBasePkgId) || packagesList[0];
-      const basePrice = Number(basePkg[activeVehicleTier] || basePkg.basePrice);
-      const chosenAddOns = addOns.filter(a => selectedToppingsIds.includes(a.id));
-      const addOnsTotal = chosenAddOns.reduce((s, a) => s + Number(a.price || 0), 0);
-
-      document.getElementById('mixer-base-name').textContent = `${basePkg.name} (₹${basePrice})`;
-      const topListEl = document.getElementById('mixer-toppings-list');
-      topListEl.innerHTML = chosenAddOns.length === 0
-        ? `<div class="text-slate-500">No extra add-ons selected</div>`
-        : chosenAddOns.map(a => `<div class="flex justify-between"><span>+ ${a.name}</span><span class="text-emerald-300">₹${a.price}</span></div>`).join('');
-      document.getElementById('mixer-total-price').textContent = `₹${(basePrice + addOnsTotal).toLocaleString('en-IN')}`;
+      document.getElementById('matrix-availability-summary').textContent = `${freeCount} Free • ${bookedCount} Booked`;
+      document.getElementById('hero-free-slots-badge').textContent = `${freeCount} SLOTS FREE TODAY`;
+      document.getElementById('selected-slot-pill').textContent = `${dateStr} • ${selectedSlotTime}`;
     }
 
-    function selectMixerBase(pkgId) {
-      playCustSfx('click');
-      selectedBasePkgId = pkgId;
-      renderCustomDetailBuilder();
+    function chooseMatrixSlot(timeStr) {
+      selectedSlotTime = timeStr;
+      renderSystematicSlotMatrix();
     }
 
-    function toggleMixerTopping(addId) {
-      playCustSfx('click');
-      const idx = selectedToppingsIds.indexOf(addId);
-      if (idx > -1) selectedToppingsIds.splice(idx, 1);
-      else selectedToppingsIds.push(addId);
-      renderCustomDetailBuilder();
+    async function submitInlineSlotBooking(e) {
+      e.preventDefault();
+      const date = document.getElementById('matrix-date').value;
+      if (isSlotBooked(date, selectedSlotTime)) {
+        showCustToast("Slot Just Taken", "Please pick another free green slot.", "SCHEDULE", "⚠️");
+        renderSystematicSlotMatrix();
+        return;
+      }
+
+      const leadId = 'LEAD_' + Date.now().toString().slice(-6);
+      const pkgName = document.getElementById('book-package').value;
+      const addonSel = document.getElementById('book-addon');
+      const addonName = addonSel.options[addonSel.selectedIndex]?.getAttribute('data-name') || '';
+      const fullPkg = addonName ? `${pkgName} + ${addonName}` : pkgName;
+      const price = updateInlineQuote();
+
+      const newLead = {
+        id: leadId,
+        clientName: document.getElementById('book-name').value.trim(),
+        phone: document.getElementById('book-phone').value.trim(),
+        vehicleModel: document.getElementById('book-car-model').value.trim().toUpperCase(),
+        vehicleType: activeTierLabel,
+        packageName: fullPkg,
+        serviceMode: document.getElementById('book-mode').value,
+        price,
+        date,
+        timeSlot: selectedSlotTime,
+        status: 'NEW',
+        createdAt: new Date().toISOString()
+      };
+
+      leadsList.unshift(newLead);
+      safeSet('pushpa_leads', JSON.stringify(leadsList));
+      if (!bookedSlotsMap[date]) bookedSlotsMap[date] = {};
+      bookedSlotsMap[date][selectedSlotTime] = leadId;
+      safeSet('pushpa_bookedSlots', JSON.stringify(bookedSlotsMap));
+
+      if (window.__pushpaFbWrite) {
+        await window.__pushpaFbWrite(`leads/${leadId}`, newLead);
+        await window.__pushpaFbWrite(`bookedSlots/${date}/${encodeURIComponent(selectedSlotTime)}`, leadId);
+      }
+      try {
+        await fetch(`${DB_URL}/leads/${leadId}.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newLead) });
+        await fetch(`${DB_URL}/bookedSlots/${date}/${encodeURIComponent(selectedSlotTime)}.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(leadId) });
+      } catch (err) {}
+
+      if (syncChannel) syncChannel.postMessage({ type: 'NEW_LEAD', payload: newLead });
+
+      document.getElementById('inline-booking-form').classList.add('hidden');
+      document.getElementById('booking-ticket-box').classList.remove('hidden');
+      document.getElementById('booking-ticket-summary').textContent =
+        `Booking ID ${leadId} locked for ${newLead.vehicleModel} on ${date} at ${selectedSlotTime} (${fullPkg} — ₹${price}).`;
+
+      const qrEl = document.getElementById('booking-upi-qr');
+      qrEl.innerHTML = '';
+      new QRCode(qrEl, { text: `upi://pay?pa=9848088319@ybl&pn=Pushpa%20Car%20Gallery&am=${price}&cu=INR&tn=${leadId}`, width: 98, height: 98 });
+
+      const waMsg = encodeURIComponent(`*SLOT BOOKING - PUSHPA CAR GALLERY*\n• ID: ${leadId}\n• Client: ${newLead.clientName} (${newLead.phone})\n• Car: ${newLead.vehicleModel}\n• Package: ${fullPkg}\n• Slot: ${date} @ ${selectedSlotTime}\n• Quote: ₹${price}`);
+      document.getElementById('booking-wa-link').href = `https://wa.me/919848088319?text=${waMsg}`;
+      renderSystematicSlotMatrix();
     }
 
-    function bookCustomShakeSlot() {
-      const basePkg = packagesList.find(p => p.id === selectedBasePkgId) || packagesList[0];
-      openBookingDrawer(basePkg.name);
+    function resetInlineBooking() {
+      document.getElementById('inline-booking-form').reset();
+      document.getElementById('inline-booking-form').classList.remove('hidden');
+      document.getElementById('booking-ticket-box').classList.add('hidden');
+      renderSystematicSlotMatrix();
     }
 
-    function addCustomShakeToCart() {
-      const basePkg = packagesList.find(p => p.id === selectedBasePkgId) || packagesList[0];
-      const basePrice = Number(basePkg[activeVehicleTier] || basePkg.basePrice);
-      addToCustomerCart(basePkg.id, basePkg.name, basePrice);
-      selectedToppingsIds.forEach(id => {
-        const prod = productsList.find(p => p.id === id);
-        if (prod) addToCustomerCart(prod.id, prod.name, prod.price);
+    // PACKAGES, CUSTOM BUILDER & TIER SYNC
+    function setGlobalTier(tierKey, label) {
+      activeTierKey = tierKey;
+      activeTierLabel = label;
+      document.querySelectorAll('.global-tier-btn').forEach(b => {
+        b.className = b.textContent.trim() === label
+          ? 'global-tier-btn py-2 rounded-xl bg-black text-[#F5D061] font-bold'
+          : 'global-tier-btn py-2 rounded-xl bg-zinc-100 text-zinc-700 font-bold border border-zinc-300';
       });
-      toggleCartDrawer(true);
+      document.querySelectorAll('.tier-pill').forEach(b => {
+        b.className = b.textContent.trim() === label
+          ? 'tier-pill px-4 py-1.5 rounded-full font-mono text-xs gold-btn'
+          : 'tier-pill px-4 py-1.5 rounded-full font-mono text-xs text-zinc-300';
+      });
+      refreshAllCustomerUI();
     }
 
-    // =========================================================================
-    // PACKAGES & ACCESSORIES STORE RENDERING (LIVE ERP SYNCED)
-    // =========================================================================
-    function switchVehicleTier(tierKey, btnEl) {
-      playCustSfx('click');
-      activeVehicleTier = tierKey;
-      document.querySelectorAll('.tier-btn').forEach(b => b.className = 'tier-btn px-4 py-1.5 rounded-full font-mono text-xs text-slate-300');
-      if (btnEl) btnEl.className = 'tier-btn px-4 py-1.5 rounded-full font-mono text-xs emerald-btn';
-      renderPackagesGrid();
-      renderCustomDetailBuilder();
+    function syncHeroPackageChoice(pkgName) {
+      const pkg = packagesList.find(p => p.name === pkgName) || packagesList[0];
+      document.getElementById('hero-quote-price').textContent = `₹${Number(pkg[activeTierKey] || pkg.basePrice).toLocaleString('en-IN')}`;
+      const bookSel = document.getElementById('book-package');
+      if (bookSel) { bookSel.value = pkg.name; updateInlineQuote(); }
     }
 
-    function renderPackagesGrid() {
+    function updateInlineQuote() {
+      const pkgName = document.getElementById('book-package')?.value;
+      const pkg = packagesList.find(p => p.name === pkgName) || packagesList[0];
+      const base = Number(pkg[activeTierKey] || pkg.basePrice || 499);
+      const addon = Number(document.getElementById('book-addon')?.value || 0);
+      document.getElementById('inline-quote-display').textContent = `₹${(base + addon).toLocaleString('en-IN')}`;
+      return base + addon;
+    }
+
+    function renderPackagesSection() {
       const grid = document.getElementById('packages-grid');
-      if (!grid) return;
       grid.innerHTML = packagesList.map(pkg => {
-        const price = Number(pkg[activeVehicleTier] || pkg.basePrice);
+        const price = Number(pkg[activeTierKey] || pkg.basePrice);
         return `
-          <div class="studio-card p-6 flex flex-col justify-between space-y-5">
+          <div class="ivory-card p-6 flex flex-col justify-between space-y-5">
             <div>
-              <div class="flex items-center justify-between font-mono text-xs text-emerald-300">
+              <div class="flex items-center justify-between font-mono text-[10px] text-[#997A15] font-bold">
                 <span>STEP ${pkg.step || '01'} • ${pkg.duration}</span>
-                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px]">${pkg.warranty}</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-black text-[#F5D061]">${pkg.warranty}</span>
               </div>
-              <h3 class="font-display font-extrabold text-xl uppercase text-white mt-3">${pkg.name}</h3>
-              <div class="font-display font-extrabold text-3xl brand-gradient-text mt-3">₹${price.toLocaleString('en-IN')}</div>
+              <h3 class="font-display font-extrabold text-xl uppercase text-black mt-3">${pkg.name}</h3>
+              <div class="font-display font-extrabold text-3xl text-black mt-3">₹${price.toLocaleString('en-IN')}</div>
             </div>
-            <button type="button" onclick="openBookingDrawer('${pkg.name.replace(/'/g, "\\'")}')" class="w-full py-3 rounded-full emerald-btn font-mono text-xs uppercase tracking-wider">
-              Book This Package →
-            </button>
+            <a href="#slot-matrix" onclick="selectPkgAndScroll('${pkg.name.replace(/'/g, "\\'")}')" class="block text-center w-full py-3 rounded-full gold-btn font-mono text-xs uppercase">Book This Package →</a>
           </div>
         `;
       }).join('');
 
       const heroSel = document.getElementById('hero-quick-service');
-      if (heroSel) {
-        heroSel.innerHTML = packagesList.map(p => `<option value="${p.name}">${p.name} (₹${p[activeVehicleTier] || p.basePrice})</option>`).join('');
-      }
       const bookSel = document.getElementById('book-package');
-      if (bookSel) {
-        const currentVal = bookSel.value;
-        bookSel.innerHTML = packagesList.map(p => `<option value="${p.name}">${p.name}</option>`).join('');
-        if (currentVal) bookSel.value = currentVal;
-      }
+      const optsHtml = packagesList.map(p => `<option value="${p.name}">${p.name} (₹${p[activeTierKey] || p.basePrice})</option>`).join('');
+      if (heroSel) { heroSel.innerHTML = optsHtml; syncHeroPackageChoice(heroSel.value); }
+      if (bookSel) { const prev = bookSel.value; bookSel.innerHTML = optsHtml; if (prev) bookSel.value = prev; updateInlineQuote(); }
     }
 
-    function renderProductsGrid() {
-      const grid = document.getElementById('products-grid');
-      if (!grid) return;
-      const q = (document.getElementById('shop-search-input')?.value || '').toLowerCase();
-      const filtered = productsList.filter(p =>
-        p.name.toLowerCase().includes(q) || (p.category || '').toLowerCase().includes(q)
-      );
-      grid.innerHTML = filtered.map(p => {
-        const outOfStock = Number(p.stock) <= 0;
-        const imgSrc = (p.image && p.image.startsWith('data:')) ? p.image : STAGE_IMAGES.mirror;
+    function selectPkgAndScroll(pkgName) {
+      const bookSel = document.getElementById('book-package');
+      if (bookSel) { bookSel.value = pkgName; updateInlineQuote(); }
+    }
+
+    function renderCustomBuilder() {
+      const baseGrid = document.getElementById('mixer-bases-grid');
+      const addGrid = document.getElementById('mixer-addons-grid');
+      baseGrid.innerHTML = packagesList.map(p => {
+        const active = p.id === selectedBasePkgId;
+        const price = Number(p[activeTierKey] || p.basePrice);
         return `
-          <div class="studio-card overflow-hidden flex flex-col justify-between">
+          <div onclick="selectedBasePkgId='${p.id}'; renderCustomBuilder();" class="p-4 rounded-2xl cursor-pointer border-2 transition ${active ? 'bg-[#D4AF37]/15 border-[#F5D061]' : 'bg-[#0E1015] border-white/15'}">
+            <div class="flex justify-between font-mono text-xs"><span class="text-[#F5D061]">${p.duration}</span><span class="font-bold text-white">₹${price}</span></div>
+            <div class="font-display font-bold text-sm uppercase text-white mt-1">${p.name}</div>
+          </div>
+        `;
+      }).join('');
+
+      const addOns = productsList.filter(p => p.category === 'Protection Add-On' || String(p.id).startsWith('ADD'));
+      addGrid.innerHTML = addOns.map(a => {
+        const on = selectedAddOnIds.includes(a.id);
+        return `
+          <div onclick="toggleBuilderAddOn('${a.id}')" class="p-3.5 rounded-2xl cursor-pointer border transition flex items-center justify-between ${on ? 'bg-[#D4AF37]/15 border-[#F5D061]' : 'bg-[#0E1015] border-white/15'}">
+            <div><div class="text-xs font-bold text-white">${a.name}</div><span class="font-mono text-[10px] text-[#F5D061]">+₹${a.price}</span></div>
+            <span class="w-6 h-6 rounded-full ${on ? 'gold-btn' : 'bg-white/10 text-zinc-400'} flex items-center justify-center font-mono text-xs">${on ? '✓' : '+'}</span>
+          </div>
+        `;
+      }).join('');
+
+      const base = packagesList.find(p => p.id === selectedBasePkgId) || packagesList[0];
+      const basePrice = Number(base[activeTierKey] || base.basePrice);
+      const chosen = addOns.filter(a => selectedAddOnIds.includes(a.id));
+      const total = basePrice + chosen.reduce((s, a) => s + Number(a.price), 0);
+      document.getElementById('mixer-base-label').textContent = `${base.name} (₹${basePrice})`;
+      document.getElementById('mixer-addons-summary').innerHTML = chosen.map(c => `<div class="flex justify-between"><span>+ ${c.name}</span><span>₹${c.price}</span></div>`).join('');
+      document.getElementById('mixer-total-display').textContent = `₹${total.toLocaleString('en-IN')}`;
+    }
+
+    function toggleBuilderAddOn(id) {
+      const idx = selectedAddOnIds.indexOf(id);
+      if (idx > -1) selectedAddOnIds.splice(idx, 1); else selectedAddOnIds.push(id);
+      renderCustomBuilder();
+    }
+
+    function applyCustomBuildToBooking() {
+      const base = packagesList.find(p => p.id === selectedBasePkgId) || packagesList[0];
+      selectPkgAndScroll(base.name);
+    }
+
+    function addCustomBuildToCart() {
+      const base = packagesList.find(p => p.id === selectedBasePkgId) || packagesList[0];
+      addToCart(base.id, base.name, Number(base[activeTierKey] || base.basePrice));
+      selectedAddOnIds.forEach(id => {
+        const a = productsList.find(p => p.id === id);
+        if (a) addToCart(a.id, a.name, a.price);
+      });
+      toggleCartDrawer(true);
+    }
+
+    // ACCESSORIES STORE & CART (WITH LIVE STOCK SYNC)
+    function renderProductsGrid() {
+      const q = (document.getElementById('shop-search-input')?.value || '').toLowerCase();
+      const filtered = productsList.filter(p => p.name.toLowerCase().includes(q) || (p.category || '').toLowerCase().includes(q));
+      document.getElementById('products-grid').innerHTML = filtered.map(p => {
+        const soldOut = Number(p.stock) <= 0;
+        const img = (p.image && p.image.startsWith('data:')) ? p.image : STAGE_IMAGES.mirror;
+        return `
+          <div class="gold-card overflow-hidden flex flex-col justify-between">
             <div>
-              <div class="relative h-44 bg-black">
-                <img src="${imgSrc}" alt="${p.name}" class="w-full h-full object-cover opacity-90" />
-                <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/80 border border-sky-400/40 font-mono text-[10px] text-sky-300">${p.category}</span>
-                <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full ${outOfStock ? 'bg-rose-600 text-white' : 'bg-emerald-500 text-black font-bold'} font-mono text-[10px]">
-                  ${outOfStock ? 'SOLD OUT' : `STOCK: ${p.stock}`}
+              <div class="relative h-40 bg-black">
+                <img src="${img}" alt="${p.name}" class="w-full h-full object-cover" />
+                <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-black/85 border border-[#D4AF37]/40 font-mono text-[10px] text-[#F5D061]">${p.category}</span>
+                <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full font-mono text-[10px] font-bold ${soldOut ? 'bg-rose-600 text-white' : 'bg-white text-black'}">
+                  ${soldOut ? 'SOLD OUT' : `STOCK: ${p.stock}`}
                 </span>
               </div>
-              <div class="p-5">
-                <div class="font-mono text-[10px] text-slate-400">BARCODE: ${p.barcode || p.id}</div>
-                <h4 class="font-display font-bold text-sm uppercase text-white mt-1">${p.name}</h4>
-              </div>
+              <div class="p-4"><h4 class="font-display font-bold text-sm uppercase text-white">${p.name}</h4></div>
             </div>
-            <div class="px-5 pb-5 pt-2 flex items-center justify-between border-t border-white/10">
-              <span class="font-display font-extrabold text-xl text-emerald-300">₹${Number(p.price).toLocaleString('en-IN')}</span>
-              <button type="button" ${outOfStock ? 'disabled' : ''} onclick="addToCustomerCart('${p.id}', '${p.name.replace(/'/g, "\\'")}', ${p.price})"
-                      class="px-4 py-2 rounded-full ${outOfStock ? 'bg-white/10 text-slate-500 cursor-not-allowed' : 'emerald-btn'} font-mono text-xs uppercase">
-                ${outOfStock ? 'Out of Stock' : '+ Add to Cart'}
+            <div class="px-4 pb-4 pt-2 border-t border-white/10 flex items-center justify-between">
+              <span class="font-display font-extrabold text-xl text-[#F5D061]">₹${Number(p.price).toLocaleString('en-IN')}</span>
+              <button type="button" ${soldOut ? 'disabled' : ''} onclick="addToCart('${p.id}', '${p.name.replace(/'/g, "\\'")}', ${p.price})"
+                      class="px-4 py-2 rounded-full font-mono text-xs uppercase ${soldOut ? 'bg-white/10 text-zinc-500' : 'gold-btn'}">
+                ${soldOut ? 'Out' : '+ Add'}
               </button>
             </div>
           </div>
@@ -1534,638 +1103,132 @@
       }).join('');
     }
 
-    // =========================================================================
-    // SHOPPING CART & ORDER SUBMISSION (SYNCED TO ERP /orders & /products)
-    // =========================================================================
-    function addToCustomerCart(id, name, price) {
-      playCustSfx('click');
-      const existing = shoppingCart.find(i => i.id === id);
-      if (existing) existing.qty += 1;
-      else shoppingCart.push({ id, name, price: Number(price), qty: 1 });
-      safeSetStorage('pushpa_cust_cart', JSON.stringify(shoppingCart));
-      renderCustomerCart();
-      showCustToast("Added to Cart", `${name} (₹${price}) added to your cart.`, "STORE CART", "🛒");
+    function addToCart(id, name, price) {
+      const ex = shoppingCart.find(i => i.id === id);
+      if (ex) ex.qty++; else shoppingCart.push({ id, name, price: Number(price), qty: 1 });
+      safeSet('pushpa_cust_cart', JSON.stringify(shoppingCart));
+      renderCart();
+      showCustToast("Added to Cart", `${name} added to your cart.`, "STORE", "🛒");
     }
 
-    function updateCartQty(id, delta) {
-      const idx = shoppingCart.findIndex(i => i.id === id);
-      if (idx === -1) return;
-      shoppingCart[idx].qty += delta;
-      if (shoppingCart[idx].qty <= 0) shoppingCart.splice(idx, 1);
-      safeSetStorage('pushpa_cust_cart', JSON.stringify(shoppingCart));
-      renderCustomerCart();
-    }
-
-    function applyCustomerPromo() {
-      const code = (document.getElementById('cart-promo-input')?.value || '').trim().toUpperCase();
-      if (code === 'PUSHPA5') activePromoDiscount = 0.05;
-      else if (code === 'VIP10') activePromoDiscount = 0.10;
-      else if (code === 'WELCOME100') activePromoDiscount = 100;
-      else {
-        showCustToast("Invalid Promo Code", "Try PUSHPA5, VIP10, or WELCOME100.", "PROMO", "⚠️");
-        return;
-      }
-      renderCustomerCart();
-      showCustToast("Promo Applied!", `Discount code ${code} activated on your cart.`, "PROMO", "🎉");
-    }
-
-    function renderCustomerCart() {
+    function renderCart() {
       const count = shoppingCart.reduce((s, i) => s + i.qty, 0);
       document.getElementById('nav-cart-count').textContent = count;
-      const shopCount = document.getElementById('shop-cart-count');
-      if (shopCount) shopCount.textContent = count;
-
-      const listEl = document.getElementById('cart-items-list');
-      if (!listEl) return;
-      if (shoppingCart.length === 0) {
-        listEl.innerHTML = `<p class="text-xs text-slate-400 font-mono text-center py-6">Your shopping cart is empty.</p>`;
-      } else {
-        listEl.innerHTML = shoppingCart.map(item => `
-          <div class="p-3 rounded-2xl bg-black border border-white/15 flex items-center justify-between gap-2 text-xs">
-            <div>
-              <div class="font-bold text-white">${item.name}</div>
-              <div class="font-mono text-[10px] text-emerald-300">₹${item.price} × ${item.qty} = ₹${item.price * item.qty}</div>
+      document.getElementById('shop-cart-count').textContent = count;
+      const list = document.getElementById('cart-items-list');
+      list.innerHTML = shoppingCart.length === 0
+        ? `<p class="text-xs text-zinc-500 font-mono text-center py-6">Your cart is empty.</p>`
+        : shoppingCart.map(i => `
+            <div class="p-3 rounded-xl bg-black border border-white/15 flex items-center justify-between text-xs">
+              <div><div class="font-bold text-white">${i.name}</div><div class="font-mono text-[10px] text-[#F5D061]">₹${i.price} × ${i.qty}</div></div>
+              <button type="button" onclick="shoppingCart=shoppingCart.filter(x=>x.id!=='${i.id}'); safeSet('pushpa_cust_cart', JSON.stringify(shoppingCart)); renderCart();" class="text-rose-400 font-mono text-xs">Remove</button>
             </div>
-            <div class="flex items-center gap-1.5 font-mono">
-              <button type="button" onclick="updateCartQty('${item.id}', -1)" class="w-6 h-6 rounded bg-white/10 text-white">-</button>
-              <span>${item.qty}</span>
-              <button type="button" onclick="updateCartQty('${item.id}', 1)" class="w-6 h-6 rounded emerald-btn">+</button>
-            </div>
-          </div>
-        `).join('');
-      }
-
-      const subtotal = shoppingCart.reduce((s, i) => s + i.price * i.qty, 0);
-      const disc = activePromoDiscount < 1 ? Math.round(subtotal * activePromoDiscount) : Math.min(subtotal, activePromoDiscount);
-      const grandTotal = Math.max(0, subtotal - disc);
-
-      document.getElementById('cart-discount-Tag').classList.toggle('hidden', disc <= 0);
-      document.getElementById('cart-total-display').textContent = `₹${grandTotal.toLocaleString('en-IN')}`;
-
-      const qrBox = document.getElementById('cart-upi-qr');
-      if (qrBox) {
-        qrBox.innerHTML = '';
-        try {
-          new QRCode(qrBox, {
-            text: `upi://pay?pa=9848088319@ybl&pn=Pushpa%20Car%20Gallery&am=${grandTotal}&cu=INR`,
-            width: 56, height: 56
-          });
-        } catch (e) {}
-      }
+          `).join('');
+      const total = shoppingCart.reduce((s, i) => s + i.price * i.qty, 0);
+      document.getElementById('cart-total-display').textContent = `₹${total.toLocaleString('en-IN')}`;
+      const qr = document.getElementById('cart-upi-qr');
+      qr.innerHTML = '';
+      new QRCode(qr, { text: `upi://pay?pa=9848088319@ybl&pn=Pushpa%20Car%20Gallery&am=${total}&cu=INR`, width: 52, height: 52 });
     }
 
     function toggleCartDrawer(open) {
-      playCustSfx('click');
-      const d = document.getElementById('cart-drawer');
-      if (d) d.classList.toggle('translate-x-full', !open);
-      renderCustomerCart();
+      document.getElementById('cart-drawer').classList.toggle('translate-x-full', !open);
+      renderCart();
     }
 
     async function submitCartOrder(e) {
       e.preventDefault();
       if (shoppingCart.length === 0) return;
-      playCustSfx('chime');
-
       const orderId = 'ORD_' + Date.now().toString().slice(-6);
-      const nowIso = new Date().toISOString();
-      const subtotal = shoppingCart.reduce((s, i) => s + i.price * i.qty, 0);
-      const disc = activePromoDiscount < 1 ? Math.round(subtotal * activePromoDiscount) : Math.min(subtotal, activePromoDiscount);
-      const grandTotal = Math.max(0, subtotal - disc);
-
-      const newOrder = {
-        orderId,
-        date: nowIso.slice(0, 10),
-        timestamp: nowIso,
+      const total = shoppingCart.reduce((s, i) => s + i.price * i.qty, 0);
+      const order = {
+        orderId, date: new Date().toISOString().slice(0, 10), timestamp: new Date().toISOString(),
         customerName: document.getElementById('order-name').value.trim(),
         customerPhone: document.getElementById('order-phone').value.trim(),
         carModel: document.getElementById('order-car').value.trim().toUpperCase(),
         deliveryMode: document.getElementById('order-delivery').value,
         items: shoppingCart.map(i => ({ ...i, total: i.price * i.qty })),
-        discount: disc,
-        grandTotal,
-        status: "NEW_ORDER"
+        grandTotal: total, status: 'NEW_ORDER'
       };
+      ordersList.unshift(order);
+      safeSet('pushpa_orders', JSON.stringify(ordersList));
 
-      ordersList.unshift(newOrder);
-      safeSetStorage('pushpa_orders', JSON.stringify(ordersList));
-
-      // Decrement product stock locally & in Firebase
+      // Reduce stock in real time
       for (const item of shoppingCart) {
-        const pIdx = productsList.findIndex(p => p.id === item.id);
-        if (pIdx > -1) {
-          productsList[pIdx].stock = Math.max(0, Number(productsList[pIdx].stock) - item.qty);
-          if (window.__pushpaFbSdkPatch) await window.__pushpaFbSdkPatch(`products/${item.id}`, { stock: productsList[pIdx].stock });
+        const idx = productsList.findIndex(p => p.id === item.id);
+        if (idx > -1) {
+          productsList[idx].stock = Math.max(0, Number(productsList[idx].stock) - item.qty);
+          if (window.__pushpaFbPatch) await window.__pushpaFbPatch(`products/${item.id}`, { stock: productsList[idx].stock });
         }
       }
-      safeSetStorage('pushpa_products', JSON.stringify(productsList));
-
-      if (window.__pushpaFbSdkWrite) await window.__pushpaFbSdkWrite(`orders/${orderId}`, newOrder);
-      try {
-        await fetch(`${DB_URL}/orders/${orderId}.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newOrder) });
-      } catch (err) {}
-
-      if (syncChannel) syncChannel.postMessage({ type: 'NEW_ORDER', payload: newOrder });
-
-      const waText = encodeURIComponent(
-        `*NEW ACCESSORY ORDER - PUSHPA CAR GALLERY*\n` +
-        `• *Order ID:* ${orderId}\n` +
-        `• *Customer:* ${newOrder.customerName} (${newOrder.customerPhone})\n` +
-        `• *Vehicle:* ${newOrder.carModel}\n` +
-        `• *Items:* ${newOrder.items.map(i => `${i.name} x${i.qty}`).join(', ')}\n` +
-        `• *Net Payable:* ₹${grandTotal}\n` +
-        `• *Mode:* ${newOrder.deliveryMode}`
-      );
+      safeSet('pushpa_products', JSON.stringify(productsList));
+      if (window.__pushpaFbWrite) await window.__pushpaFbWrite(`orders/${orderId}`, order);
+      if (syncChannel) syncChannel.postMessage({ type: 'NEW_ORDER', payload: order });
 
       shoppingCart = [];
-      safeSetStorage('pushpa_cust_cart', '[]');
-      renderCustomerCart();
-      renderProductsGrid();
-      toggleCartDrawer(false);
-      showCustToast("Order Synced to Studio POS!", `Order ${orderId} (₹${grandTotal}) is live on Vijay's ERP console.`, "ORDER CONFIRMED", "✓");
-      window.open(`https://wa.me/919848088319?text=${waText}`, '_blank');
+      safeSet('pushpa_cust_cart', '[]');
+      renderCart(); renderProductsGrid(); toggleCartDrawer(false);
+      showCustToast("Order Placed & Synced!", `Order ${orderId} (₹${total}) sent to Studio POS.`, "CONFIRMED", "✓");
     }
 
-    // =========================================================================
-    // TIME-SLOT BOOKING DRAWER (SYNCED TO ERP /leads & /bookedSlots)
-    // =========================================================================
-    function openBookingDrawer(preselectPkgName) {
-      playCustSfx('click');
-      document.getElementById('booking-backdrop').classList.remove('hidden');
-      document.getElementById('booking-drawer').classList.remove('translate-x-full');
-      const dateInput = document.getElementById('book-date');
-      if (!dateInput.value) dateInput.value = new Date().toISOString().slice(0, 10);
-      if (preselectPkgName) {
-        const sel = document.getElementById('book-package');
-        if (sel) sel.value = preselectPkgName;
-      }
-      renderLiveSlotGrid();
-      updateCalculatedQuote();
-    }
-
-    function closeBookingDrawer() {
-      document.getElementById('booking-backdrop').classList.add('hidden');
-      document.getElementById('booking-drawer').classList.add('translate-x-full');
-    }
-
-    function selectDrawerVehicle(label, tierKey, btnEl) {
-      playCustSfx('click');
-      drawerVehicleLabel = label;
-      drawerVehicleTier = tierKey;
-      document.querySelectorAll('.veh-opt').forEach(b => b.className = 'veh-opt py-2.5 rounded-full border border-white/15 bg-white/5 text-slate-300 font-mono text-xs');
-      if (btnEl) btnEl.className = 'veh-opt py-2.5 rounded-full emerald-btn font-mono text-xs';
-      updateCalculatedQuote();
-    }
-
-    function updateCalculatedQuote() {
-      const pkgName = document.getElementById('book-package')?.value;
-      const pkg = packagesList.find(p => p.name === pkgName) || packagesList[0];
-      const base = Number(pkg[drawerVehicleTier] || pkg.basePrice || 499);
-      const addon = Number(document.getElementById('book-foam-addon')?.value || 0);
-      document.getElementById('book-quote-display').textContent = `₹${(base + addon).toLocaleString('en-IN')}`;
-      return base + addon;
-    }
-
-    function renderLiveSlotGrid() {
-      const dateStr = document.getElementById('book-date')?.value || new Date().toISOString().slice(0, 10);
-      const grid = document.getElementById('live-slot-grid');
-      if (!grid) return;
-      const selectedTime = document.getElementById('book-time').value;
-      const takenForDate = bookedSlotsMap[dateStr] || {};
-
-      grid.innerHTML = STUDIO_TIME_SLOTS.map(slot => {
-        const isTaken = Boolean(takenForDate[slot]) || leadsList.some(l => l.date === dateStr && l.timeSlot === slot && l.status !== 'COMPLETED');
-        const isSelected = slot === selectedTime && !isTaken;
-        return `
-          <button type="button" ${isTaken ? 'disabled' : ''} onclick="selectBookingSlot('${slot}')"
-                  class="py-2 px-2 rounded-xl font-mono text-[11px] transition border ${
-                    isTaken
-                      ? 'bg-rose-500/20 border-rose-500/40 text-rose-300 cursor-not-allowed line-through'
-                      : isSelected
-                        ? 'emerald-btn border-transparent'
-                        : 'bg-black border-white/15 text-slate-200 hover:border-emerald-400'
-                  }">
-            ${slot}
-          </button>
-        `;
-      }).join('');
-    }
-
-    function selectBookingSlot(slot) {
-      playCustSfx('click');
-      document.getElementById('book-time').value = slot;
-      renderLiveSlotGrid();
-    }
-
-    async function submitCustomerBooking(e) {
-      e.preventDefault();
-      playCustSfx('chime');
-      const leadId = 'LEAD_' + Date.now().toString().slice(-6);
-      const date = document.getElementById('book-date').value;
-      const timeSlot = document.getElementById('book-time').value;
-      const pkgBase = document.getElementById('book-package').value;
-      const addonSelect = document.getElementById('book-foam-addon');
-      const addonName = addonSelect.options[addonSelect.selectedIndex]?.getAttribute('data-name') || '';
-      const packageName = addonName ? `${pkgBase} + ${addonName}` : pkgBase;
-      const price = updateCalculatedQuote();
-
-      const newLead = {
-        id: leadId,
-        clientName: document.getElementById('book-name').value.trim(),
-        phone: document.getElementById('book-phone').value.trim(),
-        vehicleModel: document.getElementById('book-car-model').value.trim().toUpperCase(),
-        vehicleType: drawerVehicleLabel,
-        packageName,
-        serviceMode: document.getElementById('book-mode').value,
-        price,
-        date,
-        timeSlot,
-        status: 'NEW',
-        createdAt: new Date().toISOString()
-      };
-
-      leadsList.unshift(newLead);
-      safeSetStorage('pushpa_leads', JSON.stringify(leadsList));
-
-      if (!bookedSlotsMap[date]) bookedSlotsMap[date] = {};
-      bookedSlotsMap[date][timeSlot] = leadId;
-      safeSetStorage('pushpa_bookedSlots', JSON.stringify(bookedSlotsMap));
-
-      if (window.__pushpaFbSdkWrite) {
-        await window.__pushpaFbSdkWrite(`leads/${leadId}`, newLead);
-        await window.__pushpaFbSdkWrite(`bookedSlots/${date}/${encodeURIComponent(timeSlot)}`, leadId);
-      }
-      try {
-        await fetch(`${DB_URL}/leads/${leadId}.json`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newLead) });
-      } catch (err) {}
-
-      if (syncChannel) syncChannel.postMessage({ type: 'NEW_LEAD', payload: newLead });
-
-      document.getElementById('customer-booking-form').classList.add('hidden');
-      document.getElementById('booking-success-state').classList.remove('hidden');
-      document.getElementById('booking-summary-text').textContent =
-        `Booking ID ${leadId} locked for ${newLead.vehicleModel} on ${date} at ${timeSlot} (${packageName} — ₹${price}). Live-synced with Pushpa Studio ERP!`;
-
-      const qrContainer = document.getElementById('booking-upi-qr');
-      qrContainer.innerHTML = '';
-      try {
-        new QRCode(qrContainer, {
-          text: `upi://pay?pa=9848088319@ybl&pn=Pushpa%20Car%20Gallery&am=${price}&cu=INR&tn=${leadId}`,
-          width: 104, height: 104
-        });
-      } catch (err) {}
-
-      const waMsg = encodeURIComponent(
-        `*VIP SLOT BOOKING - PUSHPA CAR GALLERY*\n` +
-        `• *Booking ID:* ${leadId}\n` +
-        `• *Client:* ${newLead.clientName} (${newLead.phone})\n` +
-        `• *Vehicle:* ${newLead.vehicleModel} (${newLead.vehicleType})\n` +
-        `• *Package:* ${packageName}\n` +
-        `• *Slot:* ${date} @ ${timeSlot}\n` +
-        `• *Estimate:* ₹${price}`
-      );
-      document.getElementById('whatsapp-direct-btn').href = `https://wa.me/919848088319?text=${waMsg}`;
-    }
-
-    function resetBookingDrawer() {
-      document.getElementById('customer-booking-form').reset();
-      document.getElementById('customer-booking-form').classList.remove('hidden');
-      document.getElementById('booking-success-state').classList.add('hidden');
-      renderLiveSlotGrid();
-    }
-
-    // =========================================================================
-    // UNIFIED LIVE TRACKER (SEARCHES LEADS, ORDERS, JOB CARDS & POS BILLS)
-    // =========================================================================
     function checkLiveVehicleStatus() {
-      playCustSfx('click');
       const q = (document.getElementById('track-input')?.value || '').trim().toLowerCase();
       const box = document.getElementById('track-result-box');
-      if (!box) return;
       box.classList.remove('hidden');
-      if (q.length < 3) {
-        box.innerHTML = `<p class="text-xs text-rose-300 font-mono">Please enter at least 3 characters (Phone, Car No, Booking ID, Order ID, JOB_ or INV_).</p>`;
-        return;
+      if (q.length < 3) { box.innerHTML = `<p class="text-xs text-rose-400 font-mono">Enter at least 3 characters.</p>`; return; }
+      const leads = leadsList.filter(l => (l.id||'').toLowerCase().includes(q) || (l.phone||'').includes(q) || (l.vehicleModel||'').toLowerCase().includes(q));
+      const bills = billsList.filter(b => (b.invoiceId||'').toLowerCase().includes(q) || (b.customerPhone||'').includes(q) || (b.vehicleNo||'').toLowerCase().includes(q));
+      if (!leads.length && !bills.length) {
+        box.innerHTML = `<p class="text-xs text-zinc-400 font-mono">No record found for "${q}".</p>`; return;
       }
-
-      const matchLeads = leadsList.filter(l =>
-        (l.id || '').toLowerCase().includes(q) || (l.phone || '').includes(q) || (l.vehicleModel || '').toLowerCase().includes(q) || (l.clientName || '').toLowerCase().includes(q)
-      );
-      const matchOrders = ordersList.filter(o =>
-        (o.orderId || '').toLowerCase().includes(q) || (o.customerPhone || '').includes(q) || (o.carModel || '').toLowerCase().includes(q)
-      );
-      const matchJobs = jobCardsList.filter(j =>
-        (j.jobId || '').toLowerCase().includes(q) || (j.phone || '').includes(q) || (j.car || '').toLowerCase().includes(q)
-      );
-      const matchBills = billsList.filter(b =>
-        (b.invoiceId || '').toLowerCase().includes(q) || (b.customerPhone || '').includes(q) || (b.vehicleNo || '').toLowerCase().includes(q)
-      );
-
-      if (!matchLeads.length && !matchOrders.length && !matchJobs.length && !matchBills.length) {
-        box.innerHTML = `<p class="text-xs text-slate-300 font-mono">No active bay record found for "${q}". Book a slot or call 098480 88319 for instant assistance.</p>`;
-        return;
-      }
-
-      let html = '';
-      matchLeads.forEach(l => {
-        const badge = l.status === 'COMPLETED' ? 'bg-emerald-500 text-black' : l.status === 'IN_BAY' ? 'bg-[#0066FF] text-white' : 'bg-sky-500/20 text-sky-300';
-        html += `
-          <div class="p-4 rounded-2xl bg-black/80 border border-emerald-400/40 flex flex-wrap items-center justify-between gap-3 text-xs">
-            <div>
-              <span class="font-mono text-[10px] text-emerald-300">SLOT BOOKING • ${l.id} • ${l.date} @ ${l.timeSlot}</span>
-              <h4 class="font-bold text-white text-sm mt-0.5">${l.clientName} — ${l.vehicleModel}</h4>
-              <p class="text-slate-300 text-[11px]">${l.packageName} (${l.serviceMode})</p>
-            </div>
-            <div class="text-right font-mono">
-              <span class="px-3 py-1 rounded-full ${badge} font-bold text-[10px] block">${l.status}</span>
-              <span class="text-white font-bold text-sm mt-1 block">₹${l.price}</span>
-            </div>
-          </div>`;
-      });
-
-      matchJobs.forEach(j => {
-        html += `
-          <div class="p-4 rounded-2xl bg-black/80 border border-sky-400/40 text-xs space-y-1">
-            <div class="flex justify-between font-mono text-[10px] text-sky-300"><span>DIGITAL VEHICLE JOB CARD • ${j.jobId}</span><span>Odo: ${j.odo}</span></div>
-            <div class="font-bold text-white">${j.client} — ${j.car}</div>
-            <div class="text-emerald-300 text-[11px]">Inspection Panel Notes: ${j.zones}</div>
-            <div class="text-slate-400 text-[11px]">Bay Instructions: ${j.notes}</div>
-          </div>`;
-      });
-
-      matchOrders.forEach(o => {
-        html += `
-          <div class="p-4 rounded-2xl bg-black/80 border border-emerald-400/40 flex flex-wrap items-center justify-between gap-3 text-xs">
-            <div>
-              <span class="font-mono text-[10px] text-emerald-300">ACCESSORY ORDER • ${o.orderId} (${o.date})</span>
-              <h4 class="font-bold text-white text-sm">${o.customerName} — ${o.carModel}</h4>
-              <p class="text-slate-300 text-[11px]">${(o.items || []).map(i => `${i.name} ×${i.qty}`).join(', ')}</p>
-            </div>
-            <div class="text-right font-mono">
-              <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-bold text-[10px] block">${o.status}</span>
-              <span class="text-white font-bold text-sm mt-1 block">₹${o.grandTotal}</span>
-            </div>
-          </div>`;
-      });
-
-      matchBills.forEach(b => {
-        html += `
-          <div class="p-4 rounded-2xl bg-black/80 border border-white/25 flex flex-wrap items-center justify-between gap-3 text-xs">
-            <div>
-              <span class="font-mono text-[10px] text-sky-300">VERIFIED POS INVOICE &amp; WARRANTY • ${b.invoiceId} (${b.date})</span>
-              <h4 class="font-bold text-white text-sm">${b.customerName} — Car: ${b.vehicleNo}</h4>
-              <p class="text-slate-300 text-[11px]">${(b.items || []).map(i => `${i.name} ×${i.qty}`).join(', ')}</p>
-            </div>
-            <div class="text-right font-mono">
-              <span class="px-3 py-1 rounded-full bg-emerald-500 text-black font-extrabold text-[10px] block">PAID • ₹${b.grandTotal}</span>
-            </div>
-          </div>`;
-      });
-
-      box.innerHTML = html;
+      box.innerHTML = [
+        ...leads.map(l => `<div class="p-4 rounded-xl bg-black border border-[#D4AF37]/40 flex justify-between text-xs"><div><span class="font-mono text-[10px] text-[#F5D061]">BOOKING • ${l.id} • ${l.date} @ ${l.timeSlot}</span><div class="font-bold text-white">${l.clientName} — ${l.vehicleModel}</div></div><span class="px-3 py-1 rounded-full gold-btn font-mono text-[10px] self-center">${l.status}</span></div>`),
+        ...bills.map(b => `<div class="p-4 rounded-xl bg-black border border-emerald-500/40 flex justify-between text-xs"><div><span class="font-mono text-[10px] text-emerald-400">INVOICE • ${b.invoiceId} • ${b.date}</span><div class="font-bold text-white">${b.customerName} — ${b.vehicleNo}</div></div><span class="font-mono font-bold text-[#F5D061] self-center">PAID ₹${b.grandTotal}</span></div>`)
+      ].join('');
     }
 
-    // =========================================================================
-    // AI PAINT SCANNER & CONCIERGE CHAT
-    // =========================================================================
-    function runAiPaintAnalysis(showNotification = false) {
-      const issue = document.getElementById('ai-paint-issue')?.value || 'swirls';
-      const titleEl = document.getElementById('ai-rec-title');
-      const priceEl = document.getElementById('ai-rec-price');
-      const reasonEl = document.getElementById('ai-rec-reason');
-
-      if (issue === 'swirls' || issue === 'newcar') {
-        const pkg = packagesList.find(p => p.id === 'PKG04') || FALLBACK_PACKAGES[3];
-        titleEl.textContent = pkg.name;
-        priceEl.textContent = `₹${Number(pkg.basePrice).toLocaleString('en-IN')}`;
-        reasonEl.textContent = "Recommended 2-stage Zentool rotary correction with Lake Country pads followed by 5-Year 9H Ceramic Mirror Shield (118° hydrophobic beading).";
-      } else if (issue === 'interior') {
-        const pkg = packagesList.find(p => p.id === 'PKG03') || FALLBACK_PACKAGES[2];
-        titleEl.textContent = pkg.name;
-        priceEl.textContent = `₹${Number(pkg.basePrice).toLocaleString('en-IN')}`;
-        reasonEl.textContent = "Hot-water fabric/leather extraction, antibacterial AC vent steam, and ozone cabin sanitization.";
-      } else {
-        const pkg = packagesList.find(p => p.id === 'PKG01') || FALLBACK_PACKAGES[0];
-        titleEl.textContent = pkg.name + " + 118° Windshield Shield";
-        priceEl.textContent = `₹${Number(pkg.basePrice) + 499}`;
-        reasonEl.textContent = "3pH Active Snow Foam bath, 0-PPM spot-free hydro rinse, and 118° anti-rain windshield armor.";
-      }
-      if (showNotification) showCustToast("AI Surface Scan Complete", `Recommended: ${titleEl.textContent}`, "AI DIAGNOSTICS", "🧠");
-    }
-
-    function handleAiCarPhotoUpload(e) {
-      const file = e.target.files?.[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = () => {
-        document.getElementById('ai-scan-img').src = reader.result;
-        document.getElementById('ai-scan-status').textContent = "● CUSTOM VEHICLE PHOTO ANALYZED";
-        runAiPaintAnalysis(true);
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function bookAiRecommendedPackage() {
-      const recTitle = document.getElementById('ai-rec-title').textContent;
-      const match = packagesList.find(p => recTitle.includes(p.name)) || packagesList[0];
-      openBookingDrawer(match.name);
-    }
-
-    function sendQuickAiQuestion(q) {
-      document.getElementById('ai-chat-input').value = q;
-      handleAiChatSubmit(new Event('submit'));
-    }
-
-    function handleAiChatSubmit(e) {
-      if (e.preventDefault) e.preventDefault();
-      const inp = document.getElementById('ai-chat-input');
-      const q = (inp.value || '').trim();
-      if (!q) return;
-      playCustSfx('click');
-      const box = document.getElementById('ai-chat-messages');
-      box.innerHTML += `<div class="p-3 rounded-2xl bg-[#0066FF]/30 border border-sky-400/40 text-white text-right ml-8">${q}</div>`;
-      inp.value = '';
-
-      const lower = q.toLowerCase();
-      let reply = "At Pushpa Car Gallery (Bypass Road, Khammam), we offer 3pH Snow Foam Wash (from ₹499), 3M Teflon Polish (₹2,499), Interior Ozone Spa (₹1,799), and 5-Yr 9H Ceramic Armor (₹11,999). Call Vijay at 098480 88319!";
-      if (lower.includes('ceramic') || lower.includes('teflon')) {
-        reply = "9H Ceramic Mirror Shield (from ₹11,999) forms a permanent 5-year chemical bond with 118° water beading, whereas 3M Teflon (from ₹2,499) gives 6 months of warm carnuba-polymer gloss and swirl reduction.";
-      } else if (lower.includes('foam') || lower.includes('wash')) {
-        reply = "Our 3pH Snow Foam & 0-PPM Spot-Free Wash starts at ₹499 (Hatchback), ₹599 (Sedan), and ₹699 (SUV) — just like the live Mercedes-AMG video at the top of this page!";
-      } else if (lower.includes('mat') || lower.includes('seat')) {
-        reply = "7D Luxury Diamond Floor Mats are ₹3,499 and Custom Bucket-Fit Napa Seat Covers are ₹6,499 with free studio installation at Bypass Road!";
-      } else if (lower.includes('pickup')) {
-        reply = "Yes! We provide Free Pickup & Drop across Khammam town for Ceramic Coating, 3M Teflon, and Interior Spa bookings.";
-      }
-
-      setTimeout(() => {
-        box.innerHTML += `<div class="p-3.5 rounded-2xl bg-white/[0.06] border border-emerald-400/40 text-slate-100 mr-6"><strong class="text-emerald-300 font-mono block text-[10px] mb-1">PUSHPA AI CONCIERGE</strong>${reply}</div>`;
-        box.scrollTop = box.scrollHeight;
-      }, 220);
-    }
-
-    // =========================================================================
-    // THE 118° BEAD LAB — INTERACTIVE HYDROPHOBIC CANVAS
-    // =========================================================================
-    let isCoatedMode = true;
-    function setBeadMode(coated) {
-      playCustSfx('click');
-      isCoatedMode = coated;
-      document.getElementById('btn-coated').className = coated ? 'px-5 py-2.5 rounded-full font-mono text-xs uppercase emerald-btn transition' : 'px-5 py-2.5 rounded-full font-mono text-xs uppercase bg-white/5 text-slate-300 border border-white/15';
-      document.getElementById('btn-uncoated').className = !coated ? 'px-5 py-2.5 rounded-full font-mono text-xs uppercase emerald-btn transition' : 'px-5 py-2.5 rounded-full font-mono text-xs uppercase bg-white/5 text-slate-300 border border-white/15';
-      document.getElementById('bead-angle-readout').textContent = coated ? '118°' : '42°';
-      document.getElementById('surface-mode-label').textContent = coated ? 'COATED: 118° HYDROPHOBIC' : 'UNCOATED: FLAT WATER SHEETING';
-    }
-
-    (function initBeadLabCanvas() {
-      const c = document.getElementById('hydro-canvas');
-      if (!c) return;
-      const ctx = c.getContext('2d');
-      let drops = [];
-      let mouse = { x: -999, y: -999 };
-      function resize() { c.width = c.clientWidth || 600; c.height = c.clientHeight || 360; }
-      window.addEventListener('resize', resize); resize();
-      for (let i = 0; i < 55; i++) {
-        drops.push({ x: Math.random() * c.width, y: Math.random() * c.height, r: Math.random() * 7 + 4, vy: Math.random() * 2 + 1 });
-      }
-      c.addEventListener('pointermove', e => {
-        const r = c.getBoundingClientRect();
-        mouse.x = e.clientX - r.left;
-        mouse.y = e.clientY - r.top;
-      });
-      function draw() {
-        ctx.fillStyle = '#030A18';
-        ctx.fillRect(0, 0, c.width, c.height);
-        drops.forEach(d => {
-          d.y += isCoatedMode ? d.vy * 1.9 : d.vy * 0.45;
-          const dx = d.x - mouse.x, dy = d.y - mouse.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < 75 && isCoatedMode) {
-            d.x += (dx / (dist || 1)) * 6;
-            d.y += (dy / (dist || 1)) * 6;
-          }
-          if (d.y > c.height) { d.y = -10; d.x = Math.random() * c.width; }
-          ctx.beginPath();
-          ctx.arc(d.x, d.y, isCoatedMode ? d.r : d.r * 1.7, 0, Math.PI * 2);
-          ctx.fillStyle = isCoatedMode ? 'rgba(52, 211, 153, 0.82)' : 'rgba(148, 163, 184, 0.38)';
-          ctx.fill();
-        });
-        requestAnimationFrame(draw);
-      }
-      draw();
-    })();
-
-    // =========================================================================
-    // FIREBASE CLOUD SYNC & CROSS-TAB BROADCAST LISTENERS
-    // =========================================================================
+    // REAL-TIME SYNC HANDLERS
     function mergeById(cloudObj, localArr, idKey) {
       const map = new Map();
-      (localArr || []).forEach(item => { if (item && item[idKey]) map.set(item[idKey], item); });
-      if (cloudObj && typeof cloudObj === 'object') {
-        Object.values(cloudObj).forEach(item => { if (item && item[idKey]) map.set(item[idKey], item); });
-      }
+      (localArr || []).forEach(i => { if (i && i[idKey]) map.set(i[idKey], i); });
+      if (cloudObj && typeof cloudObj === 'object') Object.values(cloudObj).forEach(i => { if (i && i[idKey]) map.set(i[idKey], i); });
       return Array.from(map.values());
     }
 
-    window.__handleRealtimeNodeUpdate = function(node, val) {
-      if (!val) return;
-      if (node === 'packages') {
-        packagesList = mergeById(val, packagesList, 'id');
-        safeSetStorage('pushpa_packages', JSON.stringify(packagesList));
-      } else if (node === 'products') {
-        productsList = mergeById(val, productsList, 'id');
-        safeSetStorage('pushpa_products', JSON.stringify(productsList));
-      } else if (node === 'leads') {
-        leadsList = mergeById(val, leadsList, 'id');
-        safeSetStorage('pushpa_leads', JSON.stringify(leadsList));
-      } else if (node === 'orders') {
-        ordersList = mergeById(val, ordersList, 'orderId');
-        safeSetStorage('pushpa_orders', JSON.stringify(ordersList));
-      } else if (node === 'bills') {
-        billsList = mergeById(val, billsList, 'invoiceId');
-        safeSetStorage('pushpa_bills', JSON.stringify(billsList));
-      } else if (node === 'jobCards') {
-        jobCardsList = mergeById(val, jobCardsList, 'jobId');
-        safeSetStorage('pushpa_jobCards', JSON.stringify(jobCardsList));
-      } else if (node === 'bookedSlots') {
-        bookedSlotsMap = val || {};
-        safeSetStorage('pushpa_bookedSlots', JSON.stringify(bookedSlotsMap));
-      }
-      refreshCustomerPortalUI();
+    window.__handleRealtimeNode = (node, val) => {
+      if (node === 'packages') { packagesList = mergeById(val, packagesList, 'id'); safeSet('pushpa_packages', JSON.stringify(packagesList)); }
+      if (node === 'products') { productsList = mergeById(val, productsList, 'id'); safeSet('pushpa_products', JSON.stringify(productsList)); }
+      if (node === 'leads') { leadsList = mergeById(val, leadsList, 'id'); safeSet('pushpa_leads', JSON.stringify(leadsList)); }
+      if (node === 'bookedSlots') { bookedSlotsMap = val || {}; safeSet('pushpa_bookedSlots', JSON.stringify(bookedSlotsMap)); }
+      refreshAllCustomerUI();
     };
 
     if (syncChannel) {
       syncChannel.onmessage = () => {
-        packagesList = JSON.parse(safeGetStorage('pushpa_packages', 'null')) || packagesList;
-        productsList = JSON.parse(safeGetStorage('pushpa_products', 'null')) || productsList;
-        leadsList = JSON.parse(safeGetStorage('pushpa_leads', '[]'));
-        ordersList = JSON.parse(safeGetStorage('pushpa_orders', '[]'));
-        billsList = JSON.parse(safeGetStorage('pushpa_bills', '[]'));
-        jobCardsList = JSON.parse(safeGetStorage('pushpa_jobCards', '[]'));
-        refreshCustomerPortalUI();
+        packagesList = JSON.parse(safeGet('pushpa_packages', 'null')) || packagesList;
+        productsList = JSON.parse(safeGet('pushpa_products', 'null')) || productsList;
+        leadsList = JSON.parse(safeGet('pushpa_leads', '[]'));
+        bookedSlotsMap = JSON.parse(safeGet('pushpa_bookedSlots', '{}'));
+        refreshAllCustomerUI();
       };
     }
 
     window.addEventListener('storage', () => {
-      packagesList = JSON.parse(safeGetStorage('pushpa_packages', 'null')) || packagesList;
-      productsList = JSON.parse(safeGetStorage('pushpa_products', 'null')) || productsList;
-      leadsList = JSON.parse(safeGetStorage('pushpa_leads', '[]'));
-      ordersList = JSON.parse(safeGetStorage('pushpa_orders', '[]'));
-      billsList = JSON.parse(safeGetStorage('pushpa_bills', '[]'));
-      jobCardsList = JSON.parse(safeGetStorage('pushpa_jobCards', '[]'));
-      refreshCustomerPortalUI();
+      leadsList = JSON.parse(safeGet('pushpa_leads', '[]'));
+      productsList = JSON.parse(safeGet('pushpa_products', 'null')) || productsList;
+      bookedSlotsMap = JSON.parse(safeGet('pushpa_bookedSlots', '{}'));
+      refreshAllCustomerUI();
     });
 
-    async function runFirebaseConnectionCheck() {
-      const t0 = performance.now();
-      try {
-        const res = await fetch(`${DB_URL}/.json`);
-        const ping = Math.round(performance.now() - t0);
-        document.getElementById('fb-diag-ping').textContent = `${ping} ms`;
-        document.getElementById('fb-pill-text').textContent = `ERP Live (${ping}ms)`;
-        if (res.ok) {
-          const data = await res.json() || {};
-          if (data.packages) packagesList = mergeById(data.packages, packagesList, 'id');
-          if (data.products) productsList = mergeById(data.products, productsList, 'id');
-          if (data.leads) leadsList = mergeById(data.leads, leadsList, 'id');
-          if (data.orders) ordersList = mergeById(data.orders, ordersList, 'orderId');
-          if (data.bills) billsList = mergeById(data.bills, billsList, 'invoiceId');
-          if (data.jobCards) jobCardsList = mergeById(data.jobCards, jobCardsList, 'jobId');
-          document.getElementById('fb-diag-counts').textContent =
-            `${packagesList.length} Pkgs | ${productsList.length} Prods | ${leadsList.length} Bookings`;
-          refreshCustomerPortalUI();
-        }
-      } catch (e) {}
-    }
-
-    function openFirebaseConsoleModal() {
-      document.getElementById('firebase-console-modal').classList.remove('hidden');
-      runFirebaseConnectionCheck();
-    }
-    function closeFirebaseConsoleModal() {
-      document.getElementById('firebase-console-modal').classList.add('hidden');
-    }
-
-    function triggerInvisibleGoogleReview() {
-      playCustSfx('chime');
-      const reviewText = "Visited Pushpa Car Gallery on Bypass Road, Khammam for 3pH Snow Foam & 9H Ceramic Coating. Vijay and his team delivered an incredible mirror finish! Highly recommended!";
-      if (navigator.clipboard) navigator.clipboard.writeText(reviewText).catch(() => {});
-      showCustToast("5★ Review Copied!", "Review copied to clipboard. Opening Google Reviews...", "GOOGLE REVIEW", "★");
-      setTimeout(() => {
-        window.open("https://search.google.com/local/reviews?placeid=ChIJHXpfBLlZNDoRTxffD-NWtEY", "_blank");
-      }, 600);
-    }
-
-    function refreshCustomerPortalUI() {
-      renderPackagesGrid();
+    function refreshAllCustomerUI() {
+      renderSystematicSlotMatrix();
+      renderPackagesSection();
+      renderCustomBuilder();
       renderProductsGrid();
-      renderCustomDetailBuilder();
-      renderCustomerCart();
-      renderLiveSlotGrid();
+      renderCart();
     }
 
-    // Initial Boot
-    refreshCustomerPortalUI();
-    runFirebaseConnectionCheck();
+    refreshAllCustomerUI();
   </script>
 </body>
 </html>
