@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PUSHPA CAR GALLERY | 24K Gold Luxury Detailing Studio — Khammam</title>
+  <title>PUSHPA CAR GALLERY | Luxury Detailing, PPF &amp; Live Bay Booking — Khammam</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
@@ -22,26 +22,21 @@
             charcoal: '#0E1015',
             gold: '#D4AF37',
             goldLight: '#F5D061',
-            goldDark: '#997A15',
-            ivory: '#FAF9F6'
+            crimson: '#DC2626'
           }
         }
       }
     };
   </script>
   <style>
-    body {
-      background: #06070A;
-      color: #FFFFFF;
-      overflow-x: hidden;
-    }
+    body { background: #06070A; color: #FFFFFF; overflow-x: hidden; }
     .glass-nav {
-      background: rgba(6, 7, 10, 0.88);
+      background: rgba(6, 7, 10, 0.92);
       backdrop-filter: blur(20px) saturate(160%);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.28);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
     }
     .gold-card {
-      background: linear-gradient(160deg, rgba(18, 20, 28, 0.95) 0%, rgba(9, 10, 14, 0.99) 100%);
+      background: linear-gradient(160deg, rgba(18, 20, 28, 0.96) 0%, rgba(9, 10, 14, 0.99) 100%);
       border: 1px solid rgba(212, 175, 55, 0.28);
       border-radius: 20px;
       box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -49,20 +44,15 @@
     }
     .gold-card:hover {
       border-color: #F5D061;
-      box-shadow: 0 24px 55px -12px rgba(212, 175, 55, 0.2);
-      transform: translateY(-3px);
+      box-shadow: 0 24px 55px -12px rgba(212, 175, 55, 0.22);
+      transform: translateY(-2px);
     }
     .ivory-card {
       background: linear-gradient(155deg, #FFFFFF 0%, #FAF8F2 100%);
       color: #090A0F;
       border: 1.5px solid #D4AF37;
       border-radius: 20px;
-      box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.15);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .ivory-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 25px 50px -12px rgba(212, 175, 55, 0.28);
+      box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.18);
     }
     .gold-btn {
       background: linear-gradient(135deg, #FFF3C4 0%, #F5D061 35%, #D4AF37 75%, #AA8214 100%);
@@ -71,11 +61,7 @@
       box-shadow: 0 8px 25px -5px rgba(212, 175, 55, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.85);
       transition: all 0.22s ease;
     }
-    .gold-btn:hover {
-      filter: brightness(1.07);
-      transform: translateY(-1.5px);
-      box-shadow: 0 12px 30px -4px rgba(245, 208, 97, 0.65);
-    }
+    .gold-btn:hover { filter: brightness(1.07); transform: translateY(-1px); }
     .gold-outline-btn {
       background: rgba(212, 175, 55, 0.08);
       color: #F5D061;
@@ -83,10 +69,7 @@
       font-weight: 700;
       transition: all 0.22s ease;
     }
-    .gold-outline-btn:hover {
-      background: rgba(212, 175, 55, 0.18);
-      border-color: #F5D061;
-    }
+    .gold-outline-btn:hover { background: rgba(212, 175, 55, 0.18); border-color: #F5D061; }
     .gold-text {
       background: linear-gradient(135deg, #FFFFFF 0%, #F5D061 50%, #D4AF37 100%);
       -webkit-background-clip: text;
@@ -99,20 +82,20 @@
 </head>
 <body class="font-sans antialiased selection:bg-[#D4AF37] selection:text-black">
 
-  <!-- LIVE STUDIO SYNC TOAST -->
+  <!-- LIVE TOAST -->
   <div id="cust-toast" class="fixed top-24 right-5 z-50 hidden gold-card p-4 border-2 border-[#F5D061] shadow-2xl max-w-sm">
     <div class="flex items-start gap-3">
-      <div id="cust-toast-icon" class="w-9 h-9 rounded-xl gold-btn flex items-center justify-center text-base shrink-0">✦</div>
+      <div id="cust-toast-icon" class="w-9 h-9 rounded-xl gold-btn flex items-center justify-center text-base shrink-0">★</div>
       <div class="flex-1">
-        <span id="cust-toast-tag" class="font-mono text-[10px] uppercase tracking-widest text-[#F5D061] block">LIVE STUDIO SYNC</span>
-        <h4 id="cust-toast-title" class="font-display font-bold text-sm text-white mt-0.5">Updated</h4>
+        <span id="cust-toast-tag" class="font-mono text-[10px] uppercase tracking-widest text-[#F5D061] block">PUSHPA CAR GALLERY</span>
+        <h4 id="cust-toast-title" class="font-display font-bold text-sm text-white mt-0.5">Ready</h4>
         <p id="cust-toast-body" class="text-xs text-zinc-300 mt-1"></p>
       </div>
       <button type="button" onclick="hideCustToast()" class="text-zinc-400 hover:text-white font-mono text-xs">✕</button>
     </div>
   </div>
 
-  <!-- HEADER & LUXURY BRAND CREST -->
+  <!-- HEADER WITH VECTORIZED PUSHPA CAR GALLERY LOGO + TOP 1-TAP UNLIMITED GOOGLE REVIEW -->
   <header class="fixed top-0 inset-x-0 z-40 glass-nav">
     <div class="bg-[#0B0C10] border-b border-[#D4AF37]/20 px-4 sm:px-8 py-1.5 text-[10px] sm:text-[11px] font-mono">
       <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
@@ -129,50 +112,79 @@
       </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
-      <!-- PUSHPA CAR GALLERY CUSTOM SVG CREST LOGO -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-2">
+      <!-- CONVERTED VECTOR SVG OF pushpacarlogo.jpg -->
       <a href="#top" class="flex items-center gap-3 group shrink-0">
-        <svg class="w-11 h-11 sm:w-12 sm:h-12 shrink-0 drop-shadow-lg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <svg class="w-12 h-12 sm:w-14 sm:h-14 shrink-0 drop-shadow-lg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="crestGold" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#FFF3C4"/>
-              <stop offset="45%" stop-color="#F5D061"/>
-              <stop offset="100%" stop-color="#997A15"/>
+            <linearGradient id="metalSilver" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FFFFFF"/>
+              <stop offset="50%" stop-color="#D4D4D8"/>
+              <stop offset="100%" stop-color="#71717A"/>
+            </linearGradient>
+            <linearGradient id="crimsonShield" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#EF4444"/>
+              <stop offset="100%" stop-color="#991B1B"/>
             </linearGradient>
           </defs>
-          <rect x="4" y="4" width="112" height="112" rx="26" fill="#0B0C10" stroke="url(#crestGold)" stroke-width="4"/>
-          <path d="M22 72 L34 48 Q44 36 60 36 Q76 36 86 48 L98 72" fill="none" stroke="url(#crestGold)" stroke-width="4" stroke-linecap="round"/>
-          <path d="M18 72 H102" stroke="url(#crestGold)" stroke-width="3.5" stroke-linecap="round"/>
-          <circle cx="38" cy="74" r="8" fill="#0B0C10" stroke="url(#crestGold)" stroke-width="3.5"/>
-          <circle cx="82" cy="74" r="8" fill="#0B0C10" stroke="url(#crestGold)" stroke-width="3.5"/>
-          <text x="60" y="26" text-anchor="middle" fill="url(#crestGold)" font-family="Syne, sans-serif" font-weight="800" font-size="13" letter-spacing="1.5">PUSHPA</text>
-          <text x="60" y="102" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono, monospace" font-weight="700" font-size="9.5" letter-spacing="2">CAR GALLERY</text>
+          <rect width="240" height="240" rx="36" fill="#06070A"/>
+          <!-- Outer Red & Silver Shield Top Arch -->
+          <path d="M26 105 L26 62 Q120 20 214 62 L214 105" fill="none" stroke="url(#crimsonShield)" stroke-width="6" stroke-linecap="round"/>
+          <path d="M34 105 L34 67 Q120 30 206 67 L206 105" fill="none" stroke="url(#metalSilver)" stroke-width="6" stroke-linecap="round"/>
+          <!-- 5 Red Stars -->
+          <g fill="#EF4444">
+            <polygon points="68,62 70,68 76,68 71,72 73,78 68,74 63,78 65,72 60,68 66,68"/>
+            <polygon points="93,55 95,62 102,62 96,66 98,73 93,69 88,73 90,66 84,62 91,62"/>
+            <polygon points="120,49 123,57 131,57 124,62 127,70 120,65 113,70 116,62 109,57 117,57"/>
+            <polygon points="147,55 149,62 156,62 150,66 152,73 147,69 142,73 144,66 138,62 145,62"/>
+            <polygon points="172,62 174,68 180,68 175,72 177,78 172,74 167,78 169,72 164,68 170,68"/>
+          </g>
+          <!-- Coupe Silhouette -->
+          <path d="M46 104 L50 93 Q75 76 112 76 Q142 76 164 89 L190 95 Q196 99 194 104 Z" fill="#0B0C10" stroke="url(#metalSilver)" stroke-width="3"/>
+          <path d="M84 89 Q110 80 138 89 Z" fill="url(#metalSilver)"/>
+          <path d="M54 98 L82 102 L54 102 Z" fill="#EF4444"/>
+          <path d="M164 98 L188 99 L185 103 L164 102 Z" fill="#EF4444"/>
+          <!-- Left & Right Speed Lines -->
+          <g stroke="url(#metalSilver)" stroke-width="2" stroke-linecap="round">
+            <line x1="12" y1="118" x2="42" y2="118"/><line x1="16" y1="124" x2="42" y2="124"/><line x1="20" y1="130" x2="42" y2="130"/>
+            <line x1="198" y1="118" x2="228" y2="118"/><line x1="198" y1="124" x2="224" y2="124"/><line x1="198" y1="130" x2="220" y2="130"/>
+          </g>
+          <!-- Metallic Typography -->
+          <text x="120" y="131" text-anchor="middle" fill="url(#metalSilver)" font-family="Syne, sans-serif" font-weight="800" font-size="22" letter-spacing="2">PUSHPA</text>
+          <text x="120" y="156" text-anchor="middle" fill="url(#metalSilver)" font-family="Syne, sans-serif" font-weight="800" font-size="18.5" letter-spacing="1.5">CAR GALLERY</text>
+          <!-- Bottom Shield V-Chevron -->
+          <path d="M56 168 Q78 202 120 218 Q162 202 184 168" fill="none" stroke="url(#metalSilver)" stroke-width="6" stroke-linecap="round"/>
+          <path d="M48 170 Q74 209 120 226 Q166 209 192 170" fill="none" stroke="url(#crimsonShield)" stroke-width="5" stroke-linecap="round"/>
         </svg>
-        <div>
-          <span class="font-display font-extrabold tracking-wider text-sm sm:text-lg block leading-none gold-text">PUSHPA CAR GALLERY</span>
-          <span class="font-mono text-[9px] sm:text-[10px] text-zinc-400 tracking-widest uppercase">24K Luxury Detailing &amp; PPF Studio</span>
+        <div class="hidden sm:block">
+          <span class="font-display font-extrabold tracking-wider text-sm sm:text-base block leading-none gold-text">PUSHPA CAR GALLERY</span>
+          <span class="font-mono text-[9px] text-zinc-400 tracking-widest uppercase">Khammam's #1 Detailing Studio</span>
         </div>
       </a>
 
-      <!-- SYSTEMATIC NAVIGATION -->
+      <!-- NAVIGATION -->
       <nav class="hidden xl:flex items-center gap-1 bg-white/[0.04] px-2.5 py-1.5 rounded-full border border-[#D4AF37]/25 text-[11px] font-mono uppercase tracking-wider text-zinc-200">
         <a href="#cinema-hero" class="px-3 py-1.5 rounded-full hover:bg-[#D4AF37] hover:text-black transition">01. Studio Live</a>
         <a href="#slot-matrix" class="px-3 py-1.5 rounded-full hover:bg-[#D4AF37] hover:text-black text-[#F5D061] transition">02. Live Slots</a>
         <a href="#services" class="px-3 py-1.5 rounded-full hover:bg-[#D4AF37] hover:text-black transition">03. Treatments</a>
         <a href="#customizer" class="px-3 py-1.5 rounded-full hover:bg-[#D4AF37] hover:text-black transition">04. Custom Build</a>
         <a href="#live-tracker" class="px-3 py-1.5 rounded-full hover:bg-[#D4AF37] hover:text-black transition">05. Track Car</a>
-        <a href="#store" class="px-3 py-1.5 rounded-full hover:bg-[#D4AF37] hover:text-black transition">06. Accessories</a>
+        <a href="#store" class="px-3 py-1.5 rounded-full hover:bg-[#D4AF37] hover:text-black transition">06. Store</a>
       </nav>
 
-      <!-- ACTION CONTROLS -->
+      <!-- TOP-INTERFACE 1-TAP UNLIMITED GOOGLE REVIEW + CART + BOOK SLOT -->
       <div class="flex items-center gap-2">
-        <span id="fb-pill-text" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-[#D4AF37]/30 font-mono text-[10px] text-[#F5D061]">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> ERP Synced
-        </span>
-        <button type="button" onclick="toggleCartDrawer(true)" class="relative px-3.5 py-2 rounded-full bg-white text-black font-bold border border-[#D4AF37] hover:bg-[#F5D061] transition flex items-center gap-1.5 font-mono text-xs">
-          <span>🛒</span>
-          <span id="nav-cart-count" class="px-1.5 py-0.5 rounded-full bg-black text-[#F5D061] font-extrabold text-[10px]">0</span>
+        <button type="button" onclick="triggerInvisibleUnlimitedGoogleReview()"
+                class="px-3.5 sm:px-4 py-2.5 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs font-extrabold uppercase tracking-wider border-2 border-[#D4AF37] hover:bg-[#F5D061] transition shadow-lg flex items-center gap-1.5">
+          <span class="text-amber-500 text-sm">★</span>
+          <span>1-Tap 5★ Review</span>
         </button>
+
+        <button type="button" onclick="toggleCartDrawer(true)" class="relative px-3 py-2 rounded-full bg-[#0E1015] text-white font-bold border border-[#D4AF37]/50 hover:border-[#F5D061] transition flex items-center gap-1 font-mono text-xs">
+          <span>🛒</span>
+          <span id="nav-cart-count" class="px-1.5 py-0.5 rounded-full bg-[#D4AF37] text-black font-extrabold text-[10px]">0</span>
+        </button>
+
         <a href="#slot-matrix" class="px-4 sm:px-5 py-2.5 rounded-full gold-btn font-mono text-xs uppercase tracking-wider">
           Book Slot →
         </a>
@@ -182,16 +194,15 @@
 
   <div id="top"></div>
 
-  <!-- SECTION 1: FULL-BLEED VIDEO & PROCEDURAL 4-STAGE DETAILING HERO -->
+  <!-- SECTION 1: FULL-BLEED VIDEO & 4-STAGE DETAILING HERO -->
   <section id="cinema-hero" class="relative w-full min-h-screen flex flex-col justify-between pt-28 sm:pt-32 pb-8 px-4 sm:px-10 overflow-hidden">
-    <!-- Video + Procedural Canvas Simulation Layer -->
     <div class="absolute inset-0 w-full h-full z-0 bg-[#06070A]">
       <canvas id="procedural-detailing-canvas" class="absolute inset-0 w-full h-full object-cover"></canvas>
       <video id="studio-hero-video" class="relative w-full h-full object-cover opacity-90" autoplay loop muted playsinline preload="auto" onerror="this.style.display='none'">
         <source src="video_1.mp4" type="video/mp4" />
       </video>
       <canvas id="foam-burst-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-10"></canvas>
-      <div class="absolute inset-0 bg-gradient-to-r from-[#06070A]/92 via-[#06070A]/55 to-[#06070A]/85 pointer-events-none"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-[#06070A]/92 via-[#06070A]/50 to-[#06070A]/85 pointer-events-none"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-[#06070A] via-transparent to-[#06070A]/70 pointer-events-none"></div>
     </div>
 
@@ -199,10 +210,10 @@
     <div class="relative z-20 max-w-7xl w-full mx-auto flex flex-wrap items-center justify-between gap-3 border-b border-[#D4AF37]/25 pb-3">
       <div class="flex flex-wrap items-center gap-2">
         <span id="scrub-stage-badge" class="font-mono text-[11px] uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-black/80 border border-[#D4AF37] text-[#F5D061] backdrop-blur-md">
-          🎬 STUDIO BAY LIVE // 01: 3pH ACTIVE SNOW FOAM BATH
+          🎬 LIVE BAY VIDEO // 01: 3pH ACTIVE SNOW FOAM BATH
         </span>
         <div class="flex items-center gap-1 bg-black/80 p-1 rounded-full border border-white/15 font-mono text-[10px] backdrop-blur-md">
-          <button type="button" id="hero-mode-video" onclick="switchHeroMode('video')" class="px-3 py-1 rounded-full gold-btn uppercase">🎬 Live Stage</button>
+          <button type="button" id="hero-mode-video" onclick="switchHeroMode('video')" class="px-3 py-1 rounded-full gold-btn uppercase">🎬 Live Cinema</button>
           <button type="button" id="hero-mode-scrub" onclick="switchHeroMode('scrub')" class="px-3 py-1 rounded-full text-zinc-300 hover:text-white uppercase">⇄ Before / After</button>
         </div>
       </div>
@@ -229,14 +240,17 @@
             <span class="gold-text">IN THE DETAIL.</span>
           </h1>
           <p class="text-xs sm:text-base text-zinc-300 max-w-xl leading-relaxed">
-            Precision <strong class="text-white">3pH Active Snow Foam</strong>, <strong class="text-[#F5D061]">Rotary Paint Correction</strong>, and <strong class="text-white">5-Year 9H Ceramic &amp; Self-Healing TPU PPF</strong>. View real-time bay availability and lock your exact time slot online.
+            Precision <strong class="text-white">3pH Active Snow Foam</strong>, <strong class="text-[#F5D061]">Zentool Rotary Paint Correction</strong>, and <strong class="text-white">5-Year 9H Ceramic &amp; Self-Healing TPU PPF</strong>. View real-time bay availability and lock your exact time slot online.
           </p>
           <div class="flex flex-wrap items-center gap-3 pt-2">
             <a href="#slot-matrix" class="px-7 py-4 rounded-full gold-btn font-mono text-xs uppercase tracking-widest">
               📅 Check Live Slots &amp; Book →
             </a>
+            <button type="button" onclick="triggerInvisibleUnlimitedGoogleReview()" class="px-5 py-4 rounded-full bg-white text-black font-mono text-xs font-extrabold uppercase tracking-wider border-2 border-[#D4AF37] hover:bg-[#F5D061] transition">
+              ★ Rate Us 5★ on Google →
+            </button>
             <button type="button" onclick="triggerFoamCannonBlast()" class="px-5 py-4 rounded-full gold-outline-btn font-mono text-xs uppercase tracking-wider">
-              💨 Demo Snow Foam
+              💨 Snow Foam FX
             </button>
           </div>
         </div>
@@ -248,16 +262,16 @@
               <span class="font-mono text-[10px] uppercase tracking-widest text-[#997A15] font-bold block">INSTANT ESTIMATE &amp; AVAILABILITY</span>
               <h3 class="font-display font-extrabold text-lg uppercase text-black">QUICK STUDIO QUOTE</h3>
             </div>
-            <span id="hero-free-slots-badge" class="px-3 py-1 rounded-full bg-black text-[#F5D061] font-mono text-[10px] font-bold">8 SLOTS FREE TODAY</span>
+            <span id="hero-free-slots-badge" class="px-3 py-1 rounded-full bg-black text-[#F5D061] font-mono text-[10px] font-bold">9 SLOTS FREE TODAY</span>
           </div>
 
           <div class="space-y-3 text-xs">
             <div>
               <label class="font-mono text-[10px] uppercase text-zinc-600 font-bold block mb-1">1. Vehicle Segment</label>
               <div class="grid grid-cols-3 gap-1.5 font-mono text-[11px]">
-                <button type="button" onclick="setGlobalTier('basePrice', 'Hatchback', this)" class="global-tier-btn py-2 rounded-xl bg-black text-[#F5D061] font-bold">Hatchback</button>
-                <button type="button" onclick="setGlobalTier('sedanPrice', 'Sedan', this)" class="global-tier-btn py-2 rounded-xl bg-zinc-100 text-zinc-700 font-bold border border-zinc-300">Sedan</button>
-                <button type="button" onclick="setGlobalTier('suvPrice', 'SUV / MUV', this)" class="global-tier-btn py-2 rounded-xl bg-zinc-100 text-zinc-700 font-bold border border-zinc-300">SUV / MUV</button>
+                <button type="button" onclick="setGlobalTier('basePrice', 'Hatchback')" class="global-tier-btn py-2 rounded-xl bg-black text-[#F5D061] font-bold">Hatchback</button>
+                <button type="button" onclick="setGlobalTier('sedanPrice', 'Sedan')" class="global-tier-btn py-2 rounded-xl bg-zinc-100 text-zinc-700 font-bold border border-zinc-300">Sedan</button>
+                <button type="button" onclick="setGlobalTier('suvPrice', 'SUV / MUV')" class="global-tier-btn py-2 rounded-xl bg-zinc-100 text-zinc-700 font-bold border border-zinc-300">SUV / MUV</button>
               </div>
             </div>
             <div>
@@ -267,7 +281,7 @@
             <div class="p-3.5 rounded-xl bg-[#0B0C10] text-white border border-[#D4AF37]/50 flex items-center justify-between">
               <div>
                 <span class="font-mono text-[10px] text-[#F5D061] block" id="step-live-number">STAGE 01 • 3pH SNOW FOAM</span>
-                <span class="text-[11px] text-zinc-300" id="step-live-desc">Zero-contact pH-neutral snow foam encapsulation</span>
+                <span class="text-[11px] text-zinc-300" id="step-live-desc">Zero-contact alkaline snow foam encapsulation</span>
               </div>
               <span id="hero-quote-price" class="font-display font-extrabold text-2xl gold-text">₹499</span>
             </div>
@@ -294,24 +308,24 @@
       </div>
     </div>
 
-    <!-- Bottom 4-Stage Video Scrubber -->
+    <!-- Bottom 4-Stage Video Scrubber Synced to video_1.mp4 -->
     <div class="relative z-20 max-w-7xl w-full mx-auto space-y-2.5">
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono text-[10px]">
         <button type="button" onclick="jumpHeroStage(0)" id="vchap-0" class="vchap-btn p-3 rounded-xl bg-black/85 border-2 border-[#F5D061] text-left backdrop-blur-md">
           <div class="text-[#F5D061] font-bold">01. 3pH SNOW FOAM</div>
-          <div class="text-zinc-300 text-[9px]">Alkaline Grit Encapsulation</div>
+          <div class="text-zinc-300 text-[9px]">00:00 – 03:40 • Alkaline Pre-Wash</div>
         </button>
         <button type="button" onclick="jumpHeroStage(1)" id="vchap-1" class="vchap-btn p-3 rounded-xl bg-black/70 border border-white/15 text-left hover:border-[#D4AF37] backdrop-blur-md">
           <div class="text-white font-bold">02. 0-PPM HYDRO RINSE</div>
-          <div class="text-zinc-400 text-[9px]">De-Ionized Spot-Free Sheet</div>
+          <div class="text-zinc-400 text-[9px]">03:40 – 05:00 • Spot-Free Sheet</div>
         </button>
         <button type="button" onclick="jumpHeroStage(2)" id="vchap-2" class="vchap-btn p-3 rounded-xl bg-black/70 border border-white/15 text-left hover:border-[#D4AF37] backdrop-blur-md">
           <div class="text-white font-bold">03. ROTARY CORRECTION</div>
-          <div class="text-zinc-400 text-[9px]">Swirl &amp; Haze Removal</div>
+          <div class="text-zinc-400 text-[9px]">05:00 – 08:40 • Yellow Pad Polish</div>
         </button>
         <button type="button" onclick="jumpHeroStage(3)" id="vchap-3" class="vchap-btn p-3 rounded-xl bg-black/70 border border-white/15 text-left hover:border-[#D4AF37] backdrop-blur-md">
           <div class="text-white font-bold">04. 9H MIRROR ARMOR</div>
-          <div class="text-zinc-400 text-[9px]">118° Hydrophobic Curing</div>
+          <div class="text-zinc-400 text-[9px]">08:40 – 09:95 • 118° Ceramic Reveal</div>
         </button>
       </div>
       <div class="w-full bg-white/15 h-1.5 rounded-full overflow-hidden">
@@ -320,7 +334,7 @@
     </div>
   </section>
 
-  <!-- SECTION 2: SYSTEMATIC REAL-TIME BAY SLOT BOOKING MATRIX (CUSTOMER <-> ADMIN SYNCED) -->
+  <!-- SECTION 2: REAL-TIME BAY SLOT BOOKING MATRIX -->
   <section id="slot-matrix" class="py-20 px-4 sm:px-10 bg-[#0B0C10] border-y border-[#D4AF37]/25">
     <div class="max-w-7xl mx-auto">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
@@ -339,7 +353,6 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        <!-- Left 7 Cols: Interactive Date & Hourly Bay Matrix -->
         <div class="lg:col-span-7 gold-card p-6 sm:p-7 space-y-6">
           <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
             <div>
@@ -348,11 +361,10 @@
             </div>
             <div class="text-right font-mono">
               <span class="text-[10px] text-zinc-400 block">SELECTED DATE SUMMARY</span>
-              <span id="matrix-availability-summary" class="text-sm font-bold text-emerald-400">8 Free • 0 Booked</span>
+              <span id="matrix-availability-summary" class="text-sm font-bold text-emerald-400">9 Free • 0 Booked</span>
             </div>
           </div>
 
-          <!-- Hourly Bay Grid -->
           <div id="systematic-slot-cards" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
 
           <div class="p-4 rounded-xl bg-black/70 border border-white/10 flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] text-zinc-300">
@@ -361,7 +373,6 @@
           </div>
         </div>
 
-        <!-- Right 5 Cols: Instant Slot Lock Form -->
         <div class="lg:col-span-5 ivory-card p-6 sm:p-7">
           <form id="inline-booking-form" onsubmit="submitInlineSlotBooking(event)" class="space-y-4">
             <div class="flex items-center justify-between border-b border-zinc-200 pb-3">
@@ -455,9 +466,9 @@
           <h2 class="font-display font-extrabold text-3xl sm:text-5xl uppercase mt-3 text-black">SIGNATURE DETAILING PACKAGES</h2>
         </div>
         <div class="flex items-center gap-1.5 bg-black p-1.5 rounded-full self-start">
-          <button type="button" onclick="setGlobalTier('basePrice', 'Hatchback', this)" class="tier-pill px-4 py-1.5 rounded-full font-mono text-xs gold-btn">Hatchback</button>
-          <button type="button" onclick="setGlobalTier('sedanPrice', 'Sedan', this)" class="tier-pill px-4 py-1.5 rounded-full font-mono text-xs text-zinc-300">Sedan</button>
-          <button type="button" onclick="setGlobalTier('suvPrice', 'SUV / MUV', this)" class="tier-pill px-4 py-1.5 rounded-full font-mono text-xs text-zinc-300">SUV / MUV</button>
+          <button type="button" onclick="setGlobalTier('basePrice', 'Hatchback')" class="tier-pill px-4 py-1.5 rounded-full font-mono text-xs gold-btn">Hatchback</button>
+          <button type="button" onclick="setGlobalTier('sedanPrice', 'Sedan')" class="tier-pill px-4 py-1.5 rounded-full font-mono text-xs text-zinc-300">Sedan</button>
+          <button type="button" onclick="setGlobalTier('suvPrice', 'SUV / MUV')" class="tier-pill px-4 py-1.5 rounded-full font-mono text-xs text-zinc-300">SUV / MUV</button>
         </div>
       </div>
       <div id="packages-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
@@ -522,7 +533,7 @@
     </div>
   </section>
 
-  <!-- SECTION 6: CAR ACCESSORIES & CARE STORE (LIVE STOCK SYNCED) -->
+  <!-- SECTION 6: CAR ACCESSORIES & CARE STORE -->
   <section id="store" class="py-20 px-4 sm:px-10 max-w-7xl mx-auto">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
       <div>
@@ -539,7 +550,21 @@
     <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
   </section>
 
-  <!-- FOOTER WITH DEVELOPER ATTRIBUTION -->
+  <!-- SECTION 7: GOOGLE REVIEW & DIRECTIONS -->
+  <section class="py-14 px-4 sm:px-10 bg-[#0B0C10] border-t border-[#D4AF37]/25">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <span class="font-mono text-xs uppercase tracking-widest text-[#F5D061]">KHAMMAM'S #1 RATED DETAILING STUDIO</span>
+        <h3 class="font-display font-extrabold text-2xl sm:text-4xl uppercase mt-1 gold-text">LOVE YOUR MIRROR FINISH?</h3>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <button type="button" onclick="triggerInvisibleUnlimitedGoogleReview()" class="px-6 py-3.5 rounded-full gold-btn font-mono text-xs uppercase">★ 1-Tap 5★ Google Review →</button>
+        <a href="https://www.google.com/maps?cid=5094792611686717263" target="_blank" rel="noopener" class="px-6 py-3.5 rounded-full gold-outline-btn font-mono text-xs uppercase">📍 Open Google Maps</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER WITH DEVELOPER ATTRIBUTION (@syedzeeshaanali07) -->
   <footer class="py-10 px-4 sm:px-10 border-t border-[#D4AF37]/25 bg-[#040507]">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
       <div class="text-xs font-mono text-zinc-400">
@@ -569,6 +594,10 @@
         <button type="button" onclick="toggleCartDrawer(false)" class="w-9 h-9 rounded-full bg-white/5 text-zinc-400 hover:text-white">✕</button>
       </div>
       <div id="cart-items-list" class="space-y-3 my-4"></div>
+      <div class="flex items-center gap-2 mb-4">
+        <input type="text" id="cart-promo-input" placeholder="Promo (PUSHPA5, VIP10, WELCOME100)" class="flex-1 bg-black border border-white/20 rounded-full px-3.5 py-2 text-xs text-white font-mono uppercase" />
+        <button type="button" onclick="applyCartPromo()" class="px-4 py-2 rounded-full gold-btn font-mono text-xs uppercase">Apply</button>
+      </div>
       <form onsubmit="submitCartOrder(event)" class="space-y-3 pt-3 border-t border-white/10">
         <input type="text" id="order-name" required placeholder="Your Full Name" class="w-full bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white" />
         <input type="tel" id="order-phone" required placeholder="Mobile / WhatsApp Number" class="w-full bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
@@ -580,6 +609,7 @@
         <div class="p-3.5 rounded-xl bg-black border border-[#D4AF37]/40 flex items-center justify-between">
           <div>
             <span class="font-mono text-[10px] text-[#F5D061] block">UPI: 9848088319@ybl</span>
+            <span id="cart-discount-note" class="hidden text-[10px] text-emerald-400 block">Promo Applied!</span>
             <span id="cart-total-display" class="font-display font-extrabold text-2xl text-white">₹0</span>
           </div>
           <div class="bg-white p-1.5 rounded-lg"><div id="cart-upi-qr" class="w-[56px] h-[56px]"></div></div>
@@ -622,7 +652,59 @@
   <!-- CUSTOMER PORTAL ENGINE -->
   <script>
     const DB_URL = "https://pushpacargalary-default-rtdb.asia-southeast1.firebasedatabase.app";
+    const GOOGLE_REVIEW_LINK = "https://search.google.com/local/reviews?placeid=ChIJHXpfBLlZNDoRTxffD-NWtEY&q=pushpa+car+gallery+khammam&authuser=0&hl=en&gl=IN";
     const syncChannel = ('BroadcastChannel' in window) ? new BroadcastChannel('pushpa_live_sync') : null;
+
+    // INVISIBLE UNLIMITED COMBINATORIAL 5-STAR GOOGLE REVIEW ENGINE (ZERO COMMENT VISIBILITY)
+    const REV_OPENERS = [
+      "Visited Pushpa Car Gallery on Bypass Road, Khammam",
+      "Brought my car to Pushpa Car Gallery near TVS Vajra Showroom, Khammam",
+      "Had an extraordinary detailing session at Pushpa Car Gallery in Khammam",
+      "Best automotive detailing studio in Khammam! Took my vehicle to Pushpa Car Gallery",
+      "Extremely impressed with Pushpa Car Gallery on Bypass Road, Khammam"
+    ];
+    const REV_SERVICES = [
+      "for their 3pH Active Snow Foam wash and 0-PPM spot-free rinse",
+      "for 9H Ceramic Mirror Shield coating and multi-stage rotary polish",
+      "for 3M Teflon paint protection and deep interior ozone sanitization",
+      "for self-healing TPU PPF armor and hydrophobic windshield coating",
+      "for custom bucket-fit Napa seat covers, 7D floor mats, and foam detailing"
+    ];
+    const REV_PRAISE = [
+      "— Vijay and his skilled team delivered a true showroom mirror finish with zero swirl marks.",
+      "— the gloss depth, hydrophobic water beading, and attention to every corner are unmatched.",
+      "— transparent pricing, genuine products, and super fast bay delivery.",
+      "— my car looks brand new inside and out, truly world-class workmanship.",
+      "— top-notch professionalism, spot-free finishing, and polite customer service."
+    ];
+    const REV_CLOSERS = [
+      "Highly recommended for every car owner in Khammam!",
+      "10/10 experience, will definitely return for periodic maintenance!",
+      "Undoubtedly the #1 car care & accessories studio in town!",
+      "Worth every rupee—5 stars all the way!"
+    ];
+
+    function triggerInvisibleUnlimitedGoogleReview() {
+      const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+      const generatedReview = `${pick(REV_OPENERS)} ${pick(REV_SERVICES)} ${pick(REV_PRAISE)} ${pick(REV_CLOSERS)}`;
+
+      // Silently copy to clipboard without showing any comment text on screen
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(generatedReview).catch(() => {});
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = generatedReview;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+
+      showCustToast("5★ Google Review Ready!", "Opening Google Reviews — simply paste & post!", "GOOGLE REVIEW", "★");
+      window.open(GOOGLE_REVIEW_LINK, "_blank", "noopener");
+    }
 
     function createStageSvg(title, sub, accent) {
       const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
@@ -705,13 +787,32 @@
     let selectedBasePkgId = 'PKG01';
     let selectedAddOnIds = ['ADD201'];
     let shoppingCart = JSON.parse(safeGet('pushpa_cust_cart', '[]'));
+    let activePromoDiscount = 0;
 
-    // PROCEDURAL CINEMATIC 4-STAGE DETAILING CANVAS + VIDEO SYNC
+    // HERO VIDEO & PROCEDURAL CANVAS SYNC
     const procCanvas = document.getElementById('procedural-detailing-canvas');
     const foamCanvas = document.getElementById('foam-burst-canvas');
     const videoEl = document.getElementById('studio-hero-video');
-    let heroStageIdx = 0;
     let foamParticles = [];
+
+    if (videoEl) {
+      videoEl.addEventListener('timeupdate', () => {
+        const t = videoEl.currentTime || 0;
+        const dur = videoEl.duration || 9.958;
+        document.getElementById('video-progress-bar').style.width = `${Math.min(100, (t / dur) * 100)}%`;
+        const idx = t < 3.4 ? 0 : t < 5.0 ? 1 : t < 8.4 ? 2 : 3;
+        const m = STAGE_META[idx];
+        document.getElementById('scrub-stage-badge').textContent = m.badge;
+        document.getElementById('step-live-number').textContent = m.num;
+        document.getElementById('step-live-desc').textContent = m.desc;
+        [0, 1, 2, 3].forEach(i => {
+          const b = document.getElementById(`vchap-${i}`);
+          if (b) b.className = i === idx
+            ? "vchap-btn p-3 rounded-xl bg-black/90 border-2 border-[#F5D061] text-left backdrop-blur-md"
+            : "vchap-btn p-3 rounded-xl bg-black/70 border border-white/15 text-left hover:border-[#D4AF37] backdrop-blur-md";
+        });
+      });
+    }
 
     (function initHeroVisuals() {
       const pCtx = procCanvas ? procCanvas.getContext('2d') : null;
@@ -729,16 +830,6 @@
           const w = procCanvas.width, h = procCanvas.height;
           pCtx.fillStyle = '#06070A';
           pCtx.fillRect(0, 0, w, h);
-
-          // Studio overhead LED light bars
-          const grad = pCtx.createLinearGradient(0, 0, w, h);
-          grad.addColorStop(0, 'rgba(212, 175, 55, 0.14)');
-          grad.addColorStop(0.5, 'rgba(255, 255, 255, 0.04)');
-          grad.addColorStop(1, 'rgba(6, 7, 10, 0.95)');
-          pCtx.fillStyle = grad;
-          pCtx.fillRect(0, 0, w, h);
-
-          // Animated golden reflection sweep across luxury coupe silhouette
           const sweepX = ((Math.sin(t * 0.7) + 1) / 2) * w;
           const beam = pCtx.createRadialGradient(sweepX, h * 0.45, 20, sweepX, h * 0.45, w * 0.35);
           beam.addColorStop(0, 'rgba(245, 208, 97, 0.22)');
@@ -746,7 +837,6 @@
           pCtx.fillStyle = beam;
           pCtx.fillRect(0, 0, w, h);
         }
-
         if (fCtx && foamParticles.length > 0) {
           fCtx.clearRect(0, 0, foamCanvas.width, foamCanvas.height);
           foamParticles.forEach(b => {
@@ -778,14 +868,13 @@
     }
 
     const STAGE_META = [
-      { badge: "🎬 STUDIO BAY LIVE // 01: 3pH ACTIVE SNOW FOAM", num: "STAGE 01 • 3pH SNOW FOAM", desc: "Zero-contact alkaline snow foam encapsulates abrasive road film", sec: 0.2, pct: "25%" },
-      { badge: "🎬 STUDIO BAY LIVE // 02: 0-PPM HYDRO RINSE", num: "STAGE 02 • 0-PPM HYDRO RINSE", desc: "De-ionized spot-free high-pressure rinse sheets away dirt", sec: 3.6, pct: "50%" },
-      { badge: "🎬 STUDIO BAY LIVE // 03: ROTARY PAINT CORRECTION", num: "STAGE 03 • ROTARY CORRECTION", desc: "Dual-action compounding removes 95%+ swirl marks", sec: 5.8, pct: "75%" },
-      { badge: "🎬 STUDIO BAY LIVE // 04: 9H CERAMIC MIRROR", num: "STAGE 04 • 9H MIRROR ARMOR", desc: "118° super-hydrophobic 5-year glass mirror finish", sec: 8.6, pct: "100%" }
+      { badge: "🎬 LIVE BAY VIDEO // 01: 3pH ACTIVE SNOW FOAM", num: "STAGE 01 • 3pH SNOW FOAM", desc: "Zero-contact alkaline snow foam encapsulates abrasive road film", sec: 0.2, pct: "25%" },
+      { badge: "🎬 LIVE BAY VIDEO // 02: 0-PPM HYDRO RINSE", num: "STAGE 02 • 0-PPM HYDRO RINSE", desc: "De-ionized spot-free high-pressure rinse sheets away dirt", sec: 3.6, pct: "50%" },
+      { badge: "🎬 LIVE BAY VIDEO // 03: ROTARY CORRECTION", num: "STAGE 03 • ROTARY CORRECTION", desc: "Dual-action compounding removes 95%+ swirl marks", sec: 5.8, pct: "75%" },
+      { badge: "🎬 LIVE BAY VIDEO // 04: 9H CERAMIC MIRROR", num: "STAGE 04 • 9H MIRROR ARMOR", desc: "118° super-hydrophobic 5-year glass mirror finish", sec: 8.6, pct: "100%" }
     ];
 
     function jumpHeroStage(idx) {
-      heroStageIdx = idx;
       switchHeroMode('video');
       const m = STAGE_META[idx];
       document.getElementById('scrub-stage-badge').textContent = m.badge;
@@ -828,7 +917,7 @@
       window.addEventListener('pointerup', () => drag = false);
     })();
 
-    // SYSTEMATIC LIVE SLOT MATRIX (REAL-TIME CUSTOMER <-> ADMIN SYNC)
+    // SYSTEMATIC LIVE SLOT MATRIX
     function isSlotBooked(dateStr, timeStr) {
       const mapTaken = Boolean(bookedSlotsMap[dateStr] && bookedSlotsMap[dateStr][timeStr]);
       const leadTaken = leadsList.some(l => l.date === dateStr && l.timeSlot === timeStr && l.status !== 'COMPLETED');
@@ -843,9 +932,7 @@
 
       let freeCount = 0, bookedCount = 0;
       const firstFree = STUDIO_TIME_SLOTS.find(s => !isSlotBooked(dateStr, s.time));
-      if (isSlotBooked(dateStr, selectedSlotTime) && firstFree) {
-        selectedSlotTime = firstFree.time;
-      }
+      if (isSlotBooked(dateStr, selectedSlotTime) && firstFree) selectedSlotTime = firstFree.time;
 
       grid.innerHTML = STUDIO_TIME_SLOTS.map(slot => {
         const booked = isSlotBooked(dateStr, slot.time);
@@ -1072,7 +1159,7 @@
       toggleCartDrawer(true);
     }
 
-    // ACCESSORIES STORE & CART (WITH LIVE STOCK SYNC)
+    // ACCESSORIES STORE & CART (WITH LIVE STOCK SYNC & PROMOS)
     function renderProductsGrid() {
       const q = (document.getElementById('shop-search-input')?.value || '').toLowerCase();
       const filtered = productsList.filter(p => p.name.toLowerCase().includes(q) || (p.category || '').toLowerCase().includes(q));
@@ -1111,6 +1198,25 @@
       showCustToast("Added to Cart", `${name} added to your cart.`, "STORE", "🛒");
     }
 
+    function updateCartQty(id, delta) {
+      const idx = shoppingCart.findIndex(i => i.id === id);
+      if (idx === -1) return;
+      shoppingCart[idx].qty += delta;
+      if (shoppingCart[idx].qty <= 0) shoppingCart.splice(idx, 1);
+      safeSet('pushpa_cust_cart', JSON.stringify(shoppingCart));
+      renderCart();
+    }
+
+    function applyCartPromo() {
+      const code = (document.getElementById('cart-promo-input')?.value || '').trim().toUpperCase();
+      if (code === 'PUSHPA5') activePromoDiscount = 0.05;
+      else if (code === 'VIP10') activePromoDiscount = 0.10;
+      else if (code === 'WELCOME100') activePromoDiscount = 100;
+      else { showCustToast("Invalid Promo", "Try PUSHPA5, VIP10, or WELCOME100.", "PROMO", "⚠️"); return; }
+      renderCart();
+      showCustToast("Promo Activated!", `Discount code ${code} applied.`, "PROMO", "✦");
+    }
+
     function renderCart() {
       const count = shoppingCart.reduce((s, i) => s + i.qty, 0);
       document.getElementById('nav-cart-count').textContent = count;
@@ -1121,10 +1227,17 @@
         : shoppingCart.map(i => `
             <div class="p-3 rounded-xl bg-black border border-white/15 flex items-center justify-between text-xs">
               <div><div class="font-bold text-white">${i.name}</div><div class="font-mono text-[10px] text-[#F5D061]">₹${i.price} × ${i.qty}</div></div>
-              <button type="button" onclick="shoppingCart=shoppingCart.filter(x=>x.id!=='${i.id}'); safeSet('pushpa_cust_cart', JSON.stringify(shoppingCart)); renderCart();" class="text-rose-400 font-mono text-xs">Remove</button>
+              <div class="flex items-center gap-1.5 font-mono">
+                <button type="button" onclick="updateCartQty('${i.id}', -1)" class="w-6 h-6 rounded bg-white/10 text-white">-</button>
+                <span>${i.qty}</span>
+                <button type="button" onclick="updateCartQty('${i.id}', 1)" class="w-6 h-6 rounded gold-btn">+</button>
+              </div>
             </div>
           `).join('');
-      const total = shoppingCart.reduce((s, i) => s + i.price * i.qty, 0);
+      const sub = shoppingCart.reduce((s, i) => s + i.price * i.qty, 0);
+      const disc = activePromoDiscount < 1 ? Math.round(sub * activePromoDiscount) : Math.min(sub, activePromoDiscount);
+      const total = Math.max(0, sub - disc);
+      document.getElementById('cart-discount-note').classList.toggle('hidden', disc <= 0);
       document.getElementById('cart-total-display').textContent = `₹${total.toLocaleString('en-IN')}`;
       const qr = document.getElementById('cart-upi-qr');
       qr.innerHTML = '';
@@ -1140,7 +1253,9 @@
       e.preventDefault();
       if (shoppingCart.length === 0) return;
       const orderId = 'ORD_' + Date.now().toString().slice(-6);
-      const total = shoppingCart.reduce((s, i) => s + i.price * i.qty, 0);
+      const sub = shoppingCart.reduce((s, i) => s + i.price * i.qty, 0);
+      const disc = activePromoDiscount < 1 ? Math.round(sub * activePromoDiscount) : Math.min(sub, activePromoDiscount);
+      const total = Math.max(0, sub - disc);
       const order = {
         orderId, date: new Date().toISOString().slice(0, 10), timestamp: new Date().toISOString(),
         customerName: document.getElementById('order-name').value.trim(),
@@ -1148,12 +1263,11 @@
         carModel: document.getElementById('order-car').value.trim().toUpperCase(),
         deliveryMode: document.getElementById('order-delivery').value,
         items: shoppingCart.map(i => ({ ...i, total: i.price * i.qty })),
-        grandTotal: total, status: 'NEW_ORDER'
+        discount: disc, grandTotal: total, status: 'NEW_ORDER'
       };
       ordersList.unshift(order);
       safeSet('pushpa_orders', JSON.stringify(ordersList));
 
-      // Reduce stock in real time
       for (const item of shoppingCart) {
         const idx = productsList.findIndex(p => p.id === item.id);
         if (idx > -1) {
@@ -1177,12 +1291,14 @@
       box.classList.remove('hidden');
       if (q.length < 3) { box.innerHTML = `<p class="text-xs text-rose-400 font-mono">Enter at least 3 characters.</p>`; return; }
       const leads = leadsList.filter(l => (l.id||'').toLowerCase().includes(q) || (l.phone||'').includes(q) || (l.vehicleModel||'').toLowerCase().includes(q));
+      const orders = ordersList.filter(o => (o.orderId||'').toLowerCase().includes(q) || (o.customerPhone||'').includes(q) || (o.carModel||'').toLowerCase().includes(q));
       const bills = billsList.filter(b => (b.invoiceId||'').toLowerCase().includes(q) || (b.customerPhone||'').includes(q) || (b.vehicleNo||'').toLowerCase().includes(q));
-      if (!leads.length && !bills.length) {
+      if (!leads.length && !orders.length && !bills.length) {
         box.innerHTML = `<p class="text-xs text-zinc-400 font-mono">No record found for "${q}".</p>`; return;
       }
       box.innerHTML = [
         ...leads.map(l => `<div class="p-4 rounded-xl bg-black border border-[#D4AF37]/40 flex justify-between text-xs"><div><span class="font-mono text-[10px] text-[#F5D061]">BOOKING • ${l.id} • ${l.date} @ ${l.timeSlot}</span><div class="font-bold text-white">${l.clientName} — ${l.vehicleModel}</div></div><span class="px-3 py-1 rounded-full gold-btn font-mono text-[10px] self-center">${l.status}</span></div>`),
+        ...orders.map(o => `<div class="p-4 rounded-xl bg-black border border-[#D4AF37]/40 flex justify-between text-xs"><div><span class="font-mono text-[10px] text-[#F5D061]">ORDER • ${o.orderId} • ${o.date}</span><div class="font-bold text-white">${o.customerName} — ${o.carModel}</div></div><span class="font-mono font-bold text-[#F5D061] self-center">${o.status} • ₹${o.grandTotal}</span></div>`),
         ...bills.map(b => `<div class="p-4 rounded-xl bg-black border border-emerald-500/40 flex justify-between text-xs"><div><span class="font-mono text-[10px] text-emerald-400">INVOICE • ${b.invoiceId} • ${b.date}</span><div class="font-bold text-white">${b.customerName} — ${b.vehicleNo}</div></div><span class="font-mono font-bold text-[#F5D061] self-center">PAID ₹${b.grandTotal}</span></div>`)
       ].join('');
     }
