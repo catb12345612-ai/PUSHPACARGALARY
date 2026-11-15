@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PUSHPA CAR GALLERY | 24K Gold Owner ERP, Multi-Roll POS & Live Sync</title>
+  <title>PUSHPA CAR GALLERY | 24K Gold Owner ERP, Multi-Roll POS &amp; Live Sync</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
@@ -30,11 +30,7 @@
   </script>
   <style id="dynamic-print-style">@page { margin: 0; }</style>
   <style>
-    body {
-      background: #06070A;
-      color: #FFFFFF;
-      overflow-x: hidden;
-    }
+    body { background: #06070A; color: #FFFFFF; overflow-x: hidden; }
     .gold-card {
       background: linear-gradient(160deg, rgba(18, 20, 28, 0.96) 0%, rgba(9, 10, 14, 0.99) 100%);
       border: 1px solid rgba(212, 175, 55, 0.32);
@@ -63,7 +59,7 @@
 </head>
 <body class="font-sans antialiased min-h-screen flex flex-col">
 
-  <!-- REAL-TIME NOTIFICATION CENTER (SLOT BOOKINGS + STOCK REDUCTION ALERTS) -->
+  <!-- REAL-TIME NOTIFICATION TOAST -->
   <div id="live-sync-toast" class="fixed top-5 right-5 z-50 hidden gold-card p-4 border-2 border-[#F5D061] shadow-2xl max-w-sm">
     <div class="flex items-start gap-3">
       <div id="toast-icon" class="w-9 h-9 rounded-xl gold-btn flex items-center justify-center text-base shrink-0">🔔</div>
@@ -76,18 +72,27 @@
     </div>
   </div>
 
-  <!-- OWNER LOGIN SCREEN -->
+  <!-- OWNER LOGIN SCREEN WITH VECTORIZED PUSHPA CAR GALLERY SHIELD LOGO -->
   <div id="owner-login-screen" class="fixed inset-0 z-50 flex items-center justify-center px-4 bg-[#06070A]">
     <div class="gold-card w-full max-w-md p-8 shadow-2xl">
       <div class="flex items-center gap-3.5 mb-6">
-        <svg class="w-12 h-12 shrink-0" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-          <rect x="4" y="4" width="112" height="112" rx="26" fill="#0B0C10" stroke="#F5D061" stroke-width="4"/>
-          <path d="M22 72 L34 48 Q44 36 60 36 Q76 36 86 48 L98 72" fill="none" stroke="#F5D061" stroke-width="4" stroke-linecap="round"/>
-          <path d="M18 72 H102" stroke="#F5D061" stroke-width="3.5" stroke-linecap="round"/>
-          <circle cx="38" cy="74" r="8" fill="#0B0C10" stroke="#F5D061" stroke-width="3.5"/>
-          <circle cx="82" cy="74" r="8" fill="#0B0C10" stroke="#F5D061" stroke-width="3.5"/>
-          <text x="60" y="26" text-anchor="middle" fill="#F5D061" font-family="Syne, sans-serif" font-weight="800" font-size="13">PUSHPA</text>
-          <text x="60" y="102" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono, monospace" font-weight="700" font-size="9.5">24K ERP</text>
+        <svg class="w-14 h-14 shrink-0" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+          <rect width="240" height="240" rx="36" fill="#0B0C10"/>
+          <path d="M26 105 L26 62 Q120 20 214 62 L214 105" fill="none" stroke="#EF4444" stroke-width="6" stroke-linecap="round"/>
+          <path d="M34 105 L34 67 Q120 30 206 67 L206 105" fill="none" stroke="#E4E4E7" stroke-width="6" stroke-linecap="round"/>
+          <g fill="#EF4444">
+            <polygon points="68,62 70,68 76,68 71,72 73,78 68,74 63,78 65,72 60,68 66,68"/>
+            <polygon points="93,55 95,62 102,62 96,66 98,73 93,69 88,73 90,66 84,62 91,62"/>
+            <polygon points="120,49 123,57 131,57 124,62 127,70 120,65 113,70 116,62 109,57 117,57"/>
+            <polygon points="147,55 149,62 156,62 150,66 152,73 147,69 142,73 144,66 138,62 145,62"/>
+            <polygon points="172,62 174,68 180,68 175,72 177,78 172,74 167,78 169,72 164,68 170,68"/>
+          </g>
+          <path d="M46 104 L50 93 Q75 76 112 76 Q142 76 164 89 L190 95 Q196 99 194 104 Z" fill="#0B0C10" stroke="#E4E4E7" stroke-width="3"/>
+          <path d="M84 89 Q110 80 138 89 Z" fill="#E4E4E7"/>
+          <text x="120" y="131" text-anchor="middle" fill="#FFFFFF" font-family="Syne, sans-serif" font-weight="800" font-size="22" letter-spacing="2">PUSHPA</text>
+          <text x="120" y="156" text-anchor="middle" fill="#F5D061" font-family="Syne, sans-serif" font-weight="800" font-size="18.5" letter-spacing="1.5">CAR GALLERY</text>
+          <path d="M56 168 Q78 202 120 218 Q162 202 184 168" fill="none" stroke="#E4E4E7" stroke-width="6" stroke-linecap="round"/>
+          <path d="M48 170 Q74 209 120 226 Q166 209 192 170" fill="none" stroke="#EF4444" stroke-width="5" stroke-linecap="round"/>
         </svg>
         <div>
           <span class="font-mono text-[10px] uppercase tracking-widest text-[#F5D061] block">PUSHPA CAR GALLERY • KHAMMAM</span>
@@ -103,7 +108,7 @@
         </div>
         <div>
           <label class="block font-mono text-[10px] uppercase text-zinc-300 mb-1">Master Password / Owner PIN</label>
-          <input type="password" id="login-pass" placeholder="Enter PIN (e.g. 9848088319)" required class="w-full bg-black border border-[#D4AF37]/40 rounded-xl px-4 py-3 text-xs text-white font-mono" />
+          <input type="password" id="login-pass" placeholder="Enter PIN" required class="w-full bg-black border border-[#D4AF37]/40 rounded-xl px-4 py-3 text-xs text-white font-mono" />
         </div>
         <p id="login-error" class="text-xs text-rose-400 font-mono hidden">Invalid Master PIN.</p>
         <button type="submit" class="w-full py-3.5 rounded-xl gold-btn font-mono text-xs uppercase tracking-widest">🔓 Unlock Studio ERP →</button>
@@ -121,9 +126,13 @@
     <aside class="w-64 border-r border-[#D4AF37]/25 bg-[#0B0C10] flex flex-col justify-between shrink-0 hidden lg:flex">
       <div class="p-5 space-y-5">
         <div class="flex items-center gap-3">
-          <svg class="w-10 h-10 shrink-0" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <rect x="4" y="4" width="112" height="112" rx="26" fill="#06070A" stroke="#F5D061" stroke-width="4"/>
-            <text x="60" y="68" text-anchor="middle" fill="#F5D061" font-family="Syne, sans-serif" font-weight="800" font-size="34">PCG</text>
+          <svg class="w-11 h-11 shrink-0" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+            <rect width="240" height="240" rx="36" fill="#06070A"/>
+            <path d="M26 105 L26 62 Q120 20 214 62 L214 105" fill="none" stroke="#EF4444" stroke-width="8" stroke-linecap="round"/>
+            <path d="M34 105 L34 67 Q120 30 206 67 L206 105" fill="none" stroke="#E4E4E7" stroke-width="8" stroke-linecap="round"/>
+            <text x="120" y="135" text-anchor="middle" fill="#F5D061" font-family="Syne, sans-serif" font-weight="800" font-size="34">PCG</text>
+            <path d="M56 168 Q78 202 120 218 Q162 202 184 168" fill="none" stroke="#E4E4E7" stroke-width="8" stroke-linecap="round"/>
+            <path d="M48 170 Q74 209 120 226 Q166 209 192 170" fill="none" stroke="#EF4444" stroke-width="7" stroke-linecap="round"/>
           </svg>
           <div>
             <span class="font-display font-extrabold text-sm block leading-none gold-text">PUSHPA ERP</span>
@@ -148,8 +157,12 @@
             <span>📜 PAST INVOICES</span>
             <span id="badge-bills" class="px-1.5 py-0.5 rounded bg-white/10 text-[#F5D061] text-[10px]">0</span>
           </button>
+          <button type="button" onclick="switchTab('jobcard')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5 flex items-center justify-between">
+            <span>🛡️ VEHICLE JOB CARD</span>
+            <span id="badge-jobs" class="px-1.5 py-0.5 rounded bg-white/10 text-white text-[10px]">0</span>
+          </button>
           <button type="button" onclick="switchTab('inventory')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5 flex items-center justify-between">
-            <span>🏷️ STOCK &amp; ALERTS</span>
+            <span>🏷️ STOCK &amp; BARCODES</span>
             <span id="badge-lowstock" class="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 text-[10px]">0</span>
           </button>
           <button type="button" onclick="switchTab('packages')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-zinc-300 hover:bg-white/5">
@@ -194,10 +207,9 @@
         </div>
       </header>
 
-      <!-- TAB 1: POS & MULTI-WIDTH BILLING (55mm / 80mm / 85mm / A4 + GST ON/OFF) -->
+      <!-- TAB 1: POS & MULTI-WIDTH BILLING (55mm / 80mm / 85mm / A4 + WARRANTY + GST ON/OFF) -->
       <section id="tab-pos" class="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-5 flex-1 overflow-y-auto">
         <div class="lg:col-span-7 space-y-4">
-          <!-- Parked Bay Bills -->
           <div class="gold-card p-3.5">
             <div class="flex items-center justify-between mb-2">
               <span class="font-mono text-[11px] font-bold text-[#F5D061] uppercase">⏸ PARKED BAY BILLS</span>
@@ -206,21 +218,27 @@
             <div id="held-bills-strip" class="flex items-center gap-2 overflow-x-auto pb-1 text-xs"></div>
           </div>
 
-          <!-- Barcode + Quick Stock Refill -->
           <div class="gold-card p-4 space-y-3 border-l-4 border-l-[#F5D061]">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="font-mono text-[10px] font-bold text-[#F5D061] uppercase">⚡ AI COMMAND, BARCODE SCANNER &amp; VOICE POS</span>
+              <span id="voice-status" class="font-mono text-[10px] text-zinc-400">🎙️ Speak or Type</span>
+            </div>
             <div class="flex flex-wrap gap-2">
-              <input type="text" id="pos-barcode-input" oninput="handleBarcodeScan(this.value)" placeholder="Scan Barcode (PCG890101) or filter items..." class="flex-1 bg-black border border-[#D4AF37]/40 rounded-xl px-3.5 py-2 text-xs text-white font-mono" />
-              <select id="quick-stock-product" class="bg-black border border-white/20 rounded-xl px-3 py-2 text-xs text-white"></select>
-              <input type="number" id="quick-stock-qty" value="5" min="1" class="w-16 bg-black border border-white/20 rounded-xl px-2 py-2 text-xs text-white font-mono text-center" />
-              <button type="button" onclick="addStockDirectlyWhileBilling()" class="px-3.5 py-2 rounded-xl gold-btn font-mono text-xs uppercase">+ Stock</button>
+              <input type="text" id="pos-barcode-input" oninput="handleBarcodeScan(this.value)" onkeydown="if(event.key==='Enter'){event.preventDefault();runAiNaturalPosCommand(this.value);}" placeholder="Scan Barcode or Type AI Cmd (e.g. 'TS04Creta 7d mats + foam')..." class="flex-1 bg-black border border-[#D4AF37]/40 rounded-xl px-3.5 py-2 text-xs text-white font-mono" />
+              <button type="button" onclick="runAiNaturalPosCommand(document.getElementById('pos-barcode-input').value)" class="px-3 py-2 rounded-xl gold-btn font-mono text-[11px] uppercase">🧠 AI Add</button>
+              <button type="button" onclick="startAiVoiceBilling()" class="px-3 py-2 rounded-xl bg-white/10 border border-[#D4AF37]/40 text-[#F5D061] font-mono text-[11px] uppercase">🎙️ Voice</button>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-white/10">
+              <span class="font-mono text-[10px] text-zinc-400 uppercase">Quick Stock In:</span>
+              <select id="quick-stock-product" class="flex-1 bg-black border border-white/20 rounded-xl px-3 py-1.5 text-xs text-white"></select>
+              <input type="number" id="quick-stock-qty" value="5" min="1" class="w-16 bg-black border border-white/20 rounded-xl px-2 py-1.5 text-xs text-white font-mono text-center" />
+              <button type="button" onclick="addStockDirectlyWhileBilling()" class="px-3.5 py-1.5 rounded-xl gold-btn font-mono text-xs uppercase">+ Stock</button>
             </div>
           </div>
 
-          <!-- Catalog Grid -->
-          <div id="pos-catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[450px] overflow-y-auto pr-1"></div>
+          <div id="pos-catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[420px] overflow-y-auto pr-1"></div>
         </div>
 
-        <!-- Right 5 Cols: Active POS Terminal -->
         <div class="lg:col-span-5">
           <div class="gold-card p-5 space-y-3 sticky top-4">
             <div class="flex items-center justify-between border-b border-[#D4AF37]/25 pb-2.5">
@@ -228,21 +246,35 @@
                 <span class="font-mono text-[10px] text-[#F5D061] uppercase">ZERO-ERROR POS TERMINAL</span>
                 <h3 class="font-display font-extrabold text-lg uppercase text-white">ACTIVE CUSTOMER BILL</h3>
               </div>
-              <button type="button" onclick="clearPosBill()" class="font-mono text-xs text-rose-400 hover:underline">Clear</button>
+              <div class="flex items-center gap-2">
+                <span id="returning-badge" class="hidden font-mono text-[10px] px-2 py-0.5 rounded bg-[#D4AF37]/20 text-[#F5D061]">★ VIP</span>
+                <button type="button" onclick="clearPosBill()" class="font-mono text-xs text-rose-400 hover:underline">Clear</button>
+              </div>
             </div>
 
             <div class="grid grid-cols-2 gap-2">
-              <input type="tel" id="bill-cust-phone" placeholder="WhatsApp / Mobile" class="bg-black border border-white/20 rounded-xl px-3 py-2 text-xs text-white font-mono" />
+              <input type="tel" id="bill-cust-phone" oninput="aiLookupCustomer(this.value)" placeholder="WhatsApp / Mobile" class="bg-black border border-white/20 rounded-xl px-3 py-2 text-xs text-white font-mono" />
               <input type="text" id="bill-cust-name" placeholder="Customer Name" class="bg-black border border-white/20 rounded-xl px-3 py-2 text-xs text-white" />
-              <input type="text" id="bill-car-no" placeholder="Car No (TS04...)" class="bg-black border border-white/20 rounded-xl px-3 py-2 text-xs text-white uppercase font-mono" />
-              <select id="bill-pay-mode" class="bg-black border border-white/20 rounded-xl px-3 py-2 text-xs text-white">
+              <input type="text" id="bill-car-no" oninput="aiLookupCustomer(this.value)" placeholder="Car No (TS04...)" class="bg-black border border-white/20 rounded-xl px-3 py-2 text-xs text-white uppercase font-mono" />
+              <select id="bill-pay-mode" onchange="handlePayModeChange()" class="bg-black border border-white/20 rounded-xl px-3 py-2 text-xs text-white">
                 <option value="UPI QR (9848088319)">UPI QR (9848088319)</option>
                 <option value="Cash">Cash</option>
+                <option value="Split (Cash + UPI)">Split (Cash + UPI)</option>
                 <option value="Card / POS">Card / POS</option>
               </select>
             </div>
 
-            <!-- GST ON/OFF + PAPER WIDTH SELECTOR (55mm / 80mm / 85mm / A4) -->
+            <div id="cash-split-row" class="hidden grid grid-cols-2 gap-2 p-2.5 rounded-xl bg-white/5 border border-white/10 font-mono text-xs">
+              <div>
+                <label class="text-[10px] text-zinc-400 block">Cash Received (₹)</label>
+                <input type="number" id="bill-cash-received" oninput="renderPosBill()" placeholder="0" class="w-full bg-black border border-white/20 rounded-lg px-2 py-1 text-white" />
+              </div>
+              <div>
+                <label class="text-[10px] text-zinc-400 block" id="cash-balance-label">Change / Balance:</label>
+                <div id="cash-balance-val" class="font-bold text-[#F5D061] pt-1">₹0</div>
+              </div>
+            </div>
+
             <div class="p-3 rounded-xl bg-black border border-[#D4AF37]/30 space-y-2.5">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <div class="flex items-center gap-1.5">
@@ -263,16 +295,18 @@
                   <button type="button" id="fmt-A4" onclick="setPrintFormat('A4')" class="fmt-btn px-2 py-1 rounded text-zinc-400">A4</button>
                 </div>
               </div>
-              <div class="flex items-center gap-2">
-                <input type="number" id="bill-discount" oninput="renderPosBill()" placeholder="Discount (₹)" min="0" class="w-1/2 bg-black border border-white/20 rounded-lg px-2.5 py-1 text-xs text-white font-mono" />
-                <input type="text" id="bill-gstin" placeholder="Customer GSTIN (Opt)" class="w-1/2 bg-black border border-white/20 rounded-lg px-2.5 py-1 text-xs text-white font-mono uppercase" />
+              <div class="flex items-center gap-1.5">
+                <div class="flex rounded-lg overflow-hidden border border-[#D4AF37]/40 font-mono text-[10px] shrink-0">
+                  <button type="button" id="disc-mode-flat" onclick="setDiscountMode('FLAT')" class="px-2 py-1 gold-btn">₹</button>
+                  <button type="button" id="disc-mode-pct" onclick="setDiscountMode('PCT')" class="px-2 py-1 bg-black text-zinc-400">%</button>
+                </div>
+                <input type="number" id="bill-discount" oninput="renderPosBill()" placeholder="Discount" min="0" class="w-1/2 bg-black border border-white/20 rounded-lg px-2.5 py-1 text-xs text-white font-mono" />
+                <input type="text" id="bill-gstin" placeholder="GSTIN (Opt)" class="w-1/2 bg-black border border-white/20 rounded-lg px-2.5 py-1 text-xs text-white font-mono uppercase" />
               </div>
             </div>
 
-            <!-- Bill Items -->
-            <div id="pos-bill-items" class="space-y-1.5 max-h-44 overflow-y-auto pr-1"></div>
+            <div id="pos-bill-items" class="space-y-1.5 max-h-40 overflow-y-auto pr-1"></div>
 
-            <!-- Totals & Print Triggers -->
             <div class="pt-3 border-t border-[#D4AF37]/25 space-y-2.5">
               <div class="flex items-center justify-between gap-3">
                 <div class="flex-1 font-mono text-xs space-y-0.5">
@@ -292,11 +326,12 @@
                 </div>
               </div>
 
-              <div class="grid grid-cols-4 gap-1.5">
-                <button type="button" onclick="completeAndPrintPosBill('55mm')" class="py-2 rounded-xl bg-white/10 hover:bg-[#D4AF37] hover:text-black font-mono text-[10px] font-bold uppercase">🖨️ 55mm</button>
-                <button type="button" onclick="completeAndPrintPosBill('80mm')" class="py-2 rounded-xl gold-btn font-mono text-[10px] uppercase">🖨️ 80mm</button>
-                <button type="button" onclick="completeAndPrintPosBill('85mm')" class="py-2 rounded-xl bg-white/10 hover:bg-[#D4AF37] hover:text-black font-mono text-[10px] font-bold uppercase">🖨️ 85mm</button>
-                <button type="button" onclick="completeAndPrintPosBill('A4')" class="py-2 rounded-xl bg-white text-black font-mono text-[10px] font-bold uppercase">📄 A4</button>
+              <div class="grid grid-cols-5 gap-1">
+                <button type="button" onclick="completeAndPrintPosBill('55mm')" class="py-2 rounded-xl bg-white/10 hover:bg-[#D4AF37] hover:text-black font-mono text-[10px] font-bold uppercase">55mm</button>
+                <button type="button" onclick="completeAndPrintPosBill('80mm')" class="py-2 rounded-xl gold-btn font-mono text-[10px] uppercase">80mm</button>
+                <button type="button" onclick="completeAndPrintPosBill('85mm')" class="py-2 rounded-xl bg-white/10 hover:bg-[#D4AF37] hover:text-black font-mono text-[10px] font-bold uppercase">85mm</button>
+                <button type="button" onclick="completeAndPrintPosBill('A4')" class="py-2 rounded-xl bg-white text-black font-mono text-[10px] font-bold uppercase">A4</button>
+                <button type="button" onclick="completeAndPrintPosBill('WARRANTY')" class="py-2 rounded-xl bg-[#D4AF37]/25 border border-[#D4AF37] text-[#F5D061] font-mono text-[10px] font-bold uppercase">🛡️ 9H</button>
               </div>
               <button type="button" onclick="completeAndPrintPosBill('WHATSAPP')" class="w-full py-3 rounded-xl bg-emerald-500 text-black font-mono text-xs font-extrabold uppercase hover:bg-emerald-400">
                 💬 Save Bill &amp; Send WhatsApp Receipt →
@@ -354,12 +389,46 @@
       <!-- TAB 4: PAST BILLS & REPRINT -->
       <section id="tab-bills" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
         <div class="gold-card p-6">
-          <h3 class="font-display font-bold text-xl uppercase mb-4">PAST INVOICES (REPRINT 55mm / 80mm / 85mm / A4)</h3>
+          <h3 class="font-display font-bold text-xl uppercase mb-4">PAST INVOICES (REPRINT 55mm / 80mm / 85mm / A4 / WARRANTY)</h3>
           <div id="past-bills-list" class="space-y-3"></div>
         </div>
       </section>
 
-      <!-- TAB 5: INVENTORY & LOW-STOCK ALERTS -->
+      <!-- TAB 5: DIGITAL VEHICLE JOB CARD -->
+      <section id="tab-jobcard" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-6 gold-card p-6 space-y-4">
+            <h3 class="font-display font-bold text-xl uppercase">VEHICLE INTAKE INSPECTION JOB CARD</h3>
+            <div class="grid grid-cols-3 gap-2 font-mono text-xs">
+              <button type="button" onclick="toggleDamageZone(this, 'Front Bumper')" class="dmg-zone p-2.5 rounded-xl border border-white/15 bg-white/5">Front Bumper</button>
+              <button type="button" onclick="toggleDamageZone(this, 'Bonnet')" class="dmg-zone p-2.5 rounded-xl border border-white/15 bg-white/5">Bonnet</button>
+              <button type="button" onclick="toggleDamageZone(this, 'Windshield')" class="dmg-zone p-2.5 rounded-xl border border-white/15 bg-white/5">Windshield</button>
+              <button type="button" onclick="toggleDamageZone(this, 'Left Doors')" class="dmg-zone p-2.5 rounded-xl border border-white/15 bg-white/5">Left Doors</button>
+              <button type="button" onclick="toggleDamageZone(this, 'Roof')" class="dmg-zone p-2.5 rounded-xl border border-white/15 bg-white/5">Roof</button>
+              <button type="button" onclick="toggleDamageZone(this, 'Right Doors')" class="dmg-zone p-2.5 rounded-xl border border-white/15 bg-white/5">Right Doors</button>
+              <button type="button" onclick="toggleDamageZone(this, 'Rear Bumper')" class="dmg-zone p-2.5 rounded-xl border border-white/15 bg-white/5">Rear Bumper</button>
+              <button type="button" onclick="toggleDamageZone(this, 'Alloys')" class="dmg-zone p-2.5 rounded-xl border border-white/15 bg-white/5">Alloys</button>
+              <button type="button" onclick="toggleDamageZone(this, 'Interior')" class="dmg-zone p-2.5 rounded-xl border border-white/15 bg-white/5">Interior</button>
+            </div>
+            <form onsubmit="saveVehicleJobCard(event)" class="space-y-3">
+              <div class="grid grid-cols-2 gap-3">
+                <input type="text" id="jc-client" required placeholder="Customer Name" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white" />
+                <input type="tel" id="jc-phone" required placeholder="WhatsApp Mobile" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
+                <input type="text" id="jc-car" required placeholder="Car No & Model" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white uppercase" />
+                <input type="text" id="jc-odo" placeholder="Odometer KM" class="bg-black border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono" />
+              </div>
+              <textarea id="jc-notes" rows="2" placeholder="Inspection notes..." class="w-full bg-black border border-white/20 rounded-xl p-3 text-xs text-white"></textarea>
+              <button type="submit" class="w-full py-3 rounded-xl gold-btn font-mono text-xs uppercase">Save &amp; Send WhatsApp Job Card →</button>
+            </form>
+          </div>
+          <div class="lg:col-span-6 gold-card p-6 space-y-3">
+            <h3 class="font-display font-bold text-xl uppercase">ACTIVE JOB CARDS</h3>
+            <div id="jobcards-list" class="space-y-3"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 6: INVENTORY & BARCODE LABEL PRINTER -->
       <section id="tab-inventory" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
         <div class="gold-card p-6">
           <h3 class="font-display font-bold text-lg uppercase mb-4 gold-text">ADD PRODUCT WITH BARCODE</h3>
@@ -374,12 +443,12 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="inventory-cards-grid"></div>
       </section>
 
-      <!-- TAB 6: PACKAGE RATES -->
+      <!-- TAB 7: PACKAGE RATES -->
       <section id="tab-packages" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
         <div id="packages-editor-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
       </section>
 
-      <!-- TAB 7: REAL-TIME NOTIFICATIONS LOG (STOCK DEDUCTIONS & SLOT BOOKINGS) -->
+      <!-- TAB 8: REAL-TIME NOTIFICATIONS LOG -->
       <section id="tab-notifications" class="hidden p-6 space-y-6 flex-1 overflow-y-auto">
         <div class="gold-card p-6 space-y-4">
           <div class="flex items-center justify-between border-b border-white/15 pb-3">
@@ -387,7 +456,7 @@
               <span class="font-mono text-[10px] text-[#F5D061] uppercase">REAL-TIME AUDIT FEED</span>
               <h3 class="font-display font-bold text-xl uppercase text-white">🔔 SLOT BOOKING &amp; STOCK REDUCTION NOTIFICATIONS</h3>
             </div>
-            <button type="button" onclick="activityFeed=[]; renderNotificationsLog();" class="px-3 py-1.5 rounded-lg bg-white/10 text-xs font-mono">Clear Feed</button>
+            <button type="button" onclick="activityFeed=[]; safeSet('pushpa_activity_feed','[]'); renderNotificationsLog();" class="px-3 py-1.5 rounded-lg bg-white/10 text-xs font-mono">Clear Feed</button>
           </div>
           <div id="notifications-feed-list" class="space-y-2.5 font-mono text-xs"></div>
         </div>
@@ -405,6 +474,7 @@
           <button type="button" onclick="switchPreviewFormat('80mm')" class="px-2.5 py-1 rounded bg-white/10 hover:bg-[#D4AF37] hover:text-black">80mm</button>
           <button type="button" onclick="switchPreviewFormat('85mm')" class="px-2.5 py-1 rounded bg-white/10 hover:bg-[#D4AF37] hover:text-black">85mm</button>
           <button type="button" onclick="switchPreviewFormat('A4')" class="px-2.5 py-1 rounded bg-white/10 hover:bg-[#D4AF37] hover:text-black">A4</button>
+          <button type="button" onclick="switchPreviewFormat('WARRANTY')" class="px-2.5 py-1 rounded bg-white/10 hover:bg-[#D4AF37] hover:text-black text-[#F5D061]">9H Warranty</button>
           <button type="button" onclick="closePrintPreviewModal()" class="w-8 h-8 rounded-full bg-white/10 text-white">✕</button>
         </div>
       </div>
@@ -412,7 +482,7 @@
         <div id="print-preview-paper" class="bg-white text-black shadow-2xl"></div>
       </div>
       <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-white/15">
-        <button type="button" onclick="triggerGuaranteedPrint()" class="px-6 py-3 rounded-xl gold-btn font-mono text-xs uppercase">🖨️ Print Invoice Now →</button>
+        <button type="button" onclick="triggerGuaranteedPrint()" class="px-6 py-3 rounded-xl gold-btn font-mono text-xs uppercase">🖨️ Print Document Now →</button>
         <button type="button" onclick="closePrintPreviewModal(true)" class="px-4 py-3 rounded-xl bg-white/10 text-zinc-300 font-mono text-xs uppercase">✓ Done &amp; Next Bill</button>
       </div>
     </div>
@@ -441,7 +511,7 @@
       window.__adminFbSet = async (p, v) => { try { await set(ref(db, p), v); } catch (e) {} };
       window.__adminFbPatch = async (p, v) => { try { await update(ref(db, p), v); } catch (e) {} };
       window.__adminFbRemove = async (p) => { try { await remove(ref(db, p)); } catch (e) {} };
-      ['orders', 'leads', 'bills', 'products', 'packages', 'bookedSlots'].forEach(node => {
+      ['orders', 'leads', 'bills', 'products', 'packages', 'bookedSlots', 'jobCards'].forEach(node => {
         onValue(ref(db, node), snap => {
           if (snap.exists() && typeof window.__onAdminRealtimeUpdate === 'function') {
             window.__onAdminRealtimeUpdate(node, snap.val());
@@ -513,10 +583,13 @@
     let ordersList = JSON.parse(safeGet('pushpa_orders', '[]'));
     let billsList = JSON.parse(safeGet('pushpa_bills', '[]'));
     let heldBillsList = JSON.parse(safeGet('pushpa_heldBills', '[]'));
+    let jobCardsList = JSON.parse(safeGet('pushpa_jobCards', '[]'));
     let bookedSlotsMap = JSON.parse(safeGet('pushpa_bookedSlots', '{}'));
 
     let posBillItems = [];
+    let selectedDamageZones = [];
     let gstEnabled = false;
+    let discountMode = 'FLAT';
     let selectedPrintFormat = '80mm';
     let currentPreviewBill = null;
     let currentPreviewFormat = '80mm';
@@ -542,7 +615,7 @@
     }
 
     function switchTab(tab) {
-      ['pos', 'leads', 'orders', 'bills', 'inventory', 'packages', 'notifications'].forEach(t => {
+      ['pos', 'leads', 'orders', 'bills', 'jobcard', 'inventory', 'packages', 'notifications'].forEach(t => {
         const el = document.getElementById(`tab-${t}`);
         if (el) el.classList.toggle('hidden', t !== tab);
       });
@@ -557,10 +630,6 @@
     async function fbPatch(path, data) {
       if (window.__adminFbPatch) await window.__adminFbPatch(path, data);
       try { await fetch(`${DB_URL}/${path}.json`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }); } catch (e) {}
-    }
-    async function fbDelete(path) {
-      if (window.__adminFbRemove) await window.__adminFbRemove(path);
-      try { await fetch(`${DB_URL}/${path}.json`, { method: 'DELETE' }); } catch (e) {}
     }
 
     function mergeById(cloudObj, localArr, idKey) {
@@ -592,6 +661,7 @@
       if (node === 'products') { productsList = mergeById(val, productsList, 'id'); safeSet('pushpa_products', JSON.stringify(productsList)); }
       if (node === 'packages') { packagesList = mergeById(val, packagesList, 'id'); safeSet('pushpa_packages', JSON.stringify(packagesList)); }
       if (node === 'bills') { billsList = mergeById(val, billsList, 'invoiceId'); safeSet('pushpa_bills', JSON.stringify(billsList)); }
+      if (node === 'jobCards') { jobCardsList = mergeById(val, jobCardsList, 'jobId'); safeSet('pushpa_jobCards', JSON.stringify(jobCardsList)); }
       if (node === 'bookedSlots') { bookedSlotsMap = val || {}; safeSet('pushpa_bookedSlots', JSON.stringify(bookedSlotsMap)); }
       refreshAllAdminUI();
     };
@@ -606,6 +676,7 @@
           if (data.leads) leadsList = mergeById(data.leads, leadsList, 'id');
           if (data.orders) ordersList = mergeById(data.orders, ordersList, 'orderId');
           if (data.bills) billsList = mergeById(data.bills, billsList, 'invoiceId');
+          if (data.jobCards) jobCardsList = mergeById(data.jobCards, jobCardsList, 'jobId');
           if (data.bookedSlots) bookedSlotsMap = data.bookedSlots;
           if (leadsList.length > knownLeadCount) {
             const n = leadsList[0];
@@ -642,6 +713,69 @@
     }
     setInterval(() => forceCloudPull(false), 4000);
 
+    // AI NATURAL POS COMMAND & VOICE
+    function runAiNaturalPosCommand(rawText) {
+      const text = (rawText || '').trim();
+      if (!text) return;
+      const lower = text.toLowerCase();
+      const carMatch = text.match(/\b([A-Z]{2}\d{1,2}[A-Z]{0,3}\d{3,4})\b/i);
+      if (carMatch) document.getElementById('bill-car-no').value = carMatch[1].toUpperCase();
+
+      const allCatalog = [
+        ...productsList.map(p => ({ id: p.id, name: p.name, price: p.price, type: 'PRODUCT' })),
+        ...packagesList.map(k => ({ id: k.id, name: k.name, price: k.basePrice, type: 'SERVICE' }))
+      ];
+      let added = 0;
+      allCatalog.forEach(item => {
+        const words = item.name.toLowerCase().replace(/[^a-z0-9 ]/g, '').split(' ').filter(w => w.length >= 3);
+        if (words.some(w => lower.includes(w))) {
+          addItemToPosBill(item.id, item.name, item.price, item.type);
+          added++;
+        }
+      });
+      document.getElementById('pos-barcode-input').value = '';
+      if (added > 0) showToastAlert("AI Command Added", `Added ${added} matching item(s) to bill.`, "AI POS", "🧠");
+    }
+
+    function startAiVoiceBilling() {
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SR) { showToastAlert("Voice Notice", "Use Chrome/Edge for Voice POS.", "VOICE", "🎙️"); return; }
+      const rec = new SR();
+      rec.lang = 'en-IN';
+      document.getElementById('voice-status').textContent = "🔴 Listening...";
+      rec.onresult = e => {
+        const t = e.results[0][0].transcript;
+        document.getElementById('voice-status').textContent = `🎙️ "${t}"`;
+        runAiNaturalPosCommand(t);
+      };
+      rec.start();
+    }
+
+    function aiLookupCustomer(val) {
+      const q = (val || '').trim().toLowerCase();
+      if (q.length < 4) { document.getElementById('returning-badge').classList.add('hidden'); return; }
+      const b = billsList.find(x => (x.customerPhone||'').includes(q) || (x.vehicleNo||'').toLowerCase().includes(q));
+      if (b) {
+        document.getElementById('returning-badge').classList.remove('hidden');
+        if (!document.getElementById('bill-cust-name').value) document.getElementById('bill-cust-name').value = b.customerName;
+        if (!document.getElementById('bill-cust-phone').value) document.getElementById('bill-cust-phone').value = b.customerPhone;
+        if (!document.getElementById('bill-car-no').value) document.getElementById('bill-car-no').value = b.vehicleNo;
+      }
+    }
+
+    function handlePayModeChange() {
+      const m = document.getElementById('bill-pay-mode').value;
+      document.getElementById('cash-split-row').classList.toggle('hidden', m !== 'Cash' && m !== 'Split (Cash + UPI)');
+      renderPosBill();
+    }
+
+    function setDiscountMode(mode) {
+      discountMode = mode;
+      document.getElementById('disc-mode-flat').className = mode === 'FLAT' ? 'px-2 py-1 gold-btn' : 'px-2 py-1 bg-black text-zinc-400';
+      document.getElementById('disc-mode-pct').className = mode === 'PCT' ? 'px-2 py-1 gold-btn' : 'px-2 py-1 bg-black text-zinc-400';
+      renderPosBill();
+    }
+
     // POS & GST ENGINE
     function toggleGstMode() {
       gstEnabled = !gstEnabled;
@@ -662,7 +796,10 @@
 
     function calculateBillSummary() {
       const subtotal = posBillItems.reduce((s, i) => s + i.qty * i.price, 0);
-      const discount = Math.min(subtotal, Math.max(0, Number(document.getElementById('bill-discount')?.value || 0)));
+      const rawDisc = Math.max(0, Number(document.getElementById('bill-discount')?.value || 0));
+      const discount = discountMode === 'PCT'
+        ? Math.min(subtotal, +(subtotal * (Math.min(100, rawDisc) / 100)).toFixed(2))
+        : Math.min(subtotal, rawDisc);
       const taxable = Math.max(0, subtotal - discount);
       const gstRate = gstEnabled ? Number(document.getElementById('bill-gst-rate')?.value || 18) : 0;
       const totalGst = gstEnabled ? +(taxable * (gstRate / 100)).toFixed(2) : 0;
@@ -747,12 +884,22 @@
       } else gstBox.classList.add('hidden');
       document.getElementById('pos-grand-total').textContent = `₹${c.grandTotal.toLocaleString('en-IN')}`;
 
+      const payMode = document.getElementById('bill-pay-mode')?.value || '';
+      const cashRec = Number(document.getElementById('bill-cash-received')?.value || 0);
+      if (payMode === 'Cash') {
+        document.getElementById('cash-balance-label').textContent = 'Change to Return:';
+        document.getElementById('cash-balance-val').textContent = `₹${Math.max(0, cashRec - c.grandTotal)}`;
+      } else if (payMode === 'Split (Cash + UPI)') {
+        document.getElementById('cash-balance-label').textContent = 'UPI Balance:';
+        document.getElementById('cash-balance-val').textContent = `₹${Math.max(0, c.grandTotal - cashRec)}`;
+      }
+
       const qr = document.getElementById('live-screen-qr');
       qr.innerHTML = '';
       new QRCode(qr, { text: `upi://pay?pa=9848088319@ybl&pn=Pushpa%20Car%20Gallery&am=${c.grandTotal}&cu=INR`, width: 64, height: 64 });
     }
 
-    // MULTI-WIDTH THERMAL RECEIPT (55mm / 80mm / 85mm) & A4 GENERATOR WITH @syedzeeshaanali07
+    // MULTI-WIDTH THERMAL RECEIPT (55mm / 80mm / 85mm), A4 & WARRANTY GENERATOR WITH @syedzeeshaanali07
     function generateQrUri(text, size = 90) {
       const div = document.createElement('div');
       div.style.position = 'fixed'; div.style.left = '-9999px';
@@ -859,6 +1006,33 @@
       `;
     }
 
+    function buildWarrantyCertificateHTML(bill) {
+      const qrUri = generateQrUri(`upi://pay?pa=9848088319@ybl&pn=Pushpa%20Car%20Gallery&am=${bill.grandTotal}&cu=INR&tn=${bill.invoiceId}`, 90);
+      return `
+        <div style="width:190mm; margin:0 auto; padding:12mm; font-family:'Plus Jakarta Sans',sans-serif; color:#000; background:#fff; border:3px double #000;">
+          <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:10px;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:800; letter-spacing:2px;">OFFICIAL 9H CERAMIC &amp; PPF PROTECTION CERTIFICATE</div>
+            <h1 style="font-size:24px; font-weight:900; margin:4px 0;">PUSHPA CAR GALLERY • KHAMMAM</h1>
+            <p style="font-size:11px; margin:0;">Bypass Road, Beside TVS Vajra Showroom, Khammam • Ph: 098480 88319</p>
+          </div>
+          <div style="margin:14px 0; padding:12px; border:1.5px solid #000; background:#f9f9f9; font-size:12px; line-height:1.8;">
+            <div><strong>Certificate / Invoice ID:</strong> ${bill.invoiceId} &nbsp;|&nbsp; <strong>Date:</strong> ${bill.date}</div>
+            <div><strong>Owner Name:</strong> ${bill.customerName} (${bill.customerPhone || 'Verified Client'})</div>
+            <div><strong>Vehicle Registration:</strong> ${bill.vehicleNo}</div>
+            <div><strong>Treatment Applied:</strong> ${(bill.items||[]).map(i=>i.name).join(', ')}</div>
+            <div><strong>Specification:</strong> 9H Hardness • 118.0° Hydrophobic Contact Angle • 0-PPM Prep</div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:20px; padding-top:10px; border-top:1px solid #000;">
+            <div style="display:flex; gap:10px; align-items:center;">
+              ${qrUri ? `<img src="${qrUri}" style="width:68px; height:68px;"/>` : ''}
+              <div style="font-size:10px; font-family:monospace;"><strong>VERIFIED STUDIO RECORD</strong><br/>ERP by Syed Zeeshaan Ali (@syedzeeshaanali07)</div>
+            </div>
+            <div style="text-align:right; font-size:11px;"><strong>VIJAY (PROPRIETOR)</strong><br/>Authorized Signature</div>
+          </div>
+        </div>
+      `;
+    }
+
     async function completeAndPrintPosBill(mode) {
       if (posBillItems.length === 0) return;
       const invoiceId = 'INV_' + Date.now().toString().slice(-6);
@@ -878,7 +1052,6 @@
       safeSet('pushpa_bills', JSON.stringify(billsList));
       await fbPut(`bills/${invoiceId}`, billData);
 
-      // AUTOMATIC STOCK REDUCTION + LOW STOCK ALERT NOTIFICATION
       for (const item of posBillItems) {
         if (item.type === 'PRODUCT') {
           const idx = productsList.findIndex(p => p.id === item.id);
@@ -922,14 +1095,18 @@
     function renderPreviewPaper() {
       if (!currentPreviewBill) return;
       document.getElementById('print-modal-title').textContent = `${currentPreviewFormat} PREVIEW • ${currentPreviewBill.invoiceId}`;
-      document.getElementById('print-preview-paper').innerHTML = currentPreviewFormat === 'A4'
-        ? buildA4InvoiceHTML(currentPreviewBill)
-        : buildThermalRollHTML(currentPreviewBill, currentPreviewFormat);
+      if (currentPreviewFormat === 'A4') {
+        document.getElementById('print-preview-paper').innerHTML = buildA4InvoiceHTML(currentPreviewBill);
+      } else if (currentPreviewFormat === 'WARRANTY') {
+        document.getElementById('print-preview-paper').innerHTML = buildWarrantyCertificateHTML(currentPreviewBill);
+      } else {
+        document.getElementById('print-preview-paper').innerHTML = buildThermalRollHTML(currentPreviewBill, currentPreviewFormat);
+      }
     }
 
     function triggerGuaranteedPrint() {
       const html = document.getElementById('print-preview-paper').innerHTML;
-      const rule = currentPreviewFormat === 'A4'
+      const rule = (currentPreviewFormat === 'A4' || currentPreviewFormat === 'WARRANTY')
         ? '@page { size: A4 portrait; margin: 6mm; }'
         : `@page { size: ${currentPreviewFormat} auto; margin: 0mm; }`;
       document.getElementById('dynamic-print-style').innerHTML = rule;
@@ -944,28 +1121,42 @@
       if (clear) clearPosBill();
     }
 
-    // HELD BILLS, SLOT BOARD, LEADS, ORDERS & INVENTORY
-    async function parkCurrentBillToHold() {
+    // HELD BILLS (SAFE BY-ID LOOKUP)
+    function parkCurrentBillToHold() {
       if (!posBillItems.length) return;
       const holdId = 'HOLD_' + Date.now().toString().slice(-4);
       const calc = calculateBillSummary();
       heldBillsList.unshift({
         holdId,
         customerName: document.getElementById('bill-cust-name').value || 'Bay Car',
+        customerPhone: document.getElementById('bill-cust-phone').value || '',
         vehicleNo: document.getElementById('bill-car-no').value || 'BAY',
-        items: [...posBillItems],
+        items: posBillItems.map(i => ({ ...i })),
         grandTotal: calc.grandTotal
       });
       safeSet('pushpa_heldBills', JSON.stringify(heldBillsList));
       clearPosBill(); refreshAllAdminUI();
     }
 
+    function resumeHeldBill(holdId) {
+      const h = heldBillsList.find(x => x.holdId === holdId);
+      if (!h) return;
+      document.getElementById('bill-cust-name').value = h.customerName || '';
+      document.getElementById('bill-cust-phone').value = h.customerPhone || '';
+      document.getElementById('bill-car-no').value = h.vehicleNo || '';
+      posBillItems = (h.items || []).map(i => ({ ...i }));
+      heldBillsList = heldBillsList.filter(x => x.holdId !== holdId);
+      safeSet('pushpa_heldBills', JSON.stringify(heldBillsList));
+      renderPosBill(); refreshAllAdminUI();
+    }
+
     function renderHeldBillsStrip() {
       document.getElementById('held-bills-strip').innerHTML = heldBillsList.length === 0
         ? `<span class="text-zinc-500 font-mono text-[11px]">No parked bills.</span>`
-        : heldBillsList.map(h => `<button type="button" onclick="posBillItems=${JSON.stringify(h.items).replace(/"/g, '&quot;')}; heldBillsList=heldBillsList.filter(x=>x.holdId!=='${h.holdId}'); renderPosBill(); refreshAllAdminUI();" class="px-3 py-1 rounded-lg bg-black border border-[#D4AF37] text-[#F5D061] font-mono text-[11px]">${h.vehicleNo} • ₹${h.grandTotal}</button>`).join('');
+        : heldBillsList.map(h => `<button type="button" onclick="resumeHeldBill('${h.holdId}')" class="px-3 py-1 rounded-lg bg-black border border-[#D4AF37] text-[#F5D061] font-mono text-[11px] shrink-0">${h.vehicleNo} • ₹${h.grandTotal}</button>`).join('');
     }
 
+    // SLOT BOARD, LEADS, ORDERS, JOB CARDS & INVENTORY
     function renderAdminSlotBoard() {
       const inp = document.getElementById('admin-slot-date');
       if (!inp.value) inp.value = new Date().toISOString().slice(0, 10);
@@ -982,6 +1173,16 @@
           </div>
         `;
       }).join('');
+    }
+
+    function convertLeadToBill(leadId) {
+      const l = leadsList.find(x => x.id === leadId);
+      if (!l) return;
+      posBillItems = [{ id: l.id, name: l.packageName, price: Number(l.price), qty: 1, type: 'SERVICE' }];
+      document.getElementById('bill-cust-name').value = l.clientName || '';
+      document.getElementById('bill-cust-phone').value = l.phone || '';
+      document.getElementById('bill-car-no').value = l.vehicleModel || '';
+      switchTab('pos'); renderPosBill();
     }
 
     function renderLeadsTable() {
@@ -1001,7 +1202,7 @@
             </select>
           </td>
           <td class="py-3 px-4 text-right space-x-1">
-            <button type="button" onclick="posBillItems=[{id:'${l.id}',name:'${l.packageName.replace(/'/g,'')}',price:${l.price},qty:1,type:'SERVICE'}]; document.getElementById('bill-cust-name').value='${l.clientName}'; document.getElementById('bill-cust-phone').value='${l.phone}'; document.getElementById('bill-car-no').value='${l.vehicleModel}'; switchTab('pos'); renderPosBill();" class="px-2.5 py-1 rounded gold-btn font-mono text-[10px]">Bill</button>
+            <button type="button" onclick="convertLeadToBill('${l.id}')" class="px-2.5 py-1 rounded gold-btn font-mono text-[10px]">Bill</button>
           </td>
         </tr>
       `).join('');
@@ -1016,11 +1217,24 @@
       renderAdminSlotBoard();
     }
 
+    function loadOrderToPos(orderId) {
+      const o = ordersList.find(x => x.orderId === orderId);
+      if (!o) return;
+      posBillItems = (o.items || []).map(i => ({ id: i.id, name: i.name, price: Number(i.price), qty: Number(i.qty), type: 'PRODUCT' }));
+      document.getElementById('bill-cust-name').value = o.customerName || '';
+      document.getElementById('bill-cust-phone').value = o.customerPhone || '';
+      document.getElementById('bill-car-no').value = o.carModel || '';
+      switchTab('pos'); renderPosBill();
+    }
+
     function renderOrdersList() {
       document.getElementById('orders-list').innerHTML = ordersList.map(o => `
-        <div class="p-4 rounded-xl bg-black border border-[#D4AF37]/35 flex justify-between items-center text-xs">
+        <div class="p-4 rounded-xl bg-black border border-[#D4AF37]/35 flex flex-wrap justify-between items-center gap-3 text-xs">
           <div><span class="font-mono text-[10px] text-[#F5D061]">${o.orderId} • ${o.date}</span><div class="font-bold text-white">${o.customerName} (${o.carModel})</div><div class="text-zinc-400">${(o.items||[]).map(i=>`${i.name} x${i.qty}`).join(', ')}</div></div>
-          <span class="font-display font-extrabold text-lg text-[#F5D061]">₹${o.grandTotal}</span>
+          <div class="flex items-center gap-3">
+            <span class="font-display font-extrabold text-lg text-[#F5D061]">₹${o.grandTotal}</span>
+            <button type="button" onclick="loadOrderToPos('${o.orderId}')" class="px-3 py-1.5 rounded-lg gold-btn font-mono text-[10px] uppercase">Load to POS</button>
+          </div>
         </div>
       `).join('');
     }
@@ -1034,11 +1248,50 @@
             <button type="button" onclick="openPrintPreview(billsList.find(x=>x.invoiceId==='${b.invoiceId}'), '80mm')" class="px-2.5 py-1 rounded gold-btn">80mm</button>
             <button type="button" onclick="openPrintPreview(billsList.find(x=>x.invoiceId==='${b.invoiceId}'), '85mm')" class="px-2.5 py-1 rounded bg-white/10">85mm</button>
             <button type="button" onclick="openPrintPreview(billsList.find(x=>x.invoiceId==='${b.invoiceId}'), 'A4')" class="px-2.5 py-1 rounded bg-white text-black font-bold">A4</button>
+            <button type="button" onclick="openPrintPreview(billsList.find(x=>x.invoiceId==='${b.invoiceId}'), 'WARRANTY')" class="px-2.5 py-1 rounded bg-[#D4AF37]/20 text-[#F5D061]">🛡️ 9H</button>
           </div>
         </div>
       `).join('');
     }
 
+    // JOB CARDS
+    function toggleDamageZone(btn, zone) {
+      const idx = selectedDamageZones.indexOf(zone);
+      if (idx > -1) { selectedDamageZones.splice(idx, 1); btn.className = "dmg-zone p-2.5 rounded-xl border border-white/15 bg-white/5"; }
+      else { selectedDamageZones.push(zone); btn.className = "dmg-zone p-2.5 rounded-xl border border-[#F5D061] bg-[#D4AF37]/20 text-[#F5D061] font-bold"; }
+    }
+
+    async function saveVehicleJobCard(e) {
+      e.preventDefault();
+      const jobId = 'JOB_' + Date.now().toString().slice(-5);
+      const client = document.getElementById('jc-client').value.trim();
+      const phone = document.getElementById('jc-phone').value.trim();
+      const car = document.getElementById('jc-car').value.trim().toUpperCase();
+      const odo = document.getElementById('jc-odo').value.trim() || 'Logged';
+      const notes = document.getElementById('jc-notes').value.trim() || 'Standard Studio Inspection';
+      const zones = selectedDamageZones.length ? selectedDamageZones.join(', ') : 'Clean Body';
+      const jc = { jobId, date: new Date().toISOString().slice(0, 10), client, phone, car, odo, zones, notes };
+      jobCardsList.unshift(jc);
+      safeSet('pushpa_jobCards', JSON.stringify(jobCardsList));
+      await fbPut(`jobCards/${jobId}`, jc);
+      const wa = encodeURIComponent(`*JOB CARD ${jobId} - PUSHPA CAR GALLERY*\nClient: ${client} (${car})\nPanels: ${zones}\nNotes: ${notes}`);
+      window.open(`https://wa.me/91${phone.replace(/\D/g,'').slice(-10)}?text=${wa}`, '_blank');
+      e.target.reset(); selectedDamageZones = [];
+      document.querySelectorAll('.dmg-zone').forEach(b => b.className = "dmg-zone p-2.5 rounded-xl border border-white/15 bg-white/5");
+      refreshAllAdminUI();
+    }
+
+    function renderJobCardsList() {
+      document.getElementById('jobcards-list').innerHTML = jobCardsList.map(j => `
+        <div class="p-3.5 rounded-xl bg-black border border-[#D4AF37]/30 text-xs space-y-1">
+          <div class="font-mono text-[10px] text-[#F5D061]">${j.jobId} • ${j.date} • Odo: ${j.odo}</div>
+          <div class="font-bold text-white">${j.client} — ${j.car} (${j.phone})</div>
+          <div class="text-zinc-300">Panels: ${j.zones}</div>
+        </div>
+      `).join('');
+    }
+
+    // INVENTORY & BARCODES
     async function addStockDirectlyWhileBilling() {
       const id = document.getElementById('quick-stock-product').value;
       const qty = Number(document.getElementById('quick-stock-qty').value || 0);
@@ -1069,14 +1322,30 @@
       e.target.reset(); refreshAllAdminUI();
     }
 
+    function printProductBarcode(id) {
+      const p = productsList.find(x => x.id === id);
+      if (!p) return;
+      document.getElementById('dynamic-print-style').innerHTML = '@page { size: 80mm auto; margin: 0mm; }';
+      const area = document.getElementById('printable-area');
+      area.innerHTML = `<div style="text-align:center; font-family:monospace; width:68mm; margin:0 auto; padding:4px; border:1px dashed #000; background:#fff; color:#000;"><div style="font-weight:900;">PUSHPA CAR GALLERY</div><div>${p.name}</div><svg id="print-bc"></svg><div style="font-weight:900;">MRP: ₹${p.price}/-</div></div>`;
+      area.classList.remove('hidden');
+      try { JsBarcode("#print-bc", p.barcode || p.id, { format: "CODE128", width: 1.6, height: 34, displayValue: true, fontSize: 10 }); } catch (e) {}
+      setTimeout(() => { window.print(); area.classList.add('hidden'); }, 150);
+    }
+
     function renderInventoryCards() {
       document.getElementById('inventory-cards-grid').innerHTML = productsList.map(p => `
-        <div class="gold-card p-4 space-y-2">
+        <div class="gold-card p-4 space-y-2.5">
           <div class="flex justify-between"><span class="font-mono text-[10px] text-[#F5D061]">${p.category}</span><span class="font-mono text-xs ${Number(p.stock)<=5?'text-rose-400 font-bold':'text-emerald-400'}">Stock: ${p.stock}</span></div>
           <h4 class="font-display font-bold text-sm uppercase">${p.name}</h4>
-          <div class="font-mono text-sm font-bold text-white">₹${p.price}</div>
+          <div class="bg-white p-2 rounded-lg text-center"><svg id="bc-${p.id}" class="mx-auto"></svg></div>
+          <div class="flex justify-between items-center">
+            <span class="font-mono text-sm font-bold text-white">₹${p.price}</span>
+            <button type="button" onclick="printProductBarcode('${p.id}')" class="px-3 py-1 rounded-lg gold-btn font-mono text-[10px] uppercase">🖨️ Label</button>
+          </div>
         </div>
       `).join('');
+      productsList.forEach(p => { try { JsBarcode(`#bc-${p.id}`, p.barcode || p.id, { format: "CODE128", width: 1.4, height: 28, displayValue: true, fontSize: 10 }); } catch (e) {} });
       const sel = document.getElementById('quick-stock-product');
       if (sel) sel.innerHTML = productsList.map(p => `<option value="${p.id}">${p.name} (${p.stock})</option>`).join('');
     }
@@ -1112,6 +1381,7 @@
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(billsList), "POS_Bills");
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(leadsList), "Slot_Bookings");
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(productsList), "Inventory_Stock");
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(jobCardsList), "Job_Cards");
       XLSX.writeFile(wb, `Pushpa_Car_Gallery_${new Date().toISOString().slice(0, 10)}.xlsx`);
     }
 
@@ -1120,6 +1390,7 @@
       document.getElementById('badge-orders').textContent = ordersList.length;
       document.getElementById('badge-bills').textContent = billsList.length;
       document.getElementById('badge-held').textContent = heldBillsList.length;
+      document.getElementById('badge-jobs').textContent = jobCardsList.length;
       document.getElementById('badge-lowstock').textContent = productsList.filter(p => Number(p.stock) <= 5).length;
       renderPosCatalog();
       renderHeldBillsStrip();
@@ -1127,6 +1398,7 @@
       renderLeadsTable();
       renderOrdersList();
       renderPastBillsTable();
+      renderJobCardsList();
       renderInventoryCards();
       renderPackagesEditor();
       renderNotificationsLog();
